@@ -162,6 +162,46 @@ public sealed class HangarEditor
             MarkHealthy(data);
         });
 
+    public StockLoadout ReadLoadout(MechRecord mech) => MechLoadoutReader.Read(mech.LoadoutData);
+
+    public StockLoadout? StockFor(MechRecord mech) => _catalog.FindStock(mech.Asset);
+
+    /// <summary>
+    /// Every weapon hardpoint the mech has: the variant's stock hardpoints plus any the current
+    /// loadout uses, in a stable order. Melee mounts are included; they take melee weapons only.
+    /// </summary>
+    public IReadOnlyList<string> HardpointsFor(MechRecord mech)
+    {
+        var slots = new List<string>();
+        foreach (var slot in (StockFor(mech)?.Weapons.Select(w => w.Slot) ?? [])
+                     .Concat(ReadLoadout(mech).Weapons.Select(w => w.Slot)))
+        {
+            if (!slots.Contains(slot, StringComparer.OrdinalIgnoreCase))
+            {
+                slots.Add(slot);
+            }
+        }
+
+        return slots;
+    }
+
+    /// <summary>Replaces the mech's armor, weapons, groups and equipment; identity and skin are kept.</summary>
+    public void ApplyLoadout(MechRecord mech, StockLoadout loadout)
+    {
+        if (!mech.IsEditable)
+        {
+            throw new InvalidOperationException("This mech's data can't be safely rewritten.");
+        }
+
+        foreach (var field in MechLoadoutBuilder.BuildStockFields(loadout))
+        {
+            mech.LoadoutData.Set(field);
+        }
+
+        mech.MarkModified();
+        _changed();
+    }
+
     internal void Commit()
     {
         foreach (var mech in _mechs)

@@ -10,7 +10,7 @@ public enum ItemKind
 }
 
 /// <summary>An inventory item asset, e.g. <c>MediumLaser_Lvl2</c> of type <c>MWTraceWeaponDataAsset</c>.</summary>
-public sealed record ItemDefinition(string Asset, string AssetType, ItemKind Kind)
+public sealed record ItemDefinition(string Asset, string AssetType, ItemKind Kind, HardpointClass Hardpoint = HardpointClass.Unknown)
 {
     /// <summary>Weapons go to <c>WeaponInventory</c>; equipment and ammo to <c>EquipmentInventory</c>.</summary>
     public bool IsWeapon => Kind == ItemKind.Weapon;
@@ -36,6 +36,12 @@ public sealed class ItemCatalog
 
     public IReadOnlyList<ItemDefinition> Items { get; }
 
+    public IEnumerable<ItemDefinition> WeaponsFor(HardpointClass slot) =>
+        Items.Where(i => i.Kind == ItemKind.Weapon && Hardpoints.Accepts(slot, i.Hardpoint));
+
+    public ItemDefinition? Find(string asset) =>
+        Items.FirstOrDefault(i => string.Equals(i.Asset, asset, StringComparison.OrdinalIgnoreCase));
+
     public static ItemCatalog LoadBuiltIn()
     {
         using var stream = MechCatalog.OpenResource("items.json");
@@ -48,8 +54,8 @@ public sealed class ItemCatalog
         return new ItemCatalog(items);
 
         void Add(string group, ItemKind kind) =>
-            items.AddRange(file[group].Select(i => new ItemDefinition(i.Asset, i.Type, kind)));
+            items.AddRange(file[group].Select(i => new ItemDefinition(i.Asset, i.Type, kind, Hardpoints.Parse(i.Hardpoint))));
     }
 
-    private sealed record ItemDto(string Asset, string Type);
+    private sealed record ItemDto(string Asset, string Type, string? Hardpoint);
 }
