@@ -73,16 +73,17 @@
                             </Style.Triggers>
                         </Style>
                     </ma:MaShapeBorder.Style>
-                    <DockPanel>
+                    <!-- One shared width for the hardpoint column: every chip is as wide as the widest (Ballistic, Missile, ...). -->
+                    <DockPanel Grid.IsSharedSizeScope="True">
                         <Grid DockPanel.Dock="Top" Margin="20,4,20,8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="170" />
-                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Hardpoint" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="190" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{l:T location}" Style="{StaticResource Text.Label}" />
-                            <TextBlock Grid.Column="1" Text="{l:T hardpoint}" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="1" Text="{l:T hardpoint}" Style="{StaticResource Text.Label}" Margin="0,0,20,0" />
                             <TextBlock Grid.Column="2" Text="{l:T weapon}" Style="{StaticResource Text.Label}" />
                             <TextBlock Grid.Column="3" Text="{l:T weapon_groups_1_6}" Style="{StaticResource Text.Label}" />
                         </Grid>
@@ -94,13 +95,13 @@
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="170" />
-                                                    <ColumnDefinition Width="110" />
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Hardpoint" />
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="190" />
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="{Binding Location}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
-                                                <Border Grid.Column="1" Style="{StaticResource Chip}" HorizontalAlignment="Left">
-                                                    <TextBlock Text="{Binding ClassLabel}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
+                                                <Border Grid.Column="1" Style="{StaticResource Chip}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,20,0">
+                                                    <TextBlock Text="{Binding ClassLabel}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" HorizontalAlignment="Center" />
                                                 </Border>
                                                 <ComboBox Grid.Column="2" ItemsSource="{Binding Options}" SelectedItem="{Binding Selected}" Margin="0,0,16,0"
                                                           MaxDropDownHeight="420" ToolTip="{Binding Slot}">
