@@ -1,0 +1,4348 @@
+{
+ "weapons": [
+  {
+   "asset": "AntiMissileSystem",
+   "type": "MWAMSWeaponDataAsset"
+  },
+  {
+   "asset": "AntiMissileSystem_Lvl0",
+   "type": "MWAMSWeaponDataAsset"
+  },
+  {
+   "asset": "AntiMissileSystem_Lvl2",
+   "type": "MWAMSWeaponDataAsset"
+  },
+  {
+   "asset": "AntiMissileSystem_Lvl3",
+   "type": "MWAMSWeaponDataAsset"
+  },
+  {
+   "asset": "AntiMissileSystem_Lvl4",
+   "type": "MWAMSWeaponDataAsset"
+  },
+  {
+   "asset": "AntiMissileSystem_Lvl5",
+   "type": "MWAMSWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Assault",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Assault_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Assault_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Assault_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Assault_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Assault_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Heavy",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Heavy_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Heavy_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Heavy_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Heavy_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Heavy_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Light",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Light_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Light_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Light_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Light_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Light_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Medium",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Medium_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Medium_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Medium_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Medium_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArenaFist_Medium_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Vehicle_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Vehicle_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Vehicle_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Vehicle_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Vehicle_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Auto",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Auto_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Auto_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Auto_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Auto_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Auto_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Burst_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Burst_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Burst_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Burst_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Burst_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Turret_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Turret_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Turret_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Turret_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon10_Turret_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Auto",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Auto_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Auto_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Auto_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Auto_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Auto_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Burst_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Burst_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Burst_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Burst_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Burst_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Demolisher_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Demolisher_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Demolisher_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Demolisher_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Demolisher_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon20_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Auto",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Auto_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Auto_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Auto_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Auto_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Auto_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Burst_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Burst_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Burst_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Burst_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Burst_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Turret_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Turret_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Turret_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Turret_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_Turret_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_VTOL_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_VTOL_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_VTOL_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_VTOL_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon2_VTOL_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Auto",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Auto_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Auto_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Auto_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Auto_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Auto_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Burst_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Burst_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Burst_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Burst_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Burst_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Scorpion_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Scorpion_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Scorpion_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Scorpion_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Autocannon5_Scorpion_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Axe_Heavy",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Axe_Heavy_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Axe_Heavy_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Axe_Heavy_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Axe_Heavy_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Axe_Heavy_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "BattleAxe_Assault",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "BattleAxe_Assault_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "BattleAxe_Assault_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "BattleAxe_Assault_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "BattleAxe_Assault_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "BattleAxe_Assault_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "BinaryLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "BinaryLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "BinaryLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "BinaryLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "BinaryLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "BinaryLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-ATM12",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-ATM3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-ATM6",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-ATM9",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-AntiMissileSystem",
+   "type": "MWAMSWeaponDataAsset"
+  },
+  {
+   "asset": "C-ArrowIV",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-ERLargeLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-ERMediumLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-ERPPC",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-ERSmallLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-Flamer",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-GaussRifle",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-HeavyLargeLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-HeavyMachineGun",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-HeavyMediumLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-HeavySmallLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon10",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon10_Slug",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon10_Slug_BurstFire",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon20",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon20_SLD",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon20_SLD_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon2_Slug",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon2_Slug_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon5_Solid",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LBXAutocannon5_Solid_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM10",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM10_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM15",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM15_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM20",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM20_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LRM5_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-LargePulseLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-LightMachineGun",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-MachineGun",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-MediumPulseLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-NarcBeacon",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-SRM2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-SRM2_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-SRM4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-SRM4_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-SRM6",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-SRM6_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-SmallPulselLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "C-StreakSRM2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-StreakSRM4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-StreakSRM6",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon10_BurstFire",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon10_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon20",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon20_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon2_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "C-UltraAutocannon5_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Claws_Medium",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claws_Medium_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claws_Medium_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claws_Medium_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claws_Medium_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claws_Medium_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claymore_Assault",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claymore_Assault_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claymore_Assault_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claymore_Assault_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claymore_Assault_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Claymore_Assault_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_ShortBurst",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_ShortBurst_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_ShortBurst_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_ShortBurst_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_ShortBurst_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERLargeLaser_ShortBurst_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERMediumLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERMediumLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERMediumLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERMediumLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERMediumLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERMediumLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERPPC",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "ERPPC_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "ERPPC_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "ERPPC_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "ERPPC_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "ERPPC_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "ERSmallLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERSmallLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERSmallLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERSmallLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERSmallLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "ERSmallLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "Flamer",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "Flamer_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "Flamer_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "Flamer_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "Flamer_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "Flamer_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "GaussRifle",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "GaussRifle_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "GaussRifle_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "GaussRifle_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "GaussRifle_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "GaussRifle_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Greatsword_Assault",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Greatsword_Assault_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Greatsword_Assault_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Greatsword_Assault_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Greatsword_Assault_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Greatsword_Assault_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Assault",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Assault_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Assault_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Assault_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Assault_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Assault_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Heavy",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Heavy_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Heavy_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Heavy_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Heavy_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Heavy_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Light",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Light_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Light_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Light_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Light_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Light_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Medium",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Medium_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Medium_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Medium_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Medium_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HammerFist_Medium_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hammer_Heavy",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hammer_Heavy_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hammer_Heavy_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hammer_Heavy_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hammer_Heavy_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hammer_Heavy_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hatchet_Medium",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hatchet_Medium_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hatchet_Medium_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hatchet_Medium_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hatchet_Medium_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Hatchet_Medium_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyGaussRifle",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyGaussRifle_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyGaussRifle_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyGaussRifle_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyGaussRifle_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyGaussRifle_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Burst_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Burst_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Burst_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Burst_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Burst_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Katana_Assault",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Katana_Assault_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Katana_Assault_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Katana_Assault_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Katana_Assault_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Katana_Assault_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Assault",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Assault_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Assault_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Assault_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Assault_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Assault_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Heavy",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Heavy_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Heavy_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Heavy_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Heavy_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Heavy_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Light",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Light_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Light_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Light_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Light_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Light_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Medium",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Medium_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Medium_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Medium_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Medium_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Knuckles_Medium_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_BurstFire",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_BurstFire_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_BurstFire_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_BurstFire_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_BurstFire_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_BurstFire_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Slug_BurstFire",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Slug_BurstFire_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Slug_BurstFire_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Slug_BurstFire_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Slug_BurstFire_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_Slug_BurstFire_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_SolidSlug",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_SolidSlug_LvL0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_SolidSlug_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_SolidSlug_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_SolidSlug_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon10_SolidSlug_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon20",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon20_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon20_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon20_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon20_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon20_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon2_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon2_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon2_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon2_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon2_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon5_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon5_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon5_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon5_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LBXAutocannon5_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Artemis_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Hotloaded",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Hotloaded_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Hotloaded_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Hotloaded_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Hotloaded_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Hotloaded_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM10_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Artemis_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Hotloaded",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Hotloaded_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Hotloaded_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Hotloaded_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Hotloaded_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Hotloaded_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM15_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Artemis_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Hotloaded",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Hotloaded_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Hotloaded_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Hotloaded_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Hotloaded_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Hotloaded_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM20_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Artemis_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Hotloaded",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Hotloaded_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Hotloaded_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Hotloaded_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Hotloaded_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Hotloaded_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "LRM5_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "Lance_Medium",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Lance_Medium_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Lance_Medium_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Lance_Medium_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Lance_Medium_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Lance_Medium_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "LargeChemicalLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeChemicalLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeChemicalLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeChemicalLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeChemicalLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeChemicalLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_ShortBurst",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_ShortBurst_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_ShortBurst_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_ShortBurst_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_ShortBurst_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_ShortBurst_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Turret_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Turret_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Turret_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Turret_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeLaser_Turret_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargePulseLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargePulseLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargePulseLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargePulseLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargePulseLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargePulseLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeXPulse",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeXPulse_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeXPulse_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeXPulse_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeXPulse_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LargeXPulse_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon2_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon2_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon2_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon2_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon2_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon5_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon5_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon5_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon5_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightAutocannon5_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightGaussRifle",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightGaussRifle_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightGaussRifle_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightGaussRifle_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightGaussRifle_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightGaussRifle_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Burst_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Burst_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Burst_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Burst_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Burst_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "LightRifle_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "Longsword_Heavy",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Longsword_Heavy_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Longsword_Heavy_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Longsword_Heavy_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Longsword_Heavy_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Longsword_Heavy_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MRM10",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM10_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM10_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM10_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM10_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM10_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM20",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM20_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM20_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM20_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM20_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM20_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Vehicle_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Vehicle_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Vehicle_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Vehicle_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM30_Vehicle_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM40",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM40_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM40_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM40_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM40_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "MRM40_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "Mace_Medium",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Mace_Medium_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Mace_Medium_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Mace_Medium_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Mace_Medium_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "Mace_Medium_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MachineGun",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MachineGun_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MachineGun_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MachineGun_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MachineGun_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MachineGun_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MechBarrelFistAssault_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechBarrelFistHeavy_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechBarrelFistLight_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechBarrelFistMedium_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechBattleFistAssault_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechBattleFistHeavy_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechBattleFistLight_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechBattleFistMedium_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechHandAssault_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechHandHeavy_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechHandLight_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechHandMedium_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechInductiveClawsMedium_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechLowerArmAssault_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechLowerArmHeavy_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechLowerArmLight_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MechLowerArmMedium_MeleeWeaponDataAsset",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "MediumChemicalLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumChemicalLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumChemicalLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumChemicalLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumChemicalLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumChemicalLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_ShortBurst",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_ShortBurst_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_ShortBurst_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_ShortBurst_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_ShortBurst_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumLaser_ShortBurst_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumPulseLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumPulseLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumPulseLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumPulseLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumPulseLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumPulseLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Burst",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Burst_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Burst_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Burst_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Burst_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Burst_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "MediumXPulseLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumXPulseLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumXPulseLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumXPulseLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumXPulseLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "MediumXPulseLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "NarcBeacon",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "NarcBeacon_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "NarcBeacon_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "NarcBeacon_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "NarcBeacon_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "NarcBeacon_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Shotgun",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Shotgun_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Shotgun_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Shotgun_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Shotgun_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Shotgun_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Tank_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Tank_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Tank_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Tank_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "PPC_Tank_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Artemis_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Inferno",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Inferno_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Inferno_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Inferno_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Inferno_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Inferno_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Turret_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Turret_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Turret_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Turret_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_Turret_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_VTOL_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_VTOL_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_VTOL_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_VTOL_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM2_VTOL_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Artemis_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Inferno",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Inferno_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Inferno_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Inferno_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Inferno_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Inferno_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Turret_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Turret_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Turret_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Turret_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM4_Turret_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Artemis_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Inferno",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Inferno_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Inferno_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Inferno_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Inferno_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Inferno_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Turret_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Turret_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Turret_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Turret_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SRM6_Turret_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "SmallChemicalLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallChemicalLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallChemicalLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallChemicalLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallChemicalLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallChemicalLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_ShortBurst",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_ShortBurst_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_ShortBurst_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_ShortBurst_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_ShortBurst_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallLaser_ShortBurst_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallPulseLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallPulseLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallPulseLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallPulseLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallPulseLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallPulseLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallXPulseLaser",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallXPulseLaser_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallXPulseLaser_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallXPulseLaser_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallXPulseLaser_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "SmallXPulseLaser_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Stream",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Stream_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Stream_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Stream_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Stream_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM2_Stream_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM4_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM4_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM4_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM4_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM4_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM6",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM6_Lvl0",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM6_Lvl2",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM6_Lvl3",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM6_Lvl4",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "StreakSRM6_Lvl5",
+   "type": "MWMissileWeaponDataAsset"
+  },
+  {
+   "asset": "TAG",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "TAG_Lvl0",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "TAG_Lvl2",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "TAG_Lvl3",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "TAG_Lvl4",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "TAG_Lvl5",
+   "type": "MWTraceWeaponDataAsset"
+  },
+  {
+   "asset": "TrenchBlade_Heavy",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "TrenchBlade_Heavy_Lvl0",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "TrenchBlade_Heavy_Lvl2",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "TrenchBlade_Heavy_Lvl3",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "TrenchBlade_Heavy_Lvl4",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "TrenchBlade_Heavy_Lvl5",
+   "type": "MWMeleeWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon10_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon10_Single_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon10_Single_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon10_Single_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon10_Single_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon10_Single_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon20_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon20_Single_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon20_Single_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon20_Single_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon20_Single_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon20_Single_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon2_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon2_Single_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon2_Single_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon2_Single_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon2_Single_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon2_Single_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Single",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Single_Lvl0",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Single_Lvl2",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Single_Lvl3",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Single_Lvl4",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "UltraAutocannon5_Single_Lvl5",
+   "type": "MWProjectileWeaponDataAsset"
+  },
+  {
+   "asset": "c-TAG",
+   "type": "MWTraceWeaponDataAsset"
+  }
+ ],
+ "equipment": [
+  {
+   "asset": "BM_Arena_ActiveProbe",
+   "type": "MWBAPDataAsset"
+  },
+  {
+   "asset": "BM_Arena_ECM",
+   "type": "MWECMDataAsset"
+  },
+  {
+   "asset": "BeagleActiveProbe",
+   "type": "MWBAPDataAsset"
+  },
+  {
+   "asset": "ClanActiveProbe",
+   "type": "MWBAPDataAsset"
+  },
+  {
+   "asset": "ClanDoubleHeatSink",
+   "type": "MWHeatSinkDataAsset"
+  },
+  {
+   "asset": "ClanECM",
+   "type": "MWECMDataAsset"
+  },
+  {
+   "asset": "ClanEndoSteelStructure",
+   "type": "MWStructureDataAsset"
+  },
+  {
+   "asset": "ClanFerroFibrousArmor",
+   "type": "MWArmorDataAsset"
+  },
+  {
+   "asset": "DoubleHeatSink",
+   "type": "MWHeatSinkDataAsset"
+  },
+  {
+   "asset": "EWActiveProbe",
+   "type": "MWBAPDataAsset"
+  },
+  {
+   "asset": "EWECM",
+   "type": "MWECMDataAsset"
+  },
+  {
+   "asset": "EndoSteelStructure",
+   "type": "MWStructureDataAsset"
+  },
+  {
+   "asset": "FerroFibrousArmor",
+   "type": "MWArmorDataAsset"
+  },
+  {
+   "asset": "GuardianECM",
+   "type": "MWECMDataAsset"
+  },
+  {
+   "asset": "JumpJet_Class1_Equipment",
+   "type": "MWJumpJetDataAsset"
+  },
+  {
+   "asset": "JumpJet_Class2_Equipment",
+   "type": "MWJumpJetDataAsset"
+  },
+  {
+   "asset": "JumpJet_Class3_Equipment",
+   "type": "MWJumpJetDataAsset"
+  },
+  {
+   "asset": "JumpJet_Class4_Equipment",
+   "type": "MWJumpJetDataAsset"
+  },
+  {
+   "asset": "JumpJet_Class5_Equipment",
+   "type": "MWJumpJetDataAsset"
+  },
+  {
+   "asset": "MASC_MKI",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "MASC_MKII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "MASC_MKIII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "MASC_MKIV",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "MASC_MKV",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "SUPERCHARGER_Arena_MKII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "SingleHeatSink",
+   "type": "MWHeatSinkDataAsset"
+  },
+  {
+   "asset": "StandardArmor",
+   "type": "MWArmorDataAsset"
+  },
+  {
+   "asset": "StandardStructure",
+   "type": "MWStructureDataAsset"
+  },
+  {
+   "asset": "Supercharger_Arena_MKI",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_Arena_MKIII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_Arena_MKIV",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_Arena_MKV",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_MKI",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_MKII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_MKIII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_MKIV",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "Supercharger_MKV",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "TargetingComputer_Mk1",
+   "type": "MWTargetingComputerDataAsset"
+  },
+  {
+   "asset": "TargetingComputer_Mk2",
+   "type": "MWTargetingComputerDataAsset"
+  },
+  {
+   "asset": "TargetingComputer_Mk3",
+   "type": "MWTargetingComputerDataAsset"
+  },
+  {
+   "asset": "TargetingComputer_Mk4",
+   "type": "MWTargetingComputerDataAsset"
+  },
+  {
+   "asset": "TargetingComputer_Mk5",
+   "type": "MWTargetingComputerDataAsset"
+  },
+  {
+   "asset": "TargetingComputer_Mk6",
+   "type": "MWTargetingComputerDataAsset"
+  },
+  {
+   "asset": "TargetingComputer_Mk7",
+   "type": "MWTargetingComputerDataAsset"
+  },
+  {
+   "asset": "c-MASC_MKI",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "c-MASC_MKII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "c-MASC_MKIII",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "c-MASC_MKIV",
+   "type": "MWMASCDataAsset"
+  },
+  {
+   "asset": "c-MASC_MKV",
+   "type": "MWMASCDataAsset"
+  }
+ ],
+ "ammo": [
+  {
+   "asset": "AC10_LBX_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC10_LBX_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC10_Standard_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC10_Standard_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC10_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC10_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC20_Standard_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC20_Standard_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC20_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC20_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC2_Standard_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC2_Standard_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC2_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC2_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC5_Standard_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC5_Standard_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC5_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AC5_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AMS_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "AMS_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "ArrowIV_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "ArrowIV_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "C-AMS_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "C-AMS_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "C-ArrowIV_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "C-ArrowIV_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC10_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC10_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC20_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC20_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC2_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC2_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC5_Ultra_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_AC5_Ultra_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_ATM_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_ATM_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_GaussRifle_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_GaussRifle_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_HeavyMachineGun_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_HeavyMachineGun_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX10_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX10_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX20_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX20_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX2_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX2_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX5_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LBX5_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LRM_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LRM_Artemis_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LRM_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LRM_Half_Artemis_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LightMachineGun_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_LightMachineGun_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_MachineGun_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_MachineGun_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_NARC_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_NARC_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_SRM_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_SRM_Artemis_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_SRM_Artemis_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_SRM_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_SRM_Streak_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Clan_SRM_Streak_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Gauss_Standard_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "Gauss_Standard_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "HeavyGauss_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "HeavyGauss_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "HeavyRifle_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LAC2_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LAC2_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LAC5_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LAC5_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LBX20_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LBX20_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LBX2_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LBX2_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LBX5_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LBX5_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LRM_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LRM_Artemis_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LRM_Artemis_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LRM_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LargeChemLaser_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LargeChemLaser_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LightGauss_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LightGauss_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LightRifle_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "LightRifle_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MRM_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MRM_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MachineGun_Standard_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MachineGun_Standard_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MediumChemLaser_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MediumChemLaser_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MediumRifle_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "MediumRifle_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "NARC_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "NARC_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SRM_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SRM_Artemis_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SRM_Artemis_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SRM_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SRM_Streak_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SRM_Streak_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SmallChemLaser_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  },
+  {
+   "asset": "SmallChemLaser_Half_AmmoEquipment",
+   "type": "MWAmmoDataAsset"
+  }
+ ]
+}
