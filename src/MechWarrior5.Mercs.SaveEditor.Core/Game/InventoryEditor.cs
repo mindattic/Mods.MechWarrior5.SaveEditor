@@ -30,12 +30,13 @@ public sealed class InventoryEditor
 
     public bool CanAddEquipment => _equipment is not null;
 
-    /// <summary>Adds <paramref name="count"/> of each item, stacking onto a healthy stack when one exists.</summary>
+    /// <summary>Adds <paramref name="count"/> of each item (once per item), stacking onto a healthy stack when one exists.</summary>
     public BatchResult<ItemDefinition> Add(IEnumerable<ItemDefinition> definitions, int count)
     {
         var result = new BatchResult<ItemDefinition>();
         count = Math.Clamp(count, 1, MaxCount);
-        foreach (var definition in definitions)
+        // Stacks are looked up before the batch is applied, so the same item twice would make two new stacks.
+        foreach (var definition in definitions.DistinctBy(d => (d.Asset.ToUpperInvariant(), d.IsWeapon)))
         {
             var storage = definition.IsWeapon ? _weapons : _equipment;
             if (storage is null)

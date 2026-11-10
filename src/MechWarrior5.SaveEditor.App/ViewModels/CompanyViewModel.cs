@@ -153,7 +153,17 @@ public sealed partial class CompanyViewModel : ObservableObject
             return;
         }
 
-        var days = _doc.Company.MoveCampaignDate(date);
+        int days;
+        try
+        {
+            days = _doc.Company.MoveCampaignDate(date);
+        }
+        catch (ArgumentOutOfRangeException e)
+        {
+            _dialogs.Show(Loc.Text("invalid_date", "Invalid date"), e.Message.Split(" (Parameter")[0], DialogTone.Error);
+            return;
+        }
+
         OnPropertyChanged(nameof(CampaignDate));
         _dialogs.Show(Loc.Text("calendar_moved", "Calendar moved"), days == 0
             ? Loc.Text("calendar_same", "The campaign is already on that date.")

@@ -93,15 +93,17 @@ public sealed class RosterEditor
         foreach (var pilot in pilots.ToList())
         {
             var id = pilot.PersonaId.ToByteArray();
+            // An empty id is 16 zero bytes, which the serialized models are full of: it identifies no reference.
+            var traceable = pilot.PersonaId != Guid.Empty;
             if (pilot.IsPlayer)
             {
                 result.Skip(pilot, "the commander can't be released");
             }
-            else if (lances.AsSpan().IndexOf(id) >= 0)
+            else if (traceable && lances.AsSpan().IndexOf(id) >= 0)
             {
                 result.Skip(pilot, "still assigned to a lance; unassign them in game first");
             }
-            else if (timeline.AsSpan().IndexOf(id) >= 0)
+            else if (traceable && timeline.AsSpan().IndexOf(id) >= 0)
             {
                 result.Skip(pilot, "has a pending timeline event (e.g. recovering from injury)");
             }

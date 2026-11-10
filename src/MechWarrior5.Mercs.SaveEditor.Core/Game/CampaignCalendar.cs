@@ -33,6 +33,12 @@ public static class CampaignCalendar
         }
 
         var delta = TimeSpan.FromDays(days).Ticks;
+        // Keep the start date (and so every event after it) a real date: a start at or before year 1 can't be read back.
+        if (start.Value + delta < TimeSpan.FromDays(366).Ticks || date.Year > 9000)
+        {
+            throw new ArgumentOutOfRangeException(nameof(date), date, "That date is too far back or ahead for the campaign calendar.");
+        }
+
         start.Value += delta;
         foreach (var model in file.Models.OfType<ObjectProperty>())
         {

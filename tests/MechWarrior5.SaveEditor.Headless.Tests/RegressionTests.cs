@@ -103,6 +103,31 @@ public class RegressionTests
         });
     }
 
+    /// <summary>M5SE-T81: an impossible calendar move is refused untouched; the same item twice in one add makes one stack.</summary>
+    [Test]
+    public void Mercs_calendar_and_inventory_edge_cases()
+    {
+        var (_, save) = SaveFixtures.MercsCampaignCopy();
+        var doc = Mw5Document.Open(save, Mechs);
+        Assume.That(doc.Company.CampaignDate, Is.Not.Null, "save has no calendar");
+        var date = doc.Company.CampaignDate!.Value;
+        Assert.Throws<ArgumentOutOfRangeException>(() => doc.Company.MoveCampaignDate(new DateTime(1, 6, 1)));
+        Assert.Throws<ArgumentOutOfRangeException>(() => doc.Company.MoveCampaignDate(new DateTime(9500, 1, 1)));
+        Assert.That(doc.Company.CampaignDate, Is.EqualTo(date), "a refused move changes nothing");
+        Assert.That(doc.Company.MoveCampaignDate(date.AddYears(-30)), Is.LessThan(0), "a long but sane move back works");
+
+        Assume.That(doc.Inventory.CanAddWeapons, Is.True);
+        var item = ItemCatalog.LoadBuiltIn().Items.First(i => i.IsWeapon && doc.Inventory.Items.All(x => x.Asset != i.Asset));
+        doc.Inventory.Add([item, item], 4);
+        var back = Mw5Document.Open(doc.Save(displayName: "Regression Edge").Path, Mechs);
+        Assert.Multiple(() =>
+        {
+            Assert.That(back.Inventory.Items.Count(i => i.Asset == item.Asset), Is.EqualTo(1), "one stack");
+            Assert.That(back.Inventory.Items.Single(i => i.Asset == item.Asset).Count, Is.EqualTo(4));
+            Assert.That(back.Company.CampaignDate, Is.EqualTo(date.AddYears(-30)));
+        });
+    }
+
     /// <summary>M5SE-T61: a pilot whose save has no PilotTraits array can still be given a trait.</summary>
     [Test]
     public void A_trait_can_be_added_to_a_pilot_with_no_trait_array()
