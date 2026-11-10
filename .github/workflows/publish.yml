@@ -33,17 +33,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download release asset
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release download "${{ github.event.release.tag_name }}" --repo "${{ github.repository }}" --pattern '*.zip' --dir .
-
-      - name: Resolve zip, version and category
+      # The program is a standalone .exe, which NexusMods quarantines, so it's downloaded from GitHub releases only.
+      # NexusMods gets a small pointer zip instead: one self-contained HTML page (tools/nexus-pointer.html) with the
+      # GitHub download link and how to run the editor.
+      - name: Build the GitHub pointer zip
         id: zip
         run: |
-          echo "path=$(ls *.zip | head -n1)" >> "$GITHUB_OUTPUT"
-          version="${{ github.event.release.tag_name }}"
-          echo "version=${version#v}" >> "$GITHUB_OUTPUT"
+          tag="${{ github.event.release.tag_name }}"
+          version="${tag#v}"
+          mkdir pointer
+          sed -e "s|{{VERSION}}|${version}|g" -e "s|{{TAG}}|${tag}|g" -e "s|{{REPO}}|${{ github.repository }}|g" \
+            tools/nexus-pointer.html > "pointer/Download MW5 Save Editor.html"
+          name="MechWarrior5.SaveEditor-${version}-download-from-github.zip"
+          (cd pointer && zip -q "../${name}" "Download MW5 Save Editor.html")
+          echo "path=${name}" >> "$GITHUB_OUTPUT"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "category=$(jq -r '.category // "main"' nexus.json)" >> "$GITHUB_OUTPUT"
 
       - name: Upload to ${{ matrix.game }}

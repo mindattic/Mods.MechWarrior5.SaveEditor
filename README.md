@@ -5,11 +5,8 @@
 Both games are edited through one interface styled after their own HUDs. Under it sits a lossless save
 engine that never touches your original saves.
 
-**It is a standalone program, not a mod the game loads:** one self-contained `MW5SaveEditor.exe`. Installed
-with Vortex, it lands in Vortex's mod folder and the game ignores it; Vortex doesn't start it either. Open
-that folder from Vortex (**Mods** list, right-click **MW5 Save Editor**, **Open in File Manager**) and run
-`MW5SaveEditor.exe`, or add it as a Vortex **Tool** to launch it from the Dashboard. Without Vortex, extract
-the zip anywhere and run the exe.
+**It is a standalone program, not a mod the game loads:** one self-contained `MW5SaveEditor.exe`, downloaded
+from GitHub (see Download below). NexusMods only hosts a page linking there, and Vortex isn't needed.
 
 Player documentation is in
 [docs/USER_GUIDE.md](docs/USER_GUIDE.md); the NexusMods listing text is in
@@ -17,15 +14,15 @@ Player documentation is in
 
 ## Download
 
-The same zip, `MechWarrior5.SaveEditor-<version>.zip`, from any of these:
+Download `MechWarrior5.SaveEditor-<version>.zip` from GitHub:
 
 - **GitHub:** [latest release](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest)
   ([all releases](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases))
-- **NexusMods, MechWarrior 5: Mercenaries:** [mod 1666](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666)
-- **NexusMods, MechWarrior 5: Clans:** [mod 70](https://www.nexusmods.com/mechwarrior5clans/mods/70)
+- **NexusMods pages** (they link here):
+  [MechWarrior 5: Mercenaries](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666),
+  [MechWarrior 5: Clans](https://www.nexusmods.com/mechwarrior5clans/mods/70)
 
-Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `MW5SaveEditor.exe`
-(with Vortex, see above). Full steps are in the [user guide](docs/USER_GUIDE.md#install).
+Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `MW5SaveEditor.exe`. Full steps are in the [user guide](docs/USER_GUIDE.md#install).
 
 ## Features
 
@@ -168,8 +165,8 @@ A rebuilt interface and a long list of fixes from a full review of every feature
 - A locked or damaged save in the folder no longer breaks the save list.
 
 **Install**
-- The download is a standalone program, not a mod the game loads. With Vortex, open its folder from
-  Vortex's Mods list (Open in File Manager) and run MW5SaveEditor.exe, or add it as a Vortex tool.
+- The editor downloads from GitHub releases; the NexusMods pages link there. It's a standalone program:
+  extract the zip anywhere and run MW5SaveEditor.exe.
 
 ### 1.0.0
 

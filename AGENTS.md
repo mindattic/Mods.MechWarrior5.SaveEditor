@@ -38,8 +38,11 @@ Clans (mod 70). Every release goes to both.
    like every MindAttic app: each release bumps the major (1.0.0, 2.0.0, 3.0.0...), never a minor or patch.
    The owner lifted the 1.0.0 hold on 2026-11-10 and set 2.0.0 for the UI rewrite release.
 4. **Changelog:** keep a `## Changelog` section in `README.md`, newest first.
-5. **Release:** cut a GitHub release with the zip attached. `.github/workflows/publish.yml` uploads it to
-   every target, using `NEXUSMODS_API_KEY`.
+5. **Release:** cut a GitHub release with the zip attached; the **exe zip is downloaded from GitHub only**. NexusMods
+   quarantines executables, so `.github/workflows/publish.yml` uploads a pointer instead to every target, using
+   `NEXUSMODS_API_KEY`: `MechWarrior5.SaveEditor-<version>-download-from-github.zip`, holding one self-contained page
+   built from `tools/nexus-pointer.html` with a link to `releases/latest`. On each page the "Mod manager download"
+   button is removed and a GitHub mirror points at `releases/latest` (both set by hand).
 
 While any target's `fileId` is `0`, stop and say which page still needs its first file uploaded by
 hand. Then put that file's upload-API **File ID** in `fileId`: on the page, Manage files, the file's menu,

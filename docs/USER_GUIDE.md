@@ -5,32 +5,17 @@ in the download as `README.md`.
 
 ## Install
 
-**This is a program you run, not a mod the game loads.** The download is a single
-**MW5SaveEditor.exe** (no .NET install needed). The game never starts it and it adds nothing to the
-game, so nothing changes until you run it yourself.
+**This is a program you run, not a mod the game loads.** The game never starts it and it adds nothing
+to the game, so it isn't installed through NexusMods or Vortex.
 
-### With Vortex
+1. Download `MechWarrior5.SaveEditor-<version>.zip` from
+   [GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest). The file on
+   NexusMods is just a page with that link.
+2. Extract it anywhere, for example your Desktop.
+3. Double-click **MW5SaveEditor.exe**. No .NET install is needed.
 
-1. Click **Mod Manager Download** on the NexusMods page. Vortex downloads and installs it like any
-   mod. The game ignores it.
-2. Vortex doesn't start it for you. In Vortex's **Mods** list, right-click **MW5 Save Editor** and
-   choose **Open in File Manager**.
-3. In the folder that opens, double-click **MW5SaveEditor.exe**.
-
-To start it from Vortex next time, add it as a tool: on Vortex's **Dashboard**, open the **Tools**
-panel, choose **Add Tool**, and set its target to that same **MW5SaveEditor.exe** (Vortex fills in
-the rest). Or right-click the exe and send a shortcut to your Desktop.
-
-### Manual
-
-1. Click **Manual Download** and extract the archive anywhere, for example your Desktop.
-2. Double-click **MW5SaveEditor.exe**.
-
-### Uninstall
-
-Remove it in Vortex, or delete the folder you extracted. Your settings are the `settings.json` beside
-the exe. The mech picture cache lives in `%LOCALAPPDATA%\MechWarrior5SaveEditor`; delete that too for
-a clean removal.
+To uninstall, delete the folder. Your settings are the `settings.json` beside the exe. The mech
+picture cache lives in `%LOCALAPPDATA%\MechWarrior5SaveEditor`; delete that too for a clean removal.
 
 ## Before you edit
 
@@ -139,7 +124,7 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
 | "Can't open save" | The file isn't a campaign save, or it doesn't read back exactly. The editor refuses rather than risk it; please report the game version. |
 | Mech pictures are missing | They download from Sarna.net on first view. Check your connection, or turn them off in Settings. |
 | A batch button is greyed out | Tick at least one row first. Rows hidden by a search or filter are unticked. |
-| I can't find the editor after installing with Vortex | Vortex doesn't start it. In Vortex's **Mods** list, right-click **MW5 Save Editor**, choose **Open in File Manager**, and run **MW5SaveEditor.exe** (see [Install](#install)). |
+| The NexusMods download has no program in it | That file is only a link: download the editor from [GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest) (see [Install](#install)). |
 | I want my original back | It was never changed. Load it from the game's menu. Editor saves keep their previous version as `.bak`. |
 
 ## What's new in 2.0.0
