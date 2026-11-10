@@ -1,10 +1,6 @@
 """Lists every file path in MW5 Clans' IoStore containers from the .utoc directory indexes (read-only, no
-decompression needed). Usage: python -I tools/clans_utoc_files.py "<MW5Clans/Content/Paks>" out.txt
-
-M5SE-T46, 2026-11-10: 243,372 files; all 242 Clans catalog items exist; 90 mech folders / 405 _MIA variants vs the
-catalog's 25 chassis. Clan-side chassis missing from the catalog: Fire Moth (FMT), Ice Ferret (IFR), Naga (NGA),
-Jenner IIC (JR7IIC*), Wolfhound IIC (WLF-IIC); the rest are Inner Sphere enemies. Names and tonnage still need the
-asset contents (Oodle-compressed UE5 packages)."""
+decompression needed). Usage: python -I tools/clans/utoc_files.py "<MW5Clans/Content/Paks>" out.txt
+M5SE-T46, 2026-11-10: 243,372 files; all 242 Clans catalog items exist in the game."""
 import glob, os, struct, sys
 
 def fstring(b, o):
@@ -47,10 +43,11 @@ def files(path):
     walk(0, '')
     return out
 
-root = sys.argv[1]
-allf = []
-for t in sorted(glob.glob(os.path.join(root, '*.utoc'))):
-    fs = files(t); allf += fs
-    print(f'{os.path.basename(t):40} {len(fs)} files', file=sys.stderr)
-open(sys.argv[2], 'w', encoding='utf-8').write('\n'.join(allf))
-print(len(allf), 'total', file=sys.stderr)
+if __name__ == '__main__':
+    root = sys.argv[1]
+    allf = []
+    for t in sorted(glob.glob(os.path.join(root, '*.utoc'))):
+        fs = files(t); allf += fs
+        print(f'{os.path.basename(t):40} {len(fs)} files', file=sys.stderr)
+    open(sys.argv[2], 'w', encoding='utf-8').write('\n'.join(allf))
+    print(len(allf), 'total', file=sys.stderr)
