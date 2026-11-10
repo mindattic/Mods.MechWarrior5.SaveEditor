@@ -148,6 +148,7 @@ public sealed partial class MechsViewModel : ObservableObject
     partial void OnOwnedDlcOnlyChanged(bool value)
     {
         _main.Settings.OwnedDlcOnly = value;
+        _main.SaveSettings();
         RefreshCatalog();
     }
 

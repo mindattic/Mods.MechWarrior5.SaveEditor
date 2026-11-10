@@ -144,6 +144,8 @@ public sealed partial class MainViewModel : ObservableObject
 
     public AppSettings Settings => _settings.Current;
 
+    public void SaveSettings() => _settings.Save();
+
     public bool IsClansTheme
     {
         get => ThemeManager.Current == MechWarrior5Theme.Clans;
