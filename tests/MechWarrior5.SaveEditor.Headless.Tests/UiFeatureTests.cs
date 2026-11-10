@@ -330,6 +330,46 @@ public partial class UiHeadlessTests
     }
 
     [Test]
+    public void Changing_language_keeps_filters_ticks_and_selection()
+    {
+        var (_, save) = SaveFixtures.MercsCampaignCopy();
+        var (shell, _, _) = Launch(clansFolder: null);
+        shell.OpenPath(save);
+        var m = shell.Mercs;
+        try
+        {
+            m.NavigateCommand.Execute(MercsPage.Mechs);
+            var mechs = m.Mechs!;
+            mechs.Search = "Atlas";
+            mechs.HeroesOnly = true;
+            mechs.ShowColdStorageOnly = true;
+            var ticked = mechs.CatalogView.Cast<CatalogMechViewModel>().First();
+            ticked.IsChecked = true;
+            m.Inventory!.Search = "laser";
+            var pilot = m.Pilots!.Pilots[^1];
+            m.Pilots.Selected = pilot;
+
+            m.SettingsPage.Language = Loc.Languages.First(l => l.Code == "fr");
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(m.Mechs, Is.Not.SameAs(mechs), "the page was rebuilt");
+                Assert.That(m.Mechs!.Search, Is.EqualTo("Atlas"));
+                Assert.That(m.Mechs.HeroesOnly, Is.True);
+                Assert.That(m.Mechs.ShowColdStorageOnly, Is.True);
+                Assert.That(m.Mechs.CatalogView.Cast<CatalogMechViewModel>().Where(r => r.IsChecked).Select(r => r.Variant.Asset), Is.EqualTo(new[] { ticked.Variant.Asset }));
+                Assert.That(m.Inventory!.Search, Is.EqualTo("laser"));
+                Assert.That(m.Pilots!.Selected?.Pilot.PersonaId, Is.EqualTo(pilot.Pilot.PersonaId));
+                Assert.That(m.Company!.DlcNote, Is.EqualTo(Loc.Text("dlc_note_this", "x")).Or.EqualTo(Loc.Text("dlc_note_latest", "x")).Or.EqualTo(Loc.Text("dlc_note_unknown", "x")), "DLC note in the new language");
+            });
+        }
+        finally
+        {
+            Loc.Instance.Language = "en";
+        }
+    }
+
+    [Test]
     public void Every_ui_text_key_is_translated_in_every_language()
     {
         var root = RepoRoot();

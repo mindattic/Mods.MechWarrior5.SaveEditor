@@ -408,6 +408,31 @@ public sealed partial class MechsViewModel : ObservableObject
         return terms.All(t => row.SearchText.Contains(t, StringComparison.OrdinalIgnoreCase));
     }
 
+    /// <summary>Takes over a previous page's search, filters and ticks (the page is rebuilt on a language change or rescan).</summary>
+    public void CarryOver(MechsViewModel old)
+    {
+        Search = old.Search;
+        Source = Sources.FirstOrDefault(s => s.DlcTag == old.Source.DlcTag && s.BaseGameOnly == old.Source.BaseGameOnly && s.ModsOnly == old.Source.ModsOnly) ?? Sources[0];
+        HeroesOnly = old.HeroesOnly;
+        Copies = old.Copies;
+        ShowColdStorageOnly = old.ShowColdStorageOnly;
+        _classes.UnionWith(old._classes);
+        var ticked = old._catalog.Where(r => r.IsChecked).Select(r => r.Variant.Asset).ToHashSet(StringComparer.Ordinal);
+        foreach (var row in _catalog)
+        {
+            row.IsChecked = ticked.Contains(row.Variant.Asset);
+        }
+
+        var hangar = old.Hangar.Where(r => r.IsChecked).Select(r => r.Record.ItemId).ToHashSet();
+        foreach (var row in Hangar)
+        {
+            row.IsChecked = hangar.Contains(row.Record.ItemId);
+        }
+
+        RefreshCatalog();
+        OnPropertyChanged(string.Empty);
+    }
+
     private void ToggleClass(WeightClass weight, bool on)
     {
         if (on ? _classes.Add(weight) : _classes.Remove(weight))

@@ -134,6 +134,30 @@ public sealed partial class InventoryViewModel : ObservableObject
 
     public int CatalogSelectedCount => _catalog.Count(i => i.IsChecked);
 
+    /// <summary>Takes over a previous page's searches, filters, counts and ticks (rebuilt on a language change or rescan).</summary>
+    public void CarryOver(InventoryViewModel old)
+    {
+        Search = old.Search;
+        Filter = old.Filter;
+        CatalogSearch = old.CatalogSearch;
+        CatalogFilter = old.CatalogFilter;
+        AddCount = old.AddCount;
+        SetCount = old.SetCount;
+        var ticked = old.Items.Where(r => r.IsChecked).Select(r => (r.Asset, r.Item.Health, r.Item.IsWeapon)).ToHashSet();
+        foreach (var row in Items)
+        {
+            row.IsChecked = ticked.Contains((row.Asset, row.Item.Health, row.Item.IsWeapon));
+        }
+
+        var picks = old._catalog.Where(r => r.IsChecked).Select(r => r.Definition.Asset).ToHashSet(StringComparer.Ordinal);
+        foreach (var pick in _catalog)
+        {
+            pick.IsChecked = picks.Contains(pick.Definition.Asset);
+        }
+
+        OnPropertyChanged(string.Empty);
+    }
+
     public int TotalCount => Items.Sum(i => i.Count);
 
     partial void OnSearchChanged(string value) => ItemsView.Refresh();

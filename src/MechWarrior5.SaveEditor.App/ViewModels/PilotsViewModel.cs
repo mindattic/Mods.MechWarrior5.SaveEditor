@@ -233,6 +233,10 @@ public sealed partial class PilotsViewModel : ObservableObject
 
     public ObservableCollection<PilotViewModel> Pilots { get; } = [];
 
+    /// <summary>Keeps the previously selected pilot selected (the page is rebuilt on a language change or rescan).</summary>
+    public void CarryOver(PilotsViewModel old) =>
+        Selected = Pilots.FirstOrDefault(p => p.Pilot.PersonaId == old.Selected?.Pilot.PersonaId) ?? Selected;
+
     [RelayCommand]
     private void HealAll()
     {

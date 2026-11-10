@@ -34,17 +34,16 @@ public sealed partial class CompanyViewModel : ObservableObject
         _imported = imported;
         _dateText = doc.Company.CampaignDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) ?? string.Empty;
         Dlcs = catalog.DlcPacks.Select(p => new DlcRow(p.ShortName, p.Name, doc.Dlc.Tags.Contains(p.Tag))).ToList();
-        DlcNote = doc.Dlc.Source switch
-        {
-            DlcSource.ThisSave => Loc.Text("dlc_note_this", "Read from this save's campaign index."),
-            DlcSource.CampaignLatestSave => Loc.Text("dlc_note_latest", "This save isn't in its campaign index; showing the campaign's latest save."),
-            _ => Loc.Text("dlc_note_unknown", "No Campaign.json beside this save, so DLC ownership can't be checked."),
-        };
     }
 
     public IReadOnlyList<DlcRow> Dlcs { get; }
 
-    public string DlcNote { get; }
+    public string DlcNote => _doc.Dlc.Source switch
+    {
+        DlcSource.ThisSave => Loc.Text("dlc_note_this", "Read from this save's campaign index."),
+        DlcSource.CampaignLatestSave => Loc.Text("dlc_note_latest", "This save isn't in its campaign index; showing the campaign's latest save."),
+        _ => Loc.Text("dlc_note_unknown", "No Campaign.json beside this save, so DLC ownership can't be checked."),
+    };
 
     public long CBills
     {
