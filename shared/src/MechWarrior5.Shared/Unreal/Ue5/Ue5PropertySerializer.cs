@@ -80,8 +80,10 @@ public static class Ue5PropertySerializer
         byte[]? extensions = null;
         if ((flags & Ue5Tag.HasPropertyExtensions) != 0)
         {
+            // OverridableInformation (0x02) adds a uint8 OverrideOperation and a bool, which Unreal archives
+            // store as 4 bytes: 5 bytes in all, kept raw so they write back unchanged.
             var ext = reader.ReadByte();
-            extensions = (ext & 0x02) != 0 ? [ext, reader.ReadByte()] : [ext];
+            extensions = (ext & 0x02) != 0 ? [ext, .. reader.ReadBytes(5)] : [ext];
         }
 
         var tag = new Ue5Tag(type, flags, extensions);

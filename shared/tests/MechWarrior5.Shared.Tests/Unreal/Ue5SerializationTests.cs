@@ -34,6 +34,26 @@ public class Ue5SerializationTests
     }
 
     [Test]
+    public void Overridable_information_extension_is_read_whole_and_written_back()
+    {
+        // Tag extension 0x02 (OverridableInformation): uint8 OverrideOperation + bool stored as 4 bytes.
+        var writer = new UnrealWriter();
+        writer.WriteFString("Quantity");
+        new PropertyTypeName("IntProperty").Write(writer);
+        writer.WriteInt32(4);
+        writer.WriteByte(Ue5Tag.HasPropertyExtensions);
+        writer.WriteBytes([0x02, 0x01, 0x01, 0x00, 0x00, 0x00]);
+        writer.WriteInt32(7);
+        writer.WriteFString(PropertySerializer.Terminator);
+        var original = writer.ToArray();
+
+        var list = Ue5PropertySerializer.ReadList(new UnrealReader(original));
+
+        Assert.That(list.Get<IntProperty>("Quantity").Value, Is.EqualTo(7));
+        Assert.That(Serialize(list), Is.EqualTo(original));
+    }
+
+    [Test]
     public void Bools_live_in_the_tag_flags()
     {
         var list = Ue5PropertySerializer.ReadList(new UnrealReader(Serialize(SampleList())));
