@@ -17,6 +17,9 @@ jobs:
         env:
           NEXUSMODS_API_KEY: ${{ secrets.NEXUSMODS_API_KEY }}
         run: |
+          echo "== key belongs to"
+          curl -fsS -H "apikey: $NEXUSMODS_API_KEY" -H "Application-Name: MW5SaveEditor-ci" \
+            "https://api.nexusmods.com/v1/users/validate.json" | jq -r '"account=\(.name) user_id=\(.user_id)"'
           jq -c '.targets[]' nexus.json | while read -r t; do
             domain=$(echo "$t" | jq -r .gameDomain); mod=$(echo "$t" | jq -r .modId)
             echo "== $domain mod $mod"
