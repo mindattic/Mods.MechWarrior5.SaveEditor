@@ -1,0 +1,26 @@
+<UserControl x:Class="MechWarrior5.Shared.Wpf.Controls.MechArtLightbox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf"
+             x:Name="Self" Panel.ZIndex="1000" WindowChrome.IsHitTestVisibleInChrome="True">
+    <!--
+        A chassis picture shown large over the whole window: MindAttic.Components' MaModal skinned with the
+        theme's brushes. Esc, the close button or a click on the backdrop closes it.
+    -->
+    <ma:MaModal x:Name="Modal" DialogWidth="1100" CornerRadius="0" Padding="20,4,20,20"
+                Background="{DynamicResource Brush.Panel}" BorderBrush="{DynamicResource Brush.Accent}"
+                Foreground="{DynamicResource Brush.Text}" BackdropBrush="#C0000000">
+        <Grid x:Name="PictureArea" Height="640">
+            <Rectangle Fill="{DynamicResource Brush.Void}" />
+            <TextBlock x:Name="Status" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"
+                       Foreground="{DynamicResource Brush.TextMuted}" />
+            <!-- Sarna's art is often smaller than the card, so it scales up as well as down. -->
+            <Image x:Name="Picture" Stretch="Uniform" Margin="8" RenderOptions.BitmapScalingMode="HighQuality" />
+        </Grid>
+        <ma:MaModal.Footer>
+            <ma:MaButton x:Name="SarnaLink" Style="{DynamicResource Button.Link}" Click="OnOpenSarna">
+                <TextBlock x:Name="LinkLabel" FontWeight="Bold" FontSize="16" />
+            </ma:MaButton>
+        </ma:MaModal.Footer>
+    </ma:MaModal>
+</UserControl>
