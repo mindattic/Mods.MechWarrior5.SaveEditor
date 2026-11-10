@@ -192,9 +192,12 @@ public partial class UiHeadlessTests
         var source = mechs.Rows[0].Mech;
         mechs.Rows[0].IsChecked = true;
         mechs.Copies = 2;
+        // The copies are the rows that are new after Duplicate (the player may already own a twin of the source).
+        var known = mechs.Rows.Select(r => r.Mech.InventoryId).ToHashSet();
         mechs.DuplicateCommand.Execute(null);
         mechs.SelectNoneCommand.Execute(null);
-        var copies = mechs.Rows.Where(r => r.Mech.Variant == source.Variant && r.Mech.InventoryId != source.InventoryId && r.Mech.InventoryId is not null).ToList();
+        var copies = mechs.Rows.Where(r => !known.Contains(r.Mech.InventoryId)).ToList();
+        Assert.That(copies.Select(r => r.Mech.Variant), Is.EqualTo(new[] { source.Variant, source.Variant }), "two copies of the source");
         copies.ForEach(r => r.IsChecked = true);
         mechs.NewName = "UI Copy";
         mechs.RenameCommand.Execute(null);
