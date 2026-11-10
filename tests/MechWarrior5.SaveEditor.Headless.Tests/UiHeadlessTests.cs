@@ -130,7 +130,7 @@ public class UiHeadlessTests
     }
 
     [Test]
-    public void Game_tabs_keep_each_game_open_and_themes_swap()
+    public void Game_tabs_keep_each_game_open_and_the_theme_follows_the_tab()
     {
         var (_, mercsSave) = SaveFixtures.MercsCampaignCopy();
         var (folder, clansSave) = SaveFixtures.ClansFolderCopy();
@@ -138,18 +138,17 @@ public class UiHeadlessTests
 
         shell.OpenPath(mercsSave);
         shell.OpenPath(clansSave);
+        var clansTheme = ThemeManager.Current;
         shell.IsMercsGame = true;
         AssertRenders(window, "back to Mercenaries");
-        shell.Mercs.IsClansTheme = true;
-        AssertRenders(window, "Clans theme");
-        shell.Mercs.IsMercsTheme = true;
 
         Assert.Multiple(() =>
         {
             Assert.That(shell.Mercs.HasDocument, Is.True);
             Assert.That(shell.Clans.HasDocument, Is.True);
             Assert.That(shell.Current, Is.SameAs(shell.Mercs));
-            Assert.That(ThemeManager.Current, Is.EqualTo(MechWarrior5Theme.Mercs));
+            Assert.That(clansTheme, Is.EqualTo(MechWarrior5Theme.Clans), "the Clans tab uses the Clans theme");
+            Assert.That(ThemeManager.Current, Is.EqualTo(MechWarrior5Theme.Mercs), "the Mercenaries tab uses the Mercs theme");
         });
     }
 

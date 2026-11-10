@@ -252,7 +252,7 @@
  "settings_pictures": "メック画像",
  "settings_project_page": "プロジェクトページ",
  "settings_rescan": "ゲームと MOD を再スキャン",
- "settings_theme_hint": "タイトルバーのボタンで Mercs と Clans のテーマを切り替えます。どちらも記憶されます。",
+ "settings_theme_hint": "カラーテーマはゲームのタブに連動します：Mercenaries は Mercs アンバー、Clans は Clans アイス。",
  "settings_title": "設定",
  "shifts_today_and_every_dated_event_together_so_t": "今日の日付と全予定を一緒に動かし、間隔を保ちます",
  "shown": "件表示",

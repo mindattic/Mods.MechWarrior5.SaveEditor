@@ -1,6 +1,5 @@
 using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using MechWarrior5.SaveEditor.App.Clans.ViewModels;
 using MechWarrior5.SaveEditor.App.Services;
 using MechWarrior5.Shared.Unreal;
@@ -32,12 +31,8 @@ public sealed partial class ShellViewModel : ObservableObject
         Clans = clans;
         _settings = settings;
         _game = Enum.TryParse<Game>(settings.Current.Game, ignoreCase: true, out var game) ? game : Game.Mercs;
-        ThemeManager.ThemeChanged += (_, _) => OnPropertyChanged(nameof(IsClansTheme));
+        ApplyTheme(_game);
     }
-
-    /// <summary>True while the Clans (ice) theme is on; the title-bar theme button shows the Clans star, else a skull.</summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822", Justification = "Bound by the title bar; raises PropertyChanged when the theme changes.")]
-    public bool IsClansTheme => ThemeManager.Current == MechWarrior5Theme.Clans;
 
     public MainViewModel Mercs { get; }
 
@@ -94,15 +89,23 @@ public sealed partial class ShellViewModel : ObservableObject
         }
     }
 
-    /// <summary>Switches between the Mercs (amber) and Clans (ice) themes; the choice is remembered.</summary>
-    [RelayCommand]
-    private void ToggleTheme() => Mercs.IsClansTheme = !IsClansTheme;
-
     /// <summary>Asks about unsaved edits in either game before the window closes.</summary>
     public bool ConfirmExit() => Mercs.ConfirmLeaveDocument() && Clans.ConfirmLeaveDocument();
 
+    /// <summary>The theme follows the game tab: Mercs amber for Mercenaries, Clans ice for Clans.</summary>
+    private static void ApplyTheme(Game game)
+    {
+        var theme = game == Game.Clans ? MechWarrior5Theme.Clans : MechWarrior5Theme.Mercs;
+        if (System.Windows.Application.Current is not null && ThemeManager.Current != theme)
+        {
+            ThemeManager.Apply(theme);
+        }
+    }
+
     partial void OnGameChanged(Game value)
     {
+        ApplyTheme(value);
+        _settings.Current.Theme = value == Game.Clans ? "Clans" : "Mercs";
         _settings.Current.Game = value.ToString();
         _settings.Save();
     }
