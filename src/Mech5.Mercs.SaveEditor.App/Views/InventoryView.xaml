@@ -22,7 +22,7 @@
                 <StackPanel DockPanel.Dock="Top" Margin="18,14,18,8">
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Right" Style="{StaticResource Text.Label}" VerticalAlignment="Bottom">
-                            <Run Text="{Binding TotalCount, Mode=OneWay}" Foreground="{StaticResource Brush.Text}" /> <Run Text="UNITS" />
+                            <Run Text="{Binding TotalCount, Mode=OneWay}" Foreground="{DynamicResource Brush.Text}" /> <Run Text="UNITS" />
                         </TextBlock>
                         <TextBlock Text="ON HAND" Style="{StaticResource Text.Section}" FontSize="17" />
                     </DockPanel>
@@ -37,7 +37,7 @@
                     </Grid>
                 </StackPanel>
 
-                <Border DockPanel.Dock="Bottom" BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,12">
+                <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,12">
                     <DockPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <Button Style="{StaticResource Button.Link}" Command="{Binding SelectAllVisibleCommand}" Margin="0,0,14,0">
@@ -47,7 +47,7 @@
                                 <TextBlock Text="CLEAR" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
                             </Button>
                             <TextBlock Style="{StaticResource Text.Label}" VerticalAlignment="Center">
-                                <Run Text="{Binding SelectedCount, Mode=OneWay}" Foreground="{StaticResource Brush.AmberHot}" /> <Run Text="SELECTED" />
+                                <Run Text="{Binding SelectedCount, Mode=OneWay}" Foreground="{DynamicResource Brush.AccentHot}" /> <Run Text="SELECTED" />
                             </TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -80,19 +80,19 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" />
                                         <Border Style="{StaticResource Chip}" Margin="8,0,0,0" Visibility="{Binding Tier, Converter={StaticResource HasValueToVisibility}}">
-                                            <TextBlock Text="{Binding Tier}" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.AmberHot}" />
+                                            <TextBlock Text="{Binding Tier}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                         </Border>
                                     </StackPanel>
                                     <TextBlock Text="{Binding Asset}" Style="{StaticResource Text.Muted}" FontSize="12" />
                                 </StackPanel>
-                                <TextBlock Grid.Column="2" Text="{Binding TypeLabel}" VerticalAlignment="Center" Foreground="{StaticResource Brush.TextMuted}" />
+                                <TextBlock Grid.Column="2" Text="{Binding TypeLabel}" VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextMuted}" />
                                 <TextBlock Grid.Column="3" Text="{Binding Health}" VerticalAlignment="Center" FontWeight="SemiBold">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                            <Setter Property="Foreground" Value="{StaticResource Brush.TextMuted}" />
+                                            <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsDamaged}" Value="True">
-                                                    <Setter Property="Foreground" Value="{StaticResource Brush.Danger}" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -122,10 +122,10 @@
                     </Grid>
                 </StackPanel>
 
-                <Border DockPanel.Dock="Bottom" BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,12">
+                <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,12">
                     <DockPanel>
                         <Button DockPanel.Dock="Right" Command="{Binding AddSelectedCommand}" Style="{StaticResource Button.Command}">
-                            <TextBlock FontWeight="Bold" Foreground="{StaticResource Brush.Void}">
+                            <TextBlock FontWeight="Bold" Foreground="{DynamicResource Brush.Void}">
                                 <Run Text="ADD" /> <Run Text="{Binding CatalogSelectedCount, Mode=OneWay}" />
                             </TextBlock>
                         </Button>
@@ -142,11 +142,11 @@
                         <DataTemplate>
                             <DockPanel>
                                 <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" Width="30" />
-                                <TextBlock DockPanel.Dock="Right" Text="{Binding TypeLabel}" VerticalAlignment="Center" Foreground="{StaticResource Brush.TextMuted}" FontSize="13" />
+                                <TextBlock DockPanel.Dock="Right" Text="{Binding TypeLabel}" VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextMuted}" FontSize="13" />
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" />
                                     <Border Style="{StaticResource Chip}" Margin="8,0,0,0" Visibility="{Binding Tier, Converter={StaticResource HasValueToVisibility}}">
-                                        <TextBlock Text="{Binding Tier}" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.AmberHot}" />
+                                        <TextBlock Text="{Binding Tier}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                     </Border>
                                 </StackPanel>
                             </DockPanel>

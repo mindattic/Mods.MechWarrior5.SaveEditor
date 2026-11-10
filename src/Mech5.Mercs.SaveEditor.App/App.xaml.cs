@@ -2,6 +2,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using Mech5.Shared.Wpf.Behaviors;
+using Mech5.Shared.Wpf.Theme;
 using Mech5.Mercs.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.App.ViewModels;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
@@ -15,9 +16,9 @@ public partial class App : Application
         base.OnStartup(e);
         DispatcherUnhandledException += OnUnhandledException;
 
-        var appData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MindAttic", "MW5SaveEditor");
-        var cache = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MindAttic", "MW5SaveEditor", "MechImages");
-        var settings = new SettingsService(appData);
+        var cache = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Mech5SaveEditor", "MechImages");
+        var settings = new SettingsService();
+        ThemeManager.Apply(ThemeManager.TryParse(settings.Current.Theme, out var theme) ? theme : Mech5Theme.Mercs);
         var images = new MechImageService(cache) { Enabled = settings.Current.DownloadMechImages };
         MechArt.Service = images;
         Exit += (_, _) => images.Dispose();

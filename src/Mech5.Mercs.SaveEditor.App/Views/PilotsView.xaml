@@ -24,7 +24,7 @@
         <!-- Roster -->
         <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0,10,0,0">
             <DockPanel>
-                <Border DockPanel.Dock="Bottom" BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,1,0,0" Padding="14,12">
+                <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="14,12">
                     <UniformGrid Columns="4">
                         <UniformGrid.Resources>
                             <Style TargetType="Button" BasedOn="{StaticResource Button.Base}">
@@ -45,8 +45,8 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
                                         <Grid Background="Transparent" Cursor="Hand">
-                                            <Rectangle x:Name="Wash" Fill="{StaticResource Brush.AmberWash}" Opacity="0" />
-                                            <Rectangle x:Name="Bar" Width="4" HorizontalAlignment="Left" Fill="{StaticResource Brush.Amber}" Opacity="0" />
+                                            <Rectangle x:Name="Wash" Fill="{DynamicResource Brush.AccentWash}" Opacity="0" />
+                                            <Rectangle x:Name="Bar" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource Brush.Accent}" Opacity="0" />
                                             <ContentPresenter Margin="16,10" />
                                         </Grid>
                                         <ControlTemplate.Triggers>
@@ -67,21 +67,21 @@
                         <DataTemplate>
                             <DockPanel>
                                 <Grid Width="44" Height="44" Margin="0,0,12,0">
-                                    <Path Data="M11,0 L33,0 L44,22 L33,44 L11,44 L0,22 Z" Fill="{StaticResource Brush.Void}" Stroke="{StaticResource Brush.LineBright}" StrokeThickness="1.5" />
-                                    <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Brush.Amber}" />
+                                    <Path Data="M11,0 L33,0 L44,22 L33,44 L11,44 L0,22 Z" Fill="{DynamicResource Brush.Void}" Stroke="{DynamicResource Brush.LineBright}" StrokeThickness="1.5" />
+                                    <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{DynamicResource Brush.Accent}" />
                                 </Grid>
                                 <StackPanel VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="COMMANDER  " FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.Amber}"
+                                        <TextBlock Text="COMMANDER  " FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.Accent}"
                                                    Visibility="{Binding IsPlayer, Converter={StaticResource BoolToVisibility}}" />
                                         <TextBlock Text="{Binding Health}" FontSize="13" FontWeight="SemiBold">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                    <Setter Property="Foreground" Value="{StaticResource Brush.Ok}" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource Brush.Ok}" />
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding IsHealthy}" Value="False">
-                                                            <Setter Property="Foreground" Value="{StaticResource Brush.Danger}" />
+                                                            <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -189,7 +189,7 @@
                             <ItemsControl ItemsSource="{Binding Skills}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,7">
+                                        <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,7">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="150" />
@@ -201,7 +201,7 @@
                                                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding IsParent}" Value="True">
-                                                                    <Setter Property="Foreground" Value="{StaticResource Brush.Amber}" />
+                                                                    <Setter Property="Foreground" Value="{DynamicResource Brush.Accent}" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
@@ -209,7 +209,7 @@
                                                 </TextBlock>
                                                 <DockPanel Grid.Column="1" Margin="0,0,16,0" Visibility="{Binding HasCap, Converter={StaticResource BoolToVisibility}}">
                                                     <TextBlock DockPanel.Dock="Right" Text="{Binding Cap}" Width="26" TextAlignment="Right" FontSize="17" FontWeight="Bold"
-                                                               Foreground="{StaticResource Brush.AmberHot}" VerticalAlignment="Center" />
+                                                               Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center" />
                                                     <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
                                                 </DockPanel>
                                                 <TextBox Grid.Column="2" Text="{Binding Experience, UpdateSourceTrigger=LostFocus}" Height="32" />

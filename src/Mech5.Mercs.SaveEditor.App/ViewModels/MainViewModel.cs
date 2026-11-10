@@ -5,6 +5,7 @@ using Mech5.Mercs.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 using Mech5.Mercs.SaveEditor.Core.Saves;
+using Mech5.Shared.Wpf.Theme;
 using Mech5.Shared.Unreal;
 
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
@@ -95,6 +96,31 @@ public sealed partial class MainViewModel : ObservableObject
     };
 
     public AppSettings Settings => _settings.Current;
+
+    public bool IsClansTheme
+    {
+        get => ThemeManager.Current == Mech5Theme.Clans;
+        set => SetTheme(value ? Mech5Theme.Clans : Mech5Theme.Mercs);
+    }
+
+    public bool IsMercsTheme
+    {
+        get => ThemeManager.Current == Mech5Theme.Mercs;
+        set => SetTheme(value ? Mech5Theme.Mercs : Mech5Theme.Clans);
+    }
+
+    private void SetTheme(Mech5Theme theme)
+    {
+        if (ThemeManager.Current != theme)
+        {
+            ThemeManager.Apply(theme);
+            _settings.Current.Theme = theme.ToString();
+            _settings.Save();
+        }
+
+        OnPropertyChanged(nameof(IsClansTheme));
+        OnPropertyChanged(nameof(IsMercsTheme));
+    }
 
     public string? DefaultFolder =>
         Path.GetDirectoryName(_settings.Current.LastSavePath) is { } last && Directory.Exists(last)

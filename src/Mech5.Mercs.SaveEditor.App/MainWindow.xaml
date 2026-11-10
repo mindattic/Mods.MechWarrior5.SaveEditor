@@ -4,7 +4,7 @@
         xmlns:c="clr-namespace:Mech5.Shared.Wpf.Controls;assembly=Mech5.Shared.Wpf"
         xmlns:vm="clr-namespace:Mech5.Mercs.SaveEditor.App.ViewModels"
         Title="{Binding WindowTitle}" Width="1440" Height="900" MinWidth="1100" MinHeight="680"
-        WindowStartupLocation="CenterScreen" Background="{StaticResource Brush.Base}"
+        WindowStartupLocation="CenterScreen" Background="{DynamicResource Brush.Base}"
         FontFamily="{StaticResource Font.Hud}" Icon="Assets/app.ico"
         UseLayoutRounding="True" SnapsToDevicePixels="True">
     <WindowChrome.WindowChrome>
@@ -25,18 +25,23 @@
         </Grid.RowDefinitions>
 
         <!-- Title bar -->
-        <Grid Background="{StaticResource Brush.Void}">
-            <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" />
+        <Grid Background="{DynamicResource Brush.Void}">
+            <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" />
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0">
                 <Image Source="Assets/app.ico" Width="20" Height="20" Margin="0,0,10,0" />
-                <TextBlock Text="MW5 MERCS" FontWeight="Bold" FontSize="17" Foreground="{StaticResource Brush.Amber}" />
-                <TextBlock Text="  //  SAVE EDITOR" FontWeight="SemiBold" FontSize="17" Foreground="{StaticResource Brush.TextMuted}" />
-                <TextBlock Text="{Binding FileName, StringFormat='   [{0}]'}" FontSize="15" Foreground="{StaticResource Brush.TextFaint}"
+                <TextBlock Text="MW5 MERCS" FontWeight="Bold" FontSize="17" Foreground="{DynamicResource Brush.Accent}" />
+                <TextBlock Text="  //  SAVE EDITOR" FontWeight="SemiBold" FontSize="17" Foreground="{DynamicResource Brush.TextMuted}" />
+                <TextBlock Text="{Binding FileName, StringFormat='   [{0}]'}" FontSize="15" Foreground="{DynamicResource Brush.TextFaint}"
                            Visibility="{Binding HasDocument, Converter={StaticResource BoolToVisibility}}" VerticalAlignment="Center" />
-                <TextBlock Text="  UNSAVED CHANGES" FontWeight="Bold" FontSize="13" Foreground="{StaticResource Brush.AmberHot}" VerticalAlignment="Center"
+                <TextBlock Text="  UNSAVED CHANGES" FontWeight="Bold" FontSize="13" Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center"
                            Visibility="{Binding IsDirty, Converter={StaticResource BoolToVisibility}}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,14,0" WindowChrome.IsHitTestVisibleInChrome="True"
+                            ToolTip="Interface theme (remembered between runs)">
+                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="MERCS" Height="26" IsChecked="{Binding IsMercsTheme}" />
+                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="CLANS" Height="26" IsChecked="{Binding IsClansTheme}" Margin="0" />
+                </StackPanel>
                 <Button Style="{StaticResource Button.Chrome}" Click="OnMinimize" ToolTip="Minimize">
                     <Path Data="{StaticResource Glyph.Minimize}" Style="{StaticResource Glyph}" Width="11" Height="11" />
                 </Button>
@@ -56,8 +61,8 @@
             </Grid.ColumnDefinitions>
 
             <!-- Navigation rail -->
-            <Grid Background="{StaticResource Brush.Void}">
-                <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,1,0" />
+            <Grid Background="{DynamicResource Brush.Void}">
+                <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,1,0" />
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Top" Margin="22,22,18,18" Visibility="{Binding HasDocument, Converter={StaticResource BoolToVisibility}}">
                         <TextBlock Text="MERCENARY COMPANY" Style="{StaticResource Text.Label}" FontSize="12" />
@@ -69,9 +74,9 @@
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="18,12,18,18">
                         <StackPanel Visibility="{Binding HasDocument, Converter={StaticResource BoolToVisibility}}">
-                            <Border Background="{StaticResource Brush.AmberWash}" BorderBrush="{StaticResource Brush.AmberDim}" BorderThickness="1"
+                            <Border Background="{DynamicResource Brush.AccentWash}" BorderBrush="{DynamicResource Brush.AccentDim}" BorderThickness="1"
                                     Padding="10,8" Margin="0,0,0,10" Visibility="{Binding IsOriginal, Converter={StaticResource BoolToVisibility}}">
-                                <TextBlock TextWrapping="Wrap" FontSize="13" Foreground="{StaticResource Brush.AmberHot}"
+                                <TextBlock TextWrapping="Wrap" FontSize="13" Foreground="{DynamicResource Brush.AccentHot}"
                                            Text="ORIGINAL GAME SAVE. Saving creates a new save; this file is never changed." />
                             </Border>
                             <TextBlock Text="SAVE NAME (LOAD MENU)" Style="{StaticResource Text.Label}" FontSize="12" Margin="0,0,0,4" />
@@ -81,8 +86,8 @@
                         <Button Command="{Binding SaveCommand}" Style="{StaticResource Button.Command}" Margin="0,0,0,8"
                                 ToolTip="Ctrl+S. Original game saves are never overwritten.">
                             <StackPanel Orientation="Horizontal">
-                                <Path Data="{StaticResource Glyph.Save}" Style="{StaticResource Glyph}" Stroke="{StaticResource Brush.Void}" Margin="0,0,8,0" />
-                                <TextBlock Text="{Binding SaveLabel}" Foreground="{StaticResource Brush.Void}" FontWeight="Bold" />
+                                <Path Data="{StaticResource Glyph.Save}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
+                                <TextBlock Text="{Binding SaveLabel}" Foreground="{DynamicResource Brush.Void}" FontWeight="Bold" />
                             </StackPanel>
                         </Button>
                         <Grid>
@@ -139,20 +144,20 @@
             </Grid>
 
             <!-- Page -->
-            <Grid Grid.Column="1" Background="{StaticResource Brush.Base}">
-                <Rectangle Fill="{StaticResource Brush.Grid}" />
+            <Grid Grid.Column="1" Background="{DynamicResource Brush.Base}">
+                <Rectangle Fill="{DynamicResource Brush.Grid}" />
                 <ContentControl Content="{Binding CurrentView}" Focusable="False" />
             </Grid>
         </Grid>
 
         <!-- Status bar -->
-        <Grid Grid.Row="2" Background="{StaticResource Brush.Void}">
-            <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,1,0,0" />
-            <TextBlock Text="{Binding Toast}" Margin="16,0" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource Brush.TextMuted}" />
+        <Grid Grid.Row="2" Background="{DynamicResource Brush.Void}">
+            <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" />
+            <TextBlock Text="{Binding Toast}" Margin="16,0" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Brush.TextMuted}" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,16,0">
-                <TextBlock Text="{Binding DlcSummary}" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource Brush.TextMuted}" Margin="0,0,18,0" />
+                <TextBlock Text="{Binding DlcSummary}" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Brush.TextMuted}" Margin="0,0,18,0" />
                 <TextBlock Text="{Binding Company.GameVersion, StringFormat='GAME v{0}'}" VerticalAlignment="Center" FontSize="14"
-                           Foreground="{StaticResource Brush.TextFaint}" Visibility="{Binding Company.GameVersion, Converter={StaticResource HasValueToVisibility}}" />
+                           Foreground="{DynamicResource Brush.TextFaint}" Visibility="{Binding Company.GameVersion, Converter={StaticResource HasValueToVisibility}}" />
             </StackPanel>
         </Grid>
     </Grid>

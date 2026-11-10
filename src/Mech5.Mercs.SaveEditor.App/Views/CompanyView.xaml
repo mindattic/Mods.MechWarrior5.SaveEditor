@@ -101,11 +101,11 @@
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                                 <Setter Property="Text" Value="NOT IN CAMPAIGN" />
-                                                <Setter Property="Foreground" Value="{StaticResource Brush.TextFaint}" />
+                                                <Setter Property="Foreground" Value="{DynamicResource Brush.TextFaint}" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Owned}" Value="True">
                                                         <Setter Property="Text" Value="ACTIVE" />
-                                                        <Setter Property="Foreground" Value="{StaticResource Brush.Ok}" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource Brush.Ok}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>

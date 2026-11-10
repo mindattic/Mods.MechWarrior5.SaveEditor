@@ -13,15 +13,15 @@
                 <Button Content="RESCAN" Command="{Binding RescanCommand}" Margin="0,0,10,0" />
                 <Button Command="{Binding DataContext.BrowseCommand, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource Button.Command}">
                     <StackPanel Orientation="Horizontal">
-                        <Path Data="{StaticResource Glyph.Open}" Style="{StaticResource Glyph}" Stroke="{StaticResource Brush.Void}" Margin="0,0,8,0" />
-                        <TextBlock Text="BROWSE FOR SAVE" Foreground="{StaticResource Brush.Void}" FontWeight="Bold" />
+                        <Path Data="{StaticResource Glyph.Open}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
+                        <TextBlock Text="BROWSE FOR SAVE" Foreground="{DynamicResource Brush.Void}" FontWeight="Bold" />
                     </StackPanel>
                 </Button>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="SELECT CAMPAIGN" Style="{StaticResource Text.Title}" />
                 <TextBlock Style="{StaticResource Text.Muted}" Margin="0,2,0,0">
-                    <Run Text="Campaigns found in" /> <Run Text="{Binding SaveRoot, Mode=OneWay}" Foreground="{StaticResource Brush.TextFaint}" />
+                    <Run Text="Campaigns found in" /> <Run Text="{Binding SaveRoot, Mode=OneWay}" Foreground="{DynamicResource Brush.TextFaint}" />
                 </TextBlock>
             </StackPanel>
         </DockPanel>
@@ -44,8 +44,8 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="ListBoxItem">
                                             <Grid Background="Transparent" Cursor="Hand">
-                                                <Rectangle x:Name="Wash" Fill="{StaticResource Brush.AmberWash}" Opacity="0" />
-                                                <Rectangle x:Name="Bar" Width="4" HorizontalAlignment="Left" Fill="{StaticResource Brush.Amber}" Opacity="0" />
+                                                <Rectangle x:Name="Wash" Fill="{DynamicResource Brush.AccentWash}" Opacity="0" />
+                                                <Rectangle x:Name="Bar" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource Brush.Accent}" Opacity="0" />
                                                 <ContentPresenter Margin="18,10" />
                                             </Grid>
                                             <ControlTemplate.Triggers>
@@ -92,15 +92,15 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="ListBoxItem">
                                             <Grid Background="Transparent" Cursor="Hand">
-                                                <Border x:Name="Bg" Background="Transparent" BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" />
+                                                <Border x:Name="Bg" Background="Transparent" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" />
                                                 <ContentPresenter Margin="18,9" />
                                             </Grid>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="Bg" Property="Background" Value="{StaticResource Brush.PanelRaised}" />
+                                                    <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.PanelRaised}" />
                                                 </Trigger>
                                                 <Trigger Property="IsSelected" Value="True">
-                                                    <Setter TargetName="Bg" Property="Background" Value="{StaticResource Brush.AmberWash}" />
+                                                    <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.AccentWash}" />
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
@@ -121,11 +121,11 @@
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Bold" />
                                             <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Visibility="{Binding IsAutosave, Converter={StaticResource BoolToVisibility}}">
-                                                <TextBlock Text="AUTO" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.TextMuted}" />
+                                                <TextBlock Text="AUTO" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
                                             </Border>
-                                            <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Background="{StaticResource Brush.AmberWash}" BorderBrush="{StaticResource Brush.Amber}"
+                                            <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Background="{DynamicResource Brush.AccentWash}" BorderBrush="{DynamicResource Brush.Accent}"
                                                     Visibility="{Binding IsEditorSave, Converter={StaticResource BoolToVisibility}}" ToolTip="Written by this editor">
-                                                <TextBlock Text="EDITED" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.AmberHot}" />
+                                                <TextBlock Text="EDITED" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                             </Border>
                                         </StackPanel>
                                         <TextBlock Text="{Binding StarSystem}" Style="{StaticResource Text.Muted}" FontSize="14" />

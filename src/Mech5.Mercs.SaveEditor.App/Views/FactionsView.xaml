@@ -21,7 +21,7 @@
                 <ItemsControl ItemsSource="{Binding Factions}" Margin="8,0,12,0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,10">
+                            <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,10">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="220" />
@@ -37,9 +37,9 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Rectangle Grid.ColumnSpan="2" Height="6" Fill="{StaticResource Brush.Void}" VerticalAlignment="Center" />
+                                        <Rectangle Grid.ColumnSpan="2" Height="6" Fill="{DynamicResource Brush.Void}" VerticalAlignment="Center" />
                                         <Grid x:Name="NegativeHalf">
-                                            <Rectangle Height="6" Fill="{StaticResource Brush.Danger}" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                            <Rectangle Height="6" Fill="{DynamicResource Brush.Danger}" HorizontalAlignment="Right" VerticalAlignment="Center">
                                                 <Rectangle.Width>
                                                     <MultiBinding Converter="{StaticResource StandingToWidth}" ConverterParameter="Negative">
                                                         <Binding Path="Standing" />
@@ -49,7 +49,7 @@
                                             </Rectangle>
                                         </Grid>
                                         <Grid x:Name="PositiveHalf" Grid.Column="1">
-                                            <Rectangle Height="6" Fill="{StaticResource Brush.Amber}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                            <Rectangle Height="6" Fill="{DynamicResource Brush.Accent}" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <Rectangle.Width>
                                                     <MultiBinding Converter="{StaticResource StandingToWidth}" ConverterParameter="Positive">
                                                         <Binding Path="Standing" />
@@ -58,7 +58,7 @@
                                                 </Rectangle.Width>
                                             </Rectangle>
                                         </Grid>
-                                        <Rectangle Grid.ColumnSpan="2" Width="2" Height="16" Fill="{StaticResource Brush.LineBright}" HorizontalAlignment="Center" />
+                                        <Rectangle Grid.ColumnSpan="2" Width="2" Height="16" Fill="{DynamicResource Brush.LineBright}" HorizontalAlignment="Center" />
                                         <Slider Grid.ColumnSpan="2" Minimum="-100" Maximum="100" Value="{Binding Standing}" IsSnapToTickEnabled="True"
                                                 TickFrequency="1" VerticalAlignment="Center" Opacity="0.01" Cursor="Hand" ToolTip="Drag to set standing" />
                                     </Grid>
@@ -66,7 +66,7 @@
                                     <TextBox Grid.Column="2" Text="{Binding Standing, UpdateSourceTrigger=LostFocus}" Width="90" HorizontalAlignment="Left"
                                              HorizontalContentAlignment="Center" Height="32" />
                                     <TextBlock Grid.Column="3" Text="{Binding Mood}" VerticalAlignment="Center" FontSize="13" FontWeight="Bold"
-                                               Foreground="{StaticResource Brush.TextMuted}" />
+                                               Foreground="{DynamicResource Brush.TextMuted}" />
                                 </Grid>
                             </Border>
                         </DataTemplate>

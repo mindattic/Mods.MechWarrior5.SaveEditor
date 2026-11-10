@@ -5,7 +5,7 @@
         xmlns:b="clr-namespace:Mech5.Shared.Wpf.Behaviors;assembly=Mech5.Shared.Wpf"
         xmlns:vm="clr-namespace:Mech5.Mercs.SaveEditor.App.ViewModels"
         Title="{Binding Title}" Width="1080" Height="800" MinWidth="900" MinHeight="600"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Background="{StaticResource Brush.Base}"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Background="{DynamicResource Brush.Base}"
         FontFamily="{StaticResource Font.Hud}" UseLayoutRounding="True">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="86" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False" />
@@ -18,7 +18,7 @@
         </Style>
     </Window.Resources>
 
-    <Border BorderBrush="{StaticResource Brush.Amber}" BorderThickness="1" Background="{StaticResource Brush.Base}">
+    <Border BorderBrush="{DynamicResource Brush.Accent}" BorderThickness="1" Background="{DynamicResource Brush.Base}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="86" />
@@ -27,13 +27,13 @@
             </Grid.RowDefinitions>
 
             <!-- Header -->
-            <Grid Background="{StaticResource Brush.Void}">
-                <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" />
+            <Grid Background="{DynamicResource Brush.Void}">
+                <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" />
                 <StackPanel Orientation="Horizontal" Margin="18,0,0,0" VerticalAlignment="Center">
                     <Grid Width="84" Height="64" Margin="0,0,14,0">
-                        <Rectangle Fill="{StaticResource Brush.Panel}" />
+                        <Rectangle Fill="{DynamicResource Brush.Panel}" />
                         <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"
-                                   Foreground="{StaticResource Brush.TextMuted}" />
+                                   Foreground="{DynamicResource Brush.TextMuted}" />
                         <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" />
                     </Grid>
                     <StackPanel VerticalAlignment="Center">
@@ -56,7 +56,7 @@
             </Grid>
 
             <Grid Grid.Row="1">
-                <Rectangle Fill="{StaticResource Brush.Grid}" />
+                <Rectangle Fill="{DynamicResource Brush.Grid}" />
 
                 <!-- Weapons -->
                 <c:ChamferBorder Margin="20,18" Padding="0,10">
@@ -87,7 +87,7 @@
                             <ItemsControl ItemsSource="{Binding Weapons}" Margin="20,0">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
+                                        <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="170" />
@@ -97,7 +97,7 @@
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="{Binding Location}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" />
                                                 <Border Grid.Column="1" Style="{StaticResource Chip}" HorizontalAlignment="Left">
-                                                    <TextBlock Text="{Binding ClassLabel}" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.AmberHot}" />
+                                                    <TextBlock Text="{Binding ClassLabel}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                                 </Border>
                                                 <ComboBox Grid.Column="2" ItemsSource="{Binding Options}" SelectedItem="{Binding Selected}" Margin="0,0,16,0"
                                                           MaxDropDownHeight="420" ToolTip="{Binding Slot}">
@@ -151,7 +151,7 @@
                             <ItemsControl ItemsSource="{Binding Equipment}" Margin="20,0">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
+                                        <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="170" />
@@ -159,7 +159,7 @@
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="{Binding PartLabel}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" />
-                                                <TextBlock Grid.Column="1" Text="{Binding SlotLabel}" VerticalAlignment="Center" Foreground="{StaticResource Brush.TextMuted}" />
+                                                <TextBlock Grid.Column="1" Text="{Binding SlotLabel}" VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextMuted}" />
                                                 <ComboBox Grid.Column="2" ItemsSource="{Binding Options}" SelectedItem="{Binding Selected}" MaxDropDownHeight="420" />
                                             </Grid>
                                         </Border>
@@ -198,7 +198,7 @@
                         <ItemsControl ItemsSource="{Binding Armor}" Margin="20,0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,7">
+                                    <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,7">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="220" />
@@ -213,10 +213,10 @@
                                             <TextBlock Grid.Column="3" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold">
                                                 <TextBlock.Style>
                                                     <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                        <Setter Property="Foreground" Value="{StaticResource Brush.TextMuted}" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding IsOverMax}" Value="True">
-                                                                <Setter Property="Foreground" Value="{StaticResource Brush.Danger}" />
+                                                                <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -234,7 +234,7 @@
             </Grid>
 
             <!-- Footer -->
-            <Border Grid.Row="2" Background="{StaticResource Brush.Void}" BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,1,0,0" Padding="20,14">
+            <Border Grid.Row="2" Background="{DynamicResource Brush.Void}" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="20,14">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button Content="IMPORT" Command="{Binding ImportCommand}" Margin="0,0,8,0" ToolTip="Load a .mw5loadout file" />

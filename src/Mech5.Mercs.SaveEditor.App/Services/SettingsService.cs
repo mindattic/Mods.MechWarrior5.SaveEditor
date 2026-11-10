@@ -7,39 +7,37 @@ public sealed class AppSettings
 {
     public string? LastSavePath { get; set; }
 
+    /// <summary>"Mercs" or "Clans".</summary>
+    public string Theme { get; set; } = "Mercs";
+
     public bool DownloadMechImages { get; set; } = true;
 
     public bool OwnedDlcOnly { get; set; } = true;
 }
 
-/// <summary>Per-user settings in <c>%APPDATA%\MindAttic\MW5SaveEditor\settings.json</c>.</summary>
+/// <summary>Settings as a plain <c>settings.json</c> beside the program; nothing else is written.</summary>
 public sealed class SettingsService
 {
     private static readonly JsonSerializerOptions Json = new() { WriteIndented = true };
 
-    public SettingsService(string folder)
+    public SettingsService(string? folder = null)
     {
-        Folder = folder;
-        Directory.CreateDirectory(folder);
+        FilePath = Path.Combine(folder ?? AppContext.BaseDirectory, "settings.json");
         Current = Load();
     }
 
-    public string Folder { get; }
+    public string FilePath { get; }
 
     public AppSettings Current { get; }
 
-    private string FilePath => Path.Combine(Folder, "settings.json");
-
+    /// <summary>Best effort: a read-only program folder just means settings aren't remembered.</summary>
     public void Save()
     {
         try
         {
             File.WriteAllText(FilePath, JsonSerializer.Serialize(Current, Json));
         }
-        catch (IOException)
-        {
-        }
-        catch (UnauthorizedAccessException)
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
         {
         }
     }
