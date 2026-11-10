@@ -91,7 +91,17 @@ public sealed partial class MainViewModel : ObservableObject
     {
         GameDataSummary = Loc.Text("game_data_reading", "Reading game data...");
         var preferred = _settings.Current.GameFolder;
-        var data = await Task.Run(() => GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null);
+        GameData? data;
+        try
+        {
+            data = await Task.Run(() => GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or InvalidOperationException or System.Text.Json.JsonException)
+        {
+            GameDataSummary = Loc.Text("game_data_failed", "Couldn't read game data: using built-in data ({0})", e.Message);
+            return;
+        }
+
         if (data is null)
         {
             GameDataSummary = Loc.Text("game_data_missing", "Game not found: using built-in data");
