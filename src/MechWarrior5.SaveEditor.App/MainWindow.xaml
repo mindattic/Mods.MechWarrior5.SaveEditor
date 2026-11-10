@@ -23,24 +23,29 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- One line: game tabs on the far left, the open file in between, the app title and window buttons on the far right. -->
+        <!-- One line: game tabs on the far left, the open file in between, the app title and window buttons on the far right.
+             The tabs sit on the bottom edge (y 8-42, label centre y 26), so every other item is centred in y 10-42 to share that centre. -->
         <Grid Background="{DynamicResource Brush.Void}">
             <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="12,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True"
-                            ToolTip="{l:T choose_the_game_to_edit}">
-                    <ma:MaButton Style="{StaticResource Tab.Game}" Content="{l:T mercenaries}" GroupName="Game" IsChecked="{Binding IsMercsGame}" />
-                    <ma:MaButton Style="{StaticResource Tab.Game}" Content="{l:T clans}" GroupName="Game" IsChecked="{Binding IsClansGame}" Margin="-14,0,0,0" />
-                </StackPanel>
+                <!-- Linked buttons: equal widths (the wider label sets both), edges overlapping by 1px into one seam. -->
+                <UniformGrid Rows="1" VerticalAlignment="Center" Margin="12,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True"
+                             ToolTip="{l:T choose_the_game_to_edit}">
+                    <!-- The pair reads as one chamfered control: MERCENARIES cuts only its top-left corner, CLANS only its bottom-right. -->
+                    <ma:MaButton Style="{StaticResource Tab.Game}" Content="{l:T mercenaries}" GroupName="Game" IsChecked="{Binding IsMercsGame}"
+                                 Shape="Chamfer" ChamferCorners="TopLeft" Chamfer="10" />
+                    <ma:MaButton Style="{StaticResource Tab.Game}" Content="{l:T clans}" GroupName="Game" IsChecked="{Binding IsClansGame}" Margin="-1,0,0,0"
+                                 Shape="Chamfer" ChamferCorners="BottomRight" Chamfer="10" />
+                </UniformGrid>
                 <TextBlock Text="{Binding Current.SaveTitle}" ToolTip="{Binding Current.FileName}" FontSize="17" FontWeight="SemiBold" Foreground="{DynamicResource Brush.TextMuted}" Margin="18,0,0,0"
                            Visibility="{Binding Current.HasDocument, Converter={StaticResource BoolToVisibility}}" VerticalAlignment="Center" />
                 <TextBlock Text="{l:T unsaved_changes}" FontWeight="Bold" FontSize="15" Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center" Margin="10,0,0,0"
                            Visibility="{Binding Current.IsDirty, Converter={StaticResource BoolToVisibility}}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,18,0">
                     <Image Source="Assets/app.ico" Width="20" Height="20" Margin="0,0,10,0" />
-                    <TextBlock Text="MW5 " FontWeight="Bold" FontSize="19" Foreground="{DynamicResource Brush.Accent}" VerticalAlignment="Center" />
+                    <TextBlock Text="MechWarrior 5" FontWeight="Bold" FontSize="19" Foreground="{DynamicResource Brush.Accent}" VerticalAlignment="Center" />
                     <TextBlock Text="{l:T save_editor}" FontWeight="SemiBold" FontSize="19" Foreground="{DynamicResource Brush.TextMuted}" VerticalAlignment="Center" />
                 </StackPanel>
                 <ma:MaButton Style="{StaticResource Button.Chrome}" Click="OnMinimize" ToolTip="{l:T minimize}">

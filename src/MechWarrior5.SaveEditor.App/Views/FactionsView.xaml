@@ -16,7 +16,8 @@
             <TextBlock Text="{l:T faction_standing}" Style="{StaticResource Text.Title}" />
         </DockPanel>
 
-        <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="10,10,4,10">
+        <!-- The scrollbar track runs to the bottom-right corner: 14px bottom inset (the chamfer) and ClipToShape keep it off the cut and tick. -->
+        <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="10,10,4,14" ClipToShape="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding Factions}" Margin="8,0,12,0">
                     <ItemsControl.ItemTemplate>

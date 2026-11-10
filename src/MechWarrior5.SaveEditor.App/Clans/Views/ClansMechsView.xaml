@@ -10,13 +10,15 @@
         </Grid.RowDefinitions>
 
         <DockPanel Margin="0,0,0,14">
-            <TextBlock DockPanel.Dock="Right" Text="{Binding Summary}" Style="{StaticResource Text.Label}" VerticalAlignment="Bottom" />
+            <TextBlock DockPanel.Dock="Right" Text="{Binding Summary}" Style="{StaticResource Text.Label}" VerticalAlignment="Center" />
             <TextBlock Text="{l:T mechs}" Style="{StaticResource Text.Title}" />
         </DockPanel>
 
-        <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0">
+        <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0" ClipToShape="True">
             <DockPanel>
-                <Grid DockPanel.Dock="Top" Margin="18,14,18,8">
+                <!-- Edges match the list rows below: ListBox margin 8 + its 1px padding on the left, 4 + 1 + the 8px
+                     scrollbar on the right. -->
+                <Grid DockPanel.Dock="Top" Margin="9,14,13,8">
                     <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Delay=120}" Tag="{l:T clans_filter_mechs}" />
                 </Grid>
 
@@ -38,7 +40,7 @@
                             </TextBlock>
                         </WrapPanel>
                         <WrapPanel>
-                            <ma:MaButton Command="{Binding RepairCommand}" Style="{StaticResource Button.Command}" Margin="0,0,8,6">
+                            <ma:MaButton Command="{Binding RepairCommand}" Style="{StaticResource Button.Command}" Margin="0,0,8,6" IsEnabled="{Binding HasSelection}">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Repair}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
                                     <TextBlock Text="{l:T repair}" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
@@ -47,7 +49,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
                                 <TextBox Text="{Binding Copies, UpdateSourceTrigger=PropertyChanged}" Width="48" HorizontalContentAlignment="Center" Margin="0,0,4,0"
                                          ToolTip="{l:T copies_of_each_ticked_mech}" />
-                                <ma:MaButton Command="{Binding DuplicateCommand}" ToolTip="{l:T adds_copies_with_the_same_loadout_fully_repaired}">
+                                <ma:MaButton Command="{Binding DuplicateCommand}" IsEnabled="{Binding HasSelection}" ToolTip="{l:T adds_copies_with_the_same_loadout_fully_repaired}">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource Glyph.Plus}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
                                         <TextBlock Text="{l:T duplicate}" FontWeight="Bold" />
@@ -55,10 +57,10 @@
                                 </ma:MaButton>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
-                                <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Width="170" Margin="0,0,4,0" Tag="{l:T clans_mech_name_hint}" />
-                                <ma:MaButton Command="{Binding RenameCommand}" Content="{l:T rename}" />
+                                <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Width="300" Margin="0,0,4,0" Tag="{l:T clans_mech_name_hint}" />
+                                <ma:MaButton Command="{Binding RenameCommand}" Content="{l:T rename}" IsEnabled="{Binding HasSelection}" />
                             </StackPanel>
-                            <ma:MaButton Command="{Binding RemoveCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
+                            <ma:MaButton Command="{Binding RemoveCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6" IsEnabled="{Binding HasSelection}">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
                                     <TextBlock Text="{l:T remove_2}" FontWeight="Bold" />
@@ -96,21 +98,15 @@
                                     <TextBlock Text="{Binding Subtitle}" Foreground="{DynamicResource Brush.TextMuted}" FontSize="16" />
                                     <TextBlock Text="{Binding Gear}" Style="{StaticResource Text.Muted}" FontSize="14" TextTrimming="CharacterEllipsis" />
                                 </StackPanel>
+                                <!-- Both words are laid out and one is shown, so every chip in the column is as wide as the
+                                     wider word in the current language, even for rows not scrolled into view yet. -->
                                 <Border Grid.Column="3" Style="{StaticResource Chip}" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                    <TextBlock FontSize="14" FontWeight="Bold">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                <Setter Property="Text" Value="READY" />
-                                                <Setter Property="Foreground" Value="{DynamicResource Brush.Ok}" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsDamaged}" Value="True">
-                                                        <Setter Property="Text" Value="DAMAGED" />
-                                                        <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                    <Grid>
+                                        <TextBlock Text="{l:T status_ready}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource Brush.Ok}"
+                                                   Visibility="{Binding IsDamaged, Converter={StaticResource BoolToVisibility}, ConverterParameter=InvertHidden}" />
+                                        <TextBlock Text="{l:T status_damaged}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{DynamicResource Brush.Danger}"
+                                                   Visibility="{Binding IsDamaged, Converter={StaticResource BoolToVisibility}, ConverterParameter=Hidden}" />
+                                    </Grid>
                                 </Border>
                             </Grid>
                         </DataTemplate>

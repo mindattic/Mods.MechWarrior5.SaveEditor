@@ -5,7 +5,9 @@
         WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{Binding Title}">
-    <ma:MaShapeBorder Style="{StaticResource Panel}" Chamfer="18" Padding="26,20,26,22"
+    <!-- Both chamfers are cut (the corners are transparent pixels; a viewer that shows transparency as black can make
+         the top-left one look square against the dark fill). ClipToShape keeps any content off the cuts. -->
+    <ma:MaShapeBorder Style="{StaticResource Panel}" Chamfer="18" Padding="26,20,26,22" ClipToShape="True"
                      Fill="{DynamicResource Brush.Panel}" Stroke="{Binding ToneBrush}" StrokeThickness="1.5"
                      AccentBrush="{Binding ToneBrush}">
         <Grid>
@@ -47,12 +49,13 @@
                 </ItemsControl>
             </ScrollViewer>
 
+            <!-- Labels are upper-cased like every other button in the app; an Error-tone confirm's primary is the danger preset (see code-behind). -->
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                <ma:MaButton Content="{Binding TertiaryText}" Visibility="{Binding TertiaryVisibility}" Click="OnTertiary"
+                <ma:MaButton Content="{Binding TertiaryLabel}" Visibility="{Binding TertiaryVisibility}" Click="OnTertiary"
                         Style="{StaticResource Button.Danger}" Margin="0,0,10,0" MinWidth="110" />
-                <ma:MaButton Content="{Binding SecondaryText}" Visibility="{Binding SecondaryVisibility}" Click="OnSecondary"
+                <ma:MaButton Content="{Binding SecondaryLabel}" Visibility="{Binding SecondaryVisibility}" Click="OnSecondary"
                         IsCancel="True" Margin="0,0,10,0" MinWidth="110" />
-                <ma:MaButton Content="{Binding PrimaryText}" Click="OnPrimary" IsDefault="True"
+                <ma:MaButton x:Name="PrimaryButton" Content="{Binding PrimaryLabel}" Click="OnPrimary" IsDefault="True"
                         Style="{StaticResource Button.Command}" MinWidth="120" />
             </StackPanel>
         </Grid>

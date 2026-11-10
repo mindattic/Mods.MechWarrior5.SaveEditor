@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using MechWarrior5.SaveEditor.App.Localization;
 using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -118,23 +119,24 @@ public sealed partial class ResourcesViewModel : ObservableObject
         const string Crew = "KelCrewItemDataAsset";
         Currencies =
         [
-            new(doc, main, Currency, "Kerenskies_CurrencyItem", "KERENSKIES", "Clan currency for mechs, omnipods and equipment."),
-            new(doc, main, Currency, "Merits_CurrencyItem", "MERITS", "Spent on research and upgrades."),
-            new(doc, main, Currency, "Honor_CurrencyItem", "HONOR", "Also moves the Honor level track."),
+            // Kerenskies, Merits and Honor are the game's own names for its currencies; they stay as they are.
+            new(doc, main, Currency, "Kerenskies_CurrencyItem", "KERENSKIES", Loc.Text("clans_res_kerenskies_hint", "Clan currency for mechs, omnipods and equipment.")),
+            new(doc, main, Currency, "Merits_CurrencyItem", "MERITS", Loc.Text("clans_res_merits_hint", "Spent on research and upgrades.")),
+            new(doc, main, Currency, "Honor_CurrencyItem", "HONOR", Loc.Text("clans_res_honor_hint", "Also moves the Honor level track.")),
         ];
         Salvage =
         [
-            new(doc, main, Currency, "Salvage_MechComponents", "MECH COMPONENTS"),
-            new(doc, main, Currency, "Salvage_WeaponComponents", "WEAPON COMPONENTS"),
-            new(doc, main, Currency, "Salvage_EquipmentComponents", "EQUIPMENT COMPONENTS"),
+            new(doc, main, Currency, "Salvage_MechComponents", Loc.Text("clans_res_mech_components", "MECH COMPONENTS")),
+            new(doc, main, Currency, "Salvage_WeaponComponents", Loc.Text("clans_res_weapon_components", "WEAPON COMPONENTS")),
+            new(doc, main, Currency, "Salvage_EquipmentComponents", Loc.Text("clans_res_equipment_components", "EQUIPMENT COMPONENTS")),
         ];
         CrewRows =
         [
-            new(doc, main, Crew, "Technician_CrewItem", "TECHNICIANS", "Also sets the mech bay's technician pool."),
-            new(doc, main, Crew, "Scientist_CrewItem", "SCIENTISTS"),
-            new(doc, main, Crew, "TechnicianUpgrade_CrewItem", "TECHNICIAN UPGRADES"),
-            new(doc, main, Crew, "ScientistUpgrade_CrewItem", "SCIENTIST UPGRADES"),
-            new(doc, main, Crew, "SalvageUpgrade_CrewItem", "SALVAGE UPGRADES"),
+            new(doc, main, Crew, "Technician_CrewItem", Loc.Text("clans_res_technicians", "TECHNICIANS"), Loc.Text("clans_res_technicians_hint", "Also sets the mech bay's technician pool.")),
+            new(doc, main, Crew, "Scientist_CrewItem", Loc.Text("clans_res_scientists", "SCIENTISTS")),
+            new(doc, main, Crew, "TechnicianUpgrade_CrewItem", Loc.Text("clans_res_technician_upgrades", "TECHNICIAN UPGRADES")),
+            new(doc, main, Crew, "ScientistUpgrade_CrewItem", Loc.Text("clans_res_scientist_upgrades", "SCIENTIST UPGRADES")),
+            new(doc, main, Crew, "SalvageUpgrade_CrewItem", Loc.Text("clans_res_salvage_upgrades", "SALVAGE UPGRADES")),
         ];
         MechXp = [.. doc.Inventory.Stacks
             .Where(s => s.Category == StackCategory.MechXp)
@@ -172,8 +174,8 @@ public sealed class ProgressViewModel(ClansDocument doc)
     public IReadOnlyList<string> Completed => [.. doc.Progress.CompletedResearch.Select(Describe)];
 
     private static string Describe(ResearchEntry r) =>
-        $"{ClansCatalog.ItemLabel(r.Job.Replace("_ResearchJob", string.Empty, StringComparison.Ordinal))}  -  level {r.Level + 1}"
-        + (r.PointsApplied > 0 ? $"  ({r.PointsApplied:N0} pts)" : string.Empty);
+        Loc.Text("clans_research_entry", "{0}  -  level {1}", ClansCatalog.ItemLabel(r.Job.Replace("_ResearchJob", string.Empty, StringComparison.Ordinal)), r.Level + 1)
+        + (r.PointsApplied > 0 ? Loc.Text("clans_research_points", "  ({0:N0} pts)", r.PointsApplied) : string.Empty);
 }
 
 public sealed partial class SettingsViewModel(ClansMainViewModel main) : ObservableObject

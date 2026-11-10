@@ -101,6 +101,15 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.AccentHot}" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Void}" />
         <Setter Property="FontSize" Value="18" />
+        <Style.Resources>
+            <!-- A plain-text Content (Content="{l:T ...}") is shown by a generated TextBlock, which takes the app's
+                 implicit TextBlock style and its light Brush.Text, not the button's Foreground. Scoping a TextBlock
+                 style here gives every filled primary button the same dark-on-accent text, whether its content is a
+                 string or an explicit TextBlock. -->
+            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="Foreground" Value="{DynamicResource Brush.Void}" />
+            </Style>
+        </Style.Resources>
     </Style>
 
     <Style x:Key="Button.Danger" TargetType="ma:MaButton" BasedOn="{StaticResource Button.Base}">
@@ -112,7 +121,8 @@
         <Setter Property="Shape" Value="Rectangle" />
         <Setter Property="StrokeThickness" Value="0" />
         <Setter Property="Width" Value="46" />
-        <Setter Property="Height" Value="34" />
+        <!-- 30 tall so it centres in the title bar's y 10-42 band with the game tabs' labels. -->
+        <Setter Property="Height" Value="30" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
         <Setter Property="HoverForeground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="Background" Value="Transparent" />
@@ -197,29 +207,27 @@
     </Style>
 
     <!-- Game tabs: angled trapezoids that interlock; the checked one takes the page colour. -->
+    <!-- The game picker: two linked buttons that read as one control (equal widths from the UniformGrid that holds them,
+         touching edges, one shared 1px seam); the selected one wears the toggle-chip accent. -->
     <Style x:Key="Tab.Game" TargetType="ma:MaButton">
-        <Setter Property="Width" Value="190" />
-        <Setter Property="Height" Value="34" />
+        <Setter Property="IsToggle" Value="True" />
+        <Setter Property="Height" Value="30" />
         <Setter Property="FontFamily" Value="{StaticResource Font.Hud}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
         <Setter Property="HoverForeground" Value="{DynamicResource Brush.Text}" />
-        <Setter Property="CheckedForeground" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="CheckedForeground" Value="{DynamicResource Brush.AccentHot}" />
         <Setter Property="Background" Value="{DynamicResource Brush.Panel}" />
-        <Setter Property="CheckedBackground" Value="{DynamicResource Brush.Base}" />
+        <Setter Property="CheckedBackground" Value="{DynamicResource Brush.AccentWash}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.Line}" />
-        <Setter Property="HoverBorderBrush" Value="{DynamicResource Brush.LineBright}" />
-        <Setter Property="CheckedBorderBrush" Value="{DynamicResource Brush.LineBright}" />
-        <Setter Property="AccentBrush" Value="{DynamicResource Brush.Accent}" />
-        <Setter Property="AccentEdge" Value="Top" />
-        <Setter Property="AccentThickness" Value="3" />
-        <Setter Property="AccentWhen" Value="Checked" />
-        <Setter Property="Shape" Value="Trapezoid" />
-        <Setter Property="Slant" Value="14" />
-        <Setter Property="Padding" Value="0,2,0,0" />
+        <Setter Property="HoverBorderBrush" Value="{DynamicResource Brush.AccentDim}" />
+        <Setter Property="CheckedBorderBrush" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="Shape" Value="Rectangle" />
+        <Setter Property="Padding" Value="18,0" />
         <Setter Property="DisabledOpacity" Value="1" />
         <Style.Triggers>
+            <!-- The selected button's accent border is drawn over the shared seam. -->
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Panel.ZIndex" Value="1" />
             </Trigger>
@@ -249,7 +257,9 @@
                             <TextBlock x:Name="Hint" Text="{TemplateBinding Tag}" Margin="{TemplateBinding Padding}" Padding="2,0,0,0"
                                        VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextFaint}" FontWeight="Medium"
                                        IsHitTestVisible="False" Visibility="Collapsed" />
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"
+                            <!-- No Margin here: WPF already applies the TextBox's Padding inside the content host, so
+                                 binding it again doubled the inset of typed text (19px) against the hint (11px). -->
+                            <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Grid>
                     </Border>
@@ -362,6 +372,10 @@
                                           ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                           ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                           ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" />
+                        <!-- Tag doubles as placeholder text while nothing is selected, styled like the TextBox hint. -->
+                        <TextBlock x:Name="Hint" Text="{TemplateBinding Tag}" Margin="10,0,30,0" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource Brush.TextFaint}" FontWeight="Medium" TextTrimming="CharacterEllipsis"
+                                   IsHitTestVisible="False" Visibility="Collapsed" />
                         <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" AllowsTransparency="True"
                                Focusable="False" PopupAnimation="Fade">
                             <Border MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
@@ -373,6 +387,15 @@
                             </Border>
                         </Popup>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="SelectedItem" Value="{x:Null}" />
+                                <Condition Property="IsEditable" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Hint" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -24,12 +24,25 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+
+        <!-- Two columns of amounts in a full-width panel, lined up with the half-width panels above: each cell
+             carries a 54px right gutter (18 page gutter + 2 x 18 panel padding) and the list reaches 54px past the
+             panel's content, so the left column ends where the left panel's content ends and the right column starts
+             where the right panel's content starts. -->
+        <ItemsPanelTemplate x:Key="TwoColumns">
+            <UniformGrid Columns="2" VerticalAlignment="Top" />
+        </ItemsPanelTemplate>
+        <Style x:Key="TwoColumnsCell" TargetType="ContentPresenter">
+            <Setter Property="Margin" Value="0,0,54,0" />
+        </Style>
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="28,22,28,22">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="18" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="18" />
                 <RowDefinition Height="Auto" />
@@ -43,9 +56,11 @@
             <DockPanel Grid.ColumnSpan="3" Margin="0,0,0,14">
                 <Border DockPanel.Dock="Right" Style="{StaticResource Chip}" VerticalAlignment="Center"
                         Visibility="{Binding HonorLevel, Converter={StaticResource HasValueToVisibility}}">
-                    <TextBlock Text="{Binding HonorLevel, StringFormat='HONOR LEVEL {0}'}" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
+                    <TextBlock FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}">
+                        <Run Text="{l:T honor_level}" /> <Run Text="{Binding HonorLevel, Mode=OneWay}" />
+                    </TextBlock>
                 </Border>
-                <TextBlock Text="{l:T resources}" Style="{StaticResource Text.Title}" />
+                <TextBlock Text="{l:T resources}" Style="{StaticResource Text.Title}" VerticalAlignment="Center" />
             </DockPanel>
 
             <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}">
@@ -62,18 +77,22 @@
                 </StackPanel>
             </ma:MaShapeBorder>
 
-            <ma:MaShapeBorder Grid.Row="3" Style="{StaticResource Panel}">
+            <!-- Crew (5 rows) and mech XP (one row per chassis) differ in length, so side by side one frame was left
+                 half empty. Each spans the page instead, its rows in the same two columns as the panels above. -->
+            <ma:MaShapeBorder Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource Panel}">
                 <StackPanel>
                     <TextBlock Text="{l:T crew}" Style="{StaticResource Text.Section}" FontSize="19" Margin="0,0,0,12" />
-                    <ItemsControl ItemsSource="{Binding CrewRows}" ItemTemplate="{StaticResource AmountTemplate}" />
+                    <ItemsControl ItemsSource="{Binding CrewRows}" ItemTemplate="{StaticResource AmountTemplate}"
+                                  ItemsPanel="{StaticResource TwoColumns}" ItemContainerStyle="{StaticResource TwoColumnsCell}" Margin="0,0,-54,0" />
                 </StackPanel>
             </ma:MaShapeBorder>
 
-            <ma:MaShapeBorder Grid.Row="3" Grid.Column="2" Style="{StaticResource Panel}">
+            <ma:MaShapeBorder Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource Panel}">
                 <StackPanel>
                     <TextBlock Text="{l:T mech_experience_mxp}" Style="{StaticResource Text.Section}" FontSize="19" Margin="0,0,0,4" />
                     <TextBlock Text="{l:T per_chassis_experience_spent_on_mech_upgrades}" Style="{StaticResource Text.Muted}" FontSize="14" Margin="0,0,0,12" />
-                    <ItemsControl ItemsSource="{Binding MechXp}" ItemTemplate="{StaticResource AmountTemplate}" />
+                    <ItemsControl ItemsSource="{Binding MechXp}" ItemTemplate="{StaticResource AmountTemplate}"
+                                  ItemsPanel="{StaticResource TwoColumns}" ItemContainerStyle="{StaticResource TwoColumnsCell}" Margin="0,0,-54,0" />
                 </StackPanel>
             </ma:MaShapeBorder>
         </Grid>

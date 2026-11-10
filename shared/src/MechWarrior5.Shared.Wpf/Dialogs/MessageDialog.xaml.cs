@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -18,9 +19,18 @@ public sealed record MessageDialogModel(
 
     public IEnumerable<object> Sections => RawSections.Select(s => new { s.Header, s.Lines, Brush = BrushFor(s.Tone) });
 
+    // Buttons show their text upper-cased like the app's own buttons; callers' text keys stay as they are.
+    public string PrimaryLabel => Upper(PrimaryText);
+
+    public string? SecondaryLabel => SecondaryText is null ? null : Upper(SecondaryText);
+
+    public string? TertiaryLabel => TertiaryText is null ? null : Upper(TertiaryText);
+
     public Visibility SecondaryVisibility => SecondaryText is null ? Visibility.Collapsed : Visibility.Visible;
 
     public Visibility TertiaryVisibility => TertiaryText is null ? Visibility.Collapsed : Visibility.Visible;
+
+    private static string Upper(string text) => text.ToUpper(CultureInfo.CurrentUICulture);
 
     private static Brush BrushFor(DialogTone tone) => (Brush)Application.Current.FindResource(tone switch
     {
@@ -39,6 +49,12 @@ public partial class MessageDialog : Window
     {
         InitializeComponent();
         DataContext = model;
+
+        // A destructive confirm (Error tone) gets the same red danger preset as the app's REMOVE and the dialog's DISCARD buttons.
+        if (model.Tone == DialogTone.Error && model.SecondaryText is not null)
+        {
+            PrimaryButton.Style = (Style)FindResource("Button.Danger");
+        }
     }
 
     /// <summary>Primary = true, secondary (cancel) = null, tertiary = false.</summary>

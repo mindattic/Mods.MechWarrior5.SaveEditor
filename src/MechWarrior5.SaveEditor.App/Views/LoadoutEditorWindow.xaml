@@ -6,7 +6,7 @@
         xmlns:b="clr-namespace:MechWarrior5.Shared.Wpf.Behaviors;assembly=MechWarrior5.Shared.Wpf"
         xmlns:vm="clr-namespace:MechWarrior5.SaveEditor.App.ViewModels"
         Title="{Binding Title}" Width="1080" Height="800" MinWidth="900" MinHeight="600"
-        WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Background="{DynamicResource Brush.Base}"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         FontFamily="{StaticResource Font.Hud}" UseLayoutRounding="True">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="86" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False" />
@@ -19,7 +19,10 @@
         </Style>
     </Window.Resources>
 
-    <Border BorderBrush="{DynamicResource Brush.Accent}" BorderThickness="1" Background="{DynamicResource Brush.Base}">
+    <!-- The same chamfered frame as every dialog (top-left and bottom-right cut); ClipToShape keeps the header and
+         footer bands inside the cuts. -->
+    <ma:MaShapeBorder Style="{StaticResource Panel}" Chamfer="18" Padding="1.5" Fill="{DynamicResource Brush.Base}"
+                      Stroke="{DynamicResource Brush.Accent}" StrokeThickness="1.5" ClipToShape="True">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="86" />
@@ -203,7 +206,7 @@
                             <TextBlock Grid.Column="2" Text="{l:T rear}" Style="{StaticResource Text.Label}" />
                             <TextBlock Grid.Column="3" Text="{l:T total_max}" Style="{StaticResource Text.Label}" />
                         </Grid>
-                        <ItemsControl ItemsSource="{Binding Armor}" Margin="20,0">
+                        <ItemsControl ItemsSource="{Binding Armor}" Margin="20,0" Grid.IsSharedSizeScope="True">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,7">
@@ -218,9 +221,13 @@
                                             <TextBox Grid.Column="1" Text="{Binding Front, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left" Height="32" />
                                             <TextBox Grid.Column="2" Text="{Binding Rear, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left" Height="32"
                                                      Visibility="{Binding HasRear, Converter={StaticResource BoolToVisibility}}" />
-                                            <TextBlock Grid.Column="3" VerticalAlignment="Center" FontSize="18" FontWeight="SemiBold">
-                                                <TextBlock.Style>
+                                            <!-- Total, "/" and max sit in shared columns (total right-aligned, max left-aligned),
+                                                 so the slash lines up down the column whatever the totals' widths. -->
+                                            <Grid Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                <Grid.Resources>
                                                     <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                        <Setter Property="FontSize" Value="18" />
+                                                        <Setter Property="FontWeight" Value="SemiBold" />
                                                         <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding IsOverMax}" Value="True">
@@ -228,10 +235,18 @@
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
-                                                </TextBlock.Style>
-                                                <Run Text="{Binding Front, Mode=OneWay}" /><Run Text=" + " /><Run Text="{Binding Rear, Mode=OneWay}" />
-                                                <Run Text="  /  " /><Run Text="{Binding Max, Mode=OneWay}" />
-                                            </TextBlock>
+                                                </Grid.Resources>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="ArmorTotal" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="ArmorMax" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock HorizontalAlignment="Right">
+                                                    <Run Text="{Binding Front, Mode=OneWay}" /><Run Text=" + " /><Run Text="{Binding Rear, Mode=OneWay}" />
+                                                </TextBlock>
+                                                <TextBlock Grid.Column="1" Text="/" Margin="12,0" />
+                                                <TextBlock Grid.Column="2" Text="{Binding Max, Mode=OneWay}" HorizontalAlignment="Left" />
+                                            </Grid>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -241,8 +256,8 @@
                 </ma:MaShapeBorder>
             </Grid>
 
-            <!-- Traits (overlays the content row) -->
-            <ma:MaShapeBorder Grid.Row="1" Margin="20,18" Padding="22,16" VerticalAlignment="Top">
+            <!-- Traits (overlays the content row): the same full-height frame, header row and gutters as the other tabs. -->
+            <ma:MaShapeBorder Grid.Row="1" Margin="20,18" Padding="0,10">
                 <ma:MaShapeBorder.Style>
                     <Style TargetType="ma:MaShapeBorder" BasedOn="{StaticResource Panel}">
                         <Setter Property="Visibility" Value="Collapsed" />
@@ -253,32 +268,37 @@
                         </Style.Triggers>
                     </Style>
                 </ma:MaShapeBorder.Style>
-                <StackPanel>
-                    <TextBlock Text="{l:T mech_traits}" Style="{StaticResource Text.Section}" />
-                    <TextBlock Text="{l:T traits_installed_on_this_mech_applied_with_the_r}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,4,0,10" />
-                <ItemsControl ItemsSource="{Binding Traits}">
-                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                    <ma:MaButton Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove}" VerticalAlignment="Center"
-                                            Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                            CommandParameter="{Binding}">
-                                        <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
-                                              StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
-                                    </ma:MaButton>
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <DockPanel Margin="0,4,0,0">
-                    <ma:MaButton DockPanel.Dock="Right" Content="{l:T add}" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
-                    <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380" />
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="{l:T mech_traits}" Style="{StaticResource Text.Label}" Margin="20,4,20,8" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="20,0">
+                            <TextBlock Text="{l:T traits_installed_on_this_mech_applied_with_the_r}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,0,0,10" />
+                            <ItemsControl ItemsSource="{Binding Traits}">
+                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <ma:MaButton Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove}" VerticalAlignment="Center"
+                                                        Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}">
+                                                    <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                                          StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
+                                                </ma:MaButton>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <DockPanel Margin="0,4,0,0">
+                                <ma:MaButton DockPanel.Dock="Right" Content="{l:T add}" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
+                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380"
+                                          Tag="{l:T pick_a_trait_to_add}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </ScrollViewer>
                 </DockPanel>
-                </StackPanel>
             </ma:MaShapeBorder>
 
             <!-- Footer -->
@@ -303,5 +323,5 @@
             <!-- Click the chassis picture to see it large. -->
             <sw:MechArtLightbox Grid.RowSpan="3" LinkText="{l:T view_on_sarna}" LoadingText="{l:T loading_picture}" NoPictureText="{l:T no_picture_available}" />
         </Grid>
-    </Border>
+    </ma:MaShapeBorder>
 </Window>

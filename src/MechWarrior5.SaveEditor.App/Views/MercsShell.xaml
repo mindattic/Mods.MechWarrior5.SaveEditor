@@ -33,14 +33,23 @@
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="18,12,18,18">
                         <StackPanel Visibility="{Binding HasDocument, Converter={StaticResource BoolToVisibility}}">
-                            <Border Background="{DynamicResource Brush.AccentWash}" BorderBrush="{DynamicResource Brush.AccentDim}" BorderThickness="1"
-                                    Padding="10,8" Margin="0,0,0,10" Visibility="{Binding IsOriginal, Converter={StaticResource BoolToVisibility}}">
+                            <ma:MaShapeBorder Style="{StaticResource Panel}" Chamfer="8" Padding="10,8" Margin="0,0,0,10"
+                                              Fill="{DynamicResource Brush.AccentWash}" Stroke="{DynamicResource Brush.AccentDim}"
+                                              Visibility="{Binding IsOriginal, Converter={StaticResource BoolToVisibility}}">
                                 <TextBlock TextWrapping="Wrap" FontSize="15" Foreground="{DynamicResource Brush.AccentHot}"
                                            Text="{l:T original_game_save_saving_creates_a_new_save_thi}" />
-                            </Border>
+                            </ma:MaShapeBorder>
                             <TextBlock Text="{l:T save_name_load_menu}" Style="{StaticResource Text.Label}" FontSize="14" Margin="0,0,0,4" />
-                            <TextBox Text="{Binding SaveName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Tag="{l:T name_shown_in_the_game}"
-                                     ToolTip="{l:T how_this_save_is_listed_in_mw5_s_load_menu}" />
+                            <!-- The box can't ellipsize while editing, so the tooltip carries the full name. -->
+                            <TextBox Text="{Binding SaveName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Tag="{l:T name_shown_in_the_game}">
+                                <TextBox.ToolTip>
+                                    <StackPanel MaxWidth="420">
+                                        <TextBlock Text="{Binding SaveName}" FontWeight="Bold" TextWrapping="Wrap" FontSize="16" />
+                                        <TextBlock Text="{l:T how_this_save_is_listed_in_mw5_s_load_menu}" TextWrapping="Wrap" FontSize="16"
+                                                   Foreground="{DynamicResource Brush.TextMuted}" Margin="0,4,0,0" />
+                                    </StackPanel>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </StackPanel>
                         <ma:MaButton Command="{Binding SaveCommand}" Style="{StaticResource Button.Command}" Margin="0,0,0,8"
                                 ToolTip="{l:T ctrl_s_original_game_saves_are_never_overwritten}">

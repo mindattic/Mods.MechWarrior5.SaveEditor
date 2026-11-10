@@ -117,7 +117,11 @@ public sealed partial class MainViewModel : ObservableObject
 
         if (data is null)
         {
+            // The status says built-in data, so stop using an earlier scan's mods and loadouts too.
+            _mechs.Reset();
+            _baselineMissing = [];
             SetSummary(() => Loc.Text("game_data_missing", "Game not found: using built-in data"));
+            RebuildPages();
             return;
         }
 
@@ -166,7 +170,7 @@ public sealed partial class MainViewModel : ObservableObject
     public string? SaveTitle => Document is null ? null : Document.DisplayName ?? Path.GetFileNameWithoutExtension(Document.FilePath);
 
     public string WindowTitle =>
-        Document is null ? "MW5 Mercs Save Editor" : $"{(IsDirty ? "* " : string.Empty)}{SaveTitle} - MW5 Mercs Save Editor";
+        Document is null ? "MechWarrior 5 // Save Editor" : $"{(IsDirty ? "* " : string.Empty)}{SaveTitle} - MechWarrior 5 // Save Editor";
 
     public string DlcSummary => Document?.Dlc.Source switch
     {

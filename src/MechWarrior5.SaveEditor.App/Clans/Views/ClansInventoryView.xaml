@@ -15,10 +15,12 @@
 
         <TextBlock Grid.ColumnSpan="3" Text="{l:T weapons_and_equipment}" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
 
-        <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0">
+        <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0" ClipToShape="True">
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Margin="18,14,18,8">
-                    <TextBlock Text="{l:T on_hand}" Style="{StaticResource Text.Section}" FontSize="19" />
+                <!-- The filter's edges match the list rows below (ListBox margin 8 + its 1px padding on the left, 4 + 1 +
+                     the 8px scrollbar on the right); the section title keeps the panels' 18px inset. -->
+                <StackPanel DockPanel.Dock="Top" Margin="9,14,13,8">
+                    <TextBlock Text="{l:T on_hand}" Style="{StaticResource Text.Section}" FontSize="19" Margin="9,0,0,0" />
                     <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Delay=120}" Tag="{l:T filter_your_stock}" Margin="0,10,0,0" />
                 </StackPanel>
 
@@ -28,15 +30,19 @@
                             <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectAllCommand}" Margin="0,0,14,0">
                                 <TextBlock Text="{l:T select_all}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </ma:MaButton>
-                            <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}">
+                            <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}" Margin="0,0,14,0">
                                 <TextBlock Text="{l:T clear}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </ma:MaButton>
+                            <!-- Links first, then the count, like every other list footer. -->
+                            <TextBlock Style="{StaticResource Text.Label}" VerticalAlignment="Center">
+                                <Run Text="{Binding CheckedCount, Mode=OneWay}" Foreground="{DynamicResource Brush.AccentHot}" /> <Run Text="{l:T selected}" />
+                            </TextBlock>
                         </WrapPanel>
                         <WrapPanel>
-                            <ma:MaButton Content="{l:T 1_each}" Command="{Binding AddToTickedCommand}" CommandParameter="1" Margin="0,0,8,6" />
-                            <ma:MaButton Content="{l:T 5_each}" Command="{Binding AddToTickedCommand}" CommandParameter="5" Margin="0,0,8,6" />
-                            <ma:MaButton Content="{l:T 10_each}" Command="{Binding AddToTickedCommand}" CommandParameter="10" Margin="0,0,8,6" />
-                            <ma:MaButton Command="{Binding RemoveTickedCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
+                            <ma:MaButton Content="{l:T 1_each}" Command="{Binding AddToTickedCommand}" CommandParameter="1" Margin="0,0,8,6" IsEnabled="{Binding HasSelection}" />
+                            <ma:MaButton Content="{l:T 5_each}" Command="{Binding AddToTickedCommand}" CommandParameter="5" Margin="0,0,8,6" IsEnabled="{Binding HasSelection}" />
+                            <ma:MaButton Content="{l:T 10_each}" Command="{Binding AddToTickedCommand}" CommandParameter="10" Margin="0,0,8,6" IsEnabled="{Binding HasSelection}" />
+                            <ma:MaButton Command="{Binding RemoveTickedCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6" IsEnabled="{Binding HasSelection}">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
                                     <TextBlock Text="{l:T remove_2}" FontWeight="Bold" />
@@ -69,12 +75,13 @@
             </DockPanel>
         </ma:MaShapeBorder>
 
-        <ma:MaShapeBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" VerticalAlignment="Top">
+        <!-- Full height, so both panels' bottoms line up like the Mercs Inventory page. -->
+        <ma:MaShapeBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}">
             <StackPanel>
                 <TextBlock Text="{l:T requisition}" Style="{StaticResource Text.Section}" FontSize="19" Margin="0,0,0,10" />
                 <TextBlock Text="{l:T item}" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
-                <ComboBox ItemsSource="{Binding Catalog}" SelectedItem="{Binding ItemToAdd}" DisplayMemberPath="Label"
-                          IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Label" Margin="0,0,0,12" />
+                <ComboBox ItemsSource="{Binding Catalog}" SelectedItem="{Binding ItemToAdd}" DisplayMemberPath="Label" Tag="{l:T clans_pick_item_hint}"
+                          IsTextSearchEnabled="True" TextSearch.TextPath="Label" Margin="0,0,0,12" />
                 <TextBlock Text="{l:T quantity}" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
                 <TextBox Text="{Binding AddCount, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0,0,0,14" />
                 <ma:MaButton Command="{Binding AddItemCommand}" Style="{StaticResource Button.Command}" HorizontalAlignment="Left">

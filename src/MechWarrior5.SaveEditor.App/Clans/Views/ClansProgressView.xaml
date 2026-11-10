@@ -37,18 +37,30 @@
             </UniformGrid>
         </ma:MaShapeBorder>
 
-        <ma:MaShapeBorder Grid.Row="3" Style="{StaticResource Panel}" Padding="0">
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Top" Text="{l:T research_queue}" Style="{StaticResource Text.Section}" FontSize="19" Margin="18,14,18,8" />
-                <ListBox ItemsSource="{Binding Queue}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}" Margin="8,0,4,8" />
-            </DockPanel>
-        </ma:MaShapeBorder>
+        <!-- The two lists size to their content (the taller one sets the row, so both bottoms match) and only grow
+             to the page's height, then scroll: a top-aligned grid with one star row measures its content against the
+             space left and takes the largest panel's height, so a 2-row queue no longer sits in a full-height frame.
+             The lists keep a 14px (one chamfer) bottom inset so the last row clears the bottom-right cut and its tick. -->
+        <Grid Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="18" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <ma:MaShapeBorder Grid.Row="3" Grid.Column="2" Style="{StaticResource Panel}" Padding="0">
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Top" Text="{l:T completed_research}" Style="{StaticResource Text.Section}" FontSize="19" Margin="18,14,18,8" />
-                <ListBox ItemsSource="{Binding Completed}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}" Margin="8,0,4,8" />
-            </DockPanel>
-        </ma:MaShapeBorder>
+            <ma:MaShapeBorder Style="{StaticResource Panel}" Padding="0" ClipToShape="True">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="{l:T research_queue}" Style="{StaticResource Text.Section}" FontSize="19" Margin="18,14,18,8" />
+                    <ListBox ItemsSource="{Binding Queue}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}" Margin="8,0,4,14" />
+                </DockPanel>
+            </ma:MaShapeBorder>
+
+            <ma:MaShapeBorder Grid.Column="2" Style="{StaticResource Panel}" Padding="0" ClipToShape="True">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="{l:T completed_research}" Style="{StaticResource Text.Section}" FontSize="19" Margin="18,14,18,8" />
+                    <ListBox ItemsSource="{Binding Completed}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}" Margin="8,0,4,14" />
+                </DockPanel>
+            </ma:MaShapeBorder>
+        </Grid>
     </Grid>
 </UserControl>

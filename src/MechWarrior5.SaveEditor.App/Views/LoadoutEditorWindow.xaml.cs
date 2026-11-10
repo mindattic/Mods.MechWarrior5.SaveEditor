@@ -9,6 +9,14 @@ public partial class LoadoutEditorWindow : Window
     {
         InitializeComponent();
         DataContext = editor;
+        // A borderless window maximizes past the screen edge by its resize border; pull the frame back in, as the main window does.
+        StateChanged += (_, _) =>
+        {
+            if (Content is FrameworkElement frame)
+            {
+                frame.Margin = WindowState == WindowState.Maximized ? new Thickness(7) : default;
+            }
+        };
         editor.CloseRequested += (_, applied) =>
         {
             DialogResult = applied;

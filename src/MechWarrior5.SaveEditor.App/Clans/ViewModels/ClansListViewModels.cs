@@ -55,7 +55,11 @@ public sealed partial class MechsViewModel : ObservableObject
     private string _newName = string.Empty;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasSelection))]
     private int _checkedCount;
+
+    /// <summary>True while at least one row is ticked; the footer's batch actions are disabled otherwise.</summary>
+    public bool HasSelection => CheckedCount > 0;
 
     public MechsViewModel(ClansDocument doc, ClansMainViewModel main, IDialogService dialogs)
     {
@@ -71,7 +75,7 @@ public sealed partial class MechsViewModel : ObservableObject
 
     public ICollectionView View { get; }
 
-    public string Summary => $"{Rows.Count} MECHS  -  {Rows.Count(r => r.IsDamaged)} DAMAGED";
+    public string Summary => Loc.Text("clans_mechs_summary", "{0} MECHS  -  {1} DAMAGED", Rows.Count, Rows.Count(r => r.IsDamaged));
 
     partial void OnFilterChanged(string value)
     {
@@ -126,8 +130,12 @@ public sealed partial class MechsViewModel : ObservableObject
     private void Remove()
     {
         var picks = Picked();
+        // Mechs live in the company, not on the Inventory page, and a count reads better than "mech(s)".
+        var question = picks.Count == 1
+            ? Loc.Text("clans_remove_mech_one", "Remove 1 mech from your company? A mech that is deployed or in the mech bay's work queue is kept.")
+            : Loc.Text("clans_remove_mechs_many", "Remove {0} mechs from your company? Mechs that are deployed or in the mech bay's work queue are kept.", picks.Count);
         if (picks.Count == 0
-            || !_dialogs.Confirm(Loc.Text("remove_mechs", "Remove mechs"), Loc.Text("clans_remove_mechs_text", "Remove {0} mech(s) from the inventory? Mechs that are deployed or in the mech bay's work queue are kept.", picks.Count), Loc.Text("remove", "Remove"), DialogTone.Error))
+            || !_dialogs.Confirm(Loc.Text("remove_mechs", "Remove mechs"), question, Loc.Text("remove", "Remove"), DialogTone.Error))
         {
             return;
         }
@@ -201,7 +209,7 @@ public sealed partial class MechsViewModel : ObservableObject
 
     private void Rebuild()
     {
-        var keep = Rows.Where(r => r.IsChecked).Select(r => r.Mech.InventoryId).ToHashSet();
+        var keep = Rows.Where(r => r.IsChecked && r.Mech.InventoryId is not null).Select(r => r.Mech.InventoryId!.Value).ToHashSet();
         foreach (var row in Rows)
         {
             row.CheckedChanged -= OnRowChecked;
@@ -212,7 +220,10 @@ public sealed partial class MechsViewModel : ObservableObject
             .OrderByDescending(m => ClansCatalog.ChassisOf(m.Variant).Tons)
             .ThenBy(m => m.Variant, StringComparer.Ordinal))
         {
-            var row = new MechRow(mech) { IsChecked = keep.Contains(mech.InventoryId) };
+            var row = new MechRow(mech);
+            // A mech without an id can't be told apart from another, so it isn't re-ticked; nor is a row the
+            // filter now hides (a rename can move a ticked mech out of the filter): batch actions act only on what's seen.
+            row.IsChecked = mech.InventoryId is { } id && keep.Contains(id) && Matches(row);
             row.CheckedChanged += OnRowChecked;
             Rows.Add(row);
         }
@@ -273,6 +284,13 @@ public sealed partial class InventoryViewModel : ObservableObject
 
     [ObservableProperty]
     private int _addCount = 1;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(HasSelection))]
+    private int _checkedCount;
+
+    /// <summary>True while at least one row is ticked; the footer's batch actions are disabled otherwise.</summary>
+    public bool HasSelection => CheckedCount > 0;
 
     public InventoryViewModel(ClansDocument doc, ClansMainViewModel main, IDialogService dialogs)
     {
@@ -377,6 +395,11 @@ public sealed partial class InventoryViewModel : ObservableObject
     {
         // Keep the ticks across a rebuild (e.g. after Add), like the Mechs page.
         var keep = Rows.Where(r => r.IsChecked).Select(r => r.Asset).ToHashSet(StringComparer.Ordinal);
+        foreach (var row in Rows)
+        {
+            row.CheckedChanged -= OnRowChecked;
+        }
+
         Rows.Clear();
         foreach (var asset in _doc.Inventory.Stacks
             .Where(s => s.Category == StackCategory.Equipment)
@@ -384,7 +407,14 @@ public sealed partial class InventoryViewModel : ObservableObject
             .Distinct()
             .OrderBy(s => ClansCatalog.ItemLabel(s.AssetName), StringComparer.CurrentCulture))
         {
-            Rows.Add(new StackRow(_doc, _main, asset.AssetType, asset.AssetName) { IsChecked = keep.Contains(asset.AssetName) });
+            var row = new StackRow(_doc, _main, asset.AssetType, asset.AssetName);
+            row.IsChecked = keep.Contains(asset.AssetName) && (Filter.Length == 0 || row.Label.Contains(Filter, StringComparison.OrdinalIgnoreCase));
+            row.CheckedChanged += OnRowChecked;
+            Rows.Add(row);
         }
+
+        OnRowChecked(null, EventArgs.Empty);
     }
+
+    private void OnRowChecked(object? sender, EventArgs e) => CheckedCount = Rows.Count(r => r.IsChecked);
 }

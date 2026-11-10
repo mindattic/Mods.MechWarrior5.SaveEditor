@@ -53,7 +53,15 @@ public sealed partial class ClansMainViewModel : ObservableObject
     {
         _dialogs = dialogs;
         _settings = settings;
-        Loc.Instance.PropertyChanged += (_, _) => OnPropertyChanged(nameof(SaveLabel));
+        Loc.Instance.PropertyChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(SaveLabel));
+            // Page text built in code (labels, summaries, research entries) is worded once: rebuild the open page.
+            if (Page is not (Page.Start or Page.Settings))
+            {
+                Navigate(Page);
+            }
+        };
         _toastTimer.Tick += (_, _) =>
         {
             _toastTimer.Stop();
@@ -84,8 +92,8 @@ public sealed partial class ClansMainViewModel : ObservableObject
     public string? SaveTitle => Document is null ? null : Document.DisplayName() ?? Path.GetFileNameWithoutExtension(Document.Path);
 
     public string WindowTitle => Document is null
-        ? "MW5 Clans Save Editor"
-        : $"{(IsDirty ? "* " : string.Empty)}{SaveName} - MW5 Clans Save Editor";
+        ? "MechWarrior 5 // Save Editor"
+        : $"{(IsDirty ? "* " : string.Empty)}{SaveName} - MechWarrior 5 // Save Editor";
 
     public string SaveLabel => IsOriginal ? Loc.Text("save_as_new", "SAVE AS NEW") : Loc.Text("save", "SAVE");
 

@@ -98,6 +98,12 @@ public sealed partial class MechsViewModel : ObservableObject
 
     public int HangarSelectedCount => Hangar.Count(m => m.IsChecked);
 
+    /// <summary>Enables the hangar's batch buttons only while a mech is ticked.</summary>
+    public bool HasHangarSelection => HangarSelectedCount > 0;
+
+    /// <summary>Enables the requisition's add button only while a variant is ticked.</summary>
+    public bool HasSelection => SelectedCount > 0;
+
     public bool HasDlcInfo => _doc.Dlc.Source != DlcSource.Unknown;
 
     /// <summary>Tri-state "select all visible" header box.</summary>
@@ -360,7 +366,7 @@ public sealed partial class MechsViewModel : ObservableObject
                      .ThenBy(m => m.Variant?.ChassisName ?? m.Asset, StringComparer.OrdinalIgnoreCase))
         {
             var row = new HangarMechViewModel(record);
-            row.CheckedChanged += (_, _) => OnPropertyChanged(nameof(HangarSelectedCount));
+            row.CheckedChanged += (_, _) => OnHangarSelectionChanged();
             Hangar.Add(row);
         }
 
@@ -376,7 +382,13 @@ public sealed partial class MechsViewModel : ObservableObject
         OnPropertyChanged(nameof(HangarCount));
         OnPropertyChanged(nameof(BayCount));
         OnPropertyChanged(nameof(ColdCount));
+        OnHangarSelectionChanged();
+    }
+
+    private void OnHangarSelectionChanged()
+    {
         OnPropertyChanged(nameof(HangarSelectedCount));
+        OnPropertyChanged(nameof(HasHangarSelection));
     }
 
     private bool Matches(CatalogMechViewModel row)
@@ -473,6 +485,7 @@ public sealed partial class MechsViewModel : ObservableObject
     private void OnCatalogSelectionChanged()
     {
         OnPropertyChanged(nameof(SelectedCount));
+        OnPropertyChanged(nameof(HasSelection));
         OnPropertyChanged(nameof(AllVisibleChecked));
     }
 }

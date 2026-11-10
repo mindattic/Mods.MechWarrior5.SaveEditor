@@ -112,7 +112,11 @@ public sealed partial class InventoryViewModel : ObservableObject
             .ToList();
         foreach (var pick in _catalog)
         {
-            pick.CheckedChanged += (_, _) => OnPropertyChanged(nameof(CatalogSelectedCount));
+            pick.CheckedChanged += (_, _) =>
+            {
+                OnPropertyChanged(nameof(CatalogSelectedCount));
+                OnPropertyChanged(nameof(HasCatalogSelection));
+            };
         }
 
         CatalogView = CollectionViewSource.GetDefaultView(_catalog);
@@ -133,6 +137,12 @@ public sealed partial class InventoryViewModel : ObservableObject
     public int SelectedCount => Items.Count(i => i.IsChecked);
 
     public int CatalogSelectedCount => _catalog.Count(i => i.IsChecked);
+
+    /// <summary>Enables the stock batch buttons (set count, remove) only while a row is ticked.</summary>
+    public bool HasSelection => SelectedCount > 0;
+
+    /// <summary>Enables the requisition add button only while an item is ticked.</summary>
+    public bool HasCatalogSelection => CatalogSelectedCount > 0;
 
     /// <summary>Takes over a previous page's searches, filters, counts and ticks (rebuilt on a language change or rescan).</summary>
     public void CarryOver(InventoryViewModel old)
@@ -276,7 +286,7 @@ public sealed partial class InventoryViewModel : ObservableObject
                      .ThenBy(i => Names.Humanize(i.Asset), StringComparer.OrdinalIgnoreCase))
         {
             var row = new InventoryRowViewModel(item);
-            row.CheckedChanged += (_, _) => OnPropertyChanged(nameof(SelectedCount));
+            row.CheckedChanged += (_, _) => OnSelectionChanged();
             // An inline count edit changes the "N units" header too.
             row.PropertyChanged += (_, e) =>
             {
@@ -288,8 +298,14 @@ public sealed partial class InventoryViewModel : ObservableObject
             Items.Add(row);
         }
 
-        OnPropertyChanged(nameof(SelectedCount));
+        OnSelectionChanged();
         OnPropertyChanged(nameof(TotalCount));
+    }
+
+    private void OnSelectionChanged()
+    {
+        OnPropertyChanged(nameof(SelectedCount));
+        OnPropertyChanged(nameof(HasSelection));
     }
 
     private bool Matches(InventoryRowViewModel row) =>

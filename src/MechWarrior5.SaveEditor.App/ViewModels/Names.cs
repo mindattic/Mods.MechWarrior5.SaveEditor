@@ -15,7 +15,19 @@ public static partial class Names
             .Replace("_Equipment", string.Empty, StringComparison.Ordinal)
             .Replace('_', ' ');
         name = WordBreak().Replace(name, " ");
-        return MultiSpace().Replace(name, " ").Trim();
+        name = MultiSpace().Replace(name, " ").Trim();
+
+        // Small words stay lowercase unless they lead: "Magistracy of Canopus", not "Magistracy Of Canopus".
+        var words = name.Split(' ');
+        for (var i = 1; i < words.Length; i++)
+        {
+            if (words[i] is "Of" or "The" or "And")
+            {
+                words[i] = words[i].ToLowerInvariant();
+            }
+        }
+
+        return string.Join(' ', words);
     }
 
     /// <summary>Localized weight class in title case, e.g. "Leicht".</summary>

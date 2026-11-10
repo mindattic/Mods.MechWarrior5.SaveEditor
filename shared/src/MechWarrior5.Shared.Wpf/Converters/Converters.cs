@@ -4,18 +4,22 @@ using System.Windows.Data;
 
 namespace MechWarrior5.Shared.Wpf.Converters;
 
-/// <summary>True → Visible. Pass <c>Invert</c> as the parameter to flip.</summary>
+/// <summary>
+/// True → Visible. Pass <c>Invert</c> as the parameter to flip. <c>Hidden</c> / <c>InvertHidden</c> hide instead of
+/// collapsing, so the element still takes its space (e.g. two labels in one chip keep the chip at the wider one).
+/// </summary>
 public sealed class BoolToVisibilityConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         var on = value is true;
-        if (parameter is "Invert")
+        if (parameter is "Invert" or "InvertHidden")
         {
             on = !on;
         }
 
-        return on ? Visibility.Visible : Visibility.Collapsed;
+        var off = parameter is "Hidden" or "InvertHidden" ? Visibility.Hidden : Visibility.Collapsed;
+        return on ? Visibility.Visible : off;
     }
 
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>

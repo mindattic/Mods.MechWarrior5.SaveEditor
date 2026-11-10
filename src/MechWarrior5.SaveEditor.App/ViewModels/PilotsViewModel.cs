@@ -67,7 +67,11 @@ public sealed partial class PilotViewModel : ObservableObject
 
     public IReadOnlyList<string> Portraits => _catalog.Portraits;
 
-    public IReadOnlyList<string> Voices => _catalog.Voices;
+    /// <summary>The known voices, plus this pilot's own if it isn't one of them (a mod's), so the box shows what the save has.</summary>
+    public IReadOnlyList<string> Voices =>
+        Pilot.Voice is { Length: > 0 } own && !_catalog.Voices.Contains(own, StringComparer.OrdinalIgnoreCase)
+            ? [own, .. _catalog.Voices]
+            : _catalog.Voices;
 
     public IReadOnlyList<PersonaPreset> Personas => _catalog.Personas;
 
