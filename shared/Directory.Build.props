@@ -1,0 +1,17 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Deterministic>true</Deterministic>
+    <!-- "Shared" is a VB keyword (CA1716); these libraries are C#-only, so the name stays. -->
+    <NoWarn>$(NoWarn);CA1716</NoWarn>
+    <Version>1.0.0</Version>
+    <Company>MindAttic</Company>
+    <Product>Mech5 Shared</Product>
+  </PropertyGroup>
+</Project>
