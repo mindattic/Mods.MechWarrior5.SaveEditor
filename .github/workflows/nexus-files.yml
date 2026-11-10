@@ -1,0 +1,26 @@
+# Read-only: lists each NexusMods page's files (id, name, version, category) so their file IDs can go into
+# nexus.json. Run by hand from the Actions tab or `gh workflow run nexus-files.yml`. Changes nothing.
+name: nexus-files
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List each target's files
+        env:
+          NEXUSMODS_API_KEY: ${{ secrets.NEXUSMODS_API_KEY }}
+        run: |
+          jq -c '.targets[]' nexus.json | while read -r t; do
+            domain=$(echo "$t" | jq -r .gameDomain); mod=$(echo "$t" | jq -r .modId)
+            echo "== $domain mod $mod"
+            curl -fsS -H "apikey: $NEXUSMODS_API_KEY" -H "Application-Name: MW5SaveEditor-ci" \
+              "https://api.nexusmods.com/v1/games/$domain/mods/$mod/files.json" \
+              | jq -r '.files[] | "file_id=\(.file_id) category=\(.category_name) version=\(.version) name=\(.name) uploaded=\(.uploaded_time)"'
+          done

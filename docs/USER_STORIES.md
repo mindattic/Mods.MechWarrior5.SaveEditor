@@ -127,3 +127,4 @@ _Nothing recorded yet._
 | M5SE-T104 | 2026-11-10 | feature | closed | Read mod pilot traits, mech traits, weapons, equipment and ammo from enabled mods' paks (YAW-CE, YAEC-R, Additional Vanilla Traits...) into the pickers, like modded mechs; no Scarab or other tool needed (user feature request) | — |
 | M5SE-T105 | 2026-11-10 | feature | closed | Pilot skill caps follow the game data: read the real maximum from the installed game and enabled mods (e.g. Pilot Overhaul raises it above 10) instead of a fixed 10 (user feature request) | — |
 | M5SE-T106 | 2026-11-10 | feature | closed | Pilots page: a framed box listing the selected pilot's current traits (name and description, remove per trait), not just small chips (user feature request) | — |
+| M5SE-T107 | 2026-11-10 | chore | closed | Read-only nexus-files workflow: lists each NexusMods page's file IDs (via the repo's API key secret) so nexus.json can be filled in | .github/workflows/nexus-files.yml |
