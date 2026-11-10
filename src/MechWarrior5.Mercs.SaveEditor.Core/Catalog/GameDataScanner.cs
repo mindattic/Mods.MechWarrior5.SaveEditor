@@ -13,41 +13,20 @@ public sealed record GameData(
     IReadOnlyList<ScannedMech> Mechs,
     IReadOnlyList<string> Mods,
     IReadOnlyList<string> Problems,
-    IReadOnlySet<string> AssetNames)
-{
-    /// <summary>Weapons, equipment and ammo the enabled mods add (assets the base game doesn't have).</summary>
-    public IReadOnlyList<ItemDefinition> Items { get; init; } = [];
-
-    /// <summary>Pilot traits the enabled mods add.</summary>
-    public IReadOnlyList<TraitDefinition> PilotTraits { get; init; } = [];
-
-    /// <summary>'Mech traits the enabled mods add.</summary>
-    public IReadOnlyList<TraitDefinition> MechTraits { get; init; } = [];
-
-    /// <summary>
-    /// The highest pilot skill level: the top of the game's <c>PilotSkillLevelCurve</c> (experience to level, 1..10 in
-    /// the base game), a mod's copy winning; null when the curve couldn't be read.
-    /// </summary>
-    public int? MaxSkillCap { get; init; }
-}
+    IReadOnlySet<string> AssetNames);
 
 /// <summary>
 /// Reads 'Mech data assets (<c>*_MDA</c>) and stock loadouts (<c>*_Loadout</c>) from the game pak and
-/// from every enabled mod's paks, so the catalog reflects the installed game, DLC and mods. From the mods'
-/// paks it also reads the weapons, equipment, ammo and pilot/'Mech traits they add.
+/// from every enabled mod's paks, so the catalog reflects the installed game, DLC and mods.
 /// </summary>
 public static partial class GameDataScanner
 {
-    private const string SkillLevelCurve = "PilotSkillLevelCurve";
-
     public static GameData Scan(string gameFolder, MechCatalog catalog)
     {
         var mechs = new Dictionary<string, ScannedMech>(StringComparer.OrdinalIgnoreCase);
         var problems = new List<string>();
         var assets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var extras = new ModExtras();
-        ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets, extras);
-        extras.BaseAssets.UnionWith(assets);
+        ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets);
 
         var mods = new List<string>();
         foreach (var (folder, name) in EnabledMods(Path.Combine(gameFolder, GameInstall.ModsRelative)))
@@ -63,22 +42,15 @@ public static partial class GameDataScanner
             mods.Add(name);
             foreach (var pak in paks)
             {
-                ScanPak(pak, name, catalog, mechs, problems, assets, extras);
+                ScanPak(pak, name, catalog, mechs, problems, assets);
             }
         }
 
-        return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets)
-        {
-            Items = [.. extras.Items.Values],
-            PilotTraits = [.. extras.PilotTraits.Values],
-            MechTraits = [.. extras.MechTraits.Values],
-            MaxSkillCap = extras.MaxSkillCap,
-        };
+        return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets);
     }
 
     private static void ScanPak(
-        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets,
-        ModExtras extras)
+        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets)
     {
         try
         {
@@ -86,18 +58,6 @@ public static partial class GameDataScanner
             foreach (var file in pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)))
             {
                 assets.Add(Path.GetFileNameWithoutExtension(file));
-            }
-
-            // The skill level curve tops out at the highest level a skill cap can reach; a mod's copy replaces the game's.
-            if (pak.Files.FirstOrDefault(f => f.EndsWith($"/{SkillLevelCurve}.uasset", StringComparison.OrdinalIgnoreCase)) is { } curve
-                && MaxLevel(pak, curve) is { } max)
-            {
-                extras.MaxSkillCap = max;
-            }
-
-            if (modName is not null)
-            {
-                ScanModAssets(pak, modName, extras);
             }
 
             var loadouts = new Dictionary<string, StockLoadout>(StringComparer.OrdinalIgnoreCase);
@@ -187,33 +147,6 @@ public static partial class GameDataScanner
             tons switch { <= 35 => WeightClass.Light, <= 55 => WeightClass.Medium, <= 75 => WeightClass.Heavy, _ => WeightClass.Assault },
             null,
             dlc) { ModName = modName };
-    }
-
-    /// <summary>The highest level on a skill level curve (rounded), or null when unreadable or outside a save's 1..255 byte.</summary>
-    private static int? MaxLevel(PakFile pak, string uasset)
-    {
-        var uexp = uasset[..^".uasset".Length] + ".uexp";
-        if (!pak.Contains(uexp))
-        {
-            return null;
-        }
-
-        try
-        {
-            var package = CookedPackage.Parse(pak.Read(uasset), pak.Read(uexp));
-            var keys = package.FindExport("CurveFloat") is { } export ? package.ReadCurveKeys(export) : [];
-            if (keys.Count == 0)
-            {
-                return null;
-            }
-
-            var top = (int)Math.Round(keys.Max(k => k.Value));
-            return top is >= 1 and <= byte.MaxValue ? top : null;
-        }
-        catch (SaveFormatException)
-        {
-            return null;
-        }
     }
 
     private static PropertyList? Read(PakFile pak, string uasset, string exportClass)

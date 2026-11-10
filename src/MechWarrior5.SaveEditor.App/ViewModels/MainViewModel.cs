@@ -119,8 +119,6 @@ public sealed partial class MainViewModel : ObservableObject
         {
             // The status says built-in data, so stop using an earlier scan's mods and loadouts too.
             _mechs.Reset();
-            _items.Reset();
-            _pilots.Reset();
             _baselineMissing = [];
             SetSummary(() => Loc.Text("game_data_missing", "Game not found: using built-in data"));
             RebuildPages();
@@ -128,21 +126,15 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         _mechs.Apply(data);
-        _items.Apply(data);
-        _pilots.Apply(data);
         if (Document is { } open)
         {
             _baselineMissing = SaveValidator.FindMissing(open.File, data.AssetNames);
         }
 
         var mods = data.Mechs.Count(m => m.Variant.ModName is not null);
-        var modTraits = data.PilotTraits.Count + data.MechTraits.Count;
-        SetSummary(() => (mods > 0
-                ? Loc.Text("game_data_mods", "Game data: {0} mechs ({1} from mods)", data.Mechs.Count, mods)
-                : Loc.Text("game_data", "Game data: {0} mechs", data.Mechs.Count))
-            + (data.Items.Count + modTraits > 0
-                ? " · " + Loc.Text("game_data_mod_extras", "{0} items and {1} traits from mods", data.Items.Count, modTraits)
-                : string.Empty));
+        SetSummary(() => mods > 0
+            ? Loc.Text("game_data_mods", "Game data: {0} mechs ({1} from mods)", data.Mechs.Count, mods)
+            : Loc.Text("game_data", "Game data: {0} mechs", data.Mechs.Count));
         RebuildPages();
     }
 

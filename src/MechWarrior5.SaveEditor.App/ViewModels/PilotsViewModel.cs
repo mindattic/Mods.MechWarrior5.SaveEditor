@@ -16,9 +16,6 @@ public sealed partial class SkillViewModel(PilotSkill skill) : ObservableObject
 
     public bool IsParent => !skill.HasCap;
 
-    /// <summary>The slider's top: the game's highest skill level (a skill-cap mod can raise it above 10).</summary>
-    public int MaxCap => skill.MaxCap;
-
     public int Cap
     {
         get => skill.Cap;
@@ -42,17 +39,15 @@ public sealed partial class SkillViewModel(PilotSkill skill) : ObservableObject
     public void Refresh() => OnPropertyChanged(string.Empty);
 }
 
-/// <summary>A trait a pilot, 'Mech or company has: its label, and its description and mod when known.</summary>
-public sealed record TraitRow(string Asset, string Label, string? Description = null, string? ModName = null)
+/// <summary>A trait a pilot or 'Mech has: its label, and the game's description when the trait has one.</summary>
+public sealed record TraitRow(string Asset, string Label, string? Description = null)
 {
     public static TraitRow Of(string asset, PilotCatalog catalog) =>
         catalog.FindTrait(asset) is { } trait
-            ? new TraitRow(asset, trait.Label, trait.Description, trait.ModName)
+            ? new TraitRow(asset, trait.Label, trait.Description)
             : new TraitRow(asset, asset);
 
     public bool HasDescription => Description is not null;
-
-    public string? ModTooltip => ModName is null ? null : Loc.Text("mod_named", "Mod: {0}", ModName);
 }
 
 public sealed partial class PilotViewModel : ObservableObject
@@ -95,9 +90,6 @@ public sealed partial class PilotViewModel : ObservableObject
     public IReadOnlyList<TraitDefinition> TraitChoices => _catalog.PilotTraits;
 
     public string Name => Pilot.DisplayName;
-
-    /// <summary>The cap column's header, with the game's range, e.g. "CAP (0-10)".</summary>
-    public string CapHeader => Loc.Text("cap_range", "CAP (0-{0})", Pilot.MaxSkillCap);
 
     public string Initials => string.Concat(Name
         .Split(' ', StringSplitOptions.RemoveEmptyEntries)

@@ -150,7 +150,7 @@
                             </Grid>
 
                             <TextBlock Text="{l:T pilot_traits}" Style="{StaticResource Text.Section}" Margin="0,22,0,6" />
-                            <!-- The pilot's traits in a framed list: one row per trait (name, description, mod), each with its own remove button. -->
+                            <!-- The pilot's traits in a framed list: one row per trait (name, description), each with its own remove button. -->
                             <ma:MaShapeBorder Style="{StaticResource Panel}" Padding="0,8" ClipToShape="True">
                                 <Grid>
                                     <TextBlock Text="{l:T pilot_has_no_traits}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="14,6" TextWrapping="Wrap"
@@ -167,10 +167,6 @@
                                                         <StackPanel VerticalAlignment="Center">
                                                             <StackPanel Orientation="Horizontal">
                                                                 <TextBlock Text="{Binding Label}" FontSize="17" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
-                                                                <Border Style="{StaticResource Chip}" Margin="8,0,0,0" ToolTip="{Binding ModTooltip}"
-                                                                        Visibility="{Binding ModName, Converter={StaticResource HasValueToVisibility}}">
-                                                                    <TextBlock Text="MOD" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.Ok}" />
-                                                                </Border>
                                                             </StackPanel>
                                                             <TextBlock Text="{Binding Description}" Style="{StaticResource Text.Muted}" FontSize="15" TextWrapping="Wrap" Margin="0,2,0,0"
                                                                        Visibility="{Binding HasDescription, Converter={StaticResource BoolToVisibility}}" />
@@ -194,7 +190,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="PilotAction" />
                                 </Grid.ColumnDefinitions>
-                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="PickerLabel" MaxDropDownHeight="380"
+                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380"
                                           Tag="{l:T pick_a_trait_to_add}">
                                     <ComboBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate></ComboBox.ItemsPanel>
                                 </ComboBox>
@@ -212,7 +208,7 @@
                                     <ColumnDefinition Width="110" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:T skill}" Style="{StaticResource Text.Label}" />
-                                <TextBlock Grid.Column="1" Text="{Binding CapHeader}" Style="{StaticResource Text.Label}" />
+                                <TextBlock Grid.Column="1" Text="{l:T cap_0_10}" Style="{StaticResource Text.Label}" />
                                 <TextBlock Grid.Column="2" Text="{l:T total_xp}" Style="{StaticResource Text.Label}" />
                             </Grid>
                             <ItemsControl ItemsSource="{Binding Skills}">
@@ -239,7 +235,7 @@
                                                 <DockPanel Grid.Column="1" Margin="0,0,16,0" Visibility="{Binding HasCap, Converter={StaticResource BoolToVisibility}}">
                                                     <TextBlock DockPanel.Dock="Right" Text="{Binding Cap}" Width="26" TextAlignment="Right" FontSize="19" FontWeight="Bold"
                                                                Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center" />
-                                                    <Slider Minimum="0" Maximum="{Binding MaxCap}" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
+                                                    <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
                                                 </DockPanel>
                                                 <TextBox Grid.Column="2" Text="{Binding Experience, UpdateSourceTrigger=LostFocus}" Height="32" />
                                             </Grid>

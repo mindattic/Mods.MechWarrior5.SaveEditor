@@ -273,7 +273,7 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="20,0">
                             <TextBlock Text="{l:T traits_installed_on_this_mech_applied_with_the_r}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,0,0,10" />
-                            <!-- The 'Mech's traits in the same framed list as the Pilots page: name, description, mod, remove. -->
+                            <!-- The 'Mech's traits in the same framed list as the Pilots page: name, description, remove. -->
                             <ma:MaShapeBorder Style="{StaticResource Panel}" Padding="0,8" ClipToShape="True" Margin="0,0,0,8">
                                 <Grid>
                                     <TextBlock Text="{l:T mech_has_no_traits}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="14,6" TextWrapping="Wrap"
@@ -290,10 +290,6 @@
                                                         <StackPanel VerticalAlignment="Center">
                                                             <StackPanel Orientation="Horizontal">
                                                                 <TextBlock Text="{Binding Label}" FontSize="17" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
-                                                                <Border Style="{StaticResource Chip}" Margin="8,0,0,0" ToolTip="{Binding ModTooltip}"
-                                                                        Visibility="{Binding ModName, Converter={StaticResource HasValueToVisibility}}">
-                                                                    <TextBlock Text="MOD" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.Ok}" />
-                                                                </Border>
                                                             </StackPanel>
                                                             <TextBlock Text="{Binding Description}" Style="{StaticResource Text.Muted}" FontSize="15" TextWrapping="Wrap" Margin="0,2,0,0"
                                                                        Visibility="{Binding HasDescription, Converter={StaticResource BoolToVisibility}}" />
@@ -314,7 +310,7 @@
                             </ma:MaShapeBorder>
                             <DockPanel>
                                 <ma:MaButton DockPanel.Dock="Right" Content="{l:T add}" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
-                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="PickerLabel" MaxDropDownHeight="380"
+                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380"
                                           Tag="{l:T pick_a_trait_to_add}" />
                             </DockPanel>
                         </StackPanel>

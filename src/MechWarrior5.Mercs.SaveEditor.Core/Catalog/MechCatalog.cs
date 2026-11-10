@@ -1,6 +1,5 @@
 using System.IO.Compression;
 using System.Text.Json;
-using MechWarrior5.Mercs.SaveEditor.Core.Game;
 
 namespace MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 
@@ -61,9 +60,6 @@ public sealed class MechCatalog
 
     /// <summary>The installed game the catalog was refreshed from, if any.</summary>
     public GameData? Game { get; private set; }
-
-    /// <summary>The highest pilot skill cap: the installed game's (and its mods') skill level curve, else 10.</summary>
-    public int MaxSkillCap => Game?.MaxSkillCap ?? Pilot.DefaultMaxSkillCap;
 
     /// <summary>
     /// Folds in what the installed game and its enabled mods define: new and modded variants, DLC

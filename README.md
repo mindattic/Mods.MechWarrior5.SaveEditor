@@ -150,12 +150,6 @@ A rebuilt interface and a long list of fixes from a full review of every feature
 - Ctrl+S and Ctrl+O work anywhere in the window and include a value you're still typing.
 
 **Mercenaries**
-- Mod weapons, equipment, ammo, pilot traits and mech traits are read straight from your enabled mods
-  (YAW-CE, YAEC-R, Additional Vanilla Traits and the like) and offered in every picker, marked with
-  their mod; no extra tool is needed. Weapons go only on hardpoints their data says they fit.
-- Pilot skill caps follow the game data: a mod that raises the skill curve (such as Pilot Overhaul)
-  raises the editor's cap too; the base game stays at 10.
-- The Pilots page lists a pilot's traits in a box, each with its description and a remove button.
 - The Mech Lab keeps a mech's damage when you apply a refit; use Repair to fix it.
 - Mechs imported from a company package arrive fully repaired, and injured pilots arrive healthy.
 - Mods that replace a mech's stock loadout are honored, a rescan forgets mods you've disabled, and a

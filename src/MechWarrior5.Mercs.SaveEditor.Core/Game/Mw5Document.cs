@@ -17,7 +17,7 @@ public sealed class Mw5Document
         Company = new CompanyEditor(file, MarkDirty);
         Factions = new FactionEditor(file, MarkDirty);
         Inventory = new InventoryEditor(file, MarkDirty);
-        Roster = new RosterEditor(file, MarkDirty, () => catalog.MaxSkillCap);
+        Roster = new RosterEditor(file, MarkDirty);
         Hangar = new HangarEditor(file, catalog, Dlc, MarkDirty);
         Traits = new TraitsEditor(file, MarkDirty);
     }

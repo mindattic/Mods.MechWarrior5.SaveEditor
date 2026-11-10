@@ -82,9 +82,6 @@
                                         <Border Style="{StaticResource Chip}" Margin="8,0,0,0" Visibility="{Binding Tier, Converter={StaticResource HasValueToVisibility}}">
                                             <TextBlock Text="{Binding Tier}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                         </Border>
-                                        <Border Style="{StaticResource Chip}" Margin="8,0,0,0" ToolTip="{Binding ModTooltip}" Visibility="{Binding ModName, Converter={StaticResource HasValueToVisibility}}">
-                                            <TextBlock Text="MOD" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.Ok}" />
-                                        </Border>
                                     </StackPanel>
                                     <TextBlock Text="{Binding Asset}" Style="{StaticResource Text.Muted}" FontSize="14" />
                                 </StackPanel>
@@ -150,9 +147,6 @@
                                     <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="SemiBold" />
                                     <Border Style="{StaticResource Chip}" Margin="8,0,0,0" Visibility="{Binding Tier, Converter={StaticResource HasValueToVisibility}}">
                                         <TextBlock Text="{Binding Tier}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
-                                    </Border>
-                                    <Border Style="{StaticResource Chip}" Margin="8,0,0,0" ToolTip="{Binding ModTooltip}" Visibility="{Binding ModName, Converter={StaticResource HasValueToVisibility}}">
-                                        <TextBlock Text="MOD" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.Ok}" />
                                     </Border>
                                 </StackPanel>
                             </DockPanel>
