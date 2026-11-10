@@ -1,0 +1,4872 @@
+{
+ "personas": [
+  {
+   "asset": "33Commander",
+   "fullName": "33 Commander",
+   "callsign": null,
+   "portrait": "Generic_Rank3_4",
+   "voice": "33Commander"
+  },
+  {
+   "asset": "41AvalonComm",
+   "fullName": "41st Avalon Commander",
+   "callsign": "41st Avalon Commander",
+   "portrait": "Enemy_Male_9",
+   "voice": "41stAvalonCommander"
+  },
+  {
+   "asset": "4THARKABMECH1",
+   "fullName": "4th Arkab 'Mech",
+   "callsign": null,
+   "portrait": "Enemy_Generic_3",
+   "voice": "4THARKABMECH1"
+  },
+  {
+   "asset": "4THARKABMECH2",
+   "fullName": "4th Arkab 'Mech",
+   "callsign": null,
+   "portrait": "Generic_Rank1_1",
+   "voice": "4THARKABMECH2"
+  },
+  {
+   "asset": "4THARKABMECH3",
+   "fullName": "4th Arkab 'Mech",
+   "callsign": null,
+   "portrait": "Generic_Rank3_8",
+   "voice": "4THARKABMECH3"
+  },
+  {
+   "asset": "4thArkabMech",
+   "fullName": "4th Arkab 'Mech",
+   "callsign": null,
+   "portrait": "Enemy_Generic_5",
+   "voice": "4thArkabMech"
+  },
+  {
+   "asset": "5thAmpeganMech",
+   "fullName": "5th Amphigean Mech",
+   "callsign": null,
+   "portrait": "Male_Rank1_2",
+   "voice": "5thAmpeganMech"
+  },
+  {
+   "asset": "5thAmpheganMech",
+   "fullName": "5th Amphigean Mech",
+   "callsign": null,
+   "portrait": "Male_Rank1_2",
+   "voice": "5thAmpheganMech"
+  },
+  {
+   "asset": "ARCTURANARMSENGINEER",
+   "fullName": "ARCTURAN ARMS ENGINEER",
+   "callsign": null,
+   "portrait": "BaseCommander_Ally_03",
+   "voice": "ARCTURANARMSENGINEER"
+  },
+  {
+   "asset": "ARCTURANGUARDPILOT",
+   "fullName": "Arcturan Guard Pilot",
+   "callsign": null,
+   "portrait": "Enemy_Liao_Male_4",
+   "voice": "ARCTURANGUARDPILOT"
+  },
+  {
+   "asset": "Adam",
+   "fullName": "Adam Steiner",
+   "callsign": "Adam Steiner",
+   "portrait": "Adam",
+   "voice": "Adam"
+  },
+  {
+   "asset": "AdamMenu",
+   "fullName": "Adam Steiner",
+   "callsign": "Adam Steiner",
+   "portrait": "AdamMenu",
+   "voice": "Adam"
+  },
+  {
+   "asset": "Adam_FullBody",
+   "fullName": "Adam Steiner",
+   "callsign": "Adam Steiner",
+   "portrait": "Adam_FullBody",
+   "voice": "Adam"
+  },
+  {
+   "asset": "Ajax",
+   "fullName": "Lt. Leon Freeman",
+   "callsign": "Ajax",
+   "portrait": "WardogAlly",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Alan",
+   "fullName": "Alan",
+   "callsign": "Alan",
+   "portrait": "Alan",
+   "voice": "Alan"
+  },
+  {
+   "asset": "Alexander",
+   "fullName": "Alexander Kurita",
+   "callsign": null,
+   "portrait": "AlexanderKurita_icon",
+   "voice": "Alexander"
+  },
+  {
+   "asset": "Ali",
+   "fullName": "Chu-sa Omar Ali",
+   "callsign": null,
+   "portrait": "Ali",
+   "voice": "Ali"
+  },
+  {
+   "asset": "AllianceMagistrate",
+   "fullName": "Alliance Magistrate",
+   "callsign": null,
+   "portrait": "Enemy_Steiner_Marik_Male_3",
+   "voice": "AllianceMagistrate"
+  },
+  {
+   "asset": "AlliedPilot",
+   "fullName": "Allied Pilot",
+   "callsign": "Allied Pilot",
+   "portrait": "StoicAlly",
+   "voice": "AlliedPilot"
+  },
+  {
+   "asset": "Allied_Pilot",
+   "fullName": "Allied Pilot",
+   "callsign": "Allied Pilot",
+   "portrait": "MalePilot",
+   "voice": "Allied_Pilot"
+  },
+  {
+   "asset": "Allistair",
+   "fullName": "LtCol. Allistair",
+   "callsign": null,
+   "portrait": "Allistair",
+   "voice": "Allistair"
+  },
+  {
+   "asset": "Ally_Commander",
+   "fullName": "Garrison Commander",
+   "callsign": "Allied Commander",
+   "portrait": "BaseCommander_Ally_01",
+   "voice": "Ally_Commander"
+  },
+  {
+   "asset": "Ally_Patrol",
+   "fullName": "Ally Patrol",
+   "callsign": null,
+   "portrait": "Anonymous",
+   "voice": "Ally_Patrol"
+  },
+  {
+   "asset": "Ally_Pilot",
+   "fullName": "Allied Pilot",
+   "callsign": "Allied Pilot",
+   "portrait": "Pirate5",
+   "voice": "Ally_Pilot"
+  },
+  {
+   "asset": "Angus",
+   "fullName": "Angus",
+   "callsign": "Angus",
+   "portrait": "Angus",
+   "voice": "Angus"
+  },
+  {
+   "asset": "Anthony",
+   "fullName": "Anthony",
+   "callsign": "Anthony",
+   "portrait": "Anthony",
+   "voice": "Anthony"
+  },
+  {
+   "asset": "ArdanSortekMW",
+   "fullName": "Col. Ardan Sortek",
+   "callsign": "Sortek",
+   "portrait": "ArdanSortekMW",
+   "voice": "ArdanSortekMW"
+  },
+  {
+   "asset": "ArdanSortekMWBoss",
+   "fullName": "Col. Ardan Sortek",
+   "callsign": "Sortek",
+   "portrait": "ArdanSortekMW",
+   "voice": "ArdanSortekMWBoss"
+  },
+  {
+   "asset": "Ash",
+   "fullName": "Ash Delmore",
+   "callsign": "Ash Delmore",
+   "portrait": "Ash",
+   "voice": "Ash"
+  },
+  {
+   "asset": "AuldhouseGovernor",
+   "fullName": "Duke Bellinghausen",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": "AuldhouseGovernor"
+  },
+  {
+   "asset": "AvaMasters",
+   "fullName": "Ava Masters",
+   "callsign": null,
+   "portrait": "AvaMasters",
+   "voice": "AvaMasters"
+  },
+  {
+   "asset": "Barrett",
+   "fullName": "Barrett Nolan",
+   "callsign": "Barrett Nolan",
+   "portrait": "Barrett",
+   "voice": "Barrett"
+  },
+  {
+   "asset": "BaseCommander_Davion",
+   "fullName": "Davion Commander",
+   "callsign": "Davion Commander",
+   "portrait": "Enemy_Davion_Marik_Generic_1",
+   "voice": "BaseCommander_Davion"
+  },
+  {
+   "asset": "BaseCommander_Kurita",
+   "fullName": "Base Commander Kurita",
+   "callsign": "Base Commander Kurita",
+   "portrait": "Enemy_Kurita_Male_3",
+   "voice": "BaseCommander_Kurita"
+  },
+  {
+   "asset": "BaseCommander_Liao",
+   "fullName": "Base Commander Liao",
+   "callsign": "Base Commander Liao",
+   "portrait": "Generic_Rank1_1",
+   "voice": "BaseCommander_Liao"
+  },
+  {
+   "asset": "BaseCommander_Marik",
+   "fullName": "Base Commander Marik",
+   "callsign": "Base Commander Marik",
+   "portrait": "Enemy_Davion_Marik_Female_3",
+   "voice": "BaseCommander_Marik"
+  },
+  {
+   "asset": "BaseCommander_Steiner",
+   "fullName": "Base Commander Steiner",
+   "callsign": "Base Commander Steiner",
+   "portrait": "Enemy_Steiner_Marik_Male_1",
+   "voice": "BaseCommander_Steiner"
+  },
+  {
+   "asset": "Basecommander",
+   "fullName": "Base Commander",
+   "callsign": null,
+   "portrait": "BaseCommander_Enemy_04",
+   "voice": "Basecommander"
+  },
+  {
+   "asset": "Basecommander_01",
+   "fullName": "Base Commander",
+   "callsign": "Base Commander",
+   "portrait": "Enemy1",
+   "voice": null
+  },
+  {
+   "asset": "Basecommander_1",
+   "fullName": "Base Commander",
+   "callsign": "Base Commander",
+   "portrait": "Enemy1",
+   "voice": null
+  },
+  {
+   "asset": "BlackHearts",
+   "fullName": "Mercs_Blachearts",
+   "callsign": null,
+   "portrait": "Generic_Rank4_2",
+   "voice": "Mercenary1"
+  },
+  {
+   "asset": "Bounty_Hunter",
+   "fullName": "Mercs_ThBountyHunter",
+   "callsign": null,
+   "portrait": "BountyHunter",
+   "voice": "Bounty_Hunter"
+  },
+  {
+   "asset": "Bowen",
+   "fullName": "Bowen Kincaid",
+   "callsign": "Bowen",
+   "portrait": "Male_Rank2_9",
+   "voice": "Bowen"
+  },
+  {
+   "asset": "BrionsLegion",
+   "fullName": "Mercs_BrionsLegion",
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "Mercenary2"
+  },
+  {
+   "asset": "CNordic",
+   "fullName": "Sho-sho Christine Nordica",
+   "callsign": null,
+   "portrait": "Nordica",
+   "voice": "CNordic"
+  },
+  {
+   "asset": "COMSTARDEMI-PRECENTOR",
+   "fullName": "ComStar Demi-Precentor",
+   "callsign": "ComStar Demi-Precentor",
+   "portrait": "COMSTARDEMI-PRECENTOR",
+   "voice": "COMSTARDEMI-PRECENTOR"
+  },
+  {
+   "asset": "CacheNarrator",
+   "fullName": "Cache Narrator",
+   "callsign": "Cache Narrator",
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "Caleb",
+   "fullName": "Caleb",
+   "callsign": "Caleb",
+   "portrait": "Caleb",
+   "voice": "Caleb"
+  },
+  {
+   "asset": "CalebRourke",
+   "fullName": "Caleb Rourke",
+   "callsign": null,
+   "portrait": "CalebRourke",
+   "voice": "CalebRourke"
+  },
+  {
+   "asset": "Career_PlayerPersona",
+   "fullName": "Commander",
+   "callsign": "COMMANDER",
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "Carlos",
+   "fullName": "Col. Carlos Camacho",
+   "callsign": null,
+   "portrait": "Camacho",
+   "voice": "Carlos"
+  },
+  {
+   "asset": "Cheng",
+   "fullName": "Brigadier Gen. Li Cheng",
+   "callsign": null,
+   "portrait": "Cheng",
+   "voice": "Cheng"
+  },
+  {
+   "asset": "Chloe",
+   "fullName": "Comm. Chloe Mason",
+   "callsign": "Chloe",
+   "portrait": "Ryana",
+   "voice": "Chloe"
+  },
+  {
+   "asset": "ChristianDLC7",
+   "fullName": "Christian M\u00e5nsdottir",
+   "callsign": null,
+   "portrait": "ChristianMansdottir_overste_icon",
+   "voice": "Christian_Rasalhague"
+  },
+  {
+   "asset": "Christian_Lyran",
+   "fullName": "Christian M\u00e5nsdottir",
+   "callsign": null,
+   "portrait": "ChristianMansdottir_colonel_icon",
+   "voice": "Christian_Lyran"
+  },
+  {
+   "asset": "Christian_Rasalhague",
+   "fullName": "Christian M\u00e5nsdottir",
+   "callsign": null,
+   "portrait": "ChristianMansdottir_overste_icon",
+   "voice": "Christian_Rasalhague"
+  },
+  {
+   "asset": "City_Councilor",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "Civilian",
+   "fullName": "Civilian",
+   "callsign": "Civilian",
+   "portrait": "FemaleFarmer",
+   "voice": "Civilian"
+  },
+  {
+   "asset": "Civilian_1",
+   "fullName": "Civilian",
+   "callsign": "Civilian",
+   "portrait": "CivillianLeader",
+   "voice": "Civilian_1"
+  },
+  {
+   "asset": "ClanBaseCommander1",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "ClanBaseCommander1",
+   "voice": "ClanBaseCommander1"
+  },
+  {
+   "asset": "ClanBaseCommander2",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "ClanBaseCommander2",
+   "voice": "ClanBaseCommander2"
+  },
+  {
+   "asset": "ClanBaseCommander3",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "ClanBaseCommander3",
+   "voice": "ClanBaseCommander3"
+  },
+  {
+   "asset": "ClanBaseCommander4",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "ClanBaseCommander4",
+   "voice": "ClanBaseCommander4"
+  },
+  {
+   "asset": "ClanEra_FedCom_PilotPersona_1_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "Generic_Rank3_3",
+   "voice": "MaleAlly6"
+  },
+  {
+   "asset": "ClanEra_FedCom_PilotPersona_2_Persona",
+   "fullName": "Lt. Booker",
+   "callsign": "Booker",
+   "portrait": "Male_Rank1_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "ClanEra_FedCom_PilotPersona_3_Persona",
+   "fullName": "Capt. Hutchins",
+   "callsign": "Hutchins",
+   "portrait": "Generic_Rank4_2",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "ClanEra_FedCom_PilotPersona_4_Persona",
+   "fullName": "Major Aguilera",
+   "callsign": "Aguilera",
+   "portrait": "Generic_Rank1_3",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "ClanEra_Kurita_PilotPersona_1_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "Female_Rank1_4",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "ClanEra_Kurita_PilotPersona_2_Persona",
+   "fullName": "Lt. Booker",
+   "callsign": "Booker",
+   "portrait": "Female_Rank1_1",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "ClanEra_Kurita_PilotPersona_3_Persona",
+   "fullName": "Capt. Hutchins",
+   "callsign": "Hutchins",
+   "portrait": "Generic_Rank3_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "ClanEra_Kurita_PilotPersona_4_Persona",
+   "fullName": "Major Aguilera",
+   "callsign": "Aguilera",
+   "portrait": "Generic_Rank1_4",
+   "voice": "FemaleAlly10"
+  },
+  {
+   "asset": "ClanEra_Liao_PilotPersona_1_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "Female_Rank3_4",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "ClanEra_Liao_PilotPersona_2_Persona",
+   "fullName": "Lt. Booker",
+   "callsign": "Booker",
+   "portrait": "Male_Rank2_9",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "ClanEra_Liao_PilotPersona_3_Persona",
+   "fullName": "Capt. Hutchins",
+   "callsign": "Hutchins",
+   "portrait": "Male_Rank2_6",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "ClanEra_Liao_PilotPersona_4_Persona",
+   "fullName": "Major Aguilera",
+   "callsign": "Aguilera",
+   "portrait": "Female_Rank3_5",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "ClanEra_Marik_PilotPersona_1_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "Generic_Rank1_1",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "ClanEra_Marik_PilotPersona_2_Persona",
+   "fullName": "Lt. Booker",
+   "callsign": "Booker",
+   "portrait": "Generic_Rank3_2",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "ClanEra_Marik_PilotPersona_3_Persona",
+   "fullName": "Capt. Hutchins",
+   "callsign": "Hutchins",
+   "portrait": "Generic_Rank3_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "ClanEra_Marik_PilotPersona_4_Persona",
+   "fullName": "Major Aguilera",
+   "callsign": "Aguilera",
+   "portrait": "Female_Rank2_1",
+   "voice": "FemaleAlly7"
+  },
+  {
+   "asset": "ClanEra_Rasalhague_PilotPersona_1_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "Male_Rank2_11",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "ClanEra_Rasalhague_PilotPersona_2_Persona",
+   "fullName": "Lt. Booker",
+   "callsign": "Booker",
+   "portrait": "Male_Rank1_1",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "ClanEra_Rasalhague_PilotPersona_3_Persona",
+   "fullName": "Capt. Hutchins",
+   "callsign": "Hutchins",
+   "portrait": "Female_Rank2_3",
+   "voice": "FemaleAlly4"
+  },
+  {
+   "asset": "ClanEra_Rasalhague_PilotPersona_4_Persona",
+   "fullName": "Major Aguilera",
+   "callsign": "Aguilera",
+   "portrait": "Female_Rank3_1",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "ClanWolfWarrior",
+   "fullName": "Clan Wolf Warrior",
+   "callsign": "Clan Wolf Warrior",
+   "portrait": "ClanWolfWarrior",
+   "voice": "ClanWolfWarrior"
+  },
+  {
+   "asset": "ClannerPilot1",
+   "fullName": "Clan MechWarrior",
+   "callsign": null,
+   "portrait": "EnemyClanPilot1",
+   "voice": "ClannerPilot1"
+  },
+  {
+   "asset": "ClannerPilot2",
+   "fullName": "Clan MechWarrior",
+   "callsign": null,
+   "portrait": "EnemyClanPilot2",
+   "voice": "ClannerPilot2"
+  },
+  {
+   "asset": "ClannerPilot3",
+   "fullName": "Clan MechWarrior",
+   "callsign": null,
+   "portrait": "EnemyClanPilot2",
+   "voice": "ClannerPilot3"
+  },
+  {
+   "asset": "ClannerPilot4",
+   "fullName": "Clan MechWarrior",
+   "callsign": null,
+   "portrait": "EnemyClanPilot4",
+   "voice": "ClannerPilot4"
+  },
+  {
+   "asset": "ClannerPilot5",
+   "fullName": "Clan MechWarrior",
+   "callsign": null,
+   "portrait": "EnemyClanPilot5",
+   "voice": "ClannerPilot5"
+  },
+  {
+   "asset": "ColonelMcCarron",
+   "fullName": "Col. Archibald McCarron",
+   "callsign": null,
+   "portrait": "Male_Rank3_4",
+   "voice": "McCarron"
+  },
+  {
+   "asset": "Colonist",
+   "fullName": "Colonist",
+   "callsign": null,
+   "portrait": "BaseCommander_Ally_04",
+   "voice": "Colonist"
+  },
+  {
+   "asset": "Colossus",
+   "fullName": "Sgt. Emiko Hayashi",
+   "callsign": "Hayashi",
+   "portrait": "StoicAlly",
+   "voice": null
+  },
+  {
+   "asset": "Colt",
+   "fullName": "Major Roland Colt",
+   "callsign": "Colt",
+   "portrait": "FedSunsFieldRep",
+   "voice": "Colt"
+  },
+  {
+   "asset": "ComStarEmergency",
+   "fullName": "ComStar Emergency Broadcast",
+   "callsign": "ComStar Emergency",
+   "portrait": "CivillianLeader",
+   "voice": "ComStarEmergency"
+  },
+  {
+   "asset": "Commander",
+   "fullName": "Commander Mason",
+   "callsign": "Commander Mason",
+   "portrait": "MalePilot",
+   "voice": "Commander"
+  },
+  {
+   "asset": "CommanderNoPortrait",
+   "fullName": "Commander Mason",
+   "callsign": "Commander Mason",
+   "portrait": null,
+   "voice": "Commander"
+  },
+  {
+   "asset": "CommsTech",
+   "fullName": "Comms Tech",
+   "callsign": "Comms Tech",
+   "portrait": "CommsTech",
+   "voice": "CommsTech"
+  },
+  {
+   "asset": "ComstarAcolyte",
+   "fullName": "Fusiliers Imposter",
+   "callsign": null,
+   "portrait": "FusiliersImposter",
+   "voice": "ComstarAcolyte"
+  },
+  {
+   "asset": "ComstarRep",
+   "fullName": "ComStar Representative",
+   "callsign": "ComStar Representative",
+   "portrait": "ComstarRep",
+   "voice": null
+  },
+  {
+   "asset": "Cottonbateman",
+   "fullName": "Cotton Bateman",
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "Cottonbateman"
+  },
+  {
+   "asset": "CraterCobraMechWarrior",
+   "fullName": "Sgt. Grant Carter",
+   "callsign": null,
+   "portrait": "Male_Rank3_7",
+   "voice": "CraterCobraMechWarrior"
+  },
+  {
+   "asset": "CraterCobras",
+   "fullName": "Mercs_CraterCobras",
+   "callsign": null,
+   "portrait": "Female_Rank2_7",
+   "voice": "Mercenary3"
+  },
+  {
+   "asset": "CrewMember1",
+   "fullName": "Crew Member",
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "CrewMember2",
+   "fullName": "Crew Member",
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "Crimson_Inclination",
+   "fullName": "Crimson Inclination",
+   "callsign": "Crimson Inclination",
+   "portrait": "Enemy_Davion_Marik_Generic_2",
+   "voice": "Crimson_Inclination"
+  },
+  {
+   "asset": "Curoy",
+   "fullName": "Curtis Roy",
+   "callsign": "Curoy",
+   "portrait": "CivillianLeader",
+   "voice": "Curoy"
+  },
+  {
+   "asset": "DLC2Career_ConerMurphy",
+   "fullName": "Lt. Coner Murphy",
+   "callsign": "Murphy",
+   "portrait": "Generic_Rank1_1",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "DLC2Career_LinaSantiago",
+   "fullName": "Lt. Lina Santiago",
+   "callsign": "Santiago",
+   "portrait": "Enemy_Female_7",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "DLC2Career_PlayerPersona",
+   "fullName": "Commander",
+   "callsign": "COMMANDER",
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "DLC2Career_ToriLiu",
+   "fullName": "Sao-wei Tori Liu",
+   "callsign": "Liu",
+   "portrait": "Enemy_Liao_Female_2",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "DLC2GunnarThomson",
+   "fullName": "Lt. Gunnar Thomson",
+   "callsign": "Thomson",
+   "portrait": "Generic_Rank3_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "DLC2MiastoStabjorn",
+   "fullName": "Lt. Miasto Stabjorn",
+   "callsign": "Stabjorn",
+   "portrait": "Generic_Rank1_3",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "DLC2MinatoUmatsu",
+   "fullName": "Tai-I Minato Umatsu",
+   "callsign": "Umatsu",
+   "portrait": "Enemy_Kurita_Male_1",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "DLC2StartCareer_AshakiNazari",
+   "fullName": "Chu-i Ashaki Nazari",
+   "callsign": "Nazari",
+   "portrait": "Enemy_Generic_2",
+   "voice": "FemaleAlly7"
+  },
+  {
+   "asset": "DLC2_MillaSerena",
+   "fullName": "Capt. Milla Serena",
+   "callsign": "Serena",
+   "portrait": "Female_Rank3_2",
+   "voice": "FemaleAlly4"
+  },
+  {
+   "asset": "DLC5Career_PlayerPersona",
+   "fullName": "Commander",
+   "callsign": "COMMANDER",
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "DLC5_RewardPilot1Persona",
+   "fullName": "Shintaro Abe",
+   "callsign": "Abe",
+   "portrait": "Male_Rank3_5",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "DLC5_RewardPilot2Persona",
+   "fullName": "Ari Fuji",
+   "callsign": "Fuji",
+   "portrait": "Female_Rank3_1",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "DLC5_RewardPilot3Persona",
+   "fullName": "Akira Ohtani",
+   "callsign": "Ohtani",
+   "portrait": "Generic_Rank3_1",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "DLC6Career_PlayerPersona1",
+   "fullName": "Commander",
+   "callsign": "COMMANDER",
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "DLC7Career_PlayerPersona",
+   "fullName": "Commander",
+   "callsign": "COMMANDER",
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "DLC7_PilotPersona1_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "Female_Rank3_1",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "DLC7_PilotPersona2_Persona",
+   "fullName": "Lt. Booker",
+   "callsign": "Booker",
+   "portrait": "Male_Rank1_10",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "DLC7_PilotPersona3_Persona",
+   "fullName": "Capt. Hutchins",
+   "callsign": "Hutchins",
+   "portrait": "Male_Rank2_3",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "DLC7_PilotPersona4_Persona",
+   "fullName": "Major Aguilera",
+   "callsign": "Aguilera",
+   "portrait": "Generic_Rank3_2",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "DLC7_PilotPersona5_Persona",
+   "fullName": "Capt. Johns",
+   "callsign": "Johns",
+   "portrait": "Generic_Rank4_2",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "DLC7_PilotPersona6_Persona",
+   "fullName": "Major Epperson",
+   "callsign": "Epperson",
+   "portrait": "Generic_Rank1_2",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "DLC7_PilotPersona7_Persona",
+   "fullName": "Capt. Hurst",
+   "callsign": "Hurst",
+   "portrait": "Generic_Rank3_7",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "DLC7_PilotPersona8_Persona",
+   "fullName": "Capt. Hinton",
+   "callsign": "Hinton",
+   "portrait": "Female_Rank2_5",
+   "voice": "FemaleAlly2"
+  },
+  {
+   "asset": "DLC8_PilotPersona_1_Persona",
+   "fullName": "Major Mcmahan",
+   "callsign": "Mcmahan",
+   "portrait": "Male_Rank3_4",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "DLC8_PilotPersona_2_Persona",
+   "fullName": "Major Busch",
+   "callsign": "Busch",
+   "portrait": "Generic_Rank2_1",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "DLC8_PilotPersona_3_Persona",
+   "fullName": "Capt. Wolff",
+   "callsign": "Wolff",
+   "portrait": "Generic_Rank2_4",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "DLC8_PilotPersona_4_Persona",
+   "fullName": "Capt. Crain",
+   "callsign": "Crain",
+   "portrait": "Male_Rank2_10",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "DLC8_PilotPersona_5_Persona",
+   "fullName": "Lt. Harley",
+   "callsign": "Harley",
+   "portrait": "Male_Rank1_2",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "DLC8_PilotPersona_6_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "FemalePilot",
+   "voice": null
+  },
+  {
+   "asset": "DLC8_PilotPersona_7_Persona",
+   "fullName": "Major Mullen",
+   "callsign": "Mullen",
+   "portrait": "Male_Rank2_8",
+   "voice": "MaleAlly10"
+  },
+  {
+   "asset": "DLC9_PilotPersona_1_Persona",
+   "fullName": "Lt. Major",
+   "callsign": "Major",
+   "portrait": "Generic_Rank4_6",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "DLC9_PilotPersona_2_Persona",
+   "fullName": "Lt. Booker",
+   "callsign": "Booker",
+   "portrait": "Generic_Rank1_4",
+   "voice": "FemaleAlly10"
+  },
+  {
+   "asset": "DLC9_PilotPersona_3_Persona",
+   "fullName": "Capt. Hutchins",
+   "callsign": "Hutchins",
+   "portrait": "Female_Rank1_2",
+   "voice": "FemaleAlly9"
+  },
+  {
+   "asset": "DLC9_PilotPersona_4_Persona",
+   "fullName": "Major Aguilera",
+   "callsign": "Aguilera",
+   "portrait": "Male_Rank2_10",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "DLC9_PilotPersona_5_Persona",
+   "fullName": "Capt. Johns",
+   "callsign": "Johns",
+   "portrait": "Generic_Rank2_3",
+   "voice": "MaleAlly10"
+  },
+  {
+   "asset": "DLC9_PilotPersona_6_Persona",
+   "fullName": "Major Epperson",
+   "callsign": "Epperson",
+   "portrait": "Male_Rank1_2",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "DLC9_PilotPersona_7_Persona",
+   "fullName": "Capt. Hurst",
+   "callsign": "Hurst",
+   "portrait": "Male_Rank1_13",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "DLC_ShenzengPersona",
+   "fullName": "Capt. Shenzeng",
+   "callsign": "Shenzeng",
+   "portrait": "ArtemiShenzeng",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Damu",
+   "fullName": "Cpt. Alanna Damu",
+   "callsign": null,
+   "portrait": "AlannaDamu",
+   "voice": "Damu"
+  },
+  {
+   "asset": "Darryl",
+   "fullName": "Darryl",
+   "callsign": "Darryl",
+   "portrait": "Darryl",
+   "voice": "Darryl"
+  },
+  {
+   "asset": "DavionCareer_CecileLaurent",
+   "fullName": "Lt. Cecile Laurent",
+   "callsign": "Laurent",
+   "portrait": "Enemy_Davion_Female_1",
+   "voice": "FemaleAlly7"
+  },
+  {
+   "asset": "DavionCareer_LukasBeaumont",
+   "fullName": "Lt. Lukas Beaumont",
+   "callsign": "Beaumont",
+   "portrait": "Enemy_Davion_Male_1",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "DavionCareer_ShaunVelez",
+   "fullName": "Lt. Shaun Velez",
+   "callsign": "Velez",
+   "portrait": "Enemy_Generic_2",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "DavionMechWarriors",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "Derek",
+   "fullName": "Derek",
+   "callsign": "Derek",
+   "portrait": "Anonymous",
+   "voice": "Derek"
+  },
+  {
+   "asset": "Dragons_Breath_Commander",
+   "fullName": "Dragons Breath Commander",
+   "callsign": null,
+   "portrait": "Male_Rank2_3",
+   "voice": "Dragons_Breath_Commander"
+  },
+  {
+   "asset": "Duke_Cole",
+   "fullName": "Duke Cole",
+   "callsign": "Cole",
+   "portrait": "FedSunsRep",
+   "voice": "Duke_Cole"
+  },
+  {
+   "asset": "DuncanFisher",
+   "fullName": "Duncan Fisher",
+   "callsign": null,
+   "portrait": "DuncanFisher",
+   "voice": "DuncanFisher"
+  },
+  {
+   "asset": "DuncanFisher_Helmet",
+   "fullName": "Duncan Fisher",
+   "callsign": null,
+   "portrait": "DuncanFisher_Helmet",
+   "voice": "DuncanFisher"
+  },
+  {
+   "asset": "Dwillt",
+   "fullName": "Dwillt",
+   "callsign": "Dwillt",
+   "portrait": "Dwillt",
+   "voice": "Dwillt"
+  },
+  {
+   "asset": "EarthWerksForeman",
+   "fullName": "Earthwerks Foreman",
+   "callsign": null,
+   "portrait": "RashpurOwens",
+   "voice": "EarthWerksForeman"
+  },
+  {
+   "asset": "EnemyBlackInfFemale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyBlackInfFemale"
+  },
+  {
+   "asset": "EnemyBlackInfMale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyBlackInfMale"
+  },
+  {
+   "asset": "EnemyBoss",
+   "fullName": "Iago Herrera",
+   "callsign": "Herrera",
+   "portrait": "Enemy_Generic_6",
+   "voice": "EnemyBoss"
+  },
+  {
+   "asset": "EnemyClanPilot1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot1",
+   "voice": "EnemyClanPilot1"
+  },
+  {
+   "asset": "EnemyClanPilot10",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot10",
+   "voice": "EnemyClanPilot10"
+  },
+  {
+   "asset": "EnemyClanPilot2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot2",
+   "voice": "EnemyClanPilot2"
+  },
+  {
+   "asset": "EnemyClanPilot3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot3",
+   "voice": "EnemyClanPilot3"
+  },
+  {
+   "asset": "EnemyClanPilot4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot2",
+   "voice": "EnemyClanPilot4"
+  },
+  {
+   "asset": "EnemyClanPilot5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot5",
+   "voice": "EnemyClanPilot5"
+  },
+  {
+   "asset": "EnemyClanPilot6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot6",
+   "voice": "EnemyClanPilot6"
+  },
+  {
+   "asset": "EnemyClanPilot7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot7",
+   "voice": "EnemyClanPilot7"
+  },
+  {
+   "asset": "EnemyClanPilot8",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot1",
+   "voice": "EnemyClanPilot8"
+  },
+  {
+   "asset": "EnemyClanPilot9",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "EnemyClanPilot9",
+   "voice": "EnemyClanPilot9"
+  },
+  {
+   "asset": "EnemyCultist",
+   "fullName": "Enemy Cultist",
+   "callsign": "Enemy Cultist",
+   "portrait": "Enemy1",
+   "voice": "EnemyCultist"
+  },
+  {
+   "asset": "EnemyDavionFemale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyDavionFemale"
+  },
+  {
+   "asset": "EnemyDavionMale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyDavionMale"
+  },
+  {
+   "asset": "EnemyGenericFemale",
+   "fullName": "Enemy Pilot",
+   "callsign": "Enemy Pilot",
+   "portrait": "Enemy2",
+   "voice": "EnemyGeneric"
+  },
+  {
+   "asset": "EnemyGenericMale",
+   "fullName": "Enemy Pilot",
+   "callsign": "Enemy Pilot",
+   "portrait": "Enemy1",
+   "voice": "EnemyGeneric"
+  },
+  {
+   "asset": "EnemyKuritaFemale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyKuritaFemale"
+  },
+  {
+   "asset": "EnemyKuritaMale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyKuritaMale"
+  },
+  {
+   "asset": "EnemyLiaoFemale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyLiaoFemale"
+  },
+  {
+   "asset": "EnemyLiaoMale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyLiaoMale"
+  },
+  {
+   "asset": "EnemyMarikFemale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyMarikFemale"
+  },
+  {
+   "asset": "EnemyMarikMale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyMarikMale"
+  },
+  {
+   "asset": "EnemyMech",
+   "fullName": "Enemy Mech",
+   "callsign": "Enemy Mech",
+   "portrait": "Enemy_Male_1",
+   "voice": "EnemyMech"
+  },
+  {
+   "asset": "EnemyMechCommander",
+   "fullName": "Enemy Mech Commander",
+   "callsign": "Enemy Mech Commander",
+   "portrait": "Enemy2",
+   "voice": "EnemyMechCommander"
+  },
+  {
+   "asset": "EnemyRanger",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "EnemyRasalhagueFemale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyRasalhagueFemale"
+  },
+  {
+   "asset": "EnemyRasalhagueMale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "EnemyRasalhagueMale"
+  },
+  {
+   "asset": "EnemySteinerFemale",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Ally_Female_Rank_3",
+   "voice": "EnemySteinerFemale"
+  },
+  {
+   "asset": "EnemySteinerMale",
+   "fullName": "Enemy Ranger",
+   "callsign": "Enemy Ranger",
+   "portrait": "Enemy_Generic_6",
+   "voice": "EnemyRanger"
+  },
+  {
+   "asset": "Enemy_Commander",
+   "fullName": "Enemy Commander",
+   "callsign": null,
+   "portrait": "Enemy1",
+   "voice": "Enemy_Commander"
+  },
+  {
+   "asset": "Enemy_Pilot",
+   "fullName": "Enemy Pilot",
+   "callsign": null,
+   "portrait": "Enemy_Generic_4",
+   "voice": "Enemy_Pilot"
+  },
+  {
+   "asset": "Eric",
+   "fullName": "Eric",
+   "callsign": "Eric",
+   "portrait": "Eric",
+   "voice": "Eric"
+  },
+  {
+   "asset": "Erickson",
+   "fullName": "Tyler Erickson",
+   "callsign": "Erickson",
+   "portrait": "Enemy2",
+   "voice": "Erickson"
+  },
+  {
+   "asset": "EridaniLightHorse",
+   "fullName": "Mercs_EridaniLightHorse",
+   "callsign": null,
+   "portrait": "Generic_Rank4_4",
+   "voice": "Mercenary4"
+  },
+  {
+   "asset": "FIFTHAMPHIGEANPILOT",
+   "fullName": "Fifth Amphigean Pilot",
+   "callsign": null,
+   "portrait": "BaseCommander_Ally_01",
+   "voice": "FIFTHAMPHIGEANPILOT"
+  },
+  {
+   "asset": "FRRCareer_DahliaEskildsen",
+   "fullName": "Lt. Dahlia Eskildsen",
+   "callsign": "Eskildsen",
+   "portrait": "Female_Rank3_2",
+   "voice": "FemaleAlly4"
+  },
+  {
+   "asset": "FRRCareer_GunnarThomson",
+   "fullName": "Lt. Gunnar Thomson",
+   "callsign": "Thomson",
+   "portrait": "Generic_Rank3_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "FRRCareer_KarinaTanaka",
+   "fullName": "Lt. Karina Tanaka",
+   "callsign": "Tanaka",
+   "portrait": "Generic_Rank4_6",
+   "voice": "FemaleAlly6"
+  },
+  {
+   "asset": "FRRPILOT1",
+   "fullName": "FRR Pilot",
+   "callsign": "FRR Pilot",
+   "portrait": "FRRPILOT1",
+   "voice": "FRRPILOT1"
+  },
+  {
+   "asset": "Fahad",
+   "fullName": "Fahad",
+   "callsign": "Fahad",
+   "portrait": "Fahad",
+   "voice": "Fahad"
+  },
+  {
+   "asset": "Father",
+   "fullName": "Nikolai Mason",
+   "callsign": "Nikolai Mason",
+   "portrait": "NikMason",
+   "voice": null
+  },
+  {
+   "asset": "Father_NoPortrait",
+   "fullName": "Nikolai Mason",
+   "callsign": "Mason",
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "FedcomLiaison",
+   "fullName": "FedCom Liaison",
+   "callsign": "FedCom Liaison",
+   "portrait": "FedcomLiaison",
+   "voice": null
+  },
+  {
+   "asset": "FemaleAllyTemplate",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "FemalePilot",
+   "voice": null
+  },
+  {
+   "asset": "FemaleFarmers",
+   "fullName": "Farmers",
+   "callsign": null,
+   "portrait": "FemaleFarmer",
+   "voice": null
+  },
+  {
+   "asset": "Female_Rank1_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank1_1",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "Female_Rank1_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank1_2",
+   "voice": "FemaleAlly9"
+  },
+  {
+   "asset": "Female_Rank1_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank1_3",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "Female_Rank1_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank1_4",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "Female_Rank1_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank1_5",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "Female_Rank1_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank1_6",
+   "voice": "FemaleAlly6"
+  },
+  {
+   "asset": "Female_Rank1_7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank1_7",
+   "voice": "FemaleAlly3"
+  },
+  {
+   "asset": "Female_Rank2_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_1",
+   "voice": "FemaleAlly7"
+  },
+  {
+   "asset": "Female_Rank2_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_2",
+   "voice": "FemaleAlly10"
+  },
+  {
+   "asset": "Female_Rank2_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_3",
+   "voice": "FemaleAlly4"
+  },
+  {
+   "asset": "Female_Rank2_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_4",
+   "voice": "FemaleAlly6"
+  },
+  {
+   "asset": "Female_Rank2_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_5",
+   "voice": "FemaleAlly2"
+  },
+  {
+   "asset": "Female_Rank2_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_6",
+   "voice": "FemaleAlly7"
+  },
+  {
+   "asset": "Female_Rank2_7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_7",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "Female_Rank3_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank3_1",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "Female_Rank3_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank3_2",
+   "voice": "FemaleAlly9"
+  },
+  {
+   "asset": "Female_Rank3_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank3_3",
+   "voice": "FemaleAlly4"
+  },
+  {
+   "asset": "Female_Rank3_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank3_4",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "Female_Rank3_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank3_5",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "Female_Rank3_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank3_6",
+   "voice": "FemaleAlly3"
+  },
+  {
+   "asset": "Fenstrom",
+   "fullName": "Capt. Louise Fenstrom",
+   "callsign": "Fenstrom",
+   "portrait": "Fenstrom",
+   "voice": "FemaleAlly2"
+  },
+  {
+   "asset": "FilthyLucre",
+   "fullName": "Mercs_FilthyLucre",
+   "callsign": null,
+   "portrait": "Enemy_Female_10",
+   "voice": "Mercenary3"
+  },
+  {
+   "asset": "First_Kavalleri_Commander",
+   "fullName": "First Kavalleri Commander",
+   "callsign": null,
+   "portrait": "Generic_Rank4_3",
+   "voice": "First_Kavalleri_Commander"
+  },
+  {
+   "asset": "Focht",
+   "fullName": "Precentor Martial Anastasius Focht",
+   "callsign": null,
+   "portrait": "Focht",
+   "voice": null
+  },
+  {
+   "asset": "Folesko",
+   "fullName": "Chu-sa Fengo Olesko",
+   "callsign": null,
+   "portrait": "Olesko",
+   "voice": "Folesko"
+  },
+  {
+   "asset": "Forgotten1",
+   "fullName": "Forgotten Foe 1",
+   "callsign": null,
+   "portrait": "Generic_Rank3_7",
+   "voice": "Forgotten1"
+  },
+  {
+   "asset": "Fransson",
+   "fullName": "High Lord Fransson",
+   "callsign": "Franson",
+   "portrait": "Enemy_Steiner_Marik_Male_1",
+   "voice": "Franson"
+  },
+  {
+   "asset": "Freddie",
+   "fullName": "Freddie",
+   "callsign": "Freddie",
+   "portrait": "Freddie",
+   "voice": "Freddie"
+  },
+  {
+   "asset": "Freeman",
+   "fullName": "Lt. Leon Freeman",
+   "callsign": "FREEMAN",
+   "portrait": "LeonFreeman",
+   "voice": "Freeman"
+  },
+  {
+   "asset": "Freeman_Ally",
+   "fullName": "Lt. Leon Freeman",
+   "callsign": "FREEMAN",
+   "portrait": "LeonFreeman",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "FriendlyPilot",
+   "fullName": "Friendly Pilot",
+   "callsign": "Friendly Pilot",
+   "portrait": null,
+   "voice": "FriendlyPilot"
+  },
+  {
+   "asset": "FusiliersCommander",
+   "fullName": "Fusiliers Commander",
+   "callsign": "Fusiliers Commander",
+   "portrait": "Anonymous2",
+   "voice": "FusiliersCommander"
+  },
+  {
+   "asset": "Galatea",
+   "fullName": "Galatea Commentator",
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "Galatea"
+  },
+  {
+   "asset": "Gan",
+   "fullName": "Khunbish Gan",
+   "callsign": "Gan",
+   "portrait": "Enemy1",
+   "voice": "Gan"
+  },
+  {
+   "asset": "Garbledvoice",
+   "fullName": "Unknown",
+   "callsign": "Unknown",
+   "portrait": "Enemy1",
+   "voice": "GarbledVoice"
+  },
+  {
+   "asset": "GarrisonCmdr",
+   "fullName": "Garrison Commander",
+   "callsign": "Da Boss",
+   "portrait": "Anonymous",
+   "voice": "GarrisonCmdr"
+  },
+  {
+   "asset": "Garrison_Commander",
+   "fullName": "Garrison Commander",
+   "callsign": "Commander",
+   "portrait": "BaseCommander_Enemy_01",
+   "voice": "Garrison_Commander"
+  },
+  {
+   "asset": "Generic_Rank1_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank1_1",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "Generic_Rank1_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank1_2",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "Generic_Rank1_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank1_3",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Generic_Rank1_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank1_4",
+   "voice": "FemaleAlly10"
+  },
+  {
+   "asset": "Generic_Rank1_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank1_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "Generic_Rank2_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank2_1",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Generic_Rank2_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank2_2",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "Generic_Rank2_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank2_3",
+   "voice": "MaleAlly10"
+  },
+  {
+   "asset": "Generic_Rank2_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank2_4",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "Generic_Rank3_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_1",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "Generic_Rank3_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_2",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "Generic_Rank3_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_3",
+   "voice": "MaleAlly6"
+  },
+  {
+   "asset": "Generic_Rank3_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_4",
+   "voice": "FemaleAlly10"
+  },
+  {
+   "asset": "Generic_Rank3_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "Generic_Rank3_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_6",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "Generic_Rank3_7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_7",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "Generic_Rank3_8",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank3_8",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "Generic_Rank4_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_1",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "Generic_Rank4_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_2",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Generic_Rank4_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_3",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "Generic_Rank4_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_4",
+   "voice": "FemaleAlly9"
+  },
+  {
+   "asset": "Generic_Rank4_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "Generic_Rank4_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_6",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "Generic_Rank4_7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_7",
+   "voice": "FemaleAlly6"
+  },
+  {
+   "asset": "Generic_Rank4_8",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "Gerber",
+   "fullName": "Gen. Kent Gerber",
+   "callsign": null,
+   "portrait": "Gerber",
+   "voice": "Gerber"
+  },
+  {
+   "asset": "GhostBearCommander",
+   "fullName": "Ghost Bear Commander",
+   "callsign": "Ghost Bear Commander",
+   "portrait": "GhostBearCommander",
+   "voice": "GhostBearCommander"
+  },
+  {
+   "asset": "Goblin_Persona",
+   "fullName": "Goblin",
+   "callsign": "Goblin",
+   "portrait": "Goblin",
+   "voice": "Goblin"
+  },
+  {
+   "asset": "Goshi",
+   "fullName": "Goshi Tengwan",
+   "callsign": null,
+   "portrait": "DraconisRep",
+   "voice": "Goshi"
+  },
+  {
+   "asset": "GrayDeathLegion",
+   "fullName": "Mercs_GrayDeathLegion",
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "Mercenary2"
+  },
+  {
+   "asset": "GreggsLongstriders",
+   "fullName": "Mercs_GregsLongstriders",
+   "callsign": null,
+   "portrait": "Female_Rank2_7",
+   "voice": "Mercenary3"
+  },
+  {
+   "asset": "Gregor",
+   "fullName": "Gregor Nostra",
+   "callsign": "Gregor Nostra",
+   "portrait": "Gregor",
+   "voice": "Gregor"
+  },
+  {
+   "asset": "HRoughrider",
+   "fullName": "Hansen's Roughrider",
+   "callsign": null,
+   "portrait": "Male_Rank2_10",
+   "voice": "Hroughriders"
+  },
+  {
+   "asset": "Haakon",
+   "fullName": "Haakon Magnusson",
+   "callsign": null,
+   "portrait": "HaakonMagnusson_Icon",
+   "voice": "Haakon"
+  },
+  {
+   "asset": "Hampton",
+   "fullName": "Hampton Schroder",
+   "callsign": "Hampton Schroder",
+   "portrait": "Hampton",
+   "voice": "Hampton"
+  },
+  {
+   "asset": "HansensRoughriders",
+   "fullName": "Mercs_HansensRoughriders",
+   "callsign": null,
+   "portrait": "WolfgangHansen",
+   "voice": "Mercenary4"
+  },
+  {
+   "asset": "HarlocksWarriors",
+   "fullName": "Mercs_HarlocksWarriors",
+   "callsign": null,
+   "portrait": "Generic_Rank4_2",
+   "voice": "Mercenary1"
+  },
+  {
+   "asset": "Henrik",
+   "fullName": "Henrik Cole",
+   "callsign": "Henrik",
+   "portrait": "Enemy2",
+   "voice": "Henrik"
+  },
+  {
+   "asset": "Herrera",
+   "fullName": "Iago Herrera",
+   "callsign": "Herrera",
+   "portrait": "Anonymous",
+   "voice": "Herrera"
+  },
+  {
+   "asset": "Howell_MechCon",
+   "fullName": "Cyrus Howell",
+   "callsign": "Cyrus",
+   "portrait": "Howell",
+   "voice": null
+  },
+  {
+   "asset": "IA_Female_0",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank1_4",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "IA_Female_1",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank3_4",
+   "voice": "FemaleAlly2"
+  },
+  {
+   "asset": "IA_Female_2",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank2_6",
+   "voice": "FemaleAlly7"
+  },
+  {
+   "asset": "IA_Female_3",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank3_6",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "IA_Female_4",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Generic_Rank3_8",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "IA_Female_5",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank2_3",
+   "voice": "FemaleAlly3"
+  },
+  {
+   "asset": "IA_Female_6",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank2_5",
+   "voice": "FemaleAlly4"
+  },
+  {
+   "asset": "IA_Female_7",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Generic_Rank3_4",
+   "voice": "FemaleAlly9"
+  },
+  {
+   "asset": "IA_Female_8",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank3_5",
+   "voice": "FemaleAlly10"
+  },
+  {
+   "asset": "IA_Female_9",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Female_Rank2_7",
+   "voice": "FemaleAlly6"
+  },
+  {
+   "asset": "IA_Male_0",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Enemy_Davion_Male_2",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "IA_Male_1",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Male_Rank2_8",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "IA_Male_2",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "IA_Male_3",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Male_Rank3_7",
+   "voice": "MaleAlly6"
+  },
+  {
+   "asset": "IA_Male_4",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Male_Rank1_13",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "IA_Male_5",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Generic_Rank2_4",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "IA_Male_6",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Male_Rank1_10",
+   "voice": "MaleAlly10"
+  },
+  {
+   "asset": "IA_Male_7",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Male_Rank2_10",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "IA_Male_8",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Male_Rank2_5",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "IA_Male_9",
+   "fullName": "AI PILOT",
+   "callsign": null,
+   "portrait": "Male_Rank3_4",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "IEExplorer",
+   "fullName": "IE Explorer",
+   "callsign": "IE Explorer",
+   "portrait": "CivillianLeader",
+   "voice": "IEExplorer"
+  },
+  {
+   "asset": "ISFLiason",
+   "fullName": "Internal Security Force Representative",
+   "callsign": null,
+   "portrait": "Anonymous2",
+   "voice": null
+  },
+  {
+   "asset": "Ian",
+   "fullName": "Ian",
+   "callsign": "Ian",
+   "portrait": "Ian",
+   "voice": "Ian"
+  },
+  {
+   "asset": "InfernoLeader",
+   "fullName": "Enemy Captain",
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "InfernoLieutenant",
+   "fullName": "Enemy Lieutenant",
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "Issa",
+   "fullName": "Issa Anderssen",
+   "callsign": "Issa",
+   "portrait": "Enemy1",
+   "voice": "Issa"
+  },
+  {
+   "asset": "JCPB",
+   "fullName": "Jackson Prime And Cotton Bateman",
+   "callsign": null,
+   "portrait": "JCPB_Logo_Portrait",
+   "voice": "JCPB"
+  },
+  {
+   "asset": "Jackson",
+   "fullName": "Marshal Jackson Davion",
+   "callsign": null,
+   "portrait": "JacksonDavion",
+   "voice": "Jackson"
+  },
+  {
+   "asset": "JacksonEnemy",
+   "fullName": "Marshal Jackson Davion",
+   "callsign": null,
+   "portrait": "JacksonDavion",
+   "voice": "JacksonEnemy"
+  },
+  {
+   "asset": "Jacksonprime",
+   "fullName": "Jackson Prime",
+   "callsign": null,
+   "portrait": "FusiliersImposter",
+   "voice": "Jacksonprime"
+  },
+  {
+   "asset": "Jacob",
+   "fullName": "Jacob Cave",
+   "callsign": "Jacob Cave",
+   "portrait": "Jacob",
+   "voice": "Jacob"
+  },
+  {
+   "asset": "Jim",
+   "fullName": "Jim Nicholas",
+   "callsign": "Jim Nicholas",
+   "portrait": "Jim",
+   "voice": "Jim"
+  },
+  {
+   "asset": "Jim_COCKPIT",
+   "fullName": "Jim Nicholas",
+   "callsign": "Jim Nicholas",
+   "portrait": "Jim_COCKPIT",
+   "voice": "Jim_Cockpit"
+  },
+  {
+   "asset": "Jleon",
+   "fullName": "Janice Leon",
+   "callsign": null,
+   "portrait": "Enemy_Female_8",
+   "voice": "Jleon"
+  },
+  {
+   "asset": "Jormungandr",
+   "fullName": "J\u00f6rmungandr",
+   "callsign": null,
+   "portrait": "TorMiraborg_overste_icon",
+   "voice": "Alexander"
+  },
+  {
+   "asset": "Jsolomon",
+   "fullName": "Jace Salomon",
+   "callsign": null,
+   "portrait": "Enemy_Male_1",
+   "voice": "Jsolomon"
+  },
+  {
+   "asset": "KabahGuard1",
+   "fullName": "Kabah Guard",
+   "callsign": "Kabah Guard",
+   "portrait": "KabahGuard1",
+   "voice": "KabahGuard1"
+  },
+  {
+   "asset": "Kane",
+   "fullName": "Andreas Kane",
+   "callsign": null,
+   "portrait": "Kane",
+   "voice": "Kane"
+  },
+  {
+   "asset": "Karl",
+   "fullName": "Karl Prafol",
+   "callsign": "Karl Prafol",
+   "portrait": "Karl",
+   "voice": "Karl"
+  },
+  {
+   "asset": "Kate",
+   "fullName": "Kate Kincaid",
+   "callsign": "Kate",
+   "portrait": "Kate_Portrait",
+   "voice": "Kate"
+  },
+  {
+   "asset": "KellHounds",
+   "fullName": "Mercs_KellHounds",
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "Mercenary2"
+  },
+  {
+   "asset": "Kestrel",
+   "fullName": "Lt. Jeffrey Collins",
+   "callsign": null,
+   "portrait": "Male_Rank1_2",
+   "voice": "Kestrel"
+  },
+  {
+   "asset": "Koval",
+   "fullName": "Koval",
+   "callsign": "Koval",
+   "portrait": "Enemy2",
+   "voice": "Koval"
+  },
+  {
+   "asset": "Kristen",
+   "fullName": "Kristen Redmond",
+   "callsign": "Kristen Redmond",
+   "portrait": "Kristen",
+   "voice": "Kristen"
+  },
+  {
+   "asset": "Kristen_NoHelmet",
+   "fullName": "Kristen Redmond",
+   "callsign": "Kristen Redmond",
+   "portrait": "Kristen_NoHelmet",
+   "voice": "Kristen"
+  },
+  {
+   "asset": "KuritaCareer_AshakiNazari",
+   "fullName": "Chu-i Ashaki Nazari",
+   "callsign": "Nazari",
+   "portrait": "Enemy_Generic_2",
+   "voice": "FemaleAlly7"
+  },
+  {
+   "asset": "KuritaCareer_HayatoIto",
+   "fullName": "Chu-i Hayato Ito",
+   "callsign": "Ito",
+   "portrait": "Enemy_Kurita_Male_1",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "KuritaCareer_NiaAbara",
+   "fullName": "Chu-i Nia Abara",
+   "callsign": "Abara",
+   "portrait": "Enemy_Kurita_Generic_1",
+   "voice": "FemaleAlly3"
+  },
+  {
+   "asset": "KuritaRepresentative",
+   "fullName": "Kurita Representative",
+   "callsign": null,
+   "portrait": "DraconisRep",
+   "voice": "KuritaRep"
+  },
+  {
+   "asset": "LBonham",
+   "fullName": "Lawrence Bonham",
+   "callsign": null,
+   "portrait": "LawrenceBonham",
+   "voice": "LBonham"
+  },
+  {
+   "asset": "Lance",
+   "fullName": "Lance Gabel",
+   "callsign": "Lance Gabel",
+   "portrait": "Lance",
+   "voice": "Lance"
+  },
+  {
+   "asset": "LancerMechWarrior1",
+   "fullName": "Cpl. Matt Garner",
+   "callsign": null,
+   "portrait": "Male_Rank1_1",
+   "voice": "LancerMechWarrior1"
+  },
+  {
+   "asset": "LancerMechWarrior2",
+   "fullName": "Lt. Alex Turner",
+   "callsign": null,
+   "portrait": "Female_Rank1_1",
+   "voice": "LancerMechWarrior2"
+  },
+  {
+   "asset": "LancerMechWarrior3",
+   "fullName": "Cpt. Philip Woolridge",
+   "callsign": null,
+   "portrait": "Male_Rank2_1",
+   "voice": "LancerMechWarrior3"
+  },
+  {
+   "asset": "LancersMechWarrior",
+   "fullName": "Sgt. Edmond Brooks",
+   "callsign": null,
+   "portrait": "Male_Rank2_2",
+   "voice": "LancersMechWarrior"
+  },
+  {
+   "asset": "LaurelsLegionMechWarrior",
+   "fullName": "Laurel's Legion MechWarrior",
+   "callsign": null,
+   "portrait": "Female_Rank3_6",
+   "voice": "LaurelsLegionMechWarrior"
+  },
+  {
+   "asset": "Leif",
+   "fullName": "Leif",
+   "callsign": "Leif",
+   "portrait": "Leif",
+   "voice": "Leif"
+  },
+  {
+   "asset": "Lgodabra",
+   "fullName": "Lance Godabra",
+   "callsign": null,
+   "portrait": "Enemy_Male_3",
+   "voice": "Lgodabra"
+  },
+  {
+   "asset": "LiaoCareer_DexterFong",
+   "fullName": "Sao-wei Dexter Fong",
+   "callsign": "Fong",
+   "portrait": "Enemy_Liao_Male_1",
+   "voice": "MaleAlly10"
+  },
+  {
+   "asset": "LiaoCareer_NicolaiIvanov",
+   "fullName": "Sao-wei Nicolai Ivanov",
+   "callsign": "Ivanov",
+   "portrait": "Male_Rank2_6",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "LiaoCareer_ToriLiu",
+   "fullName": "Sao-wei Tori Liu",
+   "callsign": "Liu",
+   "portrait": "Enemy_Liao_Female_2",
+   "voice": "FemaleAlly5"
+  },
+  {
+   "asset": "LiaoCommander",
+   "fullName": "Liao Commander",
+   "callsign": null,
+   "portrait": "Enemy_Liao_Generic_2",
+   "voice": null
+  },
+  {
+   "asset": "LiaoMechwarrior",
+   "fullName": "Liao MechWarrior",
+   "callsign": null,
+   "portrait": "Enemy_Liao_Generic_1",
+   "voice": null
+  },
+  {
+   "asset": "LiaoRepresentative",
+   "fullName": "Liao Representative",
+   "callsign": null,
+   "portrait": "CapellanRep",
+   "voice": "LiaoRep"
+  },
+  {
+   "asset": "Lilith",
+   "fullName": "Lilith",
+   "callsign": "Lilith",
+   "portrait": "Lilith",
+   "voice": "Lilith"
+  },
+  {
+   "asset": "LindonsCompany",
+   "fullName": "Mercs_LindonsCompany",
+   "callsign": null,
+   "portrait": "Female_Rank2_7",
+   "voice": "Mercenary3"
+  },
+  {
+   "asset": "LucasTorin",
+   "fullName": "Lucas Torin",
+   "callsign": null,
+   "portrait": "Corperate1",
+   "voice": "LucasTorin"
+  },
+  {
+   "asset": "Lyana",
+   "fullName": "Lyana Moore",
+   "callsign": "Lyana Moore",
+   "portrait": "Lyana",
+   "voice": "Lyana"
+  },
+  {
+   "asset": "LyranAllianceLiaison",
+   "fullName": "Lyran Alliance Liaison",
+   "callsign": "Lyran Alliance Liaison",
+   "portrait": "LyranAllianceLiaison",
+   "voice": null
+  },
+  {
+   "asset": "MagistracyAgent",
+   "fullName": "Magistracy of Canopus Liaison",
+   "callsign": null,
+   "portrait": "CanopianRep",
+   "voice": null
+  },
+  {
+   "asset": "Major_Keller",
+   "fullName": "Major Keller",
+   "callsign": "Keller",
+   "portrait": "Generic_Rank1_5",
+   "voice": "Major_Keller"
+  },
+  {
+   "asset": "MaleAllyTemplate",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "MaleCivilianLeaders",
+   "fullName": "Civilians",
+   "callsign": null,
+   "portrait": "CivillianLeader",
+   "voice": null
+  },
+  {
+   "asset": "Male_Rank1_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_1",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "Male_Rank1_10",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_10",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Male_Rank1_11",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_11",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "Male_Rank1_12",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_12",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "Male_Rank1_13",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_13",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "Male_Rank1_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_2",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Male_Rank1_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_3",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "Male_Rank1_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_4",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "Male_Rank1_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_5",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "Male_Rank1_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_6",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "Male_Rank1_7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_7",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "Male_Rank1_8",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_8",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Male_Rank1_9",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_9",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "Male_Rank2_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_1",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "Male_Rank2_10",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_10",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "Male_Rank2_11",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_11",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Male_Rank2_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_2",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "Male_Rank2_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_3",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Male_Rank2_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_4",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Male_Rank2_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_5",
+   "voice": "MaleAlly6"
+  },
+  {
+   "asset": "Male_Rank2_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_6",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "Male_Rank2_7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_7",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "Male_Rank2_8",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_8",
+   "voice": "MaleAlly10"
+  },
+  {
+   "asset": "Male_Rank2_9",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank2_9",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "Male_Rank3_1",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank3_1",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "Male_Rank3_2",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank3_2",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "Male_Rank3_3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank3_3",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "Male_Rank3_4",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank3_4",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "Male_Rank3_5",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank3_5",
+   "voice": "MaleAlly8"
+  },
+  {
+   "asset": "Male_Rank3_6",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank3_6",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Male_Rank3_7",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank3_7",
+   "voice": "MaleAlly7"
+  },
+  {
+   "asset": "Marcus",
+   "fullName": "Marcus Kurita",
+   "callsign": null,
+   "portrait": "MarcusKurita_icon",
+   "voice": "Marcus"
+  },
+  {
+   "asset": "MarikCareer_KevinArmstrong",
+   "fullName": "Lt. Kevin Armstrong",
+   "callsign": "Armstrong",
+   "portrait": "Male_Rank1_3",
+   "voice": "MaleAlly3"
+  },
+  {
+   "asset": "MarikCareer_LinaSantiago",
+   "fullName": "Lt. Lina Santiago",
+   "callsign": "Santiago",
+   "portrait": "Enemy_Female_7",
+   "voice": "FemaleAlly1"
+  },
+  {
+   "asset": "MarikCareer_VictorAmbriz",
+   "fullName": "Lt. Victor Ambriz",
+   "callsign": "Ambriz",
+   "portrait": "Male_Rank1_12",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "MarikRepresentative",
+   "fullName": "Marik Representative",
+   "callsign": null,
+   "portrait": "MarikRep",
+   "voice": "MarikRep"
+  },
+  {
+   "asset": "Martin_Sandoval",
+   "fullName": "Martin Sandoval",
+   "callsign": null,
+   "portrait": "Male_Rank1_1",
+   "voice": "Martin_Sandoval"
+  },
+  {
+   "asset": "MaskirovkaAgent",
+   "fullName": "Maskirovka Agent",
+   "callsign": null,
+   "portrait": "MaskirovkaAgent",
+   "voice": "MaskirovkaAgent"
+  },
+  {
+   "asset": "McCarron",
+   "fullName": "McCarron's MechWarrior",
+   "callsign": null,
+   "portrait": "Male_Rank3_3",
+   "voice": null
+  },
+  {
+   "asset": "McCarron_MechWarrior",
+   "fullName": "McCarron's MechWarrior",
+   "callsign": null,
+   "portrait": "Enemy1",
+   "voice": "McCarron_MechWarrior"
+  },
+  {
+   "asset": "McCarronsArmoredCavalry",
+   "fullName": "Mercs_McCarronsArmoredCavalry",
+   "callsign": null,
+   "portrait": "Generic_Rank4_4",
+   "voice": "Mercenary4"
+  },
+  {
+   "asset": "MediaMember1",
+   "fullName": "Media Member",
+   "callsign": null,
+   "portrait": "Generic_Rank4_4",
+   "voice": "MediaMember1"
+  },
+  {
+   "asset": "MediaMember2",
+   "fullName": "Media Member",
+   "callsign": null,
+   "portrait": "CivillianLeader",
+   "voice": "MediaMember2"
+  },
+  {
+   "asset": "MediaMember3",
+   "fullName": "Media Member",
+   "callsign": null,
+   "portrait": "Anonymous2",
+   "voice": "MediaMember3"
+  },
+  {
+   "asset": "Mercenary3",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Female_Rank2_7",
+   "voice": "Mercenary2"
+  },
+  {
+   "asset": "Miner",
+   "fullName": "Miner",
+   "callsign": "Miner",
+   "portrait": "CivillianLeader",
+   "voice": "Miner"
+  },
+  {
+   "asset": "Miraborg",
+   "fullName": "Tor Miraborg",
+   "callsign": null,
+   "portrait": "TorMiraborg_rebel_icon",
+   "voice": "Miraborg"
+  },
+  {
+   "asset": "MobileFire",
+   "fullName": "Mercs_MobileFire",
+   "callsign": null,
+   "portrait": "Generic_Rank4_2",
+   "voice": "Mercenary1"
+  },
+  {
+   "asset": "Morgan",
+   "fullName": "Morgan Trensky",
+   "callsign": "Morgan Trensky",
+   "portrait": "Morgan",
+   "voice": "Morgan"
+  },
+  {
+   "asset": "Mori",
+   "fullName": "Precentor Dieron Sharilar Mori",
+   "callsign": null,
+   "portrait": "Mori",
+   "voice": null
+  },
+  {
+   "asset": "Muhammed",
+   "fullName": "Muhammed Dehring\u00e9",
+   "callsign": "Muhammed Dehring\u00e9",
+   "portrait": "Muhammed",
+   "voice": "Muhammed"
+  },
+  {
+   "asset": "NewMWPersonaAsset",
+   "fullName": "4th Arkab 'Mech",
+   "callsign": null,
+   "portrait": "Ally_Female_Rank_1",
+   "voice": "4THARKABMECH2"
+  },
+  {
+   "asset": "NewStarburgPilot1",
+   "fullName": "New Starburg Pilot",
+   "callsign": "New Starburg Pilot",
+   "portrait": "NewStarburgPilot1",
+   "voice": "NewStarburgPilot1"
+  },
+  {
+   "asset": "Nick",
+   "fullName": "Nick Lynch",
+   "callsign": "Nick Lynch",
+   "portrait": "Nick",
+   "voice": "Nick"
+  },
+  {
+   "asset": "Nicolai",
+   "fullName": "Nicolai Malthus",
+   "callsign": "Nicolai Malthus",
+   "portrait": "Nicolai",
+   "voice": "Nicolai"
+  },
+  {
+   "asset": "Nicole",
+   "fullName": "Nicole Kelswa",
+   "callsign": null,
+   "portrait": "NicoleKelswa_icon",
+   "voice": "Nicole"
+  },
+  {
+   "asset": "Nikolai",
+   "fullName": "Nikolai",
+   "callsign": "Nikolai",
+   "portrait": "NikMason",
+   "voice": "Nikolai"
+  },
+  {
+   "asset": "NorthwindHighlanders",
+   "fullName": "Mercs_NorthwindHighlanders",
+   "callsign": null,
+   "portrait": "Generic_Rank4_8",
+   "voice": "Mercenary2"
+  },
+  {
+   "asset": "Notkesuna",
+   "fullName": "Tai-Shu Michi Noketsuna",
+   "callsign": null,
+   "portrait": "Noketsuna",
+   "voice": "Notkesuna"
+  },
+  {
+   "asset": "NullPersona",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "OLance1",
+   "fullName": "Olesko's Lancemate 1",
+   "callsign": null,
+   "portrait": "Enemy_Davion_Marik_Male_1",
+   "voice": "OLance1"
+  },
+  {
+   "asset": "OLance2",
+   "fullName": "Olesko's Lancemate 2",
+   "callsign": null,
+   "portrait": "Enemy_Kurita_Male_2",
+   "voice": "OLance2"
+  },
+  {
+   "asset": "OLance3",
+   "fullName": "Olesko's Lancemate 3",
+   "callsign": null,
+   "portrait": "Enemy_Davion_Marik_Male_3",
+   "voice": "OLance3"
+  },
+  {
+   "asset": "Operations_Manager",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "OutlawPilot1",
+   "fullName": "Outlaw Pilot",
+   "callsign": "Outlaw Pilot",
+   "portrait": "OutlawPilot1",
+   "voice": "OutlawPilot1"
+  },
+  {
+   "asset": "OutlawPilot2",
+   "fullName": "Outlaw Pilot",
+   "callsign": "Outlaw Pilot",
+   "portrait": "OutlawPilot2",
+   "voice": "OutlawPilot2"
+  },
+  {
+   "asset": "Patrol_Enemy",
+   "fullName": "Patrol",
+   "callsign": "Patrol",
+   "portrait": "Enemy_Male_4",
+   "voice": "Patrol_Enemy"
+  },
+  {
+   "asset": "PavelShenzeng",
+   "fullName": null,
+   "callsign": null,
+   "portrait": "Male_Rank1_1",
+   "voice": "MaleAlly1"
+  },
+  {
+   "asset": "Pedroza",
+   "fullName": "Marshal Jessie Pedroza",
+   "callsign": null,
+   "portrait": "JessiePedroza",
+   "voice": "Pedroza"
+  },
+  {
+   "asset": "PersonaAnonymousEmployer",
+   "fullName": "IDENTITY WITHHELD",
+   "callsign": null,
+   "portrait": "Anonymous2",
+   "voice": null
+  },
+  {
+   "asset": "PersonaAnonymousEmployer2",
+   "fullName": "IDENTITY WITHHELD",
+   "callsign": null,
+   "portrait": "Anonymous",
+   "voice": null
+  },
+  {
+   "asset": "PersonaDavionEmployer",
+   "fullName": "House Davion Representative",
+   "callsign": null,
+   "portrait": "FedSunsRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "PersonaFedComEmployer1",
+   "fullName": "Federated Commonwealth Representative",
+   "callsign": null,
+   "portrait": "FedSunsRep",
+   "voice": null
+  },
+  {
+   "asset": "PersonaFedComEmployer2",
+   "fullName": "Federated Commonwealth Liaison",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": null
+  },
+  {
+   "asset": "PersonaIndependentEmployer1",
+   "fullName": "Liaison Officer",
+   "callsign": null,
+   "portrait": "Corperate1",
+   "voice": null
+  },
+  {
+   "asset": "PersonaIndependentEmployer2",
+   "fullName": "Liaison Officer",
+   "callsign": null,
+   "portrait": "Corperate2",
+   "voice": null
+  },
+  {
+   "asset": "PersonaIndependentEmployer3",
+   "fullName": "Liaison Officer",
+   "callsign": null,
+   "portrait": "Corperate3",
+   "voice": null
+  },
+  {
+   "asset": "PersonaIndependentEmployer4",
+   "fullName": "Liaison Officer",
+   "callsign": null,
+   "portrait": "IMCEmployee",
+   "voice": null
+  },
+  {
+   "asset": "PersonaKuritaEmployer",
+   "fullName": "House Kurita Representative",
+   "callsign": null,
+   "portrait": "DraconisRep",
+   "voice": null
+  },
+  {
+   "asset": "PersonaLiaoEmployer",
+   "fullName": "House Liao Liaison",
+   "callsign": null,
+   "portrait": "CapellanRep",
+   "voice": null
+  },
+  {
+   "asset": "PersonaMarikEmployer",
+   "fullName": "House Marik Liaison",
+   "callsign": null,
+   "portrait": "MarikRep",
+   "voice": null
+  },
+  {
+   "asset": "PersonaMercReviewRep",
+   "fullName": "Mercenary Board Representative",
+   "callsign": null,
+   "portrait": "MarikShippingRep",
+   "voice": null
+  },
+  {
+   "asset": "PersonaPirateEmployer1",
+   "fullName": "Pirate Liaison",
+   "callsign": null,
+   "portrait": "Pirate1",
+   "voice": null
+  },
+  {
+   "asset": "PersonaPirateEmployer2",
+   "fullName": "Pirate Liaison",
+   "callsign": null,
+   "portrait": "Pirate2",
+   "voice": null
+  },
+  {
+   "asset": "PersonaPirateEmployer3",
+   "fullName": "Pirate Liaison",
+   "callsign": null,
+   "portrait": "Pirate3",
+   "voice": null
+  },
+  {
+   "asset": "PersonaPirateEmployer4",
+   "fullName": "Pirate Liaison",
+   "callsign": null,
+   "portrait": "Pirate4",
+   "voice": null
+  },
+  {
+   "asset": "PersonaPirateEmployer5",
+   "fullName": "Pirate Liaison",
+   "callsign": null,
+   "portrait": "Pirate5",
+   "voice": null
+  },
+  {
+   "asset": "PersonaRasalhagueEmployer1",
+   "fullName": "Free Rasalhague Republic Representative",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "PersonaRebelEmployer1",
+   "fullName": "Rebel Liaison",
+   "callsign": null,
+   "portrait": "Rebel1",
+   "voice": null
+  },
+  {
+   "asset": "PersonaRebelEmployer2",
+   "fullName": "Rebel Liaison",
+   "callsign": null,
+   "portrait": "Rebel2",
+   "voice": null
+  },
+  {
+   "asset": "PersonaRebelEmployer3",
+   "fullName": "Rebel Liaison",
+   "callsign": null,
+   "portrait": "Rebel3",
+   "voice": null
+  },
+  {
+   "asset": "PersonaRebelEmployer4",
+   "fullName": "Rebel Liaison",
+   "callsign": null,
+   "portrait": "Rebel4",
+   "voice": null
+  },
+  {
+   "asset": "PersonaSteinerEmployer",
+   "fullName": "House Steiner Liaison",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Abe_Nakamura",
+   "fullName": "Abe Nakamura",
+   "callsign": null,
+   "portrait": "AbeNakamura",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Anonymous",
+   "fullName": "Anonymous",
+   "callsign": null,
+   "portrait": "Anonymous",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Anonymous2",
+   "fullName": "Anonymous",
+   "callsign": null,
+   "portrait": "Anonymous2",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_AsimCole",
+   "fullName": "High Governor Asim Cole",
+   "callsign": null,
+   "portrait": "FedSunsRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_AvalonShipping",
+   "fullName": "Avalon Shipping",
+   "callsign": null,
+   "portrait": "AvalonShipping",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Capellan",
+   "fullName": "House Liao Rep",
+   "callsign": null,
+   "portrait": "CapellanRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_CorporateLiason",
+   "fullName": "Corporate Liaison",
+   "callsign": null,
+   "portrait": "IshmaelStroud",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Draconis",
+   "fullName": "House Kurita",
+   "callsign": null,
+   "portrait": "DraconisRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_DraconisField_1",
+   "fullName": "House Kurita",
+   "callsign": null,
+   "portrait": "DraconisFieldRep1",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_DraconisField_2",
+   "fullName": "House Kurita",
+   "callsign": null,
+   "portrait": "DraconisFieldRep2",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_EireMechworks",
+   "fullName": "Eire Mechworks",
+   "callsign": null,
+   "portrait": "RegulasGuard",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_EnhancementsDiversified",
+   "fullName": "Enhancements Diversified",
+   "callsign": null,
+   "portrait": "MarikField",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Farmer",
+   "fullName": "Coalition of Farmers",
+   "callsign": null,
+   "portrait": "Farmer",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_FedSuns",
+   "fullName": "House Davion",
+   "callsign": null,
+   "portrait": "FedSunsRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_IMCEmployees",
+   "fullName": "Indentured Apex Employees",
+   "callsign": null,
+   "portrait": "IMCEmployee",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_ISA",
+   "fullName": "Inter-System Advocacy",
+   "callsign": null,
+   "portrait": "ISARep",
+   "voice": null
+  },
+  {
+   "asset": "Persona_InterstellarExpeditions_Female",
+   "fullName": "Interstellar Expeditions",
+   "callsign": null,
+   "portrait": "InterstellarExpeditions_Boss",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Ishmael",
+   "fullName": "Baron Ishmael Stroud",
+   "callsign": null,
+   "portrait": "IshmaelStroud",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_KarisSo",
+   "fullName": "Karis So, Duchess of Tsinghai",
+   "callsign": null,
+   "portrait": "KarisSo",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_KuritanPeasant",
+   "fullName": "Kuritan Peasants",
+   "callsign": null,
+   "portrait": "KuritanPeasant",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_LagumGumi",
+   "fullName": "Lagom-gumi",
+   "callsign": null,
+   "portrait": "Lagom-Gumi",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_LyranGenerals",
+   "fullName": "Anonymous Lyran Generals",
+   "callsign": null,
+   "portrait": "AnonymousLyranGenerals",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_LyranRebel",
+   "fullName": "Lyran Rebels",
+   "callsign": null,
+   "portrait": "LyranRebel",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_LyranRep",
+   "fullName": "House Steiner Liaison",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_LyranRepField",
+   "fullName": "House Steiner",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Marik",
+   "fullName": "House Marik",
+   "callsign": null,
+   "portrait": "MarikRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_MarikCorporation",
+   "fullName": "Shipping Representative",
+   "callsign": null,
+   "portrait": "MarikShippingRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_MarikField",
+   "fullName": "House Marik",
+   "callsign": null,
+   "portrait": "MarikField",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_MarikShipping",
+   "fullName": "Gienah Automotive",
+   "callsign": null,
+   "portrait": "MarikShippingRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_Miller",
+   "fullName": "Miller",
+   "callsign": null,
+   "portrait": "TamarindMiningRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_NeophyteJasmine",
+   "fullName": "Neophyte Jasmine",
+   "callsign": null,
+   "portrait": "Anonymous2",
+   "voice": null
+  },
+  {
+   "asset": "Persona_NicholasHaas",
+   "fullName": "Nicholas Haas",
+   "callsign": null,
+   "portrait": "TamarindMiningRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_PavelShenzeng",
+   "fullName": "Pavel Shenzeng",
+   "callsign": null,
+   "portrait": "PavelShenzeng",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_RashpurOwens",
+   "fullName": "Rashpur Owens Inc.",
+   "callsign": null,
+   "portrait": "RashpurOwens",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_RegulasGuard",
+   "fullName": "Regulas Guard",
+   "callsign": null,
+   "portrait": "RegulasGuard",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_SamanthaCole",
+   "fullName": "Samantha Cole",
+   "callsign": "Samantha Cole",
+   "portrait": "SamanthaCole",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_SteinerSeperatists",
+   "fullName": "Skye Pro-Independence Fighters",
+   "callsign": null,
+   "portrait": "LyranRebel",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_TamarindResidents",
+   "fullName": "Residents of Tamarind",
+   "callsign": null,
+   "portrait": "TamarindResident",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_TamarindShipping",
+   "fullName": "Tamarind Mining Company",
+   "callsign": null,
+   "portrait": "TamarindMiningRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_TamrindMining",
+   "fullName": "Tamarind Mining Corporation",
+   "callsign": null,
+   "portrait": "TamarindMiningRep",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "Persona_TsiangResidents",
+   "fullName": "Tsiang Rebels",
+   "callsign": null,
+   "portrait": "CapellanField",
+   "voice": "MaleAlly4"
+  },
+  {
+   "asset": "PinnacleGuardsman",
+   "fullName": "Pinnacle Guardsman",
+   "callsign": "Pinnacle Guardsman",
+   "portrait": "PinnacleGuardsman",
+   "voice": "PinnacleGuardsman"
+  },
+  {
+   "asset": "Piranha",
+   "fullName": "Commander Mason",
+   "callsign": "MASON",
+   "portrait": "MalePilot",
+   "voice": null
+  },
+  {
+   "asset": "Pirate1",
+   "fullName": "Pirate",
+   "callsign": "Pirate",
+   "portrait": "Pirate1DLC7",
+   "voice": "Pirate1"
+  },
+  {
+   "asset": "Pirate2",
+   "fullName": "Pirate",
+   "callsign": "Pirate",
+   "portrait": "Pirate2DLC7",
+   "voice": "Pirate2"
+  },
+  {
+   "asset": "Polonia",
+   "fullName": "David Polonia",
+   "callsign": "Polonia",
+   "portrait": "Enemy2",
+   "voice": "Polonia"
+  },
+  {
+   "asset": "Rachel",
+   "fullName": "Rachel Laird",
+   "callsign": "Rachel Laird",
+   "portrait": "Rachel",
+   "voice": "Rachel"
+  },
+  {
+   "asset": "RandalLogan",
+   "fullName": "Randal Logan",
+   "callsign": null,
+   "portrait": "RandallLogan",
+   "voice": "RandalLogan"
+  },
+  {
+   "asset": "Rangers_Mechwarrior",
+   "fullName": "Rangers Mechwarrior",
+   "callsign": null,
+   "portrait": "Enemy_Male_6",
+   "voice": "EnemyRanger"
+  },
+  {
+   "asset": "Raptor_Persona",
+   "fullName": "Raptor",
+   "callsign": "Raptor",
+   "portrait": "Raptor",
+   "voice": "MaleAlly9"
+  },
+  {
+   "asset": "RasalhagueRep",
+   "fullName": "Free Rasalhague Republic Rep",
+   "callsign": null,
+   "portrait": "RasalhagueRep",
+   "voice": "RasalhagueRep"
+  },
+  {
+   "asset": "Rasalhague_MechWarrior",
+   "fullName": "Rasalhague MechWarrior",
+   "callsign": null,
+   "portrait": "Male_Rank1_11",
+   "voice": "Rasalhague_MechWarrior"
+  },
+  {
+   "asset": "Ravid",
+   "fullName": "Ravid",
+   "callsign": "Ravid",
+   "portrait": "Enemy2",
+   "voice": "Ravid"
+  },
+  {
+   "asset": "Reggiephilburn",
+   "fullName": "Reggie Philburn",
+   "callsign": null,
+   "portrait": "ReggiePhilburn",
+   "voice": "Reggiephilburn"
+  },
+  {
+   "asset": "RichardMarkson",
+   "fullName": "Col. Richard Markson",
+   "callsign": null,
+   "portrait": "RichardMarkson",
+   "voice": null
+  },
+  {
+   "asset": "Ricol",
+   "fullName": "Hassid Ricol",
+   "callsign": null,
+   "portrait": "HassidRicol_icon",
+   "voice": "Ricol"
+  },
+  {
+   "asset": "Riley",
+   "fullName": "Riley",
+   "callsign": "Riley",
+   "portrait": "Riley",
+   "voice": "Riley"
+  },
+  {
+   "asset": "Ronan",
+   "fullName": "Ronan",
+   "callsign": null,
+   "portrait": "Ronan",
+   "voice": "Ronan"
+  },
+  {
+   "asset": "Ronin_Mechwarrior",
+   "fullName": "Ronin Mechwarrior",
+   "callsign": null,
+   "portrait": "Enemy_Generic_6",
+   "voice": "Ronin_Mechwarrior"
+  },
+  {
+   "asset": "RookieTemplate",
+   "fullName": "Pfc. Adil Said",
+   "callsign": "Rook",
+   "portrait": "RookieAlly",
+   "voice": null
+  },
+  {
+   "asset": "Rouzurski",
+   "fullName": "General Rouzurski",
+   "callsign": "Rouzurski",
+   "portrait": "Generic_Rank2_3",
+   "voice": "Rouzurski"
+  },
+  {
+   "asset": "Rsnord",
+   "fullName": "Col. Rhonda Snord",
+   "callsign": null,
+   "portrait": "Snord",
+   "voice": "Rsnord"
+  },
+  {
+   "asset": "Ryana",
+   "fullName": "Major Ryana Campbell",
+   "callsign": "Ryana",
+   "portrait": "Ryana",
+   "voice": "Ryana"
+  },
+  {
+   "asset": "Ryana_NoPortrait",
+   "fullName": "Major Ryana Campbell",
+   "callsign": "Ryana",
+   "portrait": null,
+   "voice": "Ryana"
+  },
+  {
+   "asset": "SHELLY",
+   "fullName": "Shelly Trudeau",
+   "callsign": "Shelly Trudeau",
+   "portrait": "SHELLY",
+   "voice": "SHELLY"
+  },
+  {
+   "asset": "Saito",
+   "fullName": "Saito",
+   "callsign": "Saito",
+   "portrait": "Enemy_Male_1",
+   "voice": "Saito"
+  },
+  {
+   "asset": "Sam",
+   "fullName": "Sam Hagel",
+   "callsign": "Sam Hagel",
+   "portrait": "Sam",
+   "voice": "Sam"
+  },
+  {
+   "asset": "Samantha",
+   "fullName": "Samantha Cole",
+   "callsign": "Samantha",
+   "portrait": "SamanthaCole",
+   "voice": "Samantha"
+  },
+  {
+   "asset": "Sanderson",
+   "fullName": "Ben Sanderson",
+   "callsign": "Sanderson",
+   "portrait": "Enemy2",
+   "voice": "Sanderson"
+  },
+  {
+   "asset": "Sara",
+   "fullName": "Sara Crosby",
+   "callsign": "Sara Crosby",
+   "portrait": "Sara",
+   "voice": "Sara"
+  },
+  {
+   "asset": "Sasha",
+   "fullName": "Sasha Lockwood",
+   "callsign": "Sasha Lockwood",
+   "portrait": "Sasha",
+   "voice": "Sasha"
+  },
+  {
+   "asset": "ScimitarPilot1",
+   "fullName": "Scimitar Pilot",
+   "callsign": "Scimitar Pilot",
+   "portrait": "ScimitarPilot1",
+   "voice": "ScimitarPilot1"
+  },
+  {
+   "asset": "Security_StarLeague",
+   "fullName": "Star League Security System",
+   "callsign": null,
+   "portrait": "FemalePilot",
+   "voice": null
+  },
+  {
+   "asset": "Security_StarLeague_01",
+   "fullName": "Star League Security",
+   "callsign": "Star League Security",
+   "portrait": "CivillianLeader",
+   "voice": "Security_StarLeague_01"
+  },
+  {
+   "asset": "Semyonov",
+   "fullName": "Mikko Semyonov",
+   "callsign": "Semyonov",
+   "portrait": "Enemy1",
+   "voice": "Semyonov"
+  },
+  {
+   "asset": "Seth",
+   "fullName": "Seth",
+   "callsign": "Seth",
+   "portrait": "Seth",
+   "voice": "Seth"
+  },
+  {
+   "asset": "Settler",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": null
+  },
+  {
+   "asset": "Sgodabra",
+   "fullName": "Sam Godabra",
+   "callsign": null,
+   "portrait": "Enemy_Female_10",
+   "voice": "Sgodabra"
+  },
+  {
+   "asset": "Shenzeng",
+   "fullName": "Capt. Shenzeng",
+   "callsign": "Shenzeng",
+   "portrait": "ArtemiShenzeng",
+   "voice": "MaleAlly5"
+  },
+  {
+   "asset": "SimonDumoss",
+   "fullName": "Simon Dumoss",
+   "callsign": "Simon Dumoss",
+   "portrait": "SimonDumoss",
+   "voice": null
+  },
+  {
+   "asset": "SimonDumoss_FullBody",
+   "fullName": "Simon Dumoss",
+   "callsign": "Simon Dumoss",
+   "portrait": "SimonDumoss_FullBody",
+   "voice": null
+  },
+  {
+   "asset": "SmokeJaguarCommander",
+   "fullName": "Smoke Jaguar Commander",
+   "callsign": "Smoke Jaguar Commander",
+   "portrait": "SmokeJaguarCommander",
+   "voice": "SmokeJaguarCommander"
+  },
+  {
+   "asset": "Smurray",
+   "fullName": null,
+   "callsign": null,
+   "portrait": null,
+   "voice": "Smurray"
+  },
+  {
+   "asset": "Society_Mech_Warrior",
+   "fullName": "Society Mech Warrior",
+   "callsign": null,
+   "portrait": "Enemy_Steiner_Marik_Male_3",
+   "voice": "Society_Mech_Warrior"
+  },
+  {
+   "asset": "SolarisSponsorRep",
+   "fullName": "Solaris Sponsor Rep",
+   "callsign": null,
+   "portrait": "Corperate1",
+   "voice": null
+  },
+  {
+   "asset": "Soren",
+   "fullName": "Soren",
+   "callsign": "Soren",
+   "portrait": "Soren",
+   "voice": "Soren"
+  },
+  {
+   "asset": "Sortek",
+   "fullName": "Col. Ardan Sortek",
+   "callsign": "Sortek",
+   "portrait": "ArdanSortek",
+   "voice": "EnemyDavionMale"
+  },
+  {
+   "asset": "Spears",
+   "fullName": "Interstellar Expeditions",
+   "callsign": "Spears",
+   "portrait": "SebastianSpears",
+   "voice": "Spears"
+  },
+  {
+   "asset": "Spears_FullBody",
+   "fullName": "Sebastian Spears",
+   "callsign": "Sebastian Spears",
+   "portrait": "Spears_FullBody",
+   "voice": null
+  },
+  {
+   "asset": "Stanz",
+   "fullName": "Lionel Stanz",
+   "callsign": "Stanz",
+   "portrait": "Enemy_Generic_2",
+   "voice": "Stanz"
+  },
+  {
+   "asset": "SteelViperCommander",
+   "fullName": "Steel Viper Commander",
+   "callsign": "Steel Viper Commander",
+   "portrait": "SteelViperCommander",
+   "voice": "SteelViperCommander"
+  },
+  {
+   "asset": "SteinerCareer_ConerMurphy",
+   "fullName": "Lt. Coner Murphy",
+   "callsign": "Murphy",
+   "portrait": "Generic_Rank1_1",
+   "voice": "MaleAlly2"
+  },
+  {
+   "asset": "SteinerCareer_GredaWeber",
+   "fullName": "Lt. Greda Weber",
+   "callsign": "Weber",
+   "portrait": "Female_Rank2_5",
+   "voice": "FemaleAlly8"
+  },
+  {
+   "asset": "SteinerCareer_RebeccaMcCleary",
+   "fullName": "Lt. Rebecca McCleary",
+   "callsign": "McCleary",
+   "portrait": "Enemy_Steiner_Marik_Female_2",
+   "voice": "FemaleAlly9"
+  },
+  {
+   "asset": "Steiner_Mechwarrior",
+   "fullName": "Steiner Mechwarrior",
+   "callsign": null,
+   "portrait": "Enemy_Steiner_Marik_Male_3",
+   "voice": "Steiner_Mechwarrior"
+  },
+  {
+   "asset": "Taggart",
+   "fullName": "Mathew Taggart",
+   "callsign": "Taggart",
+   "portrait": "Enemy2",
+   "voice": "Taggart"
+  },
+  {
+   "asset": "Tala",
+   "fullName": "Tala Keating",
+   "callsign": "Tala Keating",
+   "portrait": "Tala",
+   "voice": "Tala"
+  },
+  {
+   "asset": "TaurianRep",
+   "fullName": "Taurian Concordat Rep",
+   "callsign": null,
+   "portrait": "TaurianRep",
+   "voice": null
+  },
+  {
+   "asset": "TealTwins",
+   "fullName": "Teal Twins",
+   "callsign": null,
+   "portrait": "Pirate1",
+   "voice": "TealTwins"
+  },
+  {
+   "asset": "TelecomWorker",
+   "fullName": "Telecom Worker",
+   "callsign": null,
+   "portrait": "Anonymous",
+   "voice": "TelecomWorker"
+  },
+  {
+   "asset": "TerryZee",
+   "fullName": "Terry Zee",
+   "callsign": null,
+   "portrait": "TerryZee",
+   "voice": "TerryZee"
+  },
+  {
+   "asset": "TheBadDream",
+   "fullName": "Mercs_TheBadDream",
+   "callsign": null,
+   "portrait": "GenericEnemy2",
+   "voice": "Mercenary2"
+  },
+  {
+   "asset": "Thumpers",
+   "fullName": "Mercs_Thumpers",
+   "callsign": null,
+   "portrait": "Generic_Rank4_4",
+   "voice": "Mercenary4"
+  },
+  {
+   "asset": "Tomas",
+   "fullName": "Tomas",
+   "callsign": "Tomas",
+   "portrait": "Tomas",
+   "voice": "Tomas"
+  },
+  {
+   "asset": "Tor_Civies",
+   "fullName": "Tor Miraborg",
+   "callsign": null,
+   "portrait": "TorMiraborg_overste_icon",
+   "voice": "Alexander"
+  },
+  {
+   "asset": "Tor_MechWarrior",
+   "fullName": "Tor Miraborg",
+   "callsign": null,
+   "portrait": "TorMiraborg_rebel_icon",
+   "voice": "Alexander"
+  },
+  {
+   "asset": "Tor_Scarred",
+   "fullName": "Tor Miraborg",
+   "callsign": null,
+   "portrait": "TorMiraborg_Scarred",
+   "voice": "Alexander"
+  },
+  {
+   "asset": "Travissherk",
+   "fullName": "Travis Sherk",
+   "callsign": null,
+   "portrait": "GenericEnemy3",
+   "voice": null
+  },
+  {
+   "asset": "TutorialCommander",
+   "fullName": "Tutorial Commander",
+   "callsign": "Tutorial Commander",
+   "portrait": "Ryana",
+   "voice": "TutorialCommander"
+  },
+  {
+   "asset": "Unknown",
+   "fullName": "Unknown",
+   "callsign": null,
+   "portrait": null,
+   "voice": "Unknown"
+  },
+  {
+   "asset": "Unknown_Pilot",
+   "fullName": "Unknown Pilot",
+   "callsign": "Unknown Pilot",
+   "portrait": "Enemy1",
+   "voice": "UnknownPilot"
+  },
+  {
+   "asset": "Valten",
+   "fullName": "Valten Ryder",
+   "callsign": "Valten Ryder",
+   "portrait": "Valten",
+   "voice": "Valten"
+  },
+  {
+   "asset": "Vaughn",
+   "fullName": "Silvan Vaughn",
+   "callsign": "Vaughn",
+   "portrait": "SilvanVaughn",
+   "voice": "Vaughn"
+  },
+  {
+   "asset": "Victor",
+   "fullName": "Victor Ian Steiner-Davion",
+   "callsign": "Victor Steiner-Davion",
+   "portrait": "Victor",
+   "voice": "Victor"
+  },
+  {
+   "asset": "VonRichter",
+   "fullName": "Duke Elias Von Richter",
+   "callsign": null,
+   "portrait": "VonRichter",
+   "voice": "VonRichter"
+  },
+  {
+   "asset": "Vorsythe",
+   "fullName": "Vorsythe",
+   "callsign": "Vorsythe",
+   "portrait": "Enemy2",
+   "voice": "Vorsythe"
+  },
+  {
+   "asset": "WacoRangers",
+   "fullName": "Mercs_WacoRangers",
+   "callsign": null,
+   "portrait": "Generic_Rank4_2",
+   "voice": "Mercenary1"
+  },
+  {
+   "asset": "WarDog",
+   "fullName": "Lt. Arthur Willoughby",
+   "callsign": "War Dog",
+   "portrait": "WardogAlly",
+   "voice": null
+  },
+  {
+   "asset": "WayneDr",
+   "fullName": "Wayne Dyr",
+   "callsign": null,
+   "portrait": "WayneDyr",
+   "voice": "WayneDr"
+  },
+  {
+   "asset": "Westrick",
+   "fullName": "Col. Richard Westrick",
+   "callsign": null,
+   "portrait": "ColWestrick",
+   "voice": "Westrick"
+  },
+  {
+   "asset": "Whansen",
+   "fullName": "Wolfgang Hansen",
+   "callsign": null,
+   "portrait": "WolfgangHansen",
+   "voice": "Whansen"
+  },
+  {
+   "asset": "Whidbey",
+   "fullName": "Aditi Whidbey",
+   "callsign": "Whidbey",
+   "portrait": "Enemy_Liao_Female_3",
+   "voice": "Whidbey"
+  },
+  {
+   "asset": "WillOfKali_Persona",
+   "fullName": "Will Of Kali",
+   "callsign": null,
+   "portrait": "KarisSo",
+   "voice": "EnemyLiaoFemale"
+  },
+  {
+   "asset": "Willman",
+   "fullName": "Anders WIllman",
+   "callsign": "Willman",
+   "portrait": "Enemy1",
+   "voice": null
+  },
+  {
+   "asset": "WolfsDragoons",
+   "fullName": "Mercs_WolfsDragoons",
+   "callsign": null,
+   "portrait": "Generic_Rank4_2",
+   "voice": "Mercenary1"
+  },
+  {
+   "asset": "WordofBlakeRep",
+   "fullName": "Word of Blake Representative",
+   "callsign": "Word of Blake Representative",
+   "portrait": "WordofBlakeRep",
+   "voice": null
+  },
+  {
+   "asset": "Yamata",
+   "fullName": "Yamata",
+   "callsign": "Yamata",
+   "portrait": "Enemy_Yamata",
+   "voice": "Yamata"
+  },
+  {
+   "asset": "Yard_Foreman_01",
+   "fullName": "Yard Foreman",
+   "callsign": "Yard Foreman",
+   "portrait": "CivillianLeader",
+   "voice": "Yard_Foreman_01"
+  },
+  {
+   "asset": "Yard_Foreman_02",
+   "fullName": "Yard Foreman",
+   "callsign": "Yard Foreman",
+   "portrait": "CivillianLeader",
+   "voice": "Yard_Foreman_02"
+  },
+  {
+   "asset": "Yaros",
+   "fullName": "Yaros Regas",
+   "callsign": "Yaros",
+   "portrait": "Enemy1",
+   "voice": "Yaro"
+  },
+  {
+   "asset": "Zaks",
+   "fullName": "Col. Steven Zaks",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": "Zaks"
+  },
+  {
+   "asset": "ZaksEnemy",
+   "fullName": "Col. Steven Zaks",
+   "callsign": null,
+   "portrait": "LyranRep",
+   "voice": "ZaksEnemy"
+  },
+  {
+   "asset": "Zavarov",
+   "fullName": "Zavarov",
+   "callsign": "Zavarov",
+   "portrait": "Enemy_Davion_Female_1",
+   "voice": "Zavarov"
+  },
+  {
+   "asset": "basecommander_ally_01_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Ally_01",
+   "voice": "BaseCommander_Ally_01"
+  },
+  {
+   "asset": "basecommander_ally_02_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Ally_02",
+   "voice": "BaseCommander_Ally_02"
+  },
+  {
+   "asset": "basecommander_ally_03_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Ally_03",
+   "voice": "BaseCommander_Ally_03"
+  },
+  {
+   "asset": "basecommander_ally_04_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Ally_04",
+   "voice": "BaseCommander_Ally_04"
+  },
+  {
+   "asset": "basecommander_ally_05_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Ally_01",
+   "voice": "BaseCommander_Ally_05"
+  },
+  {
+   "asset": "basecommander_ally_06_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Ally_01",
+   "voice": "BaseCommander_Ally_06"
+  },
+  {
+   "asset": "basecommander_enemy_01_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Enemy_01",
+   "voice": "BaseCommander_Enemy_01"
+  },
+  {
+   "asset": "basecommander_enemy_02_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Enemy_02",
+   "voice": "BaseCommander_Enemy_02"
+  },
+  {
+   "asset": "basecommander_enemy_03_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Enemy_03",
+   "voice": "BaseCommander_Enemy_03"
+  },
+  {
+   "asset": "basecommander_enemy_04_genmission",
+   "fullName": "Garrison Commander",
+   "callsign": "GC",
+   "portrait": "BaseCommander_Enemy_04",
+   "voice": "BaseCommander_Enemy_04"
+  },
+  {
+   "asset": "farmer_02",
+   "fullName": "Farmer",
+   "callsign": "Farmer",
+   "portrait": "CivillianLeader",
+   "voice": null
+  }
+ ],
+ "portraits": [
+  "AbeNakamura",
+  "Adam",
+  "AdamMenu",
+  "Alan",
+  "AlannaDamu",
+  "AlexanderKurita_icon",
+  "Ali",
+  "Allistair",
+  "Ally_Female_Rank_1",
+  "Ally_Female_Rank_2",
+  "Ally_Female_Rank_3",
+  "Ally_Female_Rank_4",
+  "Angus",
+  "Anonymous",
+  "Anonymous2",
+  "AnonymousLyranGenerals",
+  "Anthony",
+  "ArdanSortek",
+  "ArdanSortekMW",
+  "ArtemiShenzeng",
+  "Ash",
+  "AvalonShipping",
+  "AvalonShipping1",
+  "AvaMasters",
+  "Barrett",
+  "BaseCommander_Ally_01",
+  "BaseCommander_Ally_02",
+  "BaseCommander_Ally_03",
+  "BaseCommander_Ally_04",
+  "BaseCommander_Enemy_01",
+  "BaseCommander_Enemy_02",
+  "BaseCommander_Enemy_03",
+  "BaseCommander_Enemy_04",
+  "BountyHunter",
+  "Caleb",
+  "CalebRourke",
+  "Camacho",
+  "CanopianRep",
+  "CapellanField",
+  "CapellanRep",
+  "Cheng",
+  "ChristianDLC7",
+  "ChristianMansdottir_colonel_FullBody",
+  "ChristianMansdottir_colonel_icon",
+  "ChristianMansdottir_overste_FullBody",
+  "ChristianMansdottir_overste_icon",
+  "CivillianLeader",
+  "ClanBaseCommander1",
+  "ClanBaseCommander2",
+  "ClanBaseCommander3",
+  "ClanBaseCommander4",
+  "ClanWolfWarrior",
+  "ColWestrick",
+  "CommsTech",
+  "COMSTARDEMI-PRECENTOR",
+  "ComstarRep",
+  "Corperate1",
+  "Corperate2",
+  "Corperate3",
+  "CustomIcon_01",
+  "CustomIcon_02",
+  "CustomIcon_03",
+  "CustomIcon_04",
+  "CustomIcon_05",
+  "CustomIcon_06",
+  "CustomIcon_07",
+  "CustomIcon_08",
+  "CustomIcon_09",
+  "CustomIcon_10",
+  "CustomIcon_11",
+  "CustomIcon_12",
+  "CustomIcon_13",
+  "CustomIcon_14",
+  "CustomIcon_15",
+  "CustomIcon_16",
+  "CustomIcon_17",
+  "CustomIcon_18",
+  "CustomIcon_19",
+  "Darryl",
+  "DraconisFieldRep1",
+  "DraconisFieldRep2",
+  "DraconisFieldRep3",
+  "DraconisRep",
+  "DuncanFisher",
+  "DuncanFisher_Helmet",
+  "Dwillt",
+  "Enemy1",
+  "Enemy2",
+  "Enemy_Davion_Female_1",
+  "Enemy_Davion_Female_2",
+  "Enemy_Davion_Female_3",
+  "Enemy_Davion_Generic_1",
+  "Enemy_Davion_Generic_2",
+  "Enemy_Davion_Male_1",
+  "Enemy_Davion_Male_2",
+  "Enemy_Davion_Male_3",
+  "Enemy_Davion_Male_4",
+  "Enemy_Davion_Male_5",
+  "Enemy_Davion_Marik_Female_1",
+  "Enemy_Davion_Marik_Female_2",
+  "Enemy_Davion_Marik_Female_3",
+  "Enemy_Davion_Marik_Generic_1",
+  "Enemy_Davion_Marik_Generic_2",
+  "Enemy_Davion_Marik_Generic_3",
+  "Enemy_Davion_Marik_Male_1",
+  "Enemy_Davion_Marik_Male_2",
+  "Enemy_Davion_Marik_Male_3",
+  "Enemy_Davion_Marik_Male_4",
+  "Enemy_Female_1",
+  "Enemy_Female_10",
+  "Enemy_Female_2",
+  "Enemy_Female_3",
+  "Enemy_Female_4",
+  "Enemy_Female_5",
+  "Enemy_Female_6",
+  "Enemy_Female_7",
+  "Enemy_Female_8",
+  "Enemy_Female_9",
+  "Enemy_Generic_1",
+  "Enemy_Generic_2",
+  "Enemy_Generic_3",
+  "Enemy_Generic_4",
+  "Enemy_Generic_5",
+  "Enemy_Generic_6",
+  "Enemy_Kurita_Female_1",
+  "Enemy_Kurita_Female_2",
+  "Enemy_Kurita_Generic_1",
+  "Enemy_Kurita_Generic_2",
+  "Enemy_Kurita_Generic_3",
+  "Enemy_Kurita_Generic_4",
+  "Enemy_Kurita_Generic_5",
+  "Enemy_Kurita_Male_1",
+  "Enemy_Kurita_Male_2",
+  "Enemy_Kurita_Male_3",
+  "Enemy_Liao_Female_1",
+  "Enemy_Liao_Female_2",
+  "Enemy_Liao_Female_3",
+  "Enemy_Liao_Female_4",
+  "Enemy_Liao_Generic_1",
+  "Enemy_Liao_Generic_2",
+  "Enemy_Liao_Male_1",
+  "Enemy_Liao_Male_2",
+  "Enemy_Liao_Male_3",
+  "Enemy_Liao_Male_4",
+  "Enemy_Male_1",
+  "Enemy_Male_10",
+  "Enemy_Male_2",
+  "Enemy_Male_3",
+  "Enemy_Male_4",
+  "Enemy_Male_5",
+  "Enemy_Male_6",
+  "Enemy_Male_7",
+  "Enemy_Male_8",
+  "Enemy_Male_9",
+  "Enemy_Steiner_Marik_Female_1",
+  "Enemy_Steiner_Marik_Female_2",
+  "Enemy_Steiner_Marik_Female_3",
+  "Enemy_Steiner_Marik_Generic_1",
+  "Enemy_Steiner_Marik_Generic_2",
+  "Enemy_Steiner_Marik_Generic_3",
+  "Enemy_Steiner_Marik_Male_1",
+  "Enemy_Steiner_Marik_Male_2",
+  "Enemy_Steiner_Marik_Male_3",
+  "Enemy_Steiner_Marik_Male_4",
+  "Enemy_Yamata",
+  "EnemyClanPilot1",
+  "EnemyClanPilot10",
+  "EnemyClanPilot2",
+  "EnemyClanPilot3",
+  "EnemyClanPilot4",
+  "EnemyClanPilot5",
+  "EnemyClanPilot6",
+  "EnemyClanPilot7",
+  "EnemyClanPilot8",
+  "EnemyClanPilot9",
+  "Eric",
+  "Fahad",
+  "Farmer",
+  "FedcomLiaison",
+  "FedSunsFieldRep",
+  "FedSunsRep",
+  "Female_Rank1_1",
+  "Female_Rank1_2",
+  "Female_Rank1_3",
+  "Female_Rank1_4",
+  "Female_Rank1_5",
+  "Female_Rank1_6",
+  "Female_Rank1_7",
+  "Female_Rank2_1",
+  "Female_Rank2_2",
+  "Female_Rank2_3",
+  "Female_Rank2_4",
+  "Female_Rank2_5",
+  "Female_Rank2_6",
+  "Female_Rank2_7",
+  "Female_Rank3_1",
+  "Female_Rank3_2",
+  "Female_Rank3_3",
+  "Female_Rank3_4",
+  "Female_Rank3_5",
+  "Female_Rank3_6",
+  "FemaleFarmer",
+  "FemalePilot",
+  "Fenstrom",
+  "Focht",
+  "Freddie",
+  "FRRPILOT1",
+  "FusiliersImposter",
+  "Generic_Rank1_1",
+  "Generic_Rank1_2",
+  "Generic_Rank1_3",
+  "Generic_Rank1_4",
+  "Generic_Rank1_5",
+  "Generic_Rank2_1",
+  "Generic_Rank2_2",
+  "Generic_Rank2_3",
+  "Generic_Rank2_4",
+  "Generic_Rank3_1",
+  "Generic_Rank3_2",
+  "Generic_Rank3_3",
+  "Generic_Rank3_4",
+  "Generic_Rank3_5",
+  "Generic_Rank3_6",
+  "Generic_Rank3_7",
+  "Generic_Rank3_8",
+  "Generic_Rank4_1",
+  "Generic_Rank4_2",
+  "Generic_Rank4_3",
+  "Generic_Rank4_4",
+  "Generic_Rank4_5",
+  "Generic_Rank4_6",
+  "Generic_Rank4_7",
+  "Generic_Rank4_8",
+  "GenericEnemy1",
+  "GenericEnemy2",
+  "GenericEnemy3",
+  "Gerber",
+  "GhostBearCommander",
+  "Goblin",
+  "Gregor",
+  "HaakonMagnusson_FullBody",
+  "HaakonMagnusson_Icon",
+  "Hampton",
+  "HassidRicol_icon",
+  "Ian",
+  "IMCEmployee",
+  "InterstellarExpeditions_Boss",
+  "ISARep",
+  "IshmaelStroud",
+  "JacksonDavion",
+  "Jacob",
+  "JCPB_Logo_Portrait",
+  "JessiePedroza",
+  "Jim",
+  "Jim_COCKPIT",
+  "KabahGuard1",
+  "Kane",
+  "KarisSo",
+  "Karl",
+  "Kate_Portrait",
+  "Kristen",
+  "Kristen_NoHelmet",
+  "KuritanPeasant",
+  "Lagom-Gumi",
+  "Lance",
+  "LawrenceBonham",
+  "Leif",
+  "LeonFreeman",
+  "Lilith",
+  "Lyana",
+  "LyranAllianceLiaison",
+  "LyranField",
+  "LyranRebel",
+  "LyranRep",
+  "Male_Rank1_1",
+  "Male_Rank1_10",
+  "Male_Rank1_11",
+  "Male_Rank1_12",
+  "Male_Rank1_13",
+  "Male_Rank1_2",
+  "Male_Rank1_3",
+  "Male_Rank1_4",
+  "Male_Rank1_5",
+  "Male_Rank1_6",
+  "Male_Rank1_7",
+  "Male_Rank1_8",
+  "Male_Rank1_9",
+  "Male_Rank2_1",
+  "Male_Rank2_10",
+  "Male_Rank2_11",
+  "Male_Rank2_2",
+  "Male_Rank2_3",
+  "Male_Rank2_4",
+  "Male_Rank2_5",
+  "Male_Rank2_6",
+  "Male_Rank2_7",
+  "Male_Rank2_8",
+  "Male_Rank2_9",
+  "Male_Rank3_1",
+  "Male_Rank3_2",
+  "Male_Rank3_3",
+  "Male_Rank3_4",
+  "Male_Rank3_5",
+  "Male_Rank3_6",
+  "Male_Rank3_7",
+  "MalePilot",
+  "MarcusKurita_icon",
+  "MarikCorporationEmployee",
+  "MarikField",
+  "MarikRep",
+  "MarikShippingRep",
+  "MaskirovkaAgent",
+  "Morgan",
+  "Mori",
+  "Muhammed",
+  "NewStarburgPilot1",
+  "Nick",
+  "Nicolai",
+  "NicoleKelswa_icon",
+  "NikMason",
+  "Noketsuna",
+  "Nordica",
+  "Olesko",
+  "OutlawPilot1",
+  "OutlawPilot2",
+  "PavelShenzeng",
+  "PinnacleGuardsman",
+  "Pirate1",
+  "Pirate1DLC7",
+  "Pirate2",
+  "Pirate2DLC7",
+  "Pirate3",
+  "Pirate4",
+  "Pirate5",
+  "Rachel",
+  "RandallLogan",
+  "Raptor",
+  "RasalhagueRep",
+  "RashpurOwens",
+  "Rebel1",
+  "Rebel2",
+  "Rebel3",
+  "Rebel4",
+  "ReggiePhilburn",
+  "RegulasGuard",
+  "RichardMarkson",
+  "Riley",
+  "Ronan",
+  "RookieAlly",
+  "Ryana",
+  "Sam",
+  "SamanthaCole",
+  "Sara",
+  "Sasha",
+  "ScimitarPilot1",
+  "SebastianSpears",
+  "Seth",
+  "SHELLY",
+  "SilvanVaughn",
+  "SimonDumoss",
+  "SimonDumoss_FullBody",
+  "SmokeJaguarCommander",
+  "Snord",
+  "Soren",
+  "Spears_FullBody",
+  "SteelViperCommander",
+  "StoicAlly",
+  "Tala",
+  "TamarindMiningRep",
+  "TamarindResident",
+  "TaurianRep",
+  "TerryZee",
+  "TheodoreKurita_icon",
+  "Tomas",
+  "TorMiraborg_overste_icon",
+  "TorMiraborg_rebel_icon",
+  "TorMiraborg_Scarred",
+  "Valten",
+  "Victor",
+  "VonRichter",
+  "WardogAlly",
+  "WardogEnemy",
+  "WayneDyr",
+  "WolfgangHansen",
+  "WordofBlakeRep"
+ ],
+ "voices": [
+  "33Commander",
+  "41stAvalonCommander",
+  "4thArkabMech",
+  "4THARKABMECH1",
+  "4THARKABMECH2",
+  "4THARKABMECH3",
+  "5thAmpeganMech",
+  "5thAmpheganMech",
+  "Adam",
+  "Alan",
+  "Alexander",
+  "Ali",
+  "AllianceMagistrate",
+  "Allied_Pilot",
+  "AlliedPilot",
+  "Allistair",
+  "Ally_Commander",
+  "Ally_Patrol",
+  "Ally_Pilot",
+  "Angus",
+  "Anthony",
+  "ARCTURANARMSENGINEER",
+  "ARCTURANGUARDPILOT",
+  "ARCTURANPLANETARYGOVENOR",
+  "ArdanSortekMW",
+  "ArdanSortekMWBoss",
+  "Ash",
+  "AuldhouseGovernor",
+  "AvaMasters",
+  "Barrett",
+  "Basecommander",
+  "BaseCommander_Ally_01",
+  "BaseCommander_Ally_02",
+  "BaseCommander_Ally_03",
+  "BaseCommander_Ally_04",
+  "BaseCommander_Ally_05",
+  "BaseCommander_Ally_06",
+  "BaseCommander_Davion",
+  "BaseCommander_Enemy_01",
+  "BaseCommander_Enemy_02",
+  "BaseCommander_Enemy_03",
+  "BaseCommander_Enemy_04",
+  "BaseCommander_Kurita",
+  "BaseCommander_Liao",
+  "BaseCommander_Marik",
+  "BaseCommander_Steiner",
+  "Bounty_Hunter",
+  "Bowen",
+  "CacheNarrator",
+  "Caleb",
+  "CalebRourke",
+  "Carlos",
+  "Cheng",
+  "Chloe",
+  "Christian",
+  "Christian_Lyran",
+  "Christian_Rasalhague",
+  "ChristianDLC7",
+  "City_Councilor",
+  "Civilian",
+  "Civilian_1",
+  "ClanBaseCommander1",
+  "ClanBaseCommander2",
+  "ClanBaseCommander3",
+  "ClanBaseCommander4",
+  "ClannerPilot1",
+  "ClannerPilot2",
+  "ClannerPilot3",
+  "ClannerPilot4",
+  "ClannerPilot5",
+  "ClanWolfWarrior",
+  "CNordic",
+  "ColonelMcCarron",
+  "Colonist",
+  "Colt",
+  "Commander",
+  "CommsTech",
+  "ComstarAcolyte",
+  "COMSTARDEMI-PRECENTOR",
+  "ComStarEmergency",
+  "Cottonbateman",
+  "CraterCobraMechWarrior",
+  "CrewMember1",
+  "CrewMember2",
+  "Crimson_Inclination",
+  "Curoy",
+  "Damu",
+  "Darryl",
+  "DavionMechWarriors",
+  "Derek",
+  "Dragons_Breath_Commander",
+  "Duke_Cole",
+  "DuncanFisher",
+  "Dwillt",
+  "EarthWerksForeman",
+  "Enemy_Commander",
+  "Enemy_Pilot",
+  "EnemyBlackInfFemale",
+  "EnemyBlackInfMale",
+  "EnemyBoss",
+  "EnemyClanPilot1",
+  "EnemyClanPilot10",
+  "EnemyClanPilot2",
+  "EnemyClanPilot3",
+  "EnemyClanPilot4",
+  "EnemyClanPilot5",
+  "EnemyClanPilot6",
+  "EnemyClanPilot7",
+  "EnemyClanPilot8",
+  "EnemyClanPilot9",
+  "EnemyComstarFemale",
+  "EnemyComstarMale",
+  "EnemyCultist",
+  "EnemyDavionFemale",
+  "EnemyDavionMale",
+  "EnemyGeneric",
+  "EnemyInsurgent",
+  "EnemyKuritaFemale",
+  "EnemyKuritaMale",
+  "EnemyLiaoFemale",
+  "EnemyLiaoMale",
+  "EnemyMarikFemale",
+  "EnemyMarikMale",
+  "EnemyMech",
+  "EnemyMechCommander",
+  "EnemyPirateFemale",
+  "EnemyPirateMale",
+  "EnemyRanger",
+  "EnemyRasalhagueFemale",
+  "EnemyRasalhagueMale",
+  "EnemySteinerFemale",
+  "EnemySteinerMale",
+  "Eric",
+  "Erickson",
+  "Fahad",
+  "farmer_01",
+  "farmer_02",
+  "Father",
+  "FemaleAlly1",
+  "FemaleAlly10",
+  "FemaleAlly2",
+  "FemaleAlly3",
+  "FemaleAlly4",
+  "FemaleAlly5",
+  "FemaleAlly6",
+  "FemaleAlly7",
+  "FemaleAlly8",
+  "FemaleAlly9",
+  "FIFTHAMPHIGEANPILOT",
+  "First_Kavalleri_Commander",
+  "Folesko",
+  "Forgotten1",
+  "Fransson",
+  "Freddie",
+  "Freeman",
+  "FRRPILOT",
+  "FRRPILOT1",
+  "FusiliersCommander",
+  "Galatea",
+  "Gan",
+  "GarbledVoice",
+  "Garrison_Commander",
+  "GarrisonCmdr",
+  "Gerber",
+  "GhostBearCommander",
+  "Goblin",
+  "Goshi",
+  "Gregor",
+  "Haakon",
+  "Hampton",
+  "Henrik",
+  "Herrera",
+  "Hroughriders",
+  "Ian",
+  "IEExplorer",
+  "InfernoLeader",
+  "InfernoLieutenant",
+  "Issa",
+  "Jackson",
+  "JacksonEnemy",
+  "Jacksonprime",
+  "Jacob",
+  "JCPB",
+  "Jim",
+  "Jim_Cockpit",
+  "Jleon",
+  "Jsolomon",
+  "KabahGuard1",
+  "Kane",
+  "Karl",
+  "Kate",
+  "Kestrel",
+  "Koval",
+  "Kristen",
+  "KuritaRepresentative",
+  "Lance",
+  "LancerMechWarrior1",
+  "LancerMechWarrior2",
+  "LancerMechWarrior3",
+  "LancersMechWarrior",
+  "LaurelsLegionMechWarrior",
+  "LBonham",
+  "Leif",
+  "Lgodabra",
+  "LiaoCommander",
+  "LiaoMechwarrior",
+  "LiaoRepresentative",
+  "Lilith",
+  "LucasTorin",
+  "Lyana",
+  "MagistracyAgent",
+  "Major_Keller",
+  "MaleAlly1",
+  "MaleAlly10",
+  "MaleAlly2",
+  "MaleAlly3",
+  "MaleAlly4",
+  "MaleAlly5",
+  "MaleAlly6",
+  "MaleAlly7",
+  "MaleAlly8",
+  "MaleAlly9",
+  "Marcus",
+  "MarikRepresentative",
+  "Martin_Sandoval",
+  "MaskirovaAgent",
+  "MaskirovkaAgent",
+  "McCarron",
+  "McCarron_MechWarrior",
+  "MediaMember1",
+  "MediaMember2",
+  "MediaMember3",
+  "Mercenary1",
+  "Mercenary2",
+  "Mercenary3",
+  "Mercenary4",
+  "Miner",
+  "Miraborg",
+  "Morgan",
+  "Muhammed",
+  "NewMWDialogueVoiceAsset",
+  "NewStarburgPilot1",
+  "Nick",
+  "Nicolai",
+  "Nicole",
+  "Nikolai",
+  "Notkesuna",
+  "OLance1",
+  "OLance2",
+  "OLance3",
+  "Operations_Manager",
+  "OutlawPilot1",
+  "OutlawPilot2",
+  "Patrol_Enemy",
+  "Pedroza",
+  "PinnacleGuardsman",
+  "Pirate1",
+  "Pirate2",
+  "Polonia",
+  "Rachel",
+  "RandalLogan",
+  "Rando1",
+  "Rando2",
+  "Rando3",
+  "Rando4",
+  "Rando5",
+  "Rando6",
+  "Rando7",
+  "Ranger_Mechwarrior",
+  "Rangers_Mechwarrior",
+  "Rasalhague_MechWarrior",
+  "RasalhagueRep",
+  "Ravid",
+  "Reggiephilburn",
+  "ResidentialLeader_Ally_01",
+  "ResidentialLeader_Ally_02",
+  "ResidentialLeader_Ally_03",
+  "ResidentialLeader_Enemy_01",
+  "ResidentialLeader_Enemy_02",
+  "ResidentialLeader_Enemy_03",
+  "RichardMarkson",
+  "Ricol",
+  "Riley",
+  "Ronan",
+  "Ronin_Mechwarrior",
+  "Rouzurski",
+  "Rsnord",
+  "Ryana",
+  "Saito",
+  "Sam",
+  "Samantha",
+  "Sanderson",
+  "Sara",
+  "Sasha",
+  "ScimitarPilot1",
+  "Security_StarLeague",
+  "Security_StarLeague_01",
+  "Semyonov",
+  "Seth",
+  "Settler",
+  "Sgodabra",
+  "SHELLY",
+  "SmokeJaguarCommander",
+  "Smurray",
+  "Society_Mech_Warrior",
+  "Soldier1",
+  "Soren",
+  "Sortek",
+  "Spears",
+  "Stanz",
+  "SteelViperCommander",
+  "Steiner_Mechwarrior",
+  "Taggart",
+  "Tala",
+  "TaurianConcordant",
+  "TaurianRep",
+  "TealTwins",
+  "Technician1",
+  "TelecomWorker",
+  "TerryZee",
+  "Tomas",
+  "Travissherk",
+  "TutorialCommander",
+  "Unknown",
+  "Unknown_Pilot",
+  "Valten",
+  "Vaughn",
+  "Victor",
+  "VonRichter",
+  "Vorsythe",
+  "WayneDr",
+  "Westrick",
+  "Whansen",
+  "Whidbey",
+  "Willman",
+  "Yamata",
+  "Yard_Foreman_01",
+  "Yard_Foreman_02",
+  "Yaros",
+  "Zaks",
+  "ZaksEnemy",
+  "Zavarov"
+ ]
+}

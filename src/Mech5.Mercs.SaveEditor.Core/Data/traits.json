@@ -1,0 +1,970 @@
+{
+ "pilot": [
+  {
+   "asset": "Affinity_Annihilator_Chassis_PilotTrait",
+   "label": "Annihilator 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Archer_Chassis_PilotTrait",
+   "label": "Archer 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_ArcticWolf_Chassis_PilotTrait",
+   "label": "ArcticWolf 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Assassin_Chassis_PilotTrait",
+   "label": "Assassin 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Assault_PilotTrait",
+   "label": "Assault 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Atlas_Chassis_PilotTrait",
+   "label": "Atlas 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Awesome_Chassis_PilotTrait",
+   "label": "Awesome 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Banshee_Chassis_PilotTrait",
+   "label": "Banshee 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_BattleMaster_Chassis_PilotTrait",
+   "label": "BattleMaster 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Behemoth_Chassis_PilotTrait",
+   "label": "Behemoth 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_BlackHawk_Chassis_PilotTrait",
+   "label": "Black Hawk 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_BlackKnight_Chassis_PilotTrait",
+   "label": "Black Knight 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Blackjack_Chassis_PilotTrait",
+   "label": "Blackjack 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Bushwacker_Chassis_PilotTrait",
+   "label": "Bushwacker 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Cataphract_Chassis_PilotTrait",
+   "label": "Cataphract 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Catapult_Chassis_PilotTrait",
+   "label": "Catapult 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_CauldronBorn_Chassis_PilotTrait",
+   "label": "Cauldron-Born 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Centurion_Chassis_PilotTrait",
+   "label": "Centurion 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Champion_Chassis_PilotTrait",
+   "label": "Champion 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Charger_Chassis_PilotTrait",
+   "label": "Charger 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Cicada_Chassis_PilotTrait",
+   "label": "Cicada 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Commando_Chassis_PilotTrait",
+   "label": "Commando 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Crab_Chassis_PilotTrait",
+   "label": "Crab 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Crusader_Chassis_PilotTrait",
+   "label": "Crusader 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Cyclops_Chassis_PilotTrait",
+   "label": "Cyclops 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Daishi_Chassis_PilotTrait",
+   "label": "Daishi 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Dervish_Chassis_PilotTrait",
+   "label": "Dervish 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Dragon_Chassis_PilotTrait",
+   "label": "Dragon 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Dragonfly_Chassis_PilotTrait",
+   "label": "Dragonfly 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Enforcer_Chassis_PilotTrait",
+   "label": "Enforcer 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Fenris_Chassis_PilotTrait",
+   "label": "Fenris 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Firemoth_Chassis_PilotTrait",
+   "label": "Dasher 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Firestarter_Chassis_PilotTrait",
+   "label": "Firestarter 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Flea_Chassis_PilotTrait",
+   "label": "Flea 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Freeman_Jenner_PilotTrait",
+   "label": "Jenner 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Gladiator_Chassis_PilotTrait",
+   "label": "Gladiator 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Grasshopper_Chassis_PilotTrait",
+   "label": "Grasshopper 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Griffin_Chassis_PilotTrait",
+   "label": "Griffin 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Hankyu_Chassis_PilotTrait",
+   "label": "Hankyu 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Hatamoto-Chi_Chassis_PilotTrait",
+   "label": "Hatamoto-Chi 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Hatchetman_Chassis_PilotTrait",
+   "label": "Hatchetman 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Heavy_PilotTrait",
+   "label": "Heavy 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Highlander_Chassis_PilotTrait",
+   "label": "Highlander 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Hunchback_Chassis_PilotTrait",
+   "label": "Hunchback 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_JagerMech_Chassis_PilotTrait",
+   "label": "JagerMech 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Javelin_Chassis_PilotTrait",
+   "label": "Javelin 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Jenner_Chassis_PilotTrait",
+   "label": "Jenner 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_KingCrab_Chassis_PilotTrait",
+   "label": "King Crab 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Kintaro_Chassis_PilotTrait",
+   "label": "Kintaro 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Kodiak_Chassis_PilotTrait",
+   "label": "Kodiak 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Koshi_Chassis_PilotTrait",
+   "label": "Koshi 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Kraken_Chassis_PilotTrait",
+   "label": "Kraken 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Light_PilotTrait",
+   "label": "Light 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Linebacker_Chassis_PilotTrait",
+   "label": "Linebacker 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Loaderking_Chassis_PilotTrait",
+   "label": "Loaderking 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Locust_Chassis_PilotTrait",
+   "label": "Locust 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Loki_Chassis_PilotTrait",
+   "label": "Loki 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Longbow_Chassis_PilotTrait",
+   "label": "Longbow 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_MadCat_Chassis_PilotTrait",
+   "label": "Mad Cat 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_ManOWar_Chassis_PilotTrait",
+   "label": "Man O' War 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Marauder_Chassis_PilotTrait",
+   "label": "Marauder 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Masakari_Chassis_PilotTrait",
+   "label": "Masakari 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Mauler_Chassis_PilotTrait",
+   "label": "Mauler 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Medium_PilotTrait",
+   "label": "Medium 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Naga_Chassis_PilotTrait",
+   "label": "Naga 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_NightGyr_Chassis_PilotTrait",
+   "label": "Night Gyr 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Nightstar_Chassis_PilotTrait",
+   "label": "Nightstar 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Nobori-Nin_Chassis_PilotTrait",
+   "label": "Nobori-Nin 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_NovaCat_Chassis_PilotTrait",
+   "label": "NovaCat 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Orion_Chassis_PilotTrait",
+   "label": "Orion 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Panther_Chassis_PilotTrait",
+   "label": "Panther 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_PhoenixHawk_Chassis_PilotTrait",
+   "label": "Phoenix Hawk 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Puma_Chassis_PilotTrait",
+   "label": "Puma 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Quickdraw_Chassis_PilotTrait",
+   "label": "Quickdraw 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Raven_Chassis_PilotTrait",
+   "label": "Raven 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Rifleman_Chassis_PilotTrait",
+   "label": "Rifleman 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Ryoken_Chassis_PilotTrait",
+   "label": "Ryoken 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_ShadowHawk_Chassis_PilotTrait",
+   "label": "Shadow Hawk 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Shadowcat_Chassis_PilotTrait",
+   "label": "Shadow Cat 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Spider_Chassis_PilotTrait",
+   "label": "Spider 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Stalker_Chassis_PilotTrait",
+   "label": "Stalker 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_StarAdder_Chassis_PilotTrait",
+   "label": "StarAdder 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_SunSpider_Chassis_PilotTrait",
+   "label": "SunSpider 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Sunder_Chassis_PilotTrait",
+   "label": "Sunder 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Supernova_Chassis_PilotTrait",
+   "label": "Supernova 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Thor_Chassis_PilotTrait",
+   "label": "Thor 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Thunderbolt_Chassis_PilotTrait",
+   "label": "Thunderbolt 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Trebuchet_Chassis_PilotTrait",
+   "label": "Trebuchet 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Uller_Chassis_PilotTrait",
+   "label": "Uller 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_UrbanMech_Chassis_PilotTrait",
+   "label": "UrbanMech 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Victor_Chassis_PilotTrait",
+   "label": "Victor 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Vindicator_Chassis_PilotTrait",
+   "label": "Vindicator 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Vixen_Chassis_PilotTrait",
+   "label": "Vixen 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Vulcan_Chassis_PilotTrait",
+   "label": "Vulcan 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Vulture_Chassis_PilotTrait",
+   "label": "Vulture 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Warhammer_Chassis_PilotTrait",
+   "label": "Warhammer 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Wolfhound_Chassis_PilotTrait",
+   "label": "Wolfhound 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Wolverine_Chassis_PilotTrait",
+   "label": "Wolverine 'Mech Affinity"
+  },
+  {
+   "asset": "Affinity_Zeus_Chassis_PilotTrait",
+   "label": "Zeus 'Mech Affinity"
+  },
+  {
+   "asset": "Background_ClanGhostBear_PilotTrait",
+   "label": "Clan Ghost Bear Origins"
+  },
+  {
+   "asset": "Background_ClanJadeFalcon_PilotTrait",
+   "label": "Clan Jade Falcon Origins"
+  },
+  {
+   "asset": "Background_ClanSmokeJaguar_PilotTrait",
+   "label": "Clan Smoke Jaguar Origins"
+  },
+  {
+   "asset": "Background_ClanWolf_PilotTrait",
+   "label": "Clan Wolf Origins"
+  },
+  {
+   "asset": "Background_ConArtist_PilotTrait",
+   "label": "Con Artist"
+  },
+  {
+   "asset": "Background_OldMoney_PilotTrait",
+   "label": "Old Money"
+  },
+  {
+   "asset": "Background_Scrapper_PilotTrait",
+   "label": "Scrapper"
+  },
+  {
+   "asset": "BadPatient_PilotTrait",
+   "label": "Bad Patient"
+  },
+  {
+   "asset": "BitterEnd_PilotTrait",
+   "label": "Bitter End"
+  },
+  {
+   "asset": "Bookworm_PilotTrait",
+   "label": "Bookworm"
+  },
+  {
+   "asset": "Bulwark_PilotTrait",
+   "label": "Bulwark"
+  },
+  {
+   "asset": "ClusterHitter_PilotTrait",
+   "label": "Cluster Hitter"
+  },
+  {
+   "asset": "Criminal_Davion_PilotTrait",
+   "label": "Criminal (House Davion)"
+  },
+  {
+   "asset": "Criminal_Kurita_PilotTrait",
+   "label": "Criminal (House Kurita)"
+  },
+  {
+   "asset": "Criminal_Liao_PilotTrait",
+   "label": "Criminal (House Liao)"
+  },
+  {
+   "asset": "Criminal_Marik_PilotTrait",
+   "label": "Criminal (Free Worlds League)"
+  },
+  {
+   "asset": "Criminal_Steiner_PilotTrait",
+   "label": "Criminal (House Steiner)"
+  },
+  {
+   "asset": "EagleEyes_PilotTrait",
+   "label": "Eagle Eyes"
+  },
+  {
+   "asset": "Expert_AC10_PilotTrait",
+   "label": "AC/10 Expert"
+  },
+  {
+   "asset": "Expert_AC20_PilotTrait",
+   "label": "AC/20 Expert"
+  },
+  {
+   "asset": "Expert_AC2_PilotTrait",
+   "label": "AC/2 Expert"
+  },
+  {
+   "asset": "Expert_AC5_PilotTrait",
+   "label": "AC/5 Expert"
+  },
+  {
+   "asset": "Expert_Artillery_PilotTrait",
+   "label": "Artillery Expert"
+  },
+  {
+   "asset": "Expert_GaussRifle_PilotTrait",
+   "label": "Gauss Rifle Expert"
+  },
+  {
+   "asset": "Expert_LRM10_PilotTrait",
+   "label": "LRM 10 Expert"
+  },
+  {
+   "asset": "Expert_LRM15_PilotTrait",
+   "label": "LRM 15 Expert"
+  },
+  {
+   "asset": "Expert_LRM20_PilotTrait",
+   "label": "LRM 20 Expert"
+  },
+  {
+   "asset": "Expert_LRM5_PilotTrait",
+   "label": "LRM 5 Expert"
+  },
+  {
+   "asset": "Expert_LargeLaser_PilotTrait",
+   "label": "Large Laser Expert"
+  },
+  {
+   "asset": "Expert_MRM_PilotTrait",
+   "label": "MRM Expert"
+  },
+  {
+   "asset": "Expert_MediumLaser_PilotTrait",
+   "label": "Medium Laser Expert"
+  },
+  {
+   "asset": "Expert_PPC_PilotTrait",
+   "label": "PPC Expert"
+  },
+  {
+   "asset": "Expert_SRM2_PilotTrait",
+   "label": "SRM 2 Expert"
+  },
+  {
+   "asset": "Expert_SRM4_PilotTrait",
+   "label": "SRM 4 Expert"
+  },
+  {
+   "asset": "Expert_SRM6_PilotTrait",
+   "label": "SRM 6 Expert"
+  },
+  {
+   "asset": "Expert_SmallLaser_PilotTrait",
+   "label": "Small Laser Expert"
+  },
+  {
+   "asset": "FastLearner_PilotTrait",
+   "label": "Fast Learner"
+  },
+  {
+   "asset": "Firebug_PilotTrait",
+   "label": "Firebug"
+  },
+  {
+   "asset": "Frail_PilotTrait",
+   "label": "Frail"
+  },
+  {
+   "asset": "Frugal_PilotTrait",
+   "label": "Frugal"
+  },
+  {
+   "asset": "Graduate_Gunslinger_PilotTrait",
+   "label": "Gunslinger Graduate"
+  },
+  {
+   "asset": "Graduate_NAIS_PilotTrait",
+   "label": "NAIS Graduate"
+  },
+  {
+   "asset": "Graduate_Nagelring_PilotTrait",
+   "label": "Nagelring Graduate"
+  },
+  {
+   "asset": "Graduate_Princefield_PilotTrait",
+   "label": "Princefield Graduate"
+  },
+  {
+   "asset": "Graduate_SunZhang_PilotTrait",
+   "label": "Sun Zhang Graduate"
+  },
+  {
+   "asset": "Greedy_PilotTrait",
+   "label": "Greedy"
+  },
+  {
+   "asset": "Hands-OnLearner_PilotTrait",
+   "label": "Hands-on Learner"
+  },
+  {
+   "asset": "Hatred_Davion_PilotTrait",
+   "label": "Hates House Davion"
+  },
+  {
+   "asset": "Hatred_Kurita_PilotTrait",
+   "label": "Hates House Kurita"
+  },
+  {
+   "asset": "Hatred_Liao_PilotTrait",
+   "label": "Hates House Liao"
+  },
+  {
+   "asset": "Hatred_Marik_PilotTrait",
+   "label": "Hates Free Worlds League"
+  },
+  {
+   "asset": "Hatred_Steiner_PilotTrait",
+   "label": "Hates House Steiner"
+  },
+  {
+   "asset": "Hearty_PilotTrait",
+   "label": "Hearty"
+  },
+  {
+   "asset": "HotDog_PilotTrait",
+   "label": "Hot Dog"
+  },
+  {
+   "asset": "Hypochondriac_PilotTrait",
+   "label": "Hypochondriac"
+  },
+  {
+   "asset": "Master_Autocannon10_PilotTrait",
+   "label": "AC/10 Master"
+  },
+  {
+   "asset": "Master_Autocannon20_PilotTrait",
+   "label": "AC/20 Master"
+  },
+  {
+   "asset": "Master_Autocannon2_PilotTrait",
+   "label": "AC/2 Master"
+  },
+  {
+   "asset": "Master_Autocannon5_PilotTrait",
+   "label": "AC/5 Master"
+  },
+  {
+   "asset": "Master_Laser_PilotTrait",
+   "label": "Laser Master"
+  },
+  {
+   "asset": "Master_PPC_PilotTrait",
+   "label": "PPC Master"
+  },
+  {
+   "asset": "Noble_Davion_PilotTrait",
+   "label": "House Davion Noble"
+  },
+  {
+   "asset": "Noble_Kurita_PilotTrait",
+   "label": "House Kurita Noble"
+  },
+  {
+   "asset": "Noble_Liao_PilotTrait",
+   "label": "House Liao Noble"
+  },
+  {
+   "asset": "Noble_Marik_PilotTrait",
+   "label": "Free Worlds League Noble"
+  },
+  {
+   "asset": "Noble_Steiner_PilotTrait",
+   "label": "House Steiner Noble"
+  },
+  {
+   "asset": "ObliqueArtilleryman_PilotTrait",
+   "label": "ObliqueArtilleryman_Name"
+  },
+  {
+   "asset": "Patriot_Davion_PilotTrait",
+   "label": "House Davion Patriot"
+  },
+  {
+   "asset": "Patriot_Kurita_PilotTrait",
+   "label": "House Kurita Patriot"
+  },
+  {
+   "asset": "Patriot_Liao_PilotTrait",
+   "label": "House Liao Patriot"
+  },
+  {
+   "asset": "Patriot_Marik_PilotTrait",
+   "label": "Free Worlds League Patriot"
+  },
+  {
+   "asset": "Patriot_Steiner_PilotTrait",
+   "label": "House Steiner Patriot"
+  },
+  {
+   "asset": "Precise_PilotTrait",
+   "label": "Precise"
+  },
+  {
+   "asset": "QuickHealer_PilotTrait",
+   "label": "Quick Healer"
+  },
+  {
+   "asset": "Sharpshooter_PilotTrait",
+   "label": "Sharpshooter"
+  },
+  {
+   "asset": "Specialist_Arena_PilotTrait",
+   "label": "Arena Specialist"
+  },
+  {
+   "asset": "Specialist_Autocannon_PilotTrait",
+   "label": "standard Autocannon Specialist"
+  },
+  {
+   "asset": "Specialist_LRM_PilotTrait",
+   "label": "LRM Specialist"
+  },
+  {
+   "asset": "Specialist_Laser_PilotTrait",
+   "label": "Laser Specialist"
+  },
+  {
+   "asset": "Specialist_PointBlank_PilotTrait",
+   "label": "Point Blank Specialist"
+  },
+  {
+   "asset": "Specialist_SRM_PilotTrait",
+   "label": "SRM Specialist"
+  },
+  {
+   "asset": "SpeedDemon_PilotTrait",
+   "label": "Speed Demon"
+  },
+  {
+   "asset": "Survivor_PilotTrait",
+   "label": "Survivor"
+  },
+  {
+   "asset": "TriggerDiscipline_PilotTrait",
+   "label": "Trigger Discipline"
+  },
+  {
+   "asset": "Unbreakable_PilotTrait",
+   "label": "Unbreakable"
+  }
+ ],
+ "mech": [
+  {
+   "asset": "IncreasedAccelerationDeceleration_Trait1",
+   "label": "Responsive Movement I"
+  },
+  {
+   "asset": "IncreasedAccelerationDeceleration_Trait2",
+   "label": "Responsive Movement II"
+  },
+  {
+   "asset": "IncreasedArmor_Trait1",
+   "label": "Refined Armor I"
+  },
+  {
+   "asset": "IncreasedArmor_Trait2",
+   "label": "Refined Armor II"
+  },
+  {
+   "asset": "IncreasedBallisticDamage_Trait1",
+   "label": "Superior Detonation I"
+  },
+  {
+   "asset": "IncreasedBallisticDamage_Trait2",
+   "label": "Superior Detonation II"
+  },
+  {
+   "asset": "IncreasedBallisticRangeAndSpeed_Trait1",
+   "label": "Faster Projectiles I"
+  },
+  {
+   "asset": "IncreasedBallisticRangeAndSpeed_Trait2",
+   "label": "Faster Projectiles II"
+  },
+  {
+   "asset": "IncreasedEnergyDamage_Trait1",
+   "label": "Enhanced Energy Output I"
+  },
+  {
+   "asset": "IncreasedEnergyDamage_Trait2",
+   "label": "Enhanced Energy Output II"
+  },
+  {
+   "asset": "IncreasedEnergyRangeAndSpeed_Trait1",
+   "label": "Accurate Focusing Arrays I"
+  },
+  {
+   "asset": "IncreasedEnergyRangeAndSpeed_Trait2",
+   "label": "Accurate Focusing Arrays II"
+  },
+  {
+   "asset": "IncreasedHeatCapacity_Trait1",
+   "label": "Heat Containment I"
+  },
+  {
+   "asset": "IncreasedHeatCapacity_Trait2",
+   "label": "Heat Containment II"
+  },
+  {
+   "asset": "IncreasedHeatCooling_Trait1",
+   "label": "Faster Cooling"
+  },
+  {
+   "asset": "IncreasedJJAccelXYZ_Trait1",
+   "label": "Jump Jet Thrust"
+  },
+  {
+   "asset": "IncreasedJJFuelBurnTime_Trait1",
+   "label": "Longer Burn Time"
+  },
+  {
+   "asset": "IncreasedJJFuelRegenTime_Trait1",
+   "label": "Rapid Jump Jet Recharge"
+  },
+  {
+   "asset": "IncreasedLockRetentionAndLoseLockTime_Trait1",
+   "label": "Target Lock Retention"
+  },
+  {
+   "asset": "IncreasedMissileDamage_Trait1",
+   "label": "Potent Warheads I"
+  },
+  {
+   "asset": "IncreasedMissileDamage_Trait2",
+   "label": "Potent Warheads II"
+  },
+  {
+   "asset": "IncreasedMissileRangeAndSpeed_Trait1",
+   "label": "Aerodynamic Hull I"
+  },
+  {
+   "asset": "IncreasedMissileRangeAndSpeed_Trait2",
+   "label": "Aerodynamic Hull II"
+  },
+  {
+   "asset": "IncreasedSensorRange_Trait1",
+   "label": "Expanded Sensor Range I"
+  },
+  {
+   "asset": "IncreasedSensorRange_Trait2",
+   "label": "Expanded Sensor Range II"
+  },
+  {
+   "asset": "IncreasedStructure_Trait1",
+   "label": "Fortified Internal Structure I"
+  },
+  {
+   "asset": "IncreasedStructure_Trait2",
+   "label": "Fortified Internal Structure II"
+  },
+  {
+   "asset": "IncreasedTopSpeed_Trait1",
+   "label": "Boosted Top Speed"
+  },
+  {
+   "asset": "IncreasedTorsoTwistRate_Trait1",
+   "label": "Torso Twist Speed"
+  },
+  {
+   "asset": "IncreasedTurnSpeed_Trait1",
+   "label": "Anchor Turn I"
+  },
+  {
+   "asset": "IncreasedTurnSpeed_Trait2",
+   "label": "Anchor Turn II"
+  },
+  {
+   "asset": "IncreasedWeaponDamage_Trait1",
+   "label": "Damage Tuning"
+  },
+  {
+   "asset": "IncreasedWeaponRangeAndSpeed_Trait1",
+   "label": "Improved Range"
+  },
+  {
+   "asset": "ReducedBallisticCooldown_Trait1",
+   "label": "Quick Ammo Feed I"
+  },
+  {
+   "asset": "ReducedBallisticCooldown_Trait2",
+   "label": "Quick Ammo Feed II"
+  },
+  {
+   "asset": "ReducedBallisticHeat_Trait1",
+   "label": "Ballistic Heat Transfer I"
+  },
+  {
+   "asset": "ReducedBallisticHeat_Trait2",
+   "label": "Ballistic Heat Transfer II"
+  },
+  {
+   "asset": "ReducedEnergyCooldown_Trait1",
+   "label": "Condensed Cycle Time I"
+  },
+  {
+   "asset": "ReducedEnergyCooldown_Trait2",
+   "label": "Condensed Cycle Time II"
+  },
+  {
+   "asset": "ReducedEnergyHeat_Trait1",
+   "label": "Reduced Power Consumption I"
+  },
+  {
+   "asset": "ReducedEnergyHeat_Trait2",
+   "label": "Reduced Power Consumption II"
+  },
+  {
+   "asset": "ReducedHeatGeneration_Trait1",
+   "label": "Reduced Heat Spikes"
+  },
+  {
+   "asset": "ReducedLaserDuration_Trait1",
+   "label": "Shorter Burn Time"
+  },
+  {
+   "asset": "ReducedMissileCooldown_Trait1",
+   "label": "Faster Missile Reload I"
+  },
+  {
+   "asset": "ReducedMissileCooldown_Trait2",
+   "label": "Faster Missile Reload II"
+  },
+  {
+   "asset": "ReducedMissileHeat_Trait1",
+   "label": "Missile Exhaust Venting I"
+  },
+  {
+   "asset": "ReducedMissileHeat_Trait2",
+   "label": "Missile Exhaust Venting II"
+  },
+  {
+   "asset": "ReducedMissileSpread_Trait1",
+   "label": "Tighter Missile Clusters"
+  },
+  {
+   "asset": "ReducedWeaponCooldown_Trait1",
+   "label": "Faster Weapon Cycling"
+  },
+  {
+   "asset": "ReducedWeaponHeat_Trait1",
+   "label": "Weapon Heat Transfer"
+  },
+  {
+   "asset": "TargetingComputerMk1_Trait",
+   "label": "Targeting Computer Mk1"
+  },
+  {
+   "asset": "TargetingComputerMk2_Trait",
+   "label": "Targeting Computer Mk2"
+  },
+  {
+   "asset": "TargetingComputerMk3_Trait",
+   "label": "Targeting Computer Mk3"
+  },
+  {
+   "asset": "TargetingComputerMk4_Trait",
+   "label": "Targeting Computer Mk4"
+  },
+  {
+   "asset": "TargetingComputerMk5_Trait",
+   "label": "Targeting Computer Mk5"
+  },
+  {
+   "asset": "TargetingComputerMk6_Trait",
+   "label": "Targeting Computer Mk6"
+  },
+  {
+   "asset": "TargetingComputerMk7_Trait",
+   "label": "Targeting Computer Mk7"
+  }
+ ]
+}

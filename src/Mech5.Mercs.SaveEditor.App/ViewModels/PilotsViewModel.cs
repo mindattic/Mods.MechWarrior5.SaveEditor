@@ -1,5 +1,7 @@
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
@@ -35,17 +37,39 @@ public sealed partial class SkillViewModel(PilotSkill skill) : ObservableObject
     public void Refresh() => OnPropertyChanged(string.Empty);
 }
 
+public sealed record TraitRow(string Asset, string Label);
+
 public sealed partial class PilotViewModel : ObservableObject
 {
-    public PilotViewModel(Pilot pilot)
+    private readonly PilotCatalog _catalog;
+
+    [ObservableProperty]
+    private TraitDefinition? _traitToAdd;
+
+    [ObservableProperty]
+    private PersonaPreset? _persona;
+
+    public PilotViewModel(Pilot pilot, PilotCatalog catalog)
     {
         Pilot = pilot;
+        _catalog = catalog;
         Skills = pilot.Skills.Select(s => new SkillViewModel(s)).ToList();
+        RefreshTraits();
     }
 
     public Pilot Pilot { get; }
 
     public IReadOnlyList<SkillViewModel> Skills { get; }
+
+    public ObservableCollection<TraitRow> Traits { get; } = [];
+
+    public IReadOnlyList<string> Portraits => _catalog.Portraits;
+
+    public IReadOnlyList<string> Voices => _catalog.Voices;
+
+    public IReadOnlyList<PersonaPreset> Personas => _catalog.Personas;
+
+    public IReadOnlyList<TraitDefinition> TraitChoices => _catalog.PilotTraits;
 
     public string Name => Pilot.DisplayName;
 
@@ -62,6 +86,56 @@ public sealed partial class PilotViewModel : ObservableObject
 
     public bool IsHealthy => Pilot.IsHealthy;
 
+    public string FullName
+    {
+        get => Pilot.FullName;
+        set
+        {
+            Pilot.FullName = value;
+            OnNameChanged();
+        }
+    }
+
+    public string Callsign
+    {
+        get => Pilot.Callsign;
+        set
+        {
+            Pilot.Callsign = value;
+            OnNameChanged();
+        }
+    }
+
+    public string Bio
+    {
+        get => Pilot.Bio;
+        set
+        {
+            Pilot.Bio = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string? Portrait
+    {
+        get => Pilot.Portrait;
+        set
+        {
+            Pilot.Portrait = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public string? Voice
+    {
+        get => Pilot.Voice;
+        set
+        {
+            Pilot.Voice = value;
+            OnPropertyChanged();
+        }
+    }
+
     public int Salary
     {
         get => Pilot.Salary;
@@ -71,8 +145,6 @@ public sealed partial class PilotViewModel : ObservableObject
             OnPropertyChanged();
         }
     }
-
-    public int TotalExperience => Skills.Where(s => s.HasCap).Sum(s => s.Experience);
 
     [RelayCommand]
     private void Heal()
@@ -91,20 +163,73 @@ public sealed partial class PilotViewModel : ObservableObject
             skill.Refresh();
         }
     }
+
+    [RelayCommand]
+    private void ApplyPersona()
+    {
+        if (Persona is null)
+        {
+            return;
+        }
+
+        Pilot.ApplyPersona(Persona);
+        OnPropertyChanged(string.Empty);
+    }
+
+    [RelayCommand]
+    private void AddTrait()
+    {
+        if (TraitToAdd is not null && Pilot.AddTrait(TraitToAdd.Asset))
+        {
+            RefreshTraits();
+        }
+    }
+
+    [RelayCommand]
+    private void RemoveTrait(TraitRow? trait)
+    {
+        if (trait is not null && Pilot.RemoveTrait(trait.Asset))
+        {
+            RefreshTraits();
+        }
+    }
+
+    private void OnNameChanged()
+    {
+        OnPropertyChanged(nameof(Name));
+        OnPropertyChanged(nameof(Initials));
+        OnPropertyChanged(nameof(FullName));
+        OnPropertyChanged(nameof(Callsign));
+    }
+
+    private void RefreshTraits()
+    {
+        Traits.Clear();
+        foreach (var asset in Pilot.Traits)
+        {
+            Traits.Add(new TraitRow(asset, _catalog.TraitLabel(asset)));
+        }
+    }
 }
 
 public sealed partial class PilotsViewModel : ObservableObject
 {
+    private readonly Mw5Document _doc;
+    private readonly PilotCatalog _catalog;
+    private readonly IDialogService _dialogs;
+
     [ObservableProperty]
     private PilotViewModel? _selected;
 
-    public PilotsViewModel(Mw5Document doc)
+    public PilotsViewModel(Mw5Document doc, PilotCatalog catalog, IDialogService dialogs)
     {
-        Pilots = doc.Roster.Pilots.Select(p => new PilotViewModel(p)).ToList();
-        _selected = Pilots.Count > 0 ? Pilots[0] : null;
+        _doc = doc;
+        _catalog = catalog;
+        _dialogs = dialogs;
+        Rebuild(null);
     }
 
-    public IReadOnlyList<PilotViewModel> Pilots { get; }
+    public ObservableCollection<PilotViewModel> Pilots { get; } = [];
 
     [RelayCommand]
     private void HealAll()
@@ -122,5 +247,65 @@ public sealed partial class PilotsViewModel : ObservableObject
         {
             pilot.MaxCapsCommand.Execute(null);
         }
+    }
+
+    /// <summary>Hires a recruit modelled on the selected pilot; rename them in the panel.</summary>
+    [RelayCommand]
+    private void Hire()
+    {
+        var template = Selected?.Pilot ?? (_doc.Roster.Pilots.Count > 0 ? _doc.Roster.Pilots[0] : null);
+        if (template is null || !_doc.Roster.CanHire)
+        {
+            _dialogs.Show("Can't hire", "This save has no pilot to model a recruit on.", DialogTone.Warning);
+            return;
+        }
+
+        var hired = _doc.Roster.Hire(template, "New Recruit", "Recruit");
+        Rebuild(hired);
+    }
+
+    [RelayCommand]
+    private void Release()
+    {
+        if (Selected is not { } pilot
+            || !_dialogs.Confirm("Release pilot", $"Release {pilot.Name} from the company?", "Release", DialogTone.Error))
+        {
+            return;
+        }
+
+        var result = _doc.Roster.Release([pilot.Pilot]);
+        if (result.Skipped.Count > 0)
+        {
+            _dialogs.Show("Can't release", $"{pilot.Name}: {result.Skipped[0].Reason}.", DialogTone.Warning);
+            return;
+        }
+
+        Rebuild(null);
+    }
+
+    [RelayCommand]
+    private void MoveUp() => Move(-1);
+
+    [RelayCommand]
+    private void MoveDown() => Move(1);
+
+    private void Move(int delta)
+    {
+        if (Selected is { } pilot && _doc.Roster.Move(pilot.Pilot, delta))
+        {
+            Rebuild(pilot.Pilot);
+        }
+    }
+
+    private void Rebuild(Pilot? select)
+    {
+        Pilots.Clear();
+        foreach (var pilot in _doc.Roster.Pilots)
+        {
+            Pilots.Add(new PilotViewModel(pilot, _catalog));
+        }
+
+        Selected = Pilots.FirstOrDefault(p => select is not null && p.Pilot.PersonaId == select.PersonaId)
+            ?? (Pilots.Count > 0 ? Pilots[0] : null);
     }
 }

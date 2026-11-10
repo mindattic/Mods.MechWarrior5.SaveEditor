@@ -22,7 +22,7 @@ public partial class App : Application
         MechArt.Service = images;
         Exit += (_, _) => images.Dispose();
 
-        var main = new MainViewModel(MechCatalog.LoadBuiltIn(), ItemCatalog.LoadBuiltIn(), new DialogService(), settings, new EditorWindows());
+        var main = new MainViewModel(MechCatalog.LoadBuiltIn(), ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), new DialogService(), settings, new EditorWindows());
         var window = new MainWindow { DataContext = main };
         MainWindow = window;
         window.Show();

@@ -23,6 +23,7 @@ public sealed partial class MainViewModel : ObservableObject
 {
     private readonly MechCatalog _mechs;
     private readonly ItemCatalog _items;
+    private readonly PilotCatalog _pilots;
     private readonly IDialogService _dialogs;
     private readonly SettingsService _settings;
     private readonly IEditorWindows _windows;
@@ -55,8 +56,9 @@ public sealed partial class MainViewModel : ObservableObject
 
     public string SaveLabel => IsOriginal ? "SAVE AS NEW" : "SAVE";
 
-    public MainViewModel(MechCatalog mechs, ItemCatalog items, IDialogService dialogs, SettingsService settings, IEditorWindows windows)
+    public MainViewModel(MechCatalog mechs, ItemCatalog items, PilotCatalog pilots, IDialogService dialogs, SettingsService settings, IEditorWindows windows)
     {
+        _pilots = pilots;
         _windows = windows;
         _mechs = mechs;
         _items = items;
@@ -248,7 +250,7 @@ public sealed partial class MainViewModel : ObservableObject
         Company = new CompanyViewModel(doc, _mechs);
         Mechs = new MechsViewModel(this, doc, _mechs, _items, _dialogs, _windows);
         Inventory = new InventoryViewModel(doc, _items, _dialogs);
-        Pilots = new PilotsViewModel(doc);
+        Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
         Factions = new FactionsViewModel(doc);
         Document = doc;
         IsDirty = false;

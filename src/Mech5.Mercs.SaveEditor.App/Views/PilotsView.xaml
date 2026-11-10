@@ -8,7 +8,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="360" />
+            <ColumnDefinition Width="340" />
             <ColumnDefinition Width="18" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -21,125 +21,206 @@
             <TextBlock Text="MECHWARRIOR ROSTER" Style="{StaticResource Text.Title}" />
         </DockPanel>
 
-        <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0,10">
-            <ListBox ItemsSource="{Binding Pilots}" SelectedItem="{Binding Selected}" Style="{StaticResource List.Rows}">
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListBoxItem">
-                                    <Grid Background="Transparent" Cursor="Hand">
-                                        <Rectangle x:Name="Wash" Fill="{StaticResource Brush.AmberWash}" Opacity="0" />
-                                        <Rectangle x:Name="Bar" Width="4" HorizontalAlignment="Left" Fill="{StaticResource Brush.Amber}" Opacity="0" />
-                                        <ContentPresenter Margin="16,10" />
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="Wash" Property="Opacity" Value="0.5" />
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Wash" Property="Opacity" Value="1" />
-                                            <Setter TargetName="Bar" Property="Opacity" Value="1" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <Grid Width="44" Height="44" Margin="0,0,12,0">
-                                <Path Data="M11,0 L33,0 L44,22 L33,44 L11,44 L0,22 Z" Fill="{StaticResource Brush.Void}" Stroke="{StaticResource Brush.LineBright}" StrokeThickness="1.5" />
-                                <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Brush.Amber}" />
-                            </Grid>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="COMMANDER  " FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.Amber}"
-                                               Visibility="{Binding IsPlayer, Converter={StaticResource BoolToVisibility}}" />
-                                    <TextBlock Text="{Binding Health}" FontSize="13" FontWeight="SemiBold">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                <Setter Property="Foreground" Value="{StaticResource Brush.Ok}" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsHealthy}" Value="False">
-                                                        <Setter Property="Foreground" Value="{StaticResource Brush.Danger}" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+        <!-- Roster -->
+        <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0,10,0,0">
+            <DockPanel>
+                <Border DockPanel.Dock="Bottom" BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,1,0,0" Padding="14,12">
+                    <UniformGrid Columns="4">
+                        <UniformGrid.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource Button.Base}">
+                                <Setter Property="Padding" Value="4,0" />
+                            </Style>
+                        </UniformGrid.Resources>
+                        <Button Content="HIRE" Command="{Binding HireCommand}" Margin="0,0,4,0" ToolTip="Hire a recruit modelled on the selected pilot" />
+                        <Button Content="RELEASE" Command="{Binding ReleaseCommand}" Style="{StaticResource Button.Danger}" Padding="4,0" Margin="4,0" />
+                        <Button Content="UP" Command="{Binding MoveUpCommand}" Margin="4,0" ToolTip="Move up the roster" />
+                        <Button Content="DOWN" Command="{Binding MoveDownCommand}" Margin="4,0,0,0" ToolTip="Move down the roster" />
+                    </UniformGrid>
+                </Border>
+                <ListBox ItemsSource="{Binding Pilots}" SelectedItem="{Binding Selected}" Style="{StaticResource List.Rows}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Grid Background="Transparent" Cursor="Hand">
+                                            <Rectangle x:Name="Wash" Fill="{StaticResource Brush.AmberWash}" Opacity="0" />
+                                            <Rectangle x:Name="Bar" Width="4" HorizontalAlignment="Left" Fill="{StaticResource Brush.Amber}" Opacity="0" />
+                                            <ContentPresenter Margin="16,10" />
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Wash" Property="Opacity" Value="0.5" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Wash" Property="Opacity" Value="1" />
+                                                <Setter TargetName="Bar" Property="Opacity" Value="1" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Grid Width="44" Height="44" Margin="0,0,12,0">
+                                    <Path Data="M11,0 L33,0 L44,22 L33,44 L11,44 L0,22 Z" Fill="{StaticResource Brush.Void}" Stroke="{StaticResource Brush.LineBright}" StrokeThickness="1.5" />
+                                    <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Brush.Amber}" />
+                                </Grid>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="COMMANDER  " FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.Amber}"
+                                                   Visibility="{Binding IsPlayer, Converter={StaticResource BoolToVisibility}}" />
+                                        <TextBlock Text="{Binding Health}" FontSize="13" FontWeight="SemiBold">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                    <Setter Property="Foreground" Value="{StaticResource Brush.Ok}" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsHealthy}" Value="False">
+                                                            <Setter Property="Foreground" Value="{StaticResource Brush.Danger}" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
         </c:ChamferBorder>
 
+        <!-- Detail -->
         <c:ChamferBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" Padding="24,18" DataContext="{Binding Selected}"
                          Visibility="{Binding Converter={StaticResource HasValueToVisibility}}">
             <DockPanel>
-                <DockPanel DockPanel.Dock="Top">
+                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,14">
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Top">
                         <Button Content="HEAL" Command="{Binding HealCommand}" Margin="0,0,8,0" />
                         <Button Content="MAX SKILL CAPS" Command="{Binding MaxCapsCommand}" Style="{StaticResource Button.Command}" />
                     </StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" Style="{StaticResource Text.Title}" FontSize="26" TextTrimming="CharacterEllipsis" />
-                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                            <TextBlock Text="MONTHLY SALARY" Style="{StaticResource Text.Label}" VerticalAlignment="Center" Margin="0,0,10,0" />
-                            <TextBox Text="{Binding Salary, UpdateSourceTrigger=LostFocus}" Width="150" />
-                        </StackPanel>
-                    </StackPanel>
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource Text.Title}" FontSize="26" TextTrimming="CharacterEllipsis" />
                 </DockPanel>
 
-                <Grid DockPanel.Dock="Top" Margin="0,22,0,6">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="160" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="SKILL" Style="{StaticResource Text.Label}" />
-                    <TextBlock Grid.Column="1" Text="SKILL CAP (0-10)" Style="{StaticResource Text.Label}" />
-                    <TextBlock Grid.Column="2" Text="TOTAL XP" Style="{StaticResource Text.Label}" />
-                </Grid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" MinWidth="300" />
+                            <ColumnDefinition Width="28" />
+                            <ColumnDefinition Width="*" MinWidth="380" />
+                        </Grid.ColumnDefinitions>
 
-                <ItemsControl ItemsSource="{Binding Skills}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,8">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="200" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="160" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Bold" VerticalAlignment="Center">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsParent}" Value="True">
-                                                        <Setter Property="Foreground" Value="{StaticResource Brush.Amber}" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                    <DockPanel Grid.Column="1" Margin="0,0,24,0" Visibility="{Binding HasCap, Converter={StaticResource BoolToVisibility}}">
-                                        <TextBlock DockPanel.Dock="Right" Text="{Binding Cap}" Width="30" TextAlignment="Right" FontSize="18" FontWeight="Bold"
-                                                   Foreground="{StaticResource Brush.AmberHot}" VerticalAlignment="Center" />
-                                        <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
-                                    </DockPanel>
-                                    <TextBox Grid.Column="2" Text="{Binding Experience, UpdateSourceTrigger=LostFocus}" Height="32" />
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                        <!-- Identity, appearance, traits -->
+                        <StackPanel>
+                            <TextBlock Text="IDENTITY" Style="{StaticResource Text.Section}" />
+                            <TextBlock Text="FULL NAME" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
+                            <TextBox Text="{Binding FullName, UpdateSourceTrigger=LostFocus}" />
+                            <TextBlock Text="CALLSIGN" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
+                            <TextBox Text="{Binding Callsign, UpdateSourceTrigger=LostFocus}" />
+                            <TextBlock Text="BIO" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
+                            <TextBox Text="{Binding Bio, UpdateSourceTrigger=LostFocus}" Height="84" TextWrapping="Wrap" AcceptsReturn="True"
+                                     VerticalContentAlignment="Top" Padding="8,6" FontSize="14" VerticalScrollBarVisibility="Auto" />
+                            <TextBlock Text="MONTHLY SALARY" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
+                            <TextBox Text="{Binding Salary, UpdateSourceTrigger=LostFocus}" Width="160" HorizontalAlignment="Left" />
+
+                            <TextBlock Text="APPEARANCE" Style="{StaticResource Text.Section}" Margin="0,22,0,0" />
+                            <TextBlock Text="PORTRAIT" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
+                            <ComboBox ItemsSource="{Binding Portraits}" SelectedItem="{Binding Portrait}" MaxDropDownHeight="380">
+                                <ComboBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate></ComboBox.ItemsPanel>
+                            </ComboBox>
+                            <TextBlock Text="DIALOGUE VOICE" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
+                            <ComboBox ItemsSource="{Binding Voices}" SelectedItem="{Binding Voice}" MaxDropDownHeight="380">
+                                <ComboBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate></ComboBox.ItemsPanel>
+                            </ComboBox>
+                            <TextBlock Text="PERSONA PRESET (NAME, CALLSIGN, PORTRAIT, VOICE)" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
+                            <DockPanel>
+                                <Button DockPanel.Dock="Right" Content="APPLY" Command="{Binding ApplyPersonaCommand}" Margin="8,0,0,0" />
+                                <ComboBox ItemsSource="{Binding Personas}" SelectedItem="{Binding Persona}" DisplayMemberPath="DisplayName" MaxDropDownHeight="380">
+                                    <ComboBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate></ComboBox.ItemsPanel>
+                                </ComboBox>
+                            </DockPanel>
+
+                            <TextBlock Text="PILOT TRAITS" Style="{StaticResource Text.Section}" Margin="0,22,0,6" />
+                            <ItemsControl ItemsSource="{Binding Traits}">
+                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Label}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <Button Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="Remove trait" VerticalAlignment="Center"
+                                                        Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}">
+                                                    <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                          StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
+                                                </Button>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <DockPanel Margin="0,4,0,0">
+                                <Button DockPanel.Dock="Right" Content="ADD" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
+                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380">
+                                    <ComboBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate></ComboBox.ItemsPanel>
+                                </ComboBox>
+                            </DockPanel>
+                        </StackPanel>
+
+                        <!-- Skills -->
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="SKILLS" Style="{StaticResource Text.Section}" />
+                            <Grid Margin="0,10,0,6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="110" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="SKILL" Style="{StaticResource Text.Label}" />
+                                <TextBlock Grid.Column="1" Text="CAP (0-10)" Style="{StaticResource Text.Label}" />
+                                <TextBlock Grid.Column="2" Text="TOTAL XP" Style="{StaticResource Text.Label}" />
+                            </Grid>
+                            <ItemsControl ItemsSource="{Binding Skills}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,7">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="150" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="110" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsParent}" Value="True">
+                                                                    <Setter Property="Foreground" Value="{StaticResource Brush.Amber}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <DockPanel Grid.Column="1" Margin="0,0,16,0" Visibility="{Binding HasCap, Converter={StaticResource BoolToVisibility}}">
+                                                    <TextBlock DockPanel.Dock="Right" Text="{Binding Cap}" Width="26" TextAlignment="Right" FontSize="17" FontWeight="Bold"
+                                                               Foreground="{StaticResource Brush.AmberHot}" VerticalAlignment="Center" />
+                                                    <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
+                                                </DockPanel>
+                                                <TextBox Grid.Column="2" Text="{Binding Experience, UpdateSourceTrigger=LostFocus}" Height="32" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
             </DockPanel>
         </c:ChamferBorder>
     </Grid>
