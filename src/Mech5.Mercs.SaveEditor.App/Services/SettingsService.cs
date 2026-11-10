@@ -12,6 +12,9 @@ public sealed class AppSettings
 
     public bool DownloadMechImages { get; set; } = true;
 
+    /// <summary>MW5 install folder; empty means detect it (Steam libraries, Epic, common folders).</summary>
+    public string? GameFolder { get; set; }
+
     public bool OwnedDlcOnly { get; set; } = true;
 }
 

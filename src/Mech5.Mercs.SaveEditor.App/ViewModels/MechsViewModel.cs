@@ -9,7 +9,7 @@ using Mech5.Mercs.SaveEditor.Core.Game;
 
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
-public sealed record SourceFilter(string Label, string? DlcTag, bool BaseGameOnly = false);
+public sealed record SourceFilter(string Label, string? DlcTag, bool BaseGameOnly = false, bool ModsOnly = false);
 
 public sealed partial class MechsViewModel : ObservableObject
 {
@@ -54,6 +54,7 @@ public sealed partial class MechsViewModel : ObservableObject
         [
             new SourceFilter("All sources", null),
             new SourceFilter("Base game", null, BaseGameOnly: true),
+            new SourceFilter("Mods", null, ModsOnly: true),
             .. catalog.DlcPacks.Select(p => new SourceFilter($"{p.ShortName} - {p.Name}", p.Tag)),
         ];
         _source = Sources[0];
@@ -376,7 +377,12 @@ public sealed partial class MechsViewModel : ObservableObject
             return false;
         }
 
-        if (Source.BaseGameOnly && v.Dlc is not null)
+        if (Source.BaseGameOnly && (v.Dlc is not null || v.ModName is not null))
+        {
+            return false;
+        }
+
+        if (Source.ModsOnly && v.ModName is null)
         {
             return false;
         }

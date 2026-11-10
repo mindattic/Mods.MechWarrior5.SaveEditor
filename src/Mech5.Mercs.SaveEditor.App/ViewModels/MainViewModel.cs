@@ -67,6 +67,33 @@ public sealed partial class MainViewModel : ObservableObject
         _settings = settings;
         Start = new StartViewModel(this);
         CurrentView = Start;
+        _ = LoadGameDataAsync();
+    }
+
+    /// <summary>Summary of what the game scan found, for the status bar.</summary>
+    [ObservableProperty]
+    private string _gameDataSummary = "Reading game data...";
+
+    /// <summary>
+    /// Reads the installed game's and enabled mods' 'Mech data in the background, then folds it into the
+    /// catalog (new and modded variants, DLC membership, stock loadouts) and refreshes the open pages.
+    /// </summary>
+    private async Task LoadGameDataAsync()
+    {
+        var preferred = _settings.Current.GameFolder;
+        var data = await Task.Run(() => GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null);
+        if (data is null)
+        {
+            GameDataSummary = "Game not found: using built-in data";
+            return;
+        }
+
+        _mechs.Apply(data);
+        var mods = data.Mechs.Count(m => m.Variant.ModName is not null);
+        GameDataSummary = mods > 0
+            ? $"Game data: {data.Mechs.Count} mechs ({mods} from mods)"
+            : $"Game data: {data.Mechs.Count} mechs";
+        RebuildPages();
     }
 
     public StartViewModel Start { get; }

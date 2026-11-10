@@ -24,9 +24,11 @@ public sealed partial class CatalogMechViewModel : SelectableItem
 
     public string Initials => Variant.ChassisName.Length >= 2 ? Variant.ChassisName[..2].ToUpperInvariant() : Variant.ChassisName;
 
-    public string? DlcCode => Variant.Dlc?.ShortName;
+    public string? DlcCode => Variant.ModName is not null ? "MOD" : Variant.Dlc?.ShortName;
 
-    public string? DlcName => Variant.Dlc?.Name;
+    public string? DlcName => Variant.ModName is { } mod ? $"Mod: {mod}" : Variant.Dlc?.Name;
+
+    public bool IsMod => Variant.ModName is not null;
 
     public bool IsHero => Variant.HeroName is not null;
 
