@@ -1,19 +1,19 @@
-# Mods.MW5.SaveEditor
+# Mods.MechWarrior5.SaveEditor
 
 Read [`../AGENTS.md`](../AGENTS.md) and the shared `mindattic-agent-standard/` first. Project-specific
 context only:
 
 - **Local folder vs repo name.** The local folder is `MW5-SaveEditor` (the ticket database, code `M5SE`,
-  is keyed to it). The GitHub repo is `mindattic/Mods.MW5.SaveEditor`. Never push to the `wmtorode`
+  is keyed to it). The GitHub repo is `mindattic/Mods.MechWarrior5.SaveEditor`. Never push to the `wmtorode`
   remote: it is the original upstream.
-- **One app, two games.** `src/Mech5.SaveEditor.App` hosts a Mercenaries shell and a Clans shell,
+- **One app, two games.** `src/MechWarrior5.SaveEditor.App` hosts a Mercenaries shell and a Clans shell,
   switched by the title-bar game tabs (`ShellViewModel`).
-  - Mercenaries logic: `src/Mech5.Mercs.SaveEditor.Core`.
-  - Clans logic: `src/Mech5.Clans.SaveEditor.Core`.
-  - Clans pages: `src/Mech5.SaveEditor.App/Clans/`.
-- **Shared code.** Shared code lives in `shared/`, a git subtree of `mindattic/Mods.Mech5.Shared`
+  - Mercenaries logic: `src/MechWarrior5.Mercs.SaveEditor.Core`.
+  - Clans logic: `src/MechWarrior5.Clans.SaveEditor.Core`.
+  - Clans pages: `src/MechWarrior5.SaveEditor.App/Clans/`.
+- **Shared code.** Shared code lives in `shared/`, a git subtree of `mindattic/Mods.MechWarrior5.Shared`
   (ticket code `MM5S`), the library for future MechWarrior projects. Put game-neutral code there. Pull
-  with `git subtree pull --prefix shared https://github.com/mindattic/Mods.Mech5.Shared.git main
+  with `git subtree pull --prefix shared https://github.com/mindattic/Mods.MechWarrior5.Shared.git main
   --squash`, and send local changes back with `git subtree push` (a cross-repo action).
 - **Saves are sacred.** Never overwrite an unstamped (original) game save. Always work on copies of
   real saves:

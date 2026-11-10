@@ -10,7 +10,7 @@ in the download as `README.md`.
 2. Run **MW5SaveEditor.exe**.
 
 To uninstall, delete the folder. Your settings are the `settings.json` inside it. The mech picture
-cache lives in `%LOCALAPPDATA%\Mech5SaveEditor`; delete that too for a clean removal.
+cache lives in `%LOCALAPPDATA%\MechWarrior5SaveEditor`; delete that too for a clean removal.
 
 ## Before you edit
 

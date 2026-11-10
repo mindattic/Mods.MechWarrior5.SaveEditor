@@ -1,4 +1,4 @@
-# Mods.MW5.SaveEditor
+# Mods.MechWarrior5.SaveEditor
 
 **MW5 Save Editor**: one app for **MechWarrior 5: Mercenaries** and **MechWarrior 5: Clans** saves.
 
@@ -72,23 +72,23 @@ The same rules apply to both games:
 Requires the .NET 10 SDK on Windows.
 
 ```powershell
-git clone https://github.com/mindattic/Mods.MW5.SaveEditor.git
-dotnet build MW5.SaveEditor.sln -c Release
-dotnet run --project src/Mech5.SaveEditor.App
+git clone https://github.com/mindattic/Mods.MechWarrior5.SaveEditor.git
+dotnet build MechWarrior5.SaveEditor.sln -c Release
+dotnet run --project src/MechWarrior5.SaveEditor.App
 ```
 
 | Project | What it is |
 | --- | --- |
-| `shared/src/Mech5.Shared` | Lossless Unreal save engine: UE4 tagged properties (Mercs), and UE 5.4 type-name tags plus the `!GZIP` chunk archive and GVAS (Clans) |
-| `shared/src/Mech5.Shared.Wpf` | MW5 HUD theme, check-list multi-select, Sarna art, dialogs, settings |
-| `src/Mech5.Mercs.SaveEditor.Core` | MW5 Mercenaries save model, editors, catalogs, game-data scanner |
-| `src/Mech5.Clans.SaveEditor.Core` | MW5 Clans save model: inventory actors, mechs, progress, load-menu index |
-| `src/Mech5.SaveEditor.App` | The WPF/MVVM app (`MW5SaveEditor.exe`): one shell per game |
+| `shared/src/MechWarrior5.Shared` | Lossless Unreal save engine: UE4 tagged properties (Mercs), and UE 5.4 type-name tags plus the `!GZIP` chunk archive and GVAS (Clans) |
+| `shared/src/MechWarrior5.Shared.Wpf` | MW5 HUD theme, check-list multi-select, Sarna art, dialogs, settings |
+| `src/MechWarrior5.Mercs.SaveEditor.Core` | MW5 Mercenaries save model, editors, catalogs, game-data scanner |
+| `src/MechWarrior5.Clans.SaveEditor.Core` | MW5 Clans save model: inventory actors, mechs, progress, load-menu index |
+| `src/MechWarrior5.SaveEditor.App` | The WPF/MVVM app (`MW5SaveEditor.exe`): one shell per game |
 | `tests/` | NUnit tests (real-save tests are `[Explicit]` and read copies from `MW5_SAVE_DIR`) |
 
-`shared/` is a git subtree of [Mods.Mech5.Shared](https://github.com/mindattic/Mods.Mech5.Shared),
+`shared/` is a git subtree of [Mods.MechWarrior5.Shared](https://github.com/mindattic/Mods.MechWarrior5.Shared),
 the library for future MechWarrior projects. Pull upstream changes with
-`git subtree pull --prefix shared https://github.com/mindattic/Mods.Mech5.Shared.git main --squash`,
+`git subtree pull --prefix shared https://github.com/mindattic/Mods.MechWarrior5.Shared.git main --squash`,
 and send local changes back with `git subtree push`.
 
 ## Releasing

@@ -1,6 +1,6 @@
 # MechWarrior 5: Clans save format
 
-Groundwork for the Clans editor (`Mods.Mech5.Clans.SaveEditor`, ticket MM5S-T5). Everything here was
+Groundwork for the Clans editor (`Mods.MechWarrior5.SaveEditor`, ticket MM5S-T5). Everything here was
 verified against 24 real campaign saves and 4 metadata files from a Steam install (game build of
 November 2026). The prototype readers that established it live in [`clans-tools/`](clans-tools/).
 

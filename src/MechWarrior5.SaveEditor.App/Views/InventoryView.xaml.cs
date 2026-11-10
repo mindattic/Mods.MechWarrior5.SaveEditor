@@ -1,0 +1,11 @@
+using System.Windows.Controls;
+
+namespace MechWarrior5.SaveEditor.App.Views;
+
+public partial class InventoryView : UserControl
+{
+    public InventoryView()
+    {
+        InitializeComponent();
+    }
+}

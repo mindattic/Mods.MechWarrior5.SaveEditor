@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>MechWarrior5.Clans.SaveEditor.Core</RootNamespace>
+    <NoWarn>$(NoWarn);CA1716</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Data\**" LogicalName="MechWarrior5.Clans.SaveEditor.Core.Data.%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\src\MechWarrior5.Shared\MechWarrior5.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="MechWarrior5.Shared.Unreal" />
+    <Using Include="MechWarrior5.Shared.Unreal.Properties" />
+  </ItemGroup>
+
+</Project>

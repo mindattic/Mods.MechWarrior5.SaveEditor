@@ -1,0 +1,92 @@
+<UserControl x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansInventoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf"
+             xmlns:b="clr-namespace:MechWarrior5.Shared.Wpf.Behaviors;assembly=MechWarrior5.Shared.Wpf">
+    <Grid Margin="28,22,28,22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="18" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.ColumnSpan="3" Text="WEAPONS AND EQUIPMENT" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
+
+        <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="18,14,18,8">
+                    <TextBlock Text="ON HAND" Style="{StaticResource Text.Section}" FontSize="19" />
+                    <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Delay=120}" Tag="Filter your stock" Margin="0,10,0,0" />
+                </StackPanel>
+
+                <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,10,16,12">
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,8">
+                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectAllCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="SELECT ALL" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                            </Button>
+                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}">
+                                <TextBlock Text="CLEAR" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                            </Button>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button Content="+1 EACH" Command="{Binding AddToTickedCommand}" CommandParameter="1" Margin="0,0,8,6" />
+                            <Button Content="+5 EACH" Command="{Binding AddToTickedCommand}" CommandParameter="5" Margin="0,0,8,6" />
+                            <Button Content="+10 EACH" Command="{Binding AddToTickedCommand}" CommandParameter="10" Margin="0,0,8,6" />
+                            <Button Command="{Binding RemoveTickedCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
+                                    <TextBlock Text="REMOVE" FontWeight="Bold" />
+                                </StackPanel>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <ListBox ItemsSource="{Binding View}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}"
+                         b:CheckList.IsEnabled="True" Margin="8,0,4,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Label}" FontSize="18" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Asset}" Style="{StaticResource Text.Muted}" FontSize="14" />
+                                </StackPanel>
+                                <TextBox Grid.Column="2" Text="{Binding Quantity, UpdateSourceTrigger=LostFocus}" Height="30" HorizontalContentAlignment="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </c:ChamferBorder>
+
+        <c:ChamferBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock Text="REQUISITION" Style="{StaticResource Text.Section}" FontSize="19" Margin="0,0,0,10" />
+                <TextBlock Text="ITEM" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
+                <ComboBox ItemsSource="{Binding Catalog}" SelectedItem="{Binding ItemToAdd}" DisplayMemberPath="Label"
+                          IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Label" Margin="0,0,0,12" />
+                <TextBlock Text="QUANTITY" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
+                <TextBox Text="{Binding AddCount, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0,0,0,14" />
+                <Button Command="{Binding AddItemCommand}" Style="{StaticResource Button.Command}" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource Glyph.Plus}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
+                        <TextBlock Text="ADD TO INVENTORY" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
+                    </StackPanel>
+                </Button>
+                <TextBlock Text="Items arrive in perfect condition. The list covers every weapon and piece of equipment seen in Clans campaign saves, plus anything already in this one."
+                           Style="{StaticResource Text.Muted}" FontSize="14" TextWrapping="Wrap" Margin="0,14,0,0" />
+            </StackPanel>
+        </c:ChamferBorder>
+    </Grid>
+</UserControl>

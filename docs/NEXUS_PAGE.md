@@ -97,7 +97,7 @@ Switch games with the tabs at the top; each keeps its own open save. Every save 
 [*]In the game, load the save with that name. Your original save is still there, unchanged.
 [/list]
 
-[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\Mech5SaveEditor[/b]; delete it too for a clean removal.
+[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
 
 [size=5][b]Main features[/b][/size]
 [b]Your saves are safe.[/b]
@@ -154,5 +154,5 @@ Switch games with the tabs at the top; each keeps its own open save. Every save 
 [*]Code written with an AI model (Claude).
 [/list]
 
-Made by MindAttic. Source: [url=https://github.com/mindattic/Mods.MW5.SaveEditor]github.com/mindattic/Mods.MW5.SaveEditor[/url]. MechWarrior and BattleTech are trademarks of their respective owners. This is an unofficial fan tool, not affiliated with Piranha Games.
+Made by MindAttic. Source: [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor]github.com/mindattic/Mods.MechWarrior5.SaveEditor[/url]. MechWarrior and BattleTech are trademarks of their respective owners. This is an unofficial fan tool, not affiliated with Piranha Games.
 ```
