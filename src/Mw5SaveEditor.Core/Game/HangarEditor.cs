@@ -162,7 +162,7 @@ public sealed class HangarEditor
             MarkHealthy(data);
         });
 
-    public StockLoadout ReadLoadout(MechRecord mech) => MechLoadoutReader.Read(mech.LoadoutData);
+    public static StockLoadout ReadLoadout(MechRecord mech) => MechLoadoutReader.Read(mech.LoadoutData);
 
     public StockLoadout? StockFor(MechRecord mech) => _catalog.FindStock(mech.Asset);
 
