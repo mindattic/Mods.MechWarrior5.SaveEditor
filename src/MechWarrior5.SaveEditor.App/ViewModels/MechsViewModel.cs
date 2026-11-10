@@ -154,7 +154,15 @@ public sealed partial class MechsViewModel : ObservableObject
 
     partial void OnHeroesOnlyChanged(bool value) => RefreshCatalog();
 
-    partial void OnShowColdStorageOnlyChanged(bool value) => HangarView.Refresh();
+    partial void OnShowColdStorageOnlyChanged(bool value)
+    {
+        HangarView.Refresh();
+        // Batch actions act on ticked rows, so a row the filter hides is unticked: what you see is what changes.
+        foreach (var row in Hangar.Where(r => r.IsChecked && value && !r.IsColdStorage))
+        {
+            row.IsChecked = false;
+        }
+    }
 
     [RelayCommand]
     private void SelectAllVisible() => SetVisibleChecked(true);
@@ -452,6 +460,12 @@ public sealed partial class MechsViewModel : ObservableObject
     private void RefreshCatalog()
     {
         CatalogView.Refresh();
+        // Batch actions act on ticked rows, so a row the filter hides is unticked: what you see is what changes.
+        foreach (var row in _catalog.Where(r => r.IsChecked && !Matches(r)))
+        {
+            row.IsChecked = false;
+        }
+
         OnPropertyChanged(nameof(VisibleCount));
         OnPropertyChanged(nameof(AllVisibleChecked));
     }

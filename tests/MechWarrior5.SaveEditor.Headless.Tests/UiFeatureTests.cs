@@ -370,6 +370,37 @@ public partial class UiHeadlessTests
     }
 
     [Test]
+    public void Rows_hidden_by_a_filter_are_unticked_so_actions_match_the_screen()
+    {
+        var (_, save) = SaveFixtures.MercsCampaignCopy();
+        var (shell, _, _) = Launch(clansFolder: null);
+        shell.OpenPath(save);
+        var mechs = shell.Mercs.Mechs!;
+        var rows = mechs.CatalogView.Cast<CatalogMechViewModel>().ToList();
+        var keep = rows.First(r => r.Variant.ChassisName.Length > 3);
+        var other = rows.First(r => !r.Variant.ChassisName.Equals(keep.Variant.ChassisName, StringComparison.Ordinal)
+            && !r.SearchText.Contains(keep.Variant.ChassisName, StringComparison.OrdinalIgnoreCase));
+        keep.IsChecked = true;
+        other.IsChecked = true;
+        mechs.Search = keep.Variant.ChassisName;
+        Assert.Multiple(() =>
+        {
+            Assert.That(keep.IsChecked, Is.True, "a visible ticked row stays ticked");
+            Assert.That(other.IsChecked, Is.False, "a row the filter hides is unticked");
+            Assert.That(mechs.SelectedCount, Is.EqualTo(mechs.CatalogView.Cast<CatalogMechViewModel>().Count(r => r.IsChecked)), "the count matches the screen");
+        });
+
+        var inventory = shell.Mercs.Inventory!;
+        Assume.That(inventory.Items, Has.Count.GreaterThanOrEqualTo(2));
+        var a = inventory.Items[0];
+        var b = inventory.Items.First(r => !r.Name.Contains(a.Name, StringComparison.OrdinalIgnoreCase) && !r.Asset.Contains(a.Asset, StringComparison.OrdinalIgnoreCase));
+        a.IsChecked = true;
+        b.IsChecked = true;
+        inventory.Search = a.Asset;
+        Assert.That((a.IsChecked, b.IsChecked), Is.EqualTo((true, false)), "inventory: hidden tick dropped");
+    }
+
+    [Test]
     public void Every_ui_text_key_is_translated_in_every_language()
     {
         var root = RepoRoot();

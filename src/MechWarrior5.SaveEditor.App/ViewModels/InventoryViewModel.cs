@@ -160,13 +160,32 @@ public sealed partial class InventoryViewModel : ObservableObject
 
     public int TotalCount => Items.Sum(i => i.Count);
 
-    partial void OnSearchChanged(string value) => ItemsView.Refresh();
+    partial void OnSearchChanged(string value) => RefreshItems();
 
-    partial void OnFilterChanged(ItemFilter value) => ItemsView.Refresh();
+    partial void OnFilterChanged(ItemFilter value) => RefreshItems();
 
-    partial void OnCatalogSearchChanged(string value) => CatalogView.Refresh();
+    partial void OnCatalogSearchChanged(string value) => RefreshCatalogPicks();
 
-    partial void OnCatalogFilterChanged(ItemFilter value) => CatalogView.Refresh();
+    partial void OnCatalogFilterChanged(ItemFilter value) => RefreshCatalogPicks();
+
+    // Batch actions act on ticked rows, so a row the filter hides is unticked: what you see is what changes.
+    private void RefreshItems()
+    {
+        ItemsView.Refresh();
+        foreach (var row in Items.Where(r => r.IsChecked && !Matches(r)))
+        {
+            row.IsChecked = false;
+        }
+    }
+
+    private void RefreshCatalogPicks()
+    {
+        CatalogView.Refresh();
+        foreach (var pick in _catalog.Where(p => p.IsChecked && !Matches(p)))
+        {
+            pick.IsChecked = false;
+        }
+    }
 
     [RelayCommand]
     private void AddSelected()

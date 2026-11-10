@@ -73,7 +73,15 @@ public sealed partial class MechsViewModel : ObservableObject
 
     public string Summary => $"{Rows.Count} MECHS  -  {Rows.Count(r => r.IsDamaged)} DAMAGED";
 
-    partial void OnFilterChanged(string value) => View.Refresh();
+    partial void OnFilterChanged(string value)
+    {
+        View.Refresh();
+        // Batch actions act on ticked rows, so a row the filter hides is unticked: what you see is what changes.
+        foreach (var row in Rows.Where(r => r.IsChecked && !Matches(r)))
+        {
+            row.IsChecked = false;
+        }
+    }
 
     [RelayCommand]
     private void SelectAll()
@@ -279,7 +287,15 @@ public sealed partial class InventoryViewModel : ObservableObject
 
     public IReadOnlyList<KnownItem> Catalog { get; }
 
-    partial void OnFilterChanged(string value) => View.Refresh();
+    partial void OnFilterChanged(string value)
+    {
+        View.Refresh();
+        // Batch actions act on ticked rows, so a row the filter hides is unticked: what you see is what changes.
+        foreach (var row in Rows.Where(r => r.IsChecked && Filter.Length > 0 && !r.Label.Contains(Filter, StringComparison.OrdinalIgnoreCase)))
+        {
+            row.IsChecked = false;
+        }
+    }
 
     [RelayCommand]
     private void AddItem()
