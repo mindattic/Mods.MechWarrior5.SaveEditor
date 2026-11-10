@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Headless end-to-end suite: drives every editor feature for both games against temporary copies of
+    real saves, writes them the way the game will load them, reopens each written file from disk and
+    verifies every add, edit and delete; renders every page of the app offscreen. Original saves are
+    only ever read. Point MW5_SAVE_DIR / MW5_CLANS_SAVE_DIR elsewhere to use other saves; with no saves
+    present the tests are ignored, not failed.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- Test names read as sentences (CA1707); inline expected arrays are fine in tests (CA1861). -->
+    <NoWarn>$(NoWarn);CA1707;CA1861;CA1716</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+    <PackageReference Include="NUnit" Version="4.3.2" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.7.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
+    <Using Include="System.IO" />
+    <Using Include="MechWarrior5.Shared.Unreal" />
+    <Using Include="MechWarrior5.Shared.Unreal.Properties" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MechWarrior5.SaveEditor.App\MechWarrior5.SaveEditor.App.csproj" />
+  </ItemGroup>
+
+</Project>

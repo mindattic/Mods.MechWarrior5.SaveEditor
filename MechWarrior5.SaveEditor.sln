@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechWarrior5.Mercs.SaveEdit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechWarrior5.Clans.SaveEditor.Core", "src\MechWarrior5.Clans.SaveEditor.Core\MechWarrior5.Clans.SaveEditor.Core.csproj", "{BD946AB6-5B60-4129-B931-815181124D04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechWarrior5.SaveEditor.Headless.Tests", "tests\MechWarrior5.SaveEditor.Headless.Tests\MechWarrior5.SaveEditor.Headless.Tests.csproj", "{63BF8C71-94BC-4DB8-A2BC-35B656191163}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,18 @@ Global
 		{BD946AB6-5B60-4129-B931-815181124D04}.Release|x64.Build.0 = Release|Any CPU
 		{BD946AB6-5B60-4129-B931-815181124D04}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD946AB6-5B60-4129-B931-815181124D04}.Release|x86.Build.0 = Release|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Debug|x64.Build.0 = Debug|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Debug|x86.Build.0 = Debug|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Release|x64.ActiveCfg = Release|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Release|x64.Build.0 = Release|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Release|x86.ActiveCfg = Release|Any CPU
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +131,6 @@ Global
 		{162FE4F2-2C31-4562-9276-3BB3079645AA} = {8535BA8F-DF9C-A316-7699-3D0137456E7C}
 		{2D507E17-ED03-4C63-8BE2-A69311D46755} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{BD946AB6-5B60-4129-B931-815181124D04} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{63BF8C71-94BC-4DB8-A2BC-35B656191163} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal
