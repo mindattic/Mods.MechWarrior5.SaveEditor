@@ -13,12 +13,12 @@
 
     <Window.Resources>
         <Style x:Key="GroupBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="Margin" Value="0,0,4,0" />
             <Setter Property="ToolTip" Value="Weapon group" />
         </Style>
     </Window.Resources>
 
-    <Border BorderBrush="{StaticResource Brush.Amber}" BorderThickness="1">
+    <Border BorderBrush="{StaticResource Brush.Amber}" BorderThickness="1" Background="{StaticResource Brush.Base}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="86" />
@@ -76,12 +76,12 @@
                                 <ColumnDefinition Width="170" />
                                 <ColumnDefinition Width="110" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="190" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="LOCATION" Style="{StaticResource Text.Label}" />
                             <TextBlock Grid.Column="1" Text="HARDPOINT" Style="{StaticResource Text.Label}" />
                             <TextBlock Grid.Column="2" Text="WEAPON" Style="{StaticResource Text.Label}" />
-                            <TextBlock Grid.Column="3" Text="GROUPS  1  2  3  4  5  6" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="3" Text="WEAPON GROUPS 1-6" Style="{StaticResource Text.Label}" />
                         </Grid>
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ItemsControl ItemsSource="{Binding Weapons}" Margin="20,0">
@@ -93,7 +93,7 @@
                                                     <ColumnDefinition Width="170" />
                                                     <ColumnDefinition Width="110" />
                                                     <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="200" />
+                                                    <ColumnDefinition Width="190" />
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="{Binding Location}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" />
                                                 <Border Grid.Column="1" Style="{StaticResource Chip}" HorizontalAlignment="Left">
@@ -107,7 +107,7 @@
                                                         </ItemsPanelTemplate>
                                                     </ComboBox.ItemsPanel>
                                                 </ComboBox>
-                                                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="58,0,0,0">
+                                                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
                                                     <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[0]}" />
                                                     <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[1]}" />
                                                     <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[2]}" />
