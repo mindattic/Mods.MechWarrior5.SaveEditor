@@ -128,6 +128,22 @@ public class RegressionTests
         });
     }
 
+    /// <summary>M5SE-T82: an editor stamp whose source save name contains ';' reads back whole.</summary>
+    [Test]
+    public void Editor_stamp_source_may_contain_semicolons()
+    {
+        var root = new MechWarrior5.Shared.Unreal.PropertyList();
+        MechWarrior5.Shared.Saves.EditorStamp.Apply(root, "Tests", "1.0", "my;odd=save name");
+        var stamp = MechWarrior5.Shared.Saves.EditorStamp.Read(root);
+        Assert.Multiple(() =>
+        {
+            Assert.That(stamp!.Source, Is.EqualTo("my;odd=save name"));
+            Assert.That(stamp.Tool, Is.EqualTo("Tests"));
+            Assert.That(stamp.Version, Is.EqualTo("1.0"));
+            Assert.That(stamp.WrittenUtc, Is.GreaterThan(DateTime.UtcNow.AddMinutes(-5)));
+        });
+    }
+
     /// <summary>M5SE-T61: a pilot whose save has no PilotTraits array can still be given a trait.</summary>
     [Test]
     public void A_trait_can_be_added_to_a_pilot_with_no_trait_array()
