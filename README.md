@@ -3,7 +3,15 @@
 **MW5 Save Editor**: one app for **MechWarrior 5: Mercenaries** and **MechWarrior 5: Clans** saves.
 
 Both games are edited through one interface styled after their own HUDs. Under it sits a lossless save
-engine that never touches your original saves. Player documentation is in
+engine that never touches your original saves.
+
+**It is a standalone program, not a mod the game loads:** one self-contained `MW5SaveEditor.exe`. Installed
+with Vortex, it lands in Vortex's mod folder and the game ignores it; Vortex doesn't start it either. Open
+that folder from Vortex (**Mods** list, right-click **MW5 Save Editor**, **Open in File Manager**) and run
+`MW5SaveEditor.exe`, or add it as a Vortex **Tool** to launch it from the Dashboard. Without Vortex, extract
+the zip anywhere and run the exe.
+
+Player documentation is in
 [docs/USER_GUIDE.md](docs/USER_GUIDE.md); the NexusMods listing text is in
 [docs/NEXUS_PAGE.md](docs/NEXUS_PAGE.md).
 

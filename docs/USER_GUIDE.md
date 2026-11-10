@@ -5,12 +5,32 @@ in the download as `README.md`.
 
 ## Install
 
-1. Extract the download anywhere, for example your Desktop. It is a standalone program, not a game
-   mod: nothing goes into the game folder, and no .NET install is needed.
-2. Run **MW5SaveEditor.exe**.
+**This is a program you run, not a mod the game loads.** The download is a single
+**MW5SaveEditor.exe** (no .NET install needed). The game never starts it and it adds nothing to the
+game, so nothing changes until you run it yourself.
 
-To uninstall, delete the folder. Your settings are the `settings.json` inside it. The mech picture
-cache lives in `%LOCALAPPDATA%\MechWarrior5SaveEditor`; delete that too for a clean removal.
+### With Vortex
+
+1. Click **Mod Manager Download** on the NexusMods page. Vortex downloads and installs it like any
+   mod. The game ignores it.
+2. Vortex doesn't start it for you. In Vortex's **Mods** list, right-click **MW5 Save Editor** and
+   choose **Open in File Manager**.
+3. In the folder that opens, double-click **MW5SaveEditor.exe**.
+
+To start it from Vortex next time, add it as a tool: on Vortex's **Dashboard**, open the **Tools**
+panel, choose **Add Tool**, and set its target to that same **MW5SaveEditor.exe** (Vortex fills in
+the rest). Or right-click the exe and send a shortcut to your Desktop.
+
+### Manual
+
+1. Click **Manual Download** and extract the archive anywhere, for example your Desktop.
+2. Double-click **MW5SaveEditor.exe**.
+
+### Uninstall
+
+Remove it in Vortex, or delete the folder you extracted. Your settings are the `settings.json` beside
+the exe. The mech picture cache lives in `%LOCALAPPDATA%\MechWarrior5SaveEditor`; delete that too for
+a clean removal.
 
 ## Before you edit
 

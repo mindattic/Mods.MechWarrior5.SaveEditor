@@ -103,15 +103,31 @@ Switch games with the tabs at the top; each keeps its own open save. Every save 
 [img]IMAGE_6_URL[/img]
 
 [size=5][b]Installation instructions[/b][/size]
+[b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b]. The game never starts it and it adds nothing to the game: you run it yourself.
+
+[b]With Vortex[/b]
 [list=1]
-[*]Download the archive and extract it anywhere, for example your Desktop. It is a standalone program, not a game mod: nothing goes into the game folder.
+[*]Click [b]Mod Manager Download[/b]. Vortex installs it like any mod; the game ignores it.
+[*]Vortex doesn't start it for you. In Vortex's [b]Mods[/b] list, right-click [b]MW5 Save Editor[/b] and choose [b]Open in File Manager[/b].
+[*]In that folder, double-click [b]MW5SaveEditor.exe[/b].
+[/list]
+Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's [b]Dashboard[/b], choose [b]Add Tool[/b] and point it at that MW5SaveEditor.exe. Or right-click the exe and send a shortcut to your Desktop.
+
+[b]Manual[/b]
+[list=1]
+[*]Click [b]Manual Download[/b] and extract the archive anywhere, for example your Desktop.
+[*]Double-click [b]MW5SaveEditor.exe[/b].
+[/list]
+
+[b]Using it[/b]
+[list=1]
 [*]Quit the game, or stay on its main menu, so the save you edit isn't in use.
 [*]Run [b]MW5SaveEditor.exe[/b] and choose [b]MERCENARIES[/b] or [b]CLANS[/b] at the top. Your saves are listed by name; double-click one to open it.
 [*]Make your changes, type a name for the edited save, and press [b]Save as new[/b] (Ctrl+S).
 [*]In the game, load the save with that name. Your original save is still there, unchanged.
 [/list]
 
-[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
+[b]Uninstalling:[/b] remove it in Vortex, or delete the folder you extracted (your settings are the [b]settings.json[/b] beside the exe). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
 
 [size=5][b]Main features[/b][/size]
 [b]Your saves are safe.[/b]

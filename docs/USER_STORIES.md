@@ -111,3 +111,5 @@ _Nothing recorded yet._
 | M5SE-T88 | 2026-11-10 | fix | closed | UE5 property tag OverridableInformation extension under-read (uint8 + 4-byte bool) | — |
 | M5SE-T89 | 2026-11-10 | docs | closed | Regenerated USER_STORIES view for tickets M5SE-T57..T88 | — |
 | M5SE-T90 | 2026-11-10 | chore | closed | Fold Mods.MechWarrior5.Shared into this repo: shared/ becomes an ordinary folder (no subtree pull/push), AGENTS.md updated; archive the Shared GitHub repo (this app is its only user) | AGENTS.md Shared code |
+| M5SE-T91 | 2026-11-10 | chore | open | Delete the local Mods.MechWarrior5.Shared clone and its test worktrees, and remove its repo entry from the ticket database (repo archived, M5SE-T90) | — |
+| M5SE-T92 | 2026-11-10 | docs | closed | Docs: make clear the editor is a standalone .exe, not a game mod; after installing with Vortex, open its folder from Vortex and run MW5SaveEditor.exe | docs/USER_GUIDE.md Install |
