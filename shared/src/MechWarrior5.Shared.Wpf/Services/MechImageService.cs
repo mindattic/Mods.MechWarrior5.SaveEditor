@@ -44,8 +44,17 @@ public sealed class MechImageService : IDisposable
     /// The chassis picture at about <paramref name="width"/> pixels wide (Sarna scales it; a source
     /// smaller than that comes back at its own size). Each width is cached separately.
     /// </summary>
-    public Task<BitmapSource?> GetAsync(string sarnaTitle, int width = ThumbnailWidth) =>
-        _images.GetOrAdd(width + "|" + sarnaTitle, _ => LoadAsync(sarnaTitle, width));
+    public Task<BitmapSource?> GetAsync(string sarnaTitle, int width = ThumbnailWidth)
+    {
+        var key = width + "|" + sarnaTitle;
+        // Not remembered while downloads are off, so switching them on later fetches it.
+        if (!Enabled && !_images.ContainsKey(key) && !File.Exists(CacheFile(sarnaTitle, width)))
+        {
+            return Task.FromResult<BitmapSource?>(null);
+        }
+
+        return _images.GetOrAdd(key, _ => LoadAsync(sarnaTitle, width));
+    }
 
     public void Dispose()
     {
@@ -55,14 +64,24 @@ public sealed class MechImageService : IDisposable
 
     private async Task<BitmapSource?> LoadAsync(string title, int width)
     {
-        // The thumbnail keeps its original cache name so existing caches stay valid.
-        var name = width == ThumbnailWidth ? CacheKey(title) : CacheKey(title) + "-" + width;
-        var file = Path.Combine(_cacheDir, name + ".img");
+        var file = CacheFile(title, width);
         // Thumbnails decode small to keep long lists light; large pictures keep their own size.
         var decodeWidth = width == ThumbnailWidth ? 200 : 0;
-        if (File.Exists(file))
+        try
         {
-            return Decode(await File.ReadAllBytesAsync(file).ConfigureAwait(false), decodeWidth);
+            if (File.Exists(file))
+            {
+                if (Decode(await File.ReadAllBytesAsync(file).ConfigureAwait(false), decodeWidth) is { } cached)
+                {
+                    return cached;
+                }
+
+                File.Delete(file); // half-written or corrupt: fetch it again
+            }
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            // Deleted or locked mid-read (e.g. the cache was being cleared): treat it as not cached.
         }
 
         if (!Enabled)
@@ -83,12 +102,14 @@ public sealed class MechImageService : IDisposable
             var image = Decode(bytes, decodeWidth);
             if (image is not null)
             {
-                await File.WriteAllBytesAsync(file, bytes).ConfigureAwait(false);
+                var temp = file + "." + Guid.NewGuid().ToString("N") + ".tmp";
+                await File.WriteAllBytesAsync(temp, bytes).ConfigureAwait(false);
+                File.Move(temp, file, overwrite: true);
             }
 
             return image;
         }
-        catch (Exception e) when (e is HttpRequestException or TaskCanceledException or IOException or JsonException)
+        catch (Exception e) when (e is HttpRequestException or TaskCanceledException or IOException or UnauthorizedAccessException or JsonException)
         {
             return null;
         }
@@ -146,6 +167,10 @@ public sealed class MechImageService : IDisposable
             return null;
         }
     }
+
+    // The thumbnail keeps its original cache name so existing caches stay valid.
+    private string CacheFile(string title, int width) =>
+        Path.Combine(_cacheDir, (width == ThumbnailWidth ? CacheKey(title) : CacheKey(title) + "-" + width) + ".img");
 
     private static string CacheKey(string title) =>
         Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(title.ToLowerInvariant())))[..24];
