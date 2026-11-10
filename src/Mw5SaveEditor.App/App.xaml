@@ -1,0 +1,28 @@
+﻿<Application x:Class="Mw5SaveEditor.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Mw5SaveEditor.App.ViewModels"
+             xmlns:v="clr-namespace:Mw5SaveEditor.App.Views"
+             xmlns:conv="clr-namespace:Mw5SaveEditor.App.Converters"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/Palette.xaml" />
+                <ResourceDictionary Source="Theme/Controls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+            <conv:HasValueToVisibilityConverter x:Key="HasValueToVisibility" />
+            <conv:EnumEqualsConverter x:Key="EnumEquals" />
+            <conv:StandingToWidthConverter x:Key="StandingToWidth" />
+
+            <DataTemplate DataType="{x:Type vm:StartViewModel}"><v:StartView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:CompanyViewModel}"><v:CompanyView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MechsViewModel}"><v:MechsView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:InventoryViewModel}"><v:InventoryView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PilotsViewModel}"><v:PilotsView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:FactionsViewModel}"><v:FactionsView /></DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
