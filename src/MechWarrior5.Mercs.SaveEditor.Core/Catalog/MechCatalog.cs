@@ -114,11 +114,42 @@ public sealed class MechCatalog
     public MechVariant? FindByAsset(string asset) => _byAsset.GetValueOrDefault(asset);
 
     public StockLoadout? FindStock(string asset) =>
-        _gameStock.GetValueOrDefault(asset) is { } game ? WithMaxArmor(game, _stock.Value.GetValueOrDefault(asset)) : _stock.Value.GetValueOrDefault(asset);
+        _gameStock.GetValueOrDefault(asset) is { } game
+            ? WithFullStructure(WithMaxArmor(game, _stock.Value.GetValueOrDefault(asset)), _stock.Value.GetValueOrDefault(asset))
+            : _stock.Value.GetValueOrDefault(asset);
 
     /// <summary>Game loadout assets carry no armor maxima; keep the built-in ones so armor limits still apply.</summary>
     private static StockLoadout WithMaxArmor(StockLoadout game, StockLoadout? builtIn) =>
         game.MaxArmor.Count > 0 || builtIn is null ? game : game with { MaxArmor = builtIn.MaxArmor };
+
+    /// <summary>
+    /// Some game loadout assets store damaged structure (a 0 arm on the BLR-1G); a repaired or stock mech needs each
+    /// part's full structure: the higher of the game and built-in values, or for a mech only the game defines (mods)
+    /// the higher of each left/right pair (built-in data keeps real asymmetries such as the RFL-LK's arms).
+    /// </summary>
+    private static StockLoadout WithFullStructure(StockLoadout game, StockLoadout? builtIn)
+    {
+        var full = new Dictionary<string, float>(game.Structure, StringComparer.Ordinal);
+        if (builtIn is not null)
+        {
+            foreach (var (part, value) in builtIn.Structure)
+            {
+                full[part] = Math.Max(value, full.GetValueOrDefault(part));
+            }
+
+            return game with { Structure = full };
+        }
+
+        foreach (var side in new[] { "Arm", "Torso", "Leg" })
+        {
+            if (full.TryGetValue("Left" + side, out var left) && full.TryGetValue("Right" + side, out var right))
+            {
+                full["Left" + side] = full["Right" + side] = Math.Max(left, right);
+            }
+        }
+
+        return game with { Structure = full };
+    }
 
     internal static Stream OpenResource(string fileName) =>
         typeof(MechCatalog).Assembly.GetManifestResourceStream($"MechWarrior5.Mercs.SaveEditor.Core.Data.{fileName}")
