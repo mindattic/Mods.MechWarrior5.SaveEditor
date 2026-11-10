@@ -22,5 +22,5 @@ jobs:
             echo "== $domain mod $mod"
             curl -fsS -H "apikey: $NEXUSMODS_API_KEY" -H "Application-Name: MW5SaveEditor-ci" \
               "https://api.nexusmods.com/v1/games/$domain/mods/$mod/files.json" \
-              | jq -r '.files[] | "file_id=\(.file_id) category=\(.category_name) version=\(.version) name=\(.name) uploaded=\(.uploaded_time)"'
+              | jq -r '.files[] | "file_id=\(.file_id) uid=\(.uid) id=\(.id) category=\(.category_name) version=\(.version) name=\(.name) uploaded=\(.uploaded_time)"'
           done
