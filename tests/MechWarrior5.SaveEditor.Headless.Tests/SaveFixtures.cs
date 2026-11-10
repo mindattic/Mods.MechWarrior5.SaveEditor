@@ -72,6 +72,56 @@ internal static class SaveFixtures
         return (target, save.Path);
     }
 
+    /// <summary>
+    /// A sandbox holding one original (game-written) Mercenaries save of <paramref name="kind"/> plus its
+    /// Campaign.json. Kinds: "Manual", or the game's autosave names, e.g. "AutoSave (Entered System)".
+    /// </summary>
+    public static (string Folder, string Save) MercsSaveOfKind(string kind)
+    {
+        var match = CampaignLibrary.Scan(MercsRoot)
+            .SelectMany(c => c.Saves.Select(s => (Campaign: c, Save: s)))
+            .Where(x => kind == "Manual" ? !x.Save.IsAutosave : x.Save.Name == kind)
+            .Where(x => !Mercs.SaveEditor.Core.Saves.EditorStamp.FileHasStamp(x.Save.Path))
+            .OrderByDescending(x => x.Save.LastWrite)
+            .FirstOrDefault();
+        if (match.Save is null)
+        {
+            Assert.Ignore($"No original MW5 Mercenaries save of kind '{kind}' under {MercsRoot}.");
+        }
+
+        var target = Sandbox("mercs");
+        File.Copy(match.Save!.Path, Path.Combine(target, Path.GetFileName(match.Save.Path)));
+        File.Copy(Path.Combine(match.Campaign.Folder, "Campaign.json"), Path.Combine(target, "Campaign.json"));
+        return (target, Path.Combine(target, Path.GetFileName(match.Save.Path)));
+    }
+
+    /// <summary>
+    /// A sandbox holding one original Clans save of <paramref name="kind"/> plus the load-menu indexes.
+    /// Kinds: "ManualSave", "AutoSave", "AutoSave (mission)", "ReloadSave".
+    /// </summary>
+    public static (string Folder, string Save) ClansSaveOfKind(string kind)
+    {
+        AllClansFiles();
+        var type = kind.Split(' ')[0];
+        var mission = kind.Contains("mission", StringComparison.Ordinal) || type == "ReloadSave";
+        var match = Clans.SaveEditor.Core.Saves.SaveLibrary.List(ClansRoot)
+            .Where(s => s.SaveType == type && s.IsMissionSave == mission)
+            .FirstOrDefault(s => !Clans.SaveEditor.Core.Game.ClansDocument.DiskFileIsEditorSave(s.Path));
+        if (match is null)
+        {
+            Assert.Ignore($"No original MW5 Clans save of kind '{kind}' under {ClansRoot}.");
+        }
+
+        var target = Sandbox("clans");
+        File.Copy(match!.Path, Path.Combine(target, Path.GetFileName(match.Path)));
+        foreach (var index in Directory.EnumerateFiles(ClansRoot, "UserSaveMetaData*.sav"))
+        {
+            File.Copy(index, Path.Combine(target, Path.GetFileName(index)));
+        }
+
+        return (target, Path.Combine(target, Path.GetFileName(match.Path)));
+    }
+
     public static string Hash(string path) => Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path)));
 
     public static void CleanUp()

@@ -11,7 +11,9 @@ public sealed record SaveEntry(
     string Campaign,
     DateTime SavedUtc,
     int Kerenskies,
-    bool IsAutoSave);
+    bool IsAutoSave,
+    string SaveType = "ManualSave",
+    bool IsMissionSave = false);
 
 /// <summary>Lists the Clans saves in a folder using the game's own load-menu index.</summary>
 public static class SaveLibrary
@@ -47,13 +49,15 @@ public static class SaveLibrary
                 header?.Campaign ?? string.Empty,
                 header?.SavedUtc ?? File.GetLastWriteTimeUtc(path),
                 header?.Kerenskies ?? 0,
-                header?.IsAutoSave ?? false));
+                header?.IsAutoSave ?? false,
+                header?.SaveType ?? "ManualSave",
+                header?.IsMissionSave ?? false));
         }
 
         return [.. entries.OrderByDescending(e => e.SavedUtc)];
     }
 
-    private sealed record HeaderInfo(string? Name, string? Campaign, DateTime SavedUtc, int Kerenskies, bool IsAutoSave);
+    private sealed record HeaderInfo(string? Name, string? Campaign, DateTime SavedUtc, int Kerenskies, bool IsAutoSave, string SaveType, bool IsMissionSave);
 
     private static Dictionary<string, HeaderInfo> ReadHeaders(string folder)
     {
@@ -98,7 +102,9 @@ public static class SaveLibrary
                         campaign,
                         ticks > 0 ? new DateTime(ticks, DateTimeKind.Utc) : DateTime.MinValue,
                         header.Find<IntProperty>("Kerenskies")?.Value ?? 0,
-                        header.Find<EnumProperty>("SaveType")?.Value.Value?.EndsWith("AutoSave", StringComparison.Ordinal) == true);
+                        header.Find<EnumProperty>("SaveType")?.Value.Value?.EndsWith("AutoSave", StringComparison.Ordinal) == true,
+                        Ue.EnumValue(header.Find<EnumProperty>("SaveType")?.Value ?? FString.From("ManualSave")),
+                        header.Find<BoolProperty>("bIsMissionSave")?.Value == true);
                 }
             }
         }
