@@ -28,9 +28,14 @@ public sealed class InventoryEditor
 
     public IReadOnlyList<InventoryActor> Actors => _actors;
 
-    public IEnumerable<InventoryActor> Stacks => _actors.Where(a => a.Kind == ActorKind.Stackable);
+    /// <summary>The player's item stacks (not the shop's stock, which shares the array).</summary>
+    public IEnumerable<InventoryActor> Stacks => AllStacks.Where(a => a.IsPlayers);
 
-    public IEnumerable<ClansMech> Mechs => _actors.Where(a => a.Kind == ActorKind.Mech).Select(a => new ClansMech(a));
+    /// <summary>Every item stack in the save, the shop's included: what items the campaign knows about.</summary>
+    public IEnumerable<InventoryActor> AllStacks => _actors.Where(a => a.Kind == ActorKind.Stackable);
+
+    /// <summary>The player's mechs (not shop, planned, saved-loadout or unavailable ones).</summary>
+    public IEnumerable<ClansMech> Mechs => _actors.Where(a => a.Kind == ActorKind.Mech && a.IsPlayers).Select(a => new ClansMech(a));
 
     public IEnumerable<InventoryActor> Pilots => _actors.Where(a => a.Kind == ActorKind.Pilot);
 
@@ -82,6 +87,7 @@ public sealed class InventoryEditor
             return;
         }
 
+        // Cloned from one of the player's stacks so the new stack carries the player's inventory tag.
         var template = Stacks.FirstOrDefault(s => s.AssetType == assetType) ?? Stacks.FirstOrDefault()
             ?? throw new InvalidOperationException("This save has no item stack to model a new one on.");
         var stack = template.CloneWithNewId();

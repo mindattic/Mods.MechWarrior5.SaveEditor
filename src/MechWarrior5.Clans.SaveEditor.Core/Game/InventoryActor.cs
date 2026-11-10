@@ -77,6 +77,22 @@ public sealed class InventoryActor
             _ => StackCategory.Other,
         };
 
+    /// <summary>
+    /// Whose entry this is: <c>Inventory.Player</c>, or the shop's / plans' / saved loadouts' (<c>Inventory.Market</c>,
+    /// <c>Inventory.Planned</c>, ...). Null when the save carries no tag.
+    /// </summary>
+    public string? InventoryTag => ItemData?.Find<StructProperty>("InventoryTag")?.Value switch
+    {
+        RawStructValue raw => ReadTagName(raw.Data),
+        PropertyList list => list.Find<NameProperty>("TagName")?.Value.ToString(),
+        _ => null,
+    };
+
+    /// <summary>True for what the player owns; untagged entries count as the player's.</summary>
+    public bool IsPlayers => InventoryTag is null or PlayerTag;
+
+    public const string PlayerTag = "Inventory.Player";
+
     /// <summary>The stack size; Unreal omits zero, so a missing property reads as 0.</summary>
     public int Quantity
     {
@@ -112,6 +128,20 @@ public sealed class InventoryActor
 
     /// <summary>Writes the parsed item object back into <c>ByteData</c>.</summary>
     public void Commit() => _bytes.Data = Item.ToArray();
+
+    // A GameplayTag kept raw by the reader: a tagged TagName NameProperty whose value is the FString "Inventory.X".
+    private static string? ReadTagName(byte[] data)
+    {
+        var marker = "Inventory."u8;
+        var at = data.AsSpan().IndexOf(marker);
+        if (at < 0)
+        {
+            return null;
+        }
+
+        var end = data.AsSpan(at).IndexOf((byte)0);
+        return System.Text.Encoding.ASCII.GetString(data, at, end < 0 ? data.Length - at : end);
+    }
 
     private PropertyList CloneElement()
     {

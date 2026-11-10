@@ -21,7 +21,7 @@ public static class ItemList
     {
         ArgumentNullException.ThrowIfNull(inventory);
         return [.. BuiltIn.Value
-            .Concat(inventory.Stacks.Select(s => new KnownItem(s.AssetType, s.AssetName)))
+            .Concat(inventory.AllStacks.Select(s => new KnownItem(s.AssetType, s.AssetName)))
             .Where(i => i.Asset.Length > 0)
             .DistinctBy(i => i.Asset)
             .OrderBy(i => i.Label, StringComparer.CurrentCulture)];
