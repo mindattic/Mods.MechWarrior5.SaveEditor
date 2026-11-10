@@ -134,7 +134,7 @@ try {
     $staged = Join-Path $snapshot '.publish'
     Write-Host "Publishing $title at $short"
     dotnet publish (Join-Path $snapshot 'src\MechWarrior5.SaveEditor.App\MechWarrior5.SaveEditor.App.csproj') -c Release -r win-x64 --self-contained true `
-      -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true `
+      -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=false `
       -p:DebugType=None -p:GenerateDocumentationFile=false -o $staged --nologo -v quiet
     if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed ($LASTEXITCODE)" }
 

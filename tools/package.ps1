@@ -29,7 +29,7 @@ New-Item -ItemType Directory -Force -Path $stage, $dist | Out-Null
 
 $project = Join-Path $root 'src\MechWarrior5.SaveEditor.App\MechWarrior5.SaveEditor.App.csproj'
 dotnet publish $project -c $Configuration -r win-x64 --self-contained true -nologo `
-    -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true `
+    -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=false `
     -p:DebugType=none -p:GenerateDocumentationFile=false -o $stage
 if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed ($LASTEXITCODE)." }
 
