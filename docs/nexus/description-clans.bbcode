@@ -1,0 +1,76 @@
+[size=5][b]Description[/b][/size]
+A save editor for [b]MechWarrior 5: Clans[/b], built from scratch around three ideas: never risk your saves, do in one click what used to take fifty, and look like it belongs in the game.
+
+The same download also edits [b]MechWarrior 5: Mercenaries[/b] saves ([url=https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666]Mercenaries page[/url]): switch games with the tabs at the top, and each keeps its own open save.
+
+[size=5][b]Features[/b][/size]
+[b]Pick saves by name, not by GUID[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-01-campaigns.png[/img]
+Every save is listed by its load-menu name, with campaign, date and Kerenskies; autosaves are marked. Double-click to open.
+
+[b]Resources: Kerenskies, Honor, salvage, crew, MXP[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-02-resources.png[/img]
+Set Kerenskies, Merits and Honor (Honor also moves the Honor level track), mech, weapon and equipment components, technicians (and the mech bay's technician pool), scientists, crew upgrades, and per-chassis mech experience. Quick +10 / +100 / +1K buttons on every value.
+
+[b]Mechs: your whole Touman at a glance[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-03-mechs.png[/img]
+Every 'Mech with its Sarna.net art, variant, tonnage, installed gear and condition.
+
+[b]Repair, duplicate, rename[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-04-mechs-damaged-selected.png[/img]
+Tick 'Mechs (Shift+click, Select all, or [b]Select damaged[/b]) and [b]repair[/b] armor and every installed part, [b]duplicate[/b] them with the same loadout, fully repaired, as many times as you like, or [b]rename[/b] them.
+
+[b]Find and copy any 'Mech you own[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-05-mechs-duplicate.png[/img]
+Filter by name, chassis, variant or weapon. 'Mechs deployed in your Star or in the work queue are never removed.
+
+[b]Weapons and equipment[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-06-inventory.png[/img]
+Edit your stock, requisition any weapon or piece of equipment seen in Clans campaigns, and add to or remove ticked items in bulk.
+
+[b]Campaign progress[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-07-progress.png[/img]
+Honor level and experience, cycles elapsed, the technician pool, the research queue and completed research.
+
+[b]Two themes: Clans ice and Mercs amber[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/06-two-themes-mercs-amber-clans-ice.png[/img]
+A cold steel and ice-cyan Clans theme and a gunmetal and amber Mercs theme, modeled on the games' own menus. Switch any time; the choice is remembered.
+
+[size=5][b]Your saves are safe[/b][/size]
+[list]
+[*]An original game save is [b]never overwritten[/b]. Saving writes a new save beside it and adds it to the game's load menu under the name you choose. The original stays byte-for-byte identical.
+[*]Saves the editor writes carry a small, harmless marker the game ignores. Only those are ever updated in place, and the previous version is kept as a [b].bak[/b].
+[*][b]Lossless or nothing:[/b] if a save can't be reproduced exactly, the editor refuses to edit it instead of guessing.
+[*]The game's save index files are backed up before every change.
+[*]Tested end to end: an automated suite edits copies of real campaign saves for both games, reopens every written file and checks each change, and edited saves have been loaded and played in both games.
+[/list]
+
+[size=5][b]Installation instructions[/b][/size]
+[list=1]
+[*]Download the archive and extract it anywhere, for example your Desktop. It is a standalone program, not a game mod: nothing goes into the game folder, and no .NET install is needed.
+[*]Quit the game, or stay on its main menu, so the save you edit isn't in use.
+[*]Run [b]MW5SaveEditor.exe[/b] and choose [b]MERCENARIES[/b] or [b]CLANS[/b] at the top. Your saves are listed by name; double-click one to open it.
+[*]Make your changes, type a name for the edited save, and press [b]Save as new[/b] (Ctrl+S).
+[*]In the game, load the save with that name. Your original save is still there, unchanged.
+[/list]
+
+[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
+
+[size=5][b]Requirements[/b][/size]
+[list]
+[*]MechWarrior 5: Mercenaries and/or MechWarrior 5: Clans on Windows (Steam or Epic). Game Pass / Microsoft Store saves live elsewhere and are untested; use Open to pick them at your own risk.
+[*]Windows 10 or 11, 64-bit. The download is self-contained.
+[*]No DLC or other mods required. Back up a campaign you care about before editing it, as with any save editor.
+[*]Internet access only for the 'Mech pictures (from Sarna.net, cached after the first view). Everything else works offline.
+[/list]
+
+[size=5][b]Shout outs[/b][/size]
+[list]
+[*][b]JJ[/b], whose [url=https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466]MW5 Merc Save Editor[/url] inspired this one's scope. No code from it is used; its game data catalogs (MIT) seed the Mercenaries 'Mech and item lists.
+[*][b]wmtorode[/b], whose original MW5 Mercs Save Editor showed that editing these saves was possible in the first place.
+[*][url=https://www.sarna.net]Sarna.net[/url], the BattleTech wiki, for the 'Mech artwork shown in the editor.
+[*][b]Piranha Games[/b] for MechWarrior 5: Mercenaries and Clans.
+[*]Code written with an AI model (Claude).
+[/list]
+
+Made by MindAttic. Source: [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor]github.com/mindattic/Mods.MechWarrior5.SaveEditor[/url]. MechWarrior and BattleTech are trademarks of their respective owners. This is an unofficial fan tool, not affiliated with Piranha Games.

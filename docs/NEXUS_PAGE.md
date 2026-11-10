@@ -6,6 +6,16 @@ Everything needed to create the NexusMods listings and keep them updated through
 - MechWarrior 5: Mercenaries: https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666
 - MechWarrior 5: Clans: https://www.nexusmods.com/mechwarrior5clans/mods/70
 
+## Descriptions to paste (one per page)
+
+- **Mercenaries page:** [nexus/description-mercenaries.bbcode](nexus/description-mercenaries.bbcode)
+- **Clans page:** [nexus/description-clans.bbcode](nexus/description-clans.bbcode)
+
+Each one shows that game's screenshot for every feature. The images are linked from this public repo
+(`assets/`), so nothing needs uploading for the description: paste the whole file with the description
+editor's **Import description** (BBCode). NexusMods' API can't edit descriptions or upload mod images, so
+this step is manual. The single-description version further down is kept for reference.
+
 ## One-time setup: create the page (manual; NexusMods has no API for this)
 
 1. On nexusmods.com, open **MechWarrior 5: Mercenaries**, choose **Upload a mod**, and fill the form from

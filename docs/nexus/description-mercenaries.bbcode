@@ -1,0 +1,84 @@
+[size=5][b]Description[/b][/size]
+A save editor for [b]MechWarrior 5: Mercenaries[/b], built from scratch around three ideas: never risk your saves, do in one click what used to take fifty, and look like it belongs in the game.
+
+The same download also edits [b]MechWarrior 5: Clans[/b] saves ([url=https://www.nexusmods.com/mechwarrior5clans/mods/70]Clans page[/url]): switch games with the tabs at the top, and each keeps its own open save.
+
+[size=5][b]Features[/b][/size]
+[b]Requisition: tick, shift-click, add[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-03-mechs-requisition.png[/img]
+Every 'Mech variant through [b]DLC 9: Ashes & Ascension[/b], with Sarna.net art, tonnage, class, hero name, DLC source and how many you own. Tick any number (Shift+click for a range, Ctrl+A for everything shown) and [b]add them all to cold storage[/b] in one click, copies included. Each arrives with its real factory loadout and paint. One summary per batch, not a message box per 'Mech.
+
+[b]Filter by class, heroes, DLC or name[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-04-mechs-heroes.png[/img]
+Weight-class chips, hero 'Mechs, DLC pack, [b]owned DLC only[/b], and search by code, chassis or hero name. Modded 'Mechs from your enabled mods are listed too.
+
+[b]Mech Lab: hardpoint-aware refits[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-06-mechlab-weapons.png[/img]
+Double-click a hangar 'Mech to refit it. Each hardpoint offers only the weapons that fit it (energy, ballistic, missile, AMS, omni, melee) at every tier, with weapon groups kept.
+
+[b]Armor, equipment and traits[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-07-mechlab-armor.png[/img]
+Front and rear armor per location against the variant's maximum, plus [b]Max armor[/b]. Equipment slots offer only what fits. Export and import builds as [b].mw5loadout[/b] files.
+
+[b]Company[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-02-company.png[/img]
+C-Bills (+1M / +10M / +100M / Max), reputation, company name, and the campaign date: moving it moves payroll, injuries and contracts with it. Export a whole company and import it into another campaign.
+
+[b]Inventory[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-08-inventory.png[/img]
+Any weapon, equipment or ammo at any tier, in bulk. Set counts for many stacks at once, or remove them.
+
+[b]Pilots[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-09-pilots.png[/img]
+Hire and release pilots; edit name, callsign, persona, portrait, voice, bio, traits, skill caps and XP. Heal all, max all caps.
+
+[b]Factions[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-10-factions.png[/img]
+Standing from -100 to +100 for every faction, or set them all allied or neutral.
+
+[b]Pick saves by name, not by GUID[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/05-pick-saves-by-name-not-guid.png[/img]
+Campaigns and saves are listed by their in-game names, dates, systems and reputation.
+
+[b]Two themes: Mercs amber and Clans ice[/b]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/06-two-themes-mercs-amber-clans-ice.png[/img]
+A gunmetal and amber Mercs theme and a cold steel and ice-cyan Clans theme, modeled on the games' own menus. Switch any time; the choice is remembered. Six languages: English, Deutsch, Español, Français, 日本語, Русский.
+
+[size=5][b]Your saves are safe[/b][/size]
+[list]
+[*]An original game save is [b]never overwritten[/b]. Saving writes a new save beside it and adds it to the game's load menu under the name you choose. The original stays byte-for-byte identical.
+[*]Saves the editor writes carry a small, harmless marker the game ignores. Only those are ever updated in place, and the previous version is kept as a [b].bak[/b].
+[*][b]Lossless or nothing:[/b] if a save can't be reproduced exactly, the editor refuses to edit it instead of guessing.
+[*]The game's save index files are backed up before every change.
+[*]Tested end to end: an automated suite edits copies of real campaign saves for both games, reopens every written file and checks each change, and edited saves have been loaded and played in both games.
+[/list]
+
+[size=5][b]Installation instructions[/b][/size]
+[list=1]
+[*]Download the archive and extract it anywhere, for example your Desktop. It is a standalone program, not a game mod: nothing goes into the game folder, and no .NET install is needed.
+[*]Quit the game, or stay on its main menu, so the save you edit isn't in use.
+[*]Run [b]MW5SaveEditor.exe[/b] and choose [b]MERCENARIES[/b] or [b]CLANS[/b] at the top. Your saves are listed by name; double-click one to open it.
+[*]Make your changes, type a name for the edited save, and press [b]Save as new[/b] (Ctrl+S).
+[*]In the game, load the save with that name. Your original save is still there, unchanged.
+[/list]
+
+[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
+
+[size=5][b]Requirements[/b][/size]
+[list]
+[*]MechWarrior 5: Mercenaries and/or MechWarrior 5: Clans on Windows (Steam or Epic). Game Pass / Microsoft Store saves live elsewhere and are untested; use Open to pick them at your own risk.
+[*]Windows 10 or 11, 64-bit. The download is self-contained.
+[*]No DLC or other mods required. Back up a campaign you care about before editing it, as with any save editor.
+[*]Internet access only for the 'Mech pictures (from Sarna.net, cached after the first view). Everything else works offline.
+[/list]
+
+[size=5][b]Shout outs[/b][/size]
+[list]
+[*][b]JJ[/b], whose [url=https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466]MW5 Merc Save Editor[/url] inspired this one's scope. No code from it is used; its game data catalogs (MIT) seed the Mercenaries 'Mech and item lists.
+[*][b]wmtorode[/b], whose original MW5 Mercs Save Editor showed that editing these saves was possible in the first place.
+[*][url=https://www.sarna.net]Sarna.net[/url], the BattleTech wiki, for the 'Mech artwork shown in the editor.
+[*][b]Piranha Games[/b] for MechWarrior 5: Mercenaries and Clans.
+[*]Code written with an AI model (Claude).
+[/list]
+
+Made by MindAttic. Source: [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor]github.com/mindattic/Mods.MechWarrior5.SaveEditor[/url]. MechWarrior and BattleTech are trademarks of their respective owners. This is an unofficial fan tool, not affiliated with Piranha Games.
