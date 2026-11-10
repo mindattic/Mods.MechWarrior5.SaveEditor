@@ -1,4 +1,4 @@
-<UserControl x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansMechsView"
+<UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansMechsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf"
@@ -24,46 +24,46 @@
                 <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,10,16,12">
                     <StackPanel>
                         <WrapPanel Margin="0,0,0,8">
-                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectAllCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="SELECT ALL" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-                            </Button>
-                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectDamagedCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="SELECT DAMAGED" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-                            </Button>
-                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="CLEAR" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-                            </Button>
+                            <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectAllCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="SELECT ALL" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                            </ma:MaButton>
+                            <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectDamagedCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="SELECT DAMAGED" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                            </ma:MaButton>
+                            <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="CLEAR" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                            </ma:MaButton>
                             <TextBlock Style="{StaticResource Text.Label}" VerticalAlignment="Center">
                                 <Run Text="{Binding CheckedCount, Mode=OneWay}" Foreground="{DynamicResource Brush.AccentHot}" /> <Run Text="SELECTED" />
                             </TextBlock>
                         </WrapPanel>
                         <WrapPanel>
-                            <Button Command="{Binding RepairCommand}" Style="{StaticResource Button.Command}" Margin="0,0,8,6">
+                            <ma:MaButton Command="{Binding RepairCommand}" Style="{StaticResource Button.Command}" Margin="0,0,8,6">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Repair}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
                                     <TextBlock Text="REPAIR" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
                                 </StackPanel>
-                            </Button>
+                            </ma:MaButton>
                             <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
                                 <TextBox Text="{Binding Copies, UpdateSourceTrigger=PropertyChanged}" Width="48" HorizontalContentAlignment="Center" Margin="0,0,4,0"
                                          ToolTip="Copies of each ticked mech" />
-                                <Button Command="{Binding DuplicateCommand}" ToolTip="Adds copies with the same loadout, fully repaired">
+                                <ma:MaButton Command="{Binding DuplicateCommand}" ToolTip="Adds copies with the same loadout, fully repaired">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource Glyph.Plus}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
                                         <TextBlock Text="DUPLICATE" FontWeight="Bold" />
                                     </StackPanel>
-                                </Button>
+                                </ma:MaButton>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
                                 <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Width="170" Margin="0,0,4,0" Tag="Mech name (empty clears)" />
-                                <Button Command="{Binding RenameCommand}" Content="RENAME" />
+                                <ma:MaButton Command="{Binding RenameCommand}" Content="RENAME" />
                             </StackPanel>
-                            <Button Command="{Binding RemoveCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
+                            <ma:MaButton Command="{Binding RemoveCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
                                     <TextBlock Text="REMOVE" FontWeight="Bold" />
                                 </StackPanel>
-                            </Button>
+                            </ma:MaButton>
                         </WrapPanel>
                     </StackPanel>
                 </Border>

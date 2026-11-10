@@ -1,4 +1,4 @@
-<UserControl x:Class="MechWarrior5.SaveEditor.App.Views.MercsShell"
+<UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.MercsShell"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
@@ -43,71 +43,71 @@
                             <TextBox Text="{Binding SaveName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Tag="{l:T name_shown_in_the_game}"
                                      ToolTip="{l:T how_this_save_is_listed_in_mw5_s_load_menu}" />
                         </StackPanel>
-                        <Button Command="{Binding SaveCommand}" Style="{StaticResource Button.Command}" Margin="0,0,0,8"
+                        <ma:MaButton Command="{Binding SaveCommand}" Style="{StaticResource Button.Command}" Margin="0,0,0,8"
                                 ToolTip="{l:T ctrl_s_original_game_saves_are_never_overwritten}">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Save}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
                                 <TextBlock Text="{Binding SaveLabel}" Foreground="{DynamicResource Brush.Void}" FontWeight="Bold" />
                             </StackPanel>
-                        </Button>
+                        </ma:MaButton>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="8" />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Command="{Binding SaveAsCommand}" Content="{l:T save_as}" ToolTip="{l:T ctrl_shift_s}" />
-                            <Button Grid.Column="2" Command="{Binding BrowseCommand}" Content="{l:T open}" ToolTip="{l:T ctrl_o}" />
+                            <ma:MaButton Command="{Binding SaveAsCommand}" Content="{l:T save_as}" ToolTip="{l:T ctrl_shift_s}" />
+                            <ma:MaButton Grid.Column="2" Command="{Binding BrowseCommand}" Content="{l:T open}" ToolTip="{l:T ctrl_o}" />
                         </Grid>
-                        <Button Command="{Binding CloseCommand}" Content="{l:T campaigns}" Margin="0,8,0,0"
+                        <ma:MaButton Command="{Binding CloseCommand}" Content="{l:T campaigns}" Margin="0,8,0,0"
                                 Visibility="{Binding HasDocument, Converter={StaticResource BoolToVisibility}}" />
                     </StackPanel>
 
-                    <RadioButton DockPanel.Dock="Bottom" Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}"
+                    <ma:MaButton DockPanel.Dock="Bottom" Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}"
                                  CommandParameter="{x:Static vm:Page.Settings}"
                                  IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Settings}">
                         <StackPanel Orientation="Horizontal">
                             <Path Data="{StaticResource Glyph.Repair}" Style="{StaticResource Glyph}" Width="16" Height="16" Margin="0,0,14,0" />
-                            <TextBlock Text="{l:T settings}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
+                            <TextBlock Text="{l:T settings}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                         </StackPanel>
-                    </RadioButton>
+                    </ma:MaButton>
 
                     <StackPanel Margin="0,8,0,0" IsEnabled="{Binding HasDocument}">
-                        <RadioButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Company}"
+                        <ma:MaButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Company}"
                                      IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Company}">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Company}" Style="{StaticResource Glyph}" Width="16" Height="16" Margin="0,0,14,0" />
-                                <TextBlock Text="{l:T company}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
+                                <TextBlock Text="{l:T company}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Mechs}"
+                        </ma:MaButton>
+                        <ma:MaButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Mechs}"
                                      IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Mechs}">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Mech}" Style="{StaticResource Glyph}" Width="16" Height="16" Margin="0,0,14,0" />
-                                <TextBlock Text="{l:T mechs}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
+                                <TextBlock Text="{l:T mechs}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Inventory}"
+                        </ma:MaButton>
+                        <ma:MaButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Inventory}"
                                      IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Inventory}">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Inventory}" Style="{StaticResource Glyph}" Width="16" Height="16" Margin="0,0,14,0" />
-                                <TextBlock Text="{l:T inventory}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
+                                <TextBlock Text="{l:T inventory}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Pilots}"
+                        </ma:MaButton>
+                        <ma:MaButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Pilots}"
                                      IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Pilots}">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Pilot}" Style="{StaticResource Glyph}" Width="16" Height="16" Margin="0,0,14,0" />
-                                <TextBlock Text="{l:T pilots}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
+                                <TextBlock Text="{l:T pilots}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Factions}"
+                        </ma:MaButton>
+                        <ma:MaButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Factions}"
                                      IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Factions}">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Faction}" Style="{StaticResource Glyph}" Width="16" Height="16" Margin="0,0,14,0" />
-                                <TextBlock Text="{l:T factions}" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
+                                <TextBlock Text="{l:T factions}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </StackPanel>
-                        </RadioButton>
+                        </ma:MaButton>
                     </StackPanel>
                 </DockPanel>
             </Grid>

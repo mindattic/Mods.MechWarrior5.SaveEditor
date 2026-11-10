@@ -1,4 +1,4 @@
-<UserControl x:Class="MechWarrior5.SaveEditor.App.Views.StartView"
+<UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.StartView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
@@ -11,13 +11,13 @@
 
         <DockPanel>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
-                <Button Content="{l:T rescan}" Command="{Binding RescanCommand}" Margin="0,0,10,0" />
-                <Button Command="{Binding DataContext.BrowseCommand, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource Button.Command}">
+                <ma:MaButton Content="{l:T rescan}" Command="{Binding RescanCommand}" Margin="0,0,10,0" />
+                <ma:MaButton Command="{Binding DataContext.BrowseCommand, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource Button.Command}">
                     <StackPanel Orientation="Horizontal">
                         <Path Data="{StaticResource Glyph.Open}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
                         <TextBlock Text="{l:T browse_for_save}" Foreground="{DynamicResource Brush.Void}" FontWeight="Bold" />
                     </StackPanel>
-                </Button>
+                </ma:MaButton>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="{l:T select_campaign}" Style="{StaticResource Text.Title}" />

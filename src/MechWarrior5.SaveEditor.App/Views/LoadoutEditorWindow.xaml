@@ -1,4 +1,4 @@
-<Window x:Class="MechWarrior5.SaveEditor.App.Views.LoadoutEditorWindow"
+<Window xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.LoadoutEditorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
@@ -44,16 +44,16 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,18,14"
                             WindowChrome.IsHitTestVisibleInChrome="True">
-                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="{l:T weapons}" Command="{Binding ShowTabCommand}"
+                    <ma:MaButton Style="{StaticResource Toggle.Chip}" Content="{l:T weapons}" Command="{Binding ShowTabCommand}"
                                   CommandParameter="{x:Static vm:LoadoutTab.Weapons}"
                                   IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Weapons}" />
-                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="{l:T equipment}" Command="{Binding ShowTabCommand}"
+                    <ma:MaButton Style="{StaticResource Toggle.Chip}" Content="{l:T equipment}" Command="{Binding ShowTabCommand}"
                                   CommandParameter="{x:Static vm:LoadoutTab.Equipment}"
                                   IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Equipment}" />
-                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="{l:T armor}" Command="{Binding ShowTabCommand}"
+                    <ma:MaButton Style="{StaticResource Toggle.Chip}" Content="{l:T armor}" Command="{Binding ShowTabCommand}"
                                   CommandParameter="{x:Static vm:LoadoutTab.Armor}"
                                   IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Armor}" />
-                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="{l:T traits}" Command="{Binding ShowTabCommand}"
+                    <ma:MaButton Style="{StaticResource Toggle.Chip}" Content="{l:T traits}" Command="{Binding ShowTabCommand}"
                                   CommandParameter="{x:Static vm:LoadoutTab.Traits}"
                                   IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Traits}" />
                 </StackPanel>
@@ -259,19 +259,19 @@
                             <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                    <Button Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove}" VerticalAlignment="Center"
+                                    <ma:MaButton Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove}" VerticalAlignment="Center"
                                             Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                             CommandParameter="{Binding}">
-                                        <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                        <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
                                               StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
-                                    </Button>
+                                    </ma:MaButton>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <DockPanel Margin="0,4,0,0">
-                    <Button DockPanel.Dock="Right" Content="{l:T add}" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
+                    <ma:MaButton DockPanel.Dock="Right" Content="{l:T add}" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
                     <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380" />
                 </DockPanel>
                 </StackPanel>
@@ -281,17 +281,17 @@
             <Border Grid.Row="2" Background="{DynamicResource Brush.Void}" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="20,14">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button Content="{l:T import}" Command="{Binding ImportCommand}" Margin="0,0,8,0" ToolTip="{l:T load_a_mw5loadout_file}" />
-                        <Button Content="{l:T export}" Command="{Binding ExportCommand}" Margin="0,0,8,0" ToolTip="{l:T save_this_loadout_to_share_or_reuse}" />
-                        <Button Content="{l:T stock}" Command="{Binding ResetToStockCommand}" Margin="0,0,8,0" IsEnabled="{Binding HasStock}"
+                        <ma:MaButton Content="{l:T import}" Command="{Binding ImportCommand}" Margin="0,0,8,0" ToolTip="{l:T load_a_mw5loadout_file}" />
+                        <ma:MaButton Content="{l:T export}" Command="{Binding ExportCommand}" Margin="0,0,8,0" ToolTip="{l:T save_this_loadout_to_share_or_reuse}" />
+                        <ma:MaButton Content="{l:T stock}" Command="{Binding ResetToStockCommand}" Margin="0,0,8,0" IsEnabled="{Binding HasStock}"
                                 ToolTip="{l:T load_the_factory_loadout_applied_only_when_you_p}" />
-                        <Button Content="{l:T max_armor}" Command="{Binding MaxArmorCommand}" IsEnabled="{Binding HasStock}" />
+                        <ma:MaButton Content="{l:T max_armor}" Command="{Binding MaxArmorCommand}" IsEnabled="{Binding HasStock}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <TextBlock Text="{l:T fitted_parts_don_t_come_out_of_inventory}" Style="{StaticResource Text.Muted}" FontSize="16"
                                    VerticalAlignment="Center" Margin="0,0,16,0" />
-                        <Button Content="{l:T cancel}" Command="{Binding CancelCommand}" IsCancel="True" Margin="0,0,8,0" MinWidth="110" />
-                        <Button Content="{l:T apply}" Command="{Binding ApplyCommand}" Style="{StaticResource Button.Command}" MinWidth="130" />
+                        <ma:MaButton Content="{l:T cancel}" Command="{Binding CancelCommand}" IsCancel="True" Margin="0,0,8,0" MinWidth="110" />
+                        <ma:MaButton Content="{l:T apply}" Command="{Binding ApplyCommand}" Style="{StaticResource Button.Command}" MinWidth="130" />
                     </StackPanel>
                 </DockPanel>
             </Border>

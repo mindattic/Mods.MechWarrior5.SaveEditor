@@ -1,4 +1,4 @@
-<UserControl x:Class="MechWarrior5.SaveEditor.App.Views.InventoryView"
+<UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.InventoryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
@@ -41,25 +41,25 @@
                 <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,12">
                     <DockPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectAllVisibleCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="{l:T select_all}" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-                            </Button>
-                            <Button Style="{StaticResource Button.Link}" Command="{Binding ClearSelectionCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="{l:T clear}" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-                            </Button>
+                            <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectAllVisibleCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="{l:T select_all}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                            </ma:MaButton>
+                            <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding ClearSelectionCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="{l:T clear}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                            </ma:MaButton>
                             <TextBlock Style="{StaticResource Text.Label}" VerticalAlignment="Center">
                                 <Run Text="{Binding SelectedCount, Mode=OneWay}" Foreground="{DynamicResource Brush.AccentHot}" /> <Run Text="{l:T selected}" />
                             </TextBlock>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBox Text="{Binding SetCount, UpdateSourceTrigger=PropertyChanged}" Width="70" HorizontalContentAlignment="Center" Margin="0,0,8,0" />
-                            <Button Content="{l:T set_count}" Command="{Binding SetSelectedCountCommand}" Margin="0,0,8,0" />
-                            <Button Command="{Binding RemoveSelectedCommand}" Style="{StaticResource Button.Danger}">
+                            <ma:MaButton Content="{l:T set_count}" Command="{Binding SetSelectedCountCommand}" Margin="0,0,8,0" />
+                            <ma:MaButton Command="{Binding RemoveSelectedCommand}" Style="{StaticResource Button.Danger}">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
                                     <TextBlock Text="{l:T remove_2}" FontWeight="Bold" />
                                 </StackPanel>
-                            </Button>
+                            </ma:MaButton>
                         </StackPanel>
                     </DockPanel>
                 </Border>
@@ -125,11 +125,11 @@
 
                 <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,12">
                     <DockPanel>
-                        <Button DockPanel.Dock="Right" Command="{Binding AddSelectedCommand}" Style="{StaticResource Button.Command}">
+                        <ma:MaButton DockPanel.Dock="Right" Command="{Binding AddSelectedCommand}" Style="{StaticResource Button.Command}">
                             <TextBlock FontWeight="Bold" Foreground="{DynamicResource Brush.Void}">
                                 <Run Text="{l:T add}" /> <Run Text="{Binding CatalogSelectedCount, Mode=OneWay}" />
                             </TextBlock>
-                        </Button>
+                        </ma:MaButton>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Text="{l:T qty_each}" Style="{StaticResource Text.Label}" VerticalAlignment="Center" Margin="0,0,8,0" />
                             <TextBox Text="{Binding AddCount, UpdateSourceTrigger=PropertyChanged}" Width="64" HorizontalContentAlignment="Center" />

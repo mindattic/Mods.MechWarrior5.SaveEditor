@@ -1,4 +1,4 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls">
 
@@ -67,182 +67,145 @@
         <Setter Property="Stretch" Value="Uniform" />
         <Setter Property="StrokeThickness" Value="1.6" />
         <Setter Property="StrokeLineJoin" Value="Miter" />
-        <Setter Property="Stroke" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Control}}" />
+        <Setter Property="Stroke" Value="{Binding (TextElement.Foreground), RelativeSource={RelativeSource Self}}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
     </Style>
 
     <!-- ===== Buttons ===== -->
-    <Style x:Key="Button.Base" TargetType="Button">
+    <!--
+        Buttons: every button, chip and nav item is MindAttic.Components' MaButton. These styles are
+        only property values (shape, per-state colours, accent); none has its own template.
+    -->
+    <Style x:Key="Button.Base" TargetType="ma:MaButton">
         <Setter Property="FontFamily" Value="{StaticResource Font.Hud}" />
         <Setter Property="FontSize" Value="17" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="Background" Value="{DynamicResource Brush.PanelRaised}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.LineBright}" />
+        <Setter Property="HoverBorderBrush" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="FocusedBorderBrush" Value="{DynamicResource Brush.AccentHot}" />
+        <Setter Property="PressedBackground" Value="{DynamicResource Brush.AccentWash}" />
+        <Setter Property="Shape" Value="Chamfer" />
+        <Setter Property="Chamfer" Value="8" />
         <Setter Property="Padding" Value="16,0" />
         <Setter Property="Height" Value="36" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <c:ChamferBorder x:Name="Frame" Chamfer="8" Background="{TemplateBinding Background}"
-                                         BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
-                                              TextElement.Foreground="{TemplateBinding Foreground}" />
-                        </c:ChamferBorder>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Frame" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter TargetName="Frame" Property="BorderBrush" Value="{DynamicResource Brush.AccentHot}" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Frame" Property="Background" Value="{DynamicResource Brush.AccentWash}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.38" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="DisabledOpacity" Value="0.38" />
     </Style>
 
-    <Style TargetType="Button" BasedOn="{StaticResource Button.Base}" />
+    <Style TargetType="ma:MaButton" BasedOn="{StaticResource Button.Base}" />
 
-    <Style x:Key="Button.Command" TargetType="Button" BasedOn="{StaticResource Button.Base}">
+    <Style x:Key="Button.Command" TargetType="ma:MaButton" BasedOn="{StaticResource Button.Base}">
         <Setter Property="Background" Value="{DynamicResource Brush.AccentGradient}" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush.AccentHot}" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Void}" />
         <Setter Property="FontSize" Value="18" />
     </Style>
 
-    <Style x:Key="Button.Danger" TargetType="Button" BasedOn="{StaticResource Button.Base}">
+    <Style x:Key="Button.Danger" TargetType="ma:MaButton" BasedOn="{StaticResource Button.Base}">
         <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
         <Setter Property="BorderBrush" Value="#66E4573D" />
     </Style>
 
-    <Style x:Key="Button.Chrome" TargetType="Button">
+    <Style x:Key="Button.Chrome" TargetType="ma:MaButton">
+        <Setter Property="Shape" Value="Rectangle" />
+        <Setter Property="StrokeThickness" Value="0" />
         <Setter Property="Width" Value="46" />
         <Setter Property="Height" Value="34" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
+        <Setter Property="HoverForeground" Value="{DynamicResource Brush.Text}" />
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HoverBackground" Value="{DynamicResource Brush.PanelRaised}" />
+        <Setter Property="Cursor" Value="Arrow" />
+        <Setter Property="DisabledOpacity" Value="1" />
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="Bg" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.PanelRaised}" />
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
-    <Style x:Key="Button.ChromeClose" TargetType="Button" BasedOn="{StaticResource Button.Chrome}">
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FFB3361F" />
-            </Trigger>
-        </Style.Triggers>
+    <Style x:Key="Button.ChromeClose" TargetType="ma:MaButton" BasedOn="{StaticResource Button.Chrome}">
+        <Setter Property="HoverBackground" Value="#FFB3361F" />
     </Style>
 
-    <Style x:Key="Button.Link" TargetType="Button">
-        <Setter Property="Cursor" Value="Hand" />
+    <Style x:Key="Button.Link" TargetType="ma:MaButton">
+        <Setter Property="Shape" Value="None" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.Accent}" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <ContentPresenter x:Name="Content" TextElement.Foreground="{TemplateBinding Foreground}" />
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.AccentHot}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="HoverForeground" Value="{DynamicResource Brush.AccentHot}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="DisabledOpacity" Value="1" />
     </Style>
 
     <!-- Filter chips -->
-    <Style x:Key="Toggle.Chip" TargetType="ToggleButton">
+    <Style x:Key="Toggle.Chip" TargetType="ma:MaButton">
+        <Setter Property="IsToggle" Value="True" />
         <Setter Property="FontFamily" Value="{StaticResource Font.Hud}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
+        <Setter Property="CheckedForeground" Value="{DynamicResource Brush.AccentHot}" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Panel}" />
+        <Setter Property="CheckedBackground" Value="{DynamicResource Brush.AccentWash}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Line}" />
+        <Setter Property="HoverBorderBrush" Value="{DynamicResource Brush.AccentDim}" />
+        <Setter Property="CheckedBorderBrush" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="Shape" Value="Chamfer" />
+        <Setter Property="Chamfer" Value="6" />
         <Setter Property="Height" Value="30" />
         <Setter Property="Padding" Value="12,0" />
         <Setter Property="Margin" Value="0,0,6,0" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ToggleButton">
-                    <c:ChamferBorder x:Name="Frame" Chamfer="6" Background="{DynamicResource Brush.Panel}"
-                                     BorderBrush="{DynamicResource Brush.Line}" Padding="{TemplateBinding Padding}">
-                        <ContentPresenter VerticalAlignment="Center" TextElement.Foreground="{TemplateBinding Foreground}" />
-                    </c:ChamferBorder>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Frame" Property="BorderBrush" Value="{DynamicResource Brush.AccentDim}" />
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="Frame" Property="Background" Value="{DynamicResource Brush.AccentWash}" />
-                            <Setter TargetName="Frame" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.AccentHot}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="DisabledOpacity" Value="1" />
     </Style>
 
     <!-- Left navigation -->
-    <Style x:Key="Nav.Item" TargetType="RadioButton">
+    <Style x:Key="Nav.Item" TargetType="ma:MaButton">
         <Setter Property="FontFamily" Value="{StaticResource Font.Hud}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="19" />
         <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
+        <Setter Property="HoverForeground" Value="{DynamicResource Brush.Text}" />
+        <Setter Property="CheckedForeground" Value="{DynamicResource Brush.AccentHot}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CheckedBackground" Value="{DynamicResource Brush.AccentWash}" />
+        <Setter Property="AccentBrush" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="AccentEdge" Value="Left" />
+        <Setter Property="AccentThickness" Value="4" />
+        <Setter Property="AccentWhen" Value="Checked" />
+        <Setter Property="Shape" Value="Rectangle" />
+        <Setter Property="StrokeThickness" Value="0" />
         <Setter Property="Height" Value="52" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="RadioButton">
-                    <Grid x:Name="Root" Background="Transparent">
-                        <Rectangle x:Name="Wash" Fill="{DynamicResource Brush.AccentWash}" Opacity="0" />
-                        <Rectangle x:Name="Bar" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource Brush.Accent}" Opacity="0" />
-                        <ContentPresenter Margin="22,0,12,0" VerticalAlignment="Center"
-                                          TextElement.Foreground="{TemplateBinding Foreground}" />
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="Wash" Property="Opacity" Value="1" />
-                            <Setter TargetName="Bar" Property="Opacity" Value="1" />
-                            <Setter Property="Foreground" Value="{DynamicResource Brush.AccentHot}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.35" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Padding" Value="22,0,12,0" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="DisabledOpacity" Value="0.35" />
+    </Style>
+
+    <!-- Game tabs: angled trapezoids that interlock; the checked one takes the page colour. -->
+    <Style x:Key="Tab.Game" TargetType="ma:MaButton">
+        <Setter Property="Width" Value="190" />
+        <Setter Property="Height" Value="34" />
+        <Setter Property="FontFamily" Value="{StaticResource Font.Hud}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
+        <Setter Property="HoverForeground" Value="{DynamicResource Brush.Text}" />
+        <Setter Property="CheckedForeground" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="Background" Value="{DynamicResource Brush.Panel}" />
+        <Setter Property="CheckedBackground" Value="{DynamicResource Brush.Base}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Line}" />
+        <Setter Property="HoverBorderBrush" Value="{DynamicResource Brush.LineBright}" />
+        <Setter Property="CheckedBorderBrush" Value="{DynamicResource Brush.LineBright}" />
+        <Setter Property="AccentBrush" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="AccentEdge" Value="Top" />
+        <Setter Property="AccentThickness" Value="3" />
+        <Setter Property="AccentWhen" Value="Checked" />
+        <Setter Property="Shape" Value="Trapezoid" />
+        <Setter Property="Slant" Value="14" />
+        <Setter Property="Padding" Value="0,2,0,0" />
+        <Setter Property="DisabledOpacity" Value="1" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Panel.ZIndex" Value="1" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ===== Inputs ===== -->
