@@ -68,10 +68,21 @@
                     </StackPanel>
 
                     <StackPanel DockPanel.Dock="Bottom" Margin="18,12,18,18">
-                        <Button Command="{Binding SaveCommand}" Style="{StaticResource Button.Command}" Margin="0,0,0,8" ToolTip="Ctrl+S - keeps the previous file as .bak">
+                        <StackPanel Visibility="{Binding HasDocument, Converter={StaticResource BoolToVisibility}}">
+                            <Border Background="{StaticResource Brush.AmberWash}" BorderBrush="{StaticResource Brush.AmberDim}" BorderThickness="1"
+                                    Padding="10,8" Margin="0,0,0,10" Visibility="{Binding IsOriginal, Converter={StaticResource BoolToVisibility}}">
+                                <TextBlock TextWrapping="Wrap" FontSize="13" Foreground="{StaticResource Brush.AmberHot}"
+                                           Text="ORIGINAL GAME SAVE. Saving creates a new save; this file is never changed." />
+                            </Border>
+                            <TextBlock Text="SAVE NAME (LOAD MENU)" Style="{StaticResource Text.Label}" FontSize="12" Margin="0,0,0,4" />
+                            <TextBox Text="{Binding SaveName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" Tag="Name shown in the game"
+                                     ToolTip="How this save is listed in MW5's load menu" />
+                        </StackPanel>
+                        <Button Command="{Binding SaveCommand}" Style="{StaticResource Button.Command}" Margin="0,0,0,8"
+                                ToolTip="Ctrl+S. Original game saves are never overwritten.">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Save}" Style="{StaticResource Glyph}" Stroke="{StaticResource Brush.Void}" Margin="0,0,8,0" />
-                                <TextBlock Text="SAVE" Foreground="{StaticResource Brush.Void}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding SaveLabel}" Foreground="{StaticResource Brush.Void}" FontWeight="Bold" />
                             </StackPanel>
                         </Button>
                         <Grid>

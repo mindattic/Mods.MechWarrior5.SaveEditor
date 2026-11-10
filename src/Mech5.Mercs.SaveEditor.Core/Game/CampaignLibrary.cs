@@ -13,7 +13,8 @@ public sealed record SaveInfo(
     int? Reputation,
     DateTime LastWrite,
     bool IsAutosave,
-    int DlcCount);
+    int DlcCount,
+    bool IsEditorSave = false);
 
 /// <summary>Finds campaigns under the MW5 save folder and names their GUID-named saves.</summary>
 public static class CampaignLibrary
@@ -82,7 +83,8 @@ public static class CampaignLibrary
                             save.TryGetProperty("SaveType", out var type) && type.TryGetInt32(out var t) && t != 0,
                             save.TryGetProperty("DLCTags", out var tags) && tags.ValueKind == JsonValueKind.Array
                                 ? tags.GetArrayLength()
-                                : 0));
+                                : 0,
+                            Saves.EditorStamp.FileHasStamp(path)));
                     }
                 }
             }
@@ -94,7 +96,8 @@ public static class CampaignLibrary
         // Saves the index doesn't know about (e.g. renamed copies) still appear, by file name.
         saves.AddRange(files.Values
             .Where(IsCampaignSaveFile)
-            .Select(p => new SaveInfo(p, System.IO.Path.GetFileNameWithoutExtension(p), null, null, null, File.GetLastWriteTime(p), false, 0)));
+            .Select(p => new SaveInfo(p, System.IO.Path.GetFileNameWithoutExtension(p), null, null, null, File.GetLastWriteTime(p), false, 0,
+                Saves.EditorStamp.FileHasStamp(p))));
         return new CampaignInfo(folder, name, gameDate, saves.OrderByDescending(s => s.LastWrite).ToList());
     }
 

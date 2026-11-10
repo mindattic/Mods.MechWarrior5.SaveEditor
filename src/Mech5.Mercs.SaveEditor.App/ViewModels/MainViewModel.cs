@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
+using Mech5.Mercs.SaveEditor.Core.Saves;
 using Mech5.Shared.Unreal;
 
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
@@ -43,6 +44,16 @@ public sealed partial class MainViewModel : ObservableObject
 
     [ObservableProperty]
     private string? _toast;
+
+    /// <summary>The name the save gets in the game's load menu.</summary>
+    [ObservableProperty]
+    private string _saveName = string.Empty;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(SaveLabel))]
+    private bool _isOriginal;
+
+    public string SaveLabel => IsOriginal ? "SAVE AS NEW" : "SAVE";
 
     public MainViewModel(MechCatalog mechs, ItemCatalog items, IDialogService dialogs, SettingsService settings, IEditorWindows windows)
     {
@@ -125,7 +136,7 @@ public sealed partial class MainViewModel : ObservableObject
 
         return _dialogs.AskSaveChanges(FileName!) switch
         {
-            true => TrySave(Document.FilePath),
+            true => TrySave(null),
             false => true,
             null => false,
         };
@@ -143,7 +154,7 @@ public sealed partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand(CanExecute = nameof(HasDocument))]
-    private void Save() => TrySave(Document!.FilePath);
+    private void Save() => TrySave(null);
 
     [RelayCommand(CanExecute = nameof(HasDocument))]
     private void SaveAs()
@@ -199,16 +210,24 @@ public sealed partial class MainViewModel : ObservableObject
         };
     }
 
-    private bool TrySave(string path)
+    /// <summary>Saves to <paramref name="path"/>, or by default to a new save (originals) or in place (editor saves).</summary>
+    private bool TrySave(string? path)
     {
         try
         {
-            Document!.Save(path);
-            _settings.Current.LastSavePath = path;
+            var outcome = Document!.Save(path, SaveName);
+            _settings.Current.LastSavePath = outcome.Path;
             _settings.Save();
+            IsOriginal = Document.IsOriginalGameSave;
             OnPropertyChanged(nameof(FileName));
             OnPropertyChanged(nameof(WindowTitle));
-            ShowToast($"Saved {Path.GetFileName(path)} (previous version kept as .bak)");
+            ShowToast(outcome switch
+            {
+                { CreatedNewFile: true, RegisteredInCampaign: true } => $"Saved as new save \"{SaveName}\" in the game's load menu. The original is untouched.",
+                { CreatedNewFile: true } => $"Saved as {Path.GetFileName(outcome.Path)} (not listed in the campaign index). The original is untouched.",
+                _ => $"Saved \"{SaveName}\" (previous version kept as .bak).",
+            });
+            Start.Refresh();
             return true;
         }
         catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
@@ -233,6 +252,9 @@ public sealed partial class MainViewModel : ObservableObject
         Factions = new FactionsViewModel(doc);
         Document = doc;
         IsDirty = false;
+        IsOriginal = doc.IsOriginalGameSave;
+        var listed = doc.DisplayName ?? Path.GetFileNameWithoutExtension(doc.FilePath);
+        SaveName = IsOriginal ? CampaignIndex.DefaultCopyName(listed) : listed;
         OnPropertyChanged(nameof(Company));
         OnPropertyChanged(nameof(Mechs));
         OnPropertyChanged(nameof(Inventory));

@@ -32,11 +32,19 @@ through **DLC 9 - Ashes & Ascension**, and an interface styled after the game's 
 
 ## Safety
 
+- **Your original game saves are never overwritten.** Saving an edited game save writes a new save
+  beside it (a new GUID file, like the game's own), adds it to the campaign's `Campaign.json` under the
+  name you type in **Save name** (default: "<original name> [Edited]") so it appears in MW5's load
+  menu, and leaves the original byte-for-byte untouched.
+- Saves the editor wrote carry a small `Mech5SaveEditorStamp` property. The game skips properties it
+  doesn't know, so it loads them normally. Only stamped saves are ever updated in place (the previous
+  version is kept as `.bak`), and the save writer refuses any other target. If you play and re-save
+  in game, that new save is the game's own again and stays protected.
+- `Campaign.json` is backed up to `Campaign.json.bak` before each change.
 - **Lossless or nothing.** Every save is parsed and re-serialized before editing. If the result is not
   byte-for-byte identical to the file on disk, the editor refuses to edit it. Every MW5 campaign save
   tested so far (2022-2026, game v1.15) round-trips exactly.
-- Saves are written to a temp file and swapped in atomically, and the previous file is kept as
-  `<name>.sav.bak`.
+- Every write goes to a temp file first and is swapped in atomically.
 - Embedded mech loadouts that don't round-trip are shown but never rewritten.
 - Default-valued fields that Unreal omits, such as a zero standing or reputation, are only created
   when you actually edit them.
@@ -45,10 +53,10 @@ through **DLC 9 - Ashes & Ascension**, and an interface styled after the game's 
 
 1. Close the save in-game (stay on the main menu, or quit).
 2. Open the editor, pick a campaign and double-click a save. **Browse** also works for any `.sav` file.
-3. Make your changes, then **Save** (Ctrl+S). Load the same save in the game.
+3. Make your changes, give the save a name, then **Save as new** (Ctrl+S). The edited save appears in
+   MW5's load menu under that name, next to your untouched original.
 
-Saves live in `%LOCALAPPDATA%\MW5Mercs\Saved\SaveGames\<campaign>`. Saving in place keeps the save
-listed in the game's load menu.
+Saves live in `%LOCALAPPDATA%\MW5Mercs\Saved\SaveGames\<campaign>`.
 
 ## Building
 

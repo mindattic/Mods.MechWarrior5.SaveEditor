@@ -77,12 +77,21 @@ public sealed class Mw5SaveFile
         return PropertySerializer.WriteList(Root, _rootTrailing);
     }
 
+    public EditorStamp? Stamp => EditorStamp.Read(Root);
+
     /// <summary>
-    /// Writes atomically via a temp file; when <paramref name="backup"/> is set and the target
-    /// exists, the previous file is kept as <c>&lt;name&gt;.bak</c>.
+    /// Stamps the save and writes it atomically via a temp file. An existing file is only ever
+    /// replaced when it carries the editor stamp (an original game save is never overwritten);
+    /// when <paramref name="backup"/> is set the replaced file is kept as <c>&lt;name&gt;.bak</c>.
     /// </summary>
-    public void Save(string path, bool backup = true)
+    public void Save(string path, string? sourceSave, bool backup = true)
     {
+        if (File.Exists(path) && !EditorStamp.FileHasStamp(path))
+        {
+            throw new SaveFormatException($"Refusing to overwrite {Path.GetFileName(path)}: it is an original game save, not one written by this editor.");
+        }
+
+        EditorStamp.Apply(Root, sourceSave);
         var bytes = Serialize();
         Parse(bytes);
 

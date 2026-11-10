@@ -123,6 +123,10 @@
                                             <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Visibility="{Binding IsAutosave, Converter={StaticResource BoolToVisibility}}">
                                                 <TextBlock Text="AUTO" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.TextMuted}" />
                                             </Border>
+                                            <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Background="{StaticResource Brush.AmberWash}" BorderBrush="{StaticResource Brush.Amber}"
+                                                    Visibility="{Binding IsEditorSave, Converter={StaticResource BoolToVisibility}}" ToolTip="Written by this editor">
+                                                <TextBlock Text="EDITED" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.AmberHot}" />
+                                            </Border>
                                         </StackPanel>
                                         <TextBlock Text="{Binding StarSystem}" Style="{StaticResource Text.Muted}" FontSize="14" />
                                     </StackPanel>

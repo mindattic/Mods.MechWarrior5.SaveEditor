@@ -38,12 +38,13 @@ public class RealSaveTests
     }
 
     [TestCaseSource(nameof(Saves))]
-    public void Added_cold_storage_mechs_survive_save_and_reload(string path)
+    public void Editing_an_original_writes_a_new_stamped_save_and_leaves_the_original_untouched(string path)
     {
         var work = Path.Combine(Path.GetTempPath(), "mw5-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(work);
         var copy = Path.Combine(work, Path.GetFileName(path));
         File.Copy(path, copy);
+        var original = File.ReadAllBytes(copy);
         var catalog = MechCatalog.LoadBuiltIn();
         try
         {
@@ -52,15 +53,37 @@ public class RealSaveTests
             var picks = catalog.Variants.Where(v => v.Dlc is null).Take(3).ToList();
 
             var result = doc.Hangar.AddToColdStorage(picks);
-            doc.Save();
-            var reopened = Mw5Document.Open(copy, catalog);
+            var outcome = doc.Save(displayName: "Test Edit");
+            var reopened = Mw5Document.Open(outcome.Path, catalog);
 
             Assert.Multiple(() =>
             {
                 Assert.That(result.Succeeded, Has.Count.EqualTo(3));
+                Assert.That(outcome.CreatedNewFile, Is.True);
+                Assert.That(outcome.Path, Is.Not.EqualTo(copy));
+                Assert.That(File.ReadAllBytes(copy), Is.EqualTo(original));
+                Assert.That(reopened.IsOriginalGameSave, Is.False);
                 Assert.That(reopened.Hangar.Mechs.Count(m => m.Location == MechLocation.ColdStorage), Is.EqualTo(before + 3));
-                Assert.That(File.Exists(copy + ".bak"), Is.True);
             });
+        }
+        finally
+        {
+            Directory.Delete(work, recursive: true);
+        }
+    }
+
+    [TestCaseSource(nameof(Saves))]
+    public void Saving_over_an_original_game_save_is_refused(string path)
+    {
+        var work = Path.Combine(Path.GetTempPath(), "mw5-tests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(work);
+        var copy = Path.Combine(work, Path.GetFileName(path));
+        File.Copy(path, copy);
+        try
+        {
+            var doc = Mw5Document.Open(copy, MechCatalog.LoadBuiltIn());
+
+            Assert.Throws<SaveFormatException>(() => doc.Save(copy));
         }
         finally
         {
