@@ -78,7 +78,13 @@ public partial class MechArtLightbox : UserControl
         PictureArea.Height = Math.Clamp(double.IsNaN(room) ? 640 : room, 240, 760);
         Modal.IsOpen = true;
 
-        var source = MechArt.Service is null ? null : await MechArt.Service.GetAsync(sarnaTitle, MechImageService.LargeWidth);
+        var service = MechArt.Service;
+        var source = service is null ? null : await service.GetAsync(sarnaTitle, MechImageService.LargeWidth);
+        // Offline, or with downloads off, the large picture may be missing while the list thumbnail is cached.
+        if (source is null && service is not null)
+        {
+            source = await service.GetAsync(sarnaTitle);
+        }
         // Frozen bitmaps cross threads; the control doesn't, so finish on the UI thread whatever context awaited.
         if (Dispatcher.CheckAccess())
         {
