@@ -85,7 +85,7 @@ public sealed class CompanyEditor
         get => _name?.DisplayString ?? string.Empty;
         set
         {
-            if (_name is null || value == CompanyName || string.IsNullOrWhiteSpace(value))
+            if (_name is null || string.IsNullOrWhiteSpace(value) || value.Trim() == CompanyName)
             {
                 return;
             }
