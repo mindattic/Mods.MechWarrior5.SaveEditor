@@ -1,8 +1,8 @@
 using System.ComponentModel;
 using System.Windows;
-using Mech5.Mercs.SaveEditor.App.ViewModels;
+using Mech5.SaveEditor.App.ViewModels;
 
-namespace Mech5.Mercs.SaveEditor.App;
+namespace Mech5.SaveEditor.App;
 
 public partial class MainWindow : Window
 {
@@ -14,7 +14,7 @@ public partial class MainWindow : Window
 
     protected override void OnClosing(CancelEventArgs e)
     {
-        if (DataContext is MainViewModel vm && !vm.ConfirmLeaveDocument())
+        if (DataContext is ShellViewModel shell && !shell.ConfirmExit())
         {
             e.Cancel = true;
         }

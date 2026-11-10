@@ -13,13 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8535BA8F-DF9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mech5.Shared", "shared\src\Mech5.Shared\Mech5.Shared.csproj", "{2AC0A8E0-AA83-4F7E-A543-7802F527F8FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mech5.Mercs.SaveEditor.App", "src\Mech5.Mercs.SaveEditor.App\Mech5.Mercs.SaveEditor.App.csproj", "{B2480FE6-F3E5-449A-A9D6-4352CA54EC81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mech5.SaveEditor.App", "src\Mech5.SaveEditor.App\Mech5.SaveEditor.App.csproj", "{B2480FE6-F3E5-449A-A9D6-4352CA54EC81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mech5.Shared.Wpf", "shared\src\Mech5.Shared.Wpf\Mech5.Shared.Wpf.csproj", "{162FE4F2-2C31-4562-9276-3BB3079645AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mech5.Mercs.SaveEditor.Core.Tests", "tests\Mech5.Mercs.SaveEditor.Core.Tests\Mech5.Mercs.SaveEditor.Core.Tests.csproj", "{2D507E17-ED03-4C63-8BE2-A69311D46755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mech5.Clans.SaveEditor.Core", "src\Mech5.Clans.SaveEditor.Core\Mech5.Clans.SaveEditor.Core.csproj", "{BD946AB6-5B60-4129-B931-815181124D04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,18 @@ Global
 		{2D507E17-ED03-4C63-8BE2-A69311D46755}.Release|x64.Build.0 = Release|Any CPU
 		{2D507E17-ED03-4C63-8BE2-A69311D46755}.Release|x86.ActiveCfg = Release|Any CPU
 		{2D507E17-ED03-4C63-8BE2-A69311D46755}.Release|x86.Build.0 = Release|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Debug|x64.Build.0 = Debug|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Debug|x86.Build.0 = Debug|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Release|x64.ActiveCfg = Release|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Release|x64.Build.0 = Release|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Release|x86.ActiveCfg = Release|Any CPU
+		{BD946AB6-5B60-4129-B931-815181124D04}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +116,6 @@ Global
 		{B2480FE6-F3E5-449A-A9D6-4352CA54EC81} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{162FE4F2-2C31-4562-9276-3BB3079645AA} = {8535BA8F-DF9C-A316-7699-3D0137456E7C}
 		{2D507E17-ED03-4C63-8BE2-A69311D46755} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{BD946AB6-5B60-4129-B931-815181124D04} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal

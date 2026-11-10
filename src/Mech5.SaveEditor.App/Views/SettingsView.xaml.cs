@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace Mech5.Mercs.SaveEditor.App.Views;
+namespace Mech5.SaveEditor.App.Views;
 
 public partial class SettingsView : UserControl
 {

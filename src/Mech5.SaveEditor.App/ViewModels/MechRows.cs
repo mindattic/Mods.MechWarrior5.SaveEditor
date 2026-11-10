@@ -1,9 +1,9 @@
-using Mech5.Mercs.SaveEditor.App.Services;
+using Mech5.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
-using Mech5.Mercs.SaveEditor.App.Localization;
+using Mech5.SaveEditor.App.Localization;
 
-namespace Mech5.Mercs.SaveEditor.App.ViewModels;
+namespace Mech5.SaveEditor.App.ViewModels;
 
 /// <summary>A purchasable variant in the requisition list.</summary>
 public sealed partial class CatalogMechViewModel : SelectableItem

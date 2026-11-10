@@ -2,9 +2,9 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Mech5.Mercs.SaveEditor.App.ViewModels;
+using Mech5.SaveEditor.App.ViewModels;
 
-namespace Mech5.Mercs.SaveEditor.App.Views;
+namespace Mech5.SaveEditor.App.Views;
 
 public partial class MechsView : UserControl
 {

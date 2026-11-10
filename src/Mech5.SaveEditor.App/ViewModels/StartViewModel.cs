@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
-namespace Mech5.Mercs.SaveEditor.App.ViewModels;
+namespace Mech5.SaveEditor.App.ViewModels;
 
 public sealed partial class StartViewModel : ObservableObject
 {

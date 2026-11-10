@@ -1,15 +1,15 @@
 using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Mech5.Mercs.SaveEditor.App.Services;
+using Mech5.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 using Mech5.Mercs.SaveEditor.Core.Saves;
-using Mech5.Mercs.SaveEditor.App.Localization;
+using Mech5.SaveEditor.App.Localization;
 using Mech5.Shared.Wpf.Theme;
 using Mech5.Shared.Unreal;
 
-namespace Mech5.Mercs.SaveEditor.App.ViewModels;
+namespace Mech5.SaveEditor.App.ViewModels;
 
 public enum Page
 {
@@ -28,7 +28,7 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly ItemCatalog _items;
     private readonly PilotCatalog _pilots;
     private readonly IDialogService _dialogs;
-    private readonly SettingsService _settings;
+    private readonly JsonSettings<AppSettings> _settings;
     private readonly IEditorWindows _windows;
     private IReadOnlyList<MissingAsset> _baselineMissing = [];
 
@@ -60,7 +60,7 @@ public sealed partial class MainViewModel : ObservableObject
 
     public string SaveLabel => IsOriginal ? Loc.Text("save_as_new", "SAVE AS NEW") : Loc.Text("save", "SAVE");
 
-    public MainViewModel(MechCatalog mechs, ItemCatalog items, PilotCatalog pilots, IDialogService dialogs, SettingsService settings, IEditorWindows windows, string imageCache)
+    public MainViewModel(MechCatalog mechs, ItemCatalog items, PilotCatalog pilots, IDialogService dialogs, JsonSettings<AppSettings> settings, IEditorWindows windows, string imageCache)
     {
         SettingsPage = new SettingsViewModel(this, settings, imageCache);
         _pilots = pilots;

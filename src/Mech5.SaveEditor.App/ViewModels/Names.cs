@@ -1,9 +1,9 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Mech5.Mercs.SaveEditor.App.Localization;
+using Mech5.SaveEditor.App.Localization;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 
-namespace Mech5.Mercs.SaveEditor.App.ViewModels;
+namespace Mech5.SaveEditor.App.ViewModels;
 
 /// <summary>Turns asset ids like <c>LBXAutocannon10_Lvl2</c> into readable labels.</summary>
 public static partial class Names

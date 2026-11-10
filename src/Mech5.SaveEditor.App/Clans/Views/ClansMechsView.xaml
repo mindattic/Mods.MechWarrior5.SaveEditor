@@ -1,0 +1,119 @@
+<UserControl x:Class="Mech5.SaveEditor.App.Clans.Views.ClansMechsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:Mech5.Shared.Wpf.Controls;assembly=Mech5.Shared.Wpf"
+             xmlns:b="clr-namespace:Mech5.Shared.Wpf.Behaviors;assembly=Mech5.Shared.Wpf">
+    <Grid Margin="28,22,28,22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Margin="0,0,0,14">
+            <TextBlock DockPanel.Dock="Right" Text="{Binding Summary}" Style="{StaticResource Text.Label}" VerticalAlignment="Bottom" />
+            <TextBlock Text="MECHS" Style="{StaticResource Text.Title}" />
+        </DockPanel>
+
+        <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0">
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Margin="18,14,18,8">
+                    <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Delay=120}" Tag="Filter by name, chassis, variant or weapon" />
+                </Grid>
+
+                <!-- Footer: selection on top, actions below (two rows so nothing overlaps). -->
+                <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="16,10,16,12">
+                    <StackPanel>
+                        <WrapPanel Margin="0,0,0,8">
+                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectAllCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="SELECT ALL" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                            </Button>
+                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectDamagedCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="SELECT DAMAGED" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                            </Button>
+                            <Button Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}" Margin="0,0,14,0">
+                                <TextBlock Text="CLEAR" FontWeight="Bold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                            </Button>
+                            <TextBlock Style="{StaticResource Text.Label}" VerticalAlignment="Center">
+                                <Run Text="{Binding CheckedCount, Mode=OneWay}" Foreground="{DynamicResource Brush.AccentHot}" /> <Run Text="SELECTED" />
+                            </TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Button Command="{Binding RepairCommand}" Style="{StaticResource Button.Command}" Margin="0,0,8,6">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource Glyph.Repair}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
+                                    <TextBlock Text="REPAIR" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
+                                </StackPanel>
+                            </Button>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
+                                <TextBox Text="{Binding Copies, UpdateSourceTrigger=PropertyChanged}" Width="48" HorizontalContentAlignment="Center" Margin="0,0,4,0"
+                                         ToolTip="Copies of each ticked mech" />
+                                <Button Command="{Binding DuplicateCommand}" ToolTip="Adds copies with the same loadout, fully repaired">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Path Data="{StaticResource Glyph.Plus}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
+                                        <TextBlock Text="DUPLICATE" FontWeight="Bold" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
+                                <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Width="170" Margin="0,0,4,0" Tag="Mech name (empty clears)" />
+                                <Button Command="{Binding RenameCommand}" Content="RENAME" />
+                            </StackPanel>
+                            <Button Command="{Binding RemoveCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
+                                    <TextBlock Text="REMOVE" FontWeight="Bold" />
+                                </StackPanel>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <ListBox ItemsSource="{Binding View}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}"
+                         b:CheckList.IsEnabled="True" Margin="8,0,4,0" VirtualizingPanel.IsVirtualizing="True">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="104" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="110" />
+                                </Grid.ColumnDefinitions>
+                                <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
+                                <Grid Grid.Column="1" Width="92" Height="64" ClipToBounds="True" HorizontalAlignment="Left">
+                                    <Rectangle Fill="{DynamicResource Brush.Void}" />
+                                    <Path Data="M14,0 L42,0 L56,24 L42,48 L14,48 L0,24 Z" Stretch="Uniform" Width="40" Height="34"
+                                          Stroke="{DynamicResource Brush.LineBright}" StrokeThickness="1.5" Fill="{DynamicResource Brush.Panel}" />
+                                    <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               FontWeight="Bold" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}" />
+                                    <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
+                                </Grid>
+                                <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="4,0,8,0">
+                                    <TextBlock Text="{Binding Title}" FontSize="19" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Subtitle}" Foreground="{DynamicResource Brush.TextMuted}" FontSize="16" />
+                                    <TextBlock Text="{Binding Gear}" Style="{StaticResource Text.Muted}" FontSize="14" TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                                <Border Grid.Column="3" Style="{StaticResource Chip}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <TextBlock FontSize="14" FontWeight="Bold">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                <Setter Property="Text" Value="READY" />
+                                                <Setter Property="Foreground" Value="{DynamicResource Brush.Ok}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsDamaged}" Value="True">
+                                                        <Setter Property="Text" Value="DAMAGED" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </c:ChamferBorder>
+    </Grid>
+</UserControl>

@@ -1,8 +1,8 @@
 using System.Windows;
-using Mech5.Mercs.SaveEditor.App.ViewModels;
-using Mech5.Mercs.SaveEditor.App.Views;
+using Mech5.SaveEditor.App.ViewModels;
+using Mech5.SaveEditor.App.Views;
 
-namespace Mech5.Mercs.SaveEditor.App.Services;
+namespace Mech5.SaveEditor.App.Services;
 
 /// <summary>Opens the editor's secondary windows; keeps view models free of window types.</summary>
 public interface IEditorWindows

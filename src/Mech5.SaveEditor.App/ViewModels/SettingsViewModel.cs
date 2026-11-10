@@ -3,17 +3,17 @@ using System.IO;
 using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Mech5.Mercs.SaveEditor.App.Localization;
-using Mech5.Mercs.SaveEditor.App.Services;
+using Mech5.SaveEditor.App.Localization;
+using Mech5.SaveEditor.App.Services;
 using Mech5.Shared.Wpf.Behaviors;
 using Microsoft.Win32;
 
-namespace Mech5.Mercs.SaveEditor.App.ViewModels;
+namespace Mech5.SaveEditor.App.ViewModels;
 
 public sealed partial class SettingsViewModel : ObservableObject
 {
     private readonly MainViewModel _main;
-    private readonly SettingsService _settings;
+    private readonly JsonSettings<AppSettings> _settings;
     private readonly string _imageCache;
 
     [ObservableProperty]
@@ -22,7 +22,7 @@ public sealed partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private string? _cacheStatus;
 
-    public SettingsViewModel(MainViewModel main, SettingsService settings, string imageCache)
+    public SettingsViewModel(MainViewModel main, JsonSettings<AppSettings> settings, string imageCache)
     {
         _main = main;
         _settings = settings;

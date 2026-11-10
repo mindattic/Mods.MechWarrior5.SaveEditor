@@ -2,9 +2,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
-using Mech5.Mercs.SaveEditor.App.Localization;
+using Mech5.SaveEditor.App.Localization;
 
-namespace Mech5.Mercs.SaveEditor.App.ViewModels;
+namespace Mech5.SaveEditor.App.ViewModels;
 
 public sealed partial class FactionViewModel(FactionStanding standing) : ObservableObject
 {

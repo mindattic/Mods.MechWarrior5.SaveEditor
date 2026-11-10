@@ -1,0 +1,970 @@
+[
+{
+"type": "KelCrewItemDataAsset",
+"asset": "SalvageUpgrade_CrewItem"
+},
+{
+"type": "KelCrewItemDataAsset",
+"asset": "ScientistUpgrade_CrewItem"
+},
+{
+"type": "KelCrewItemDataAsset",
+"asset": "Scientist_CrewItem"
+},
+{
+"type": "KelCrewItemDataAsset",
+"asset": "TechnicianUpgrade_CrewItem"
+},
+{
+"type": "KelCrewItemDataAsset",
+"asset": "Technician_CrewItem"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "Honor_CurrencyItem"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "Kerenskies_CurrencyItem"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_ArcticCheetah"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_HunchbackIIC"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_Kitfox"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_MadDog"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_MistLynx"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_NovaMech"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_ShadowHawkIIC"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "MXP_Viper"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "Merits_CurrencyItem"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "Salvage_EquipmentComponents"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "Salvage_MechComponents"
+},
+{
+"type": "KelCurrencyItemDataAsset",
+"asset": "Salvage_WeaponComponents"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AMSAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AdditionalFerroArmorHalfTon_Equipment"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AdditionalFerroArmorQuarterTon_Equipment"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AdditionalFerroArmor_Equipment"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AdditionalStandardArmorHalfTon_Equipment"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AdditionalStandardArmorQuarterTon_Equipment"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AdditionalStandardArmor_Equipment"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_AntiMissileSystem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ArrowIV"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ArrowIVAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ArrowIVHalfAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Artemis_LRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Artemis_SRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_BAP"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Class1_JumpJets"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Class2_JumpJets"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Class3_JumpJets"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Class4_JumpJets"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Class5_JumpJets"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_DoubleHeatsink"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ECM"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ERLargeLaser"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ERMediumLaser"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ERPPC"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_ERSmallLaser"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Flamer"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_GaussAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_GaussRifle"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_AMSAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_Artemis_LRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_Artemis_SRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_GaussAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_LBX_AC10Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_LBX_AC20Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_LBX_AC2Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_LBX_AC5Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_LRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_MachineGunAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_NARCAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_SRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_StreakSRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_UAC10Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_UAC20Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_UAC2Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Half_UAC5Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_Heatsink"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon10"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon10_SolidSlug"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon2"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon20"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon20_SolidSlug"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon2_SolidSlug"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon5"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBXAutocannon5_SolidSlug"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBX_AC10Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBX_AC20Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBX_AC2Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LBX_AC5Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM10"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM10_Artemis"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM15"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM15_Artemis"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM20"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM20_Artemis"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM5"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRM5_Artemis"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_LargePulseLaser"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_MachineGun"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_MachineGunAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_MediumPulseLaser"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_NARCAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_NarcBeacon"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SRM2"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SRM2_Artemis"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SRM4"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SRM4_Artemis"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SRM6"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SRM6_Artemis"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_100_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_105_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_110_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_115_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_120_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_125_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_130_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_135_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_140_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_145_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_150_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_155_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_160_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_165_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_170_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_175_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_180_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_185_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_190_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_195_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_200_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_205_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_210_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_215_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_220_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_225_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_230_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_235_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_240_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_245_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_250_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_255_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_260_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_265_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_270_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_275_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_280_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_285_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_290_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_295_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_300_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_305_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_310_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_315_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_320_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_325_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_330_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_335_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_340_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_345_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_350_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_355_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_360_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_365_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_370_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_375_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_380_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_385_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_390_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_395_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_STDEngine_400_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_SmallPulseLaser"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_StreakSRM2"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_StreakSRM4"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_StreakSRM6"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_StreakSRMAmmo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TAG"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TargetingComputer_MkI"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TargetingComputer_MkII"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TargetingComputer_MkIII"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TargetingComputer_MkIV"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TargetingComputer_MkV"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TargetingComputer_MkVI"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_TargetingComputer_MkVII"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UAC10Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UAC20Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UAC2Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UAC5Ammo"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UltraAutocannon10"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UltraAutocannon2"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UltraAutocannon20"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_UltraAutocannon5"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_100_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_105_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_110_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_115_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_120_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_125_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_130_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_135_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_140_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_145_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_150_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_155_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_160_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_165_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_170_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_175_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_180_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_185_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_190_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_195_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_200_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_205_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_210_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_215_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_220_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_225_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_230_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_235_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_240_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_245_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_250_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_255_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_260_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_265_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_270_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_275_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_280_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_285_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_290_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_295_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_300_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_305_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_310_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_315_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_320_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_325_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_330_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_335_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_340_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_345_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_350_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_355_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_360_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_365_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_370_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_375_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_380_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_385_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_390_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_395_EquipmentItem"
+},
+{
+"type": "KelEquipmentItemDataAsset",
+"asset": "Clan_XLEngine_400_EquipmentItem"
+}
+]

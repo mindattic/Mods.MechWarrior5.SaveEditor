@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace Mech5.Mercs.SaveEditor.App.Localization;
+namespace Mech5.SaveEditor.App.Localization;
 
 public sealed record LanguageOption(string Code, string Name);
 
@@ -75,7 +75,7 @@ public sealed class Loc : INotifyPropertyChanged
 
     private static Dictionary<string, string> Load(string code)
     {
-        using var stream = typeof(Loc).Assembly.GetManifestResourceStream($"Mech5.Mercs.SaveEditor.App.Localization.{code}.json");
+        using var stream = typeof(Loc).Assembly.GetManifestResourceStream($"Mech5.SaveEditor.App.Localization.{code}.json");
         return stream is null
             ? []
             : JsonSerializer.Deserialize<Dictionary<string, string>>(stream) ?? [];

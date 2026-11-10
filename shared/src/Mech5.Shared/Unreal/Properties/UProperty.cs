@@ -17,12 +17,19 @@ public abstract class UProperty
     /// <summary>Optional per-property GUID (tag flag <c>HasPropertyGuid</c>); almost always absent.</summary>
     public Guid? PropertyGuid { get; set; }
 
+    /// <summary>
+    /// The UE 5.4+ tag (type tree, flags, extensions) when the property came from, or is meant for,
+    /// a UE5 stream; <see langword="null"/> for UE4 streams.
+    /// </summary>
+    public Ue5Tag? Ue5 { get; set; }
+
     public UProperty DeepClone()
     {
         var clone = CloneCore();
         clone.Name = Name;
         clone.ArrayIndex = ArrayIndex;
         clone.PropertyGuid = PropertyGuid;
+        clone.Ue5 = Ue5;
         return clone;
     }
 
