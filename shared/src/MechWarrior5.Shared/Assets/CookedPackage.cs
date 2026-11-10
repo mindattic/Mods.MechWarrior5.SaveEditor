@@ -173,6 +173,7 @@ public sealed class CookedPackage
 
     private UProperty ReadValue(string name, string type, string? extra, bool boolValue, UnrealReader value)
     {
+        var start = value.Fork();
         try
         {
             return type switch
@@ -195,7 +196,61 @@ public sealed class CookedPackage
         }
         catch (SaveFormatException)
         {
-            return new RawProperty(name, type, [], []);
+            // Natively serialized structs (e.g. a curve's RichCurveKey array) aren't tagged property lists: keep the
+            // bytes so a caller that knows the layout can still read them.
+            return new RawProperty(name, type, [], start.ReadBytes(start.Remaining));
+        }
+    }
+
+    /// <summary>
+    /// The keys of a <c>CurveFloat</c> export (<c>FloatCurve.Keys</c>, natively serialized <c>RichCurveKey</c>s) as
+    /// (time, value) pairs; empty when the export has no readable keys.
+    /// </summary>
+    public IReadOnlyList<(float Time, float Value)> ReadCurveKeys(PackageExport export)
+    {
+        if ((ReadProperties(export).Find<StructProperty>("FloatCurve")?.Value as PropertyList)?.Find<RawProperty>("Keys")?.Value is not { Length: > 4 } raw)
+        {
+            return [];
+        }
+
+        try
+        {
+            // int32 count, then the inner struct tag (name, type, size, index, struct name, GUID, GUID flag), then the keys.
+            var reader = new UnrealReader(raw);
+            var count = reader.ReadInt32();
+            ReadName(reader);
+            ReadName(reader);
+            var size = reader.ReadInt32();
+            reader.ReadInt32();
+            ReadName(reader);
+            reader.ReadBytes(16);
+            if (reader.ReadByte() != 0)
+            {
+                reader.ReadBytes(16);
+            }
+
+            // Each key: interp, tangent and tangent-weight modes (one byte each), then time, value and four tangent floats.
+            const int KeySize = 3 + (6 * 4);
+            if (count <= 0 || size != count * KeySize || reader.Remaining < size)
+            {
+                return [];
+            }
+
+            var keys = new List<(float, float)>(count);
+            for (var i = 0; i < count; i++)
+            {
+                reader.ReadBytes(3);
+                var time = reader.ReadSingle();
+                var value = reader.ReadSingle();
+                reader.ReadBytes(16);
+                keys.Add((time, value));
+            }
+
+            return keys;
+        }
+        catch (SaveFormatException)
+        {
+            return [];
         }
     }
 

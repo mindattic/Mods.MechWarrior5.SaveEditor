@@ -191,7 +191,7 @@
                                     <ColumnDefinition Width="110" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:T skill}" Style="{StaticResource Text.Label}" />
-                                <TextBlock Grid.Column="1" Text="{l:T cap_0_10}" Style="{StaticResource Text.Label}" />
+                                <TextBlock Grid.Column="1" Text="{Binding CapHeader}" Style="{StaticResource Text.Label}" />
                                 <TextBlock Grid.Column="2" Text="{l:T total_xp}" Style="{StaticResource Text.Label}" />
                             </Grid>
                             <ItemsControl ItemsSource="{Binding Skills}">
@@ -218,7 +218,7 @@
                                                 <DockPanel Grid.Column="1" Margin="0,0,16,0" Visibility="{Binding HasCap, Converter={StaticResource BoolToVisibility}}">
                                                     <TextBlock DockPanel.Dock="Right" Text="{Binding Cap}" Width="26" TextAlignment="Right" FontSize="19" FontWeight="Bold"
                                                                Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center" />
-                                                    <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
+                                                    <Slider Minimum="0" Maximum="{Binding MaxCap}" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
                                                 </DockPanel>
                                                 <TextBox Grid.Column="2" Text="{Binding Experience, UpdateSourceTrigger=LostFocus}" Height="32" />
                                             </Grid>

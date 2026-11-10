@@ -225,7 +225,7 @@ public class MercsPermutationTests
             Assert.That(pilot.Callsign, Is.EqualTo("Matrix"));
             Assert.That(pilot.Salary, Is.EqualTo(4_321));
             Assert.That(pilot.Bio, Is.EqualTo("Permutation pilot."));
-            Assert.That(pilot.Skills.Where(s => s.HasCap).Select(s => s.Cap), Is.All.EqualTo(Pilot.MaxSkillCap));
+            Assert.That(pilot.Skills.Where(s => s.HasCap).Select(s => s.Cap), Is.All.EqualTo(pilot.MaxSkillCap));
             if (trait is not null)
             {
                 Assert.That(pilot.Traits, Does.Contain(trait.Asset));

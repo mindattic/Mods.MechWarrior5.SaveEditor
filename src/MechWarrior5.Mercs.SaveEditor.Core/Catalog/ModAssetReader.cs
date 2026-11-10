@@ -13,6 +13,8 @@ internal sealed class ModExtras
     public Dictionary<string, TraitDefinition> PilotTraits { get; } = new(StringComparer.OrdinalIgnoreCase);
 
     public Dictionary<string, TraitDefinition> MechTraits { get; } = new(StringComparer.OrdinalIgnoreCase);
+
+    public int? MaxSkillCap { get; set; }
 }
 
 /// <summary>Reads the weapons, equipment, ammo and pilot/'Mech traits a mod's pak adds.</summary>

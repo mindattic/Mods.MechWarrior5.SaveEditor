@@ -9,17 +9,23 @@ public sealed class RosterEditor
     private readonly Mw5SaveFile _file;
     private readonly StructArrayStorage? _roster;
     private readonly Action _changed;
+    private readonly Func<int> _maxSkillCap;
     private readonly List<Pilot> _pilots = [];
 
-    internal RosterEditor(Mw5SaveFile file, Action changed)
+    /// <param name="maxSkillCap">The highest skill cap, read each time: a game data rescan can change it.</param>
+    internal RosterEditor(Mw5SaveFile file, Action changed, Func<int>? maxSkillCap = null)
     {
         _file = file;
         _changed = changed;
+        _maxSkillCap = maxSkillCap ?? (() => Pilot.DefaultMaxSkillCap);
         _roster = file.GetModel("RosterModel").Find<ArrayProperty>("PilotRoster")?.Storage as StructArrayStorage;
         Reload();
     }
 
     public IReadOnlyList<Pilot> Pilots => _pilots;
+
+    /// <summary>The highest skill cap: the game's skill level curve (a mod can raise it), else 10.</summary>
+    public int MaxSkillCap => _maxSkillCap();
 
     public bool CanHire => _roster is not null && _pilots.Count > 0;
 
@@ -163,7 +169,7 @@ public sealed class RosterEditor
         _pilots.Clear();
         if (_roster is not null)
         {
-            _pilots.AddRange(_roster.PropertyElements.Select(p => new Pilot(p, _changed)));
+            _pilots.AddRange(_roster.PropertyElements.Select(p => new Pilot(p, _changed, _maxSkillCap)));
         }
     }
 }
@@ -174,21 +180,24 @@ public sealed class Pilot
     public static readonly IReadOnlyList<string> SkillNames =
         ["Gunnery", "Ballistics", "Energy", "Missile", "Piloting", "Evasiveness", "Shielding", "HeatManagement"];
 
-    public const int MaxSkillCap = 10;
+    /// <summary>The base game's highest skill level (the top of its <c>PilotSkillLevelCurve</c>).</summary>
+    public const int DefaultMaxSkillCap = 10;
     public const int MaxSalary = 10_000_000;
 
     private readonly Action _changed;
+    private readonly Func<int> _maxSkillCap;
 
-    internal Pilot(PropertyList element, Action changed)
+    internal Pilot(PropertyList element, Action changed, Func<int> maxSkillCap)
     {
         Element = element;
         _changed = changed;
+        _maxSkillCap = maxSkillCap;
         var slot = element.Find<EnumProperty>("LockedPlayerSlot");
         IsPlayer = slot is not null && Ue.EnumValue(slot.Value) != "None";
 
         var skills = element.Find<StructProperty>("Skills")?.Value as PropertyList;
         Skills = SkillNames
-            .Select(n => skills?.Find<StructProperty>(n)?.Value is PropertyList s ? new PilotSkill(n, s, changed) : null)
+            .Select(n => skills?.Find<StructProperty>(n)?.Value is PropertyList s ? new PilotSkill(n, s, changed, maxSkillCap) : null)
             .OfType<PilotSkill>()
             .ToList();
     }
@@ -235,6 +244,9 @@ public sealed class Pilot
 
     public bool IsPlayer { get; }
 
+    /// <summary>The highest skill cap (the game's skill level curve, a mod can raise it; else 10).</summary>
+    public int MaxSkillCap => _maxSkillCap();
+
     public IReadOnlyList<PilotSkill> Skills { get; }
 
     public IReadOnlyList<string> Traits =>
@@ -276,7 +288,7 @@ public sealed class Pilot
     {
         foreach (var skill in Skills.Where(s => s.HasCap))
         {
-            skill.Cap = MaxSkillCap;
+            skill.Cap = skill.MaxCap;
         }
     }
 
@@ -392,15 +404,20 @@ public sealed class PilotSkill
 
     private readonly PropertyList _skill;
     private readonly Action _changed;
+    private readonly Func<int> _maxCap;
 
-    internal PilotSkill(string name, PropertyList skill, Action changed)
+    internal PilotSkill(string name, PropertyList skill, Action changed, Func<int> maxCap)
     {
         Name = name;
         _skill = skill;
         _changed = changed;
+        _maxCap = maxCap;
     }
 
     public string Name { get; }
+
+    /// <summary>The highest cap this skill can be given.</summary>
+    public int MaxCap => _maxCap();
 
     /// <summary>Parent skills (Gunnery, Piloting) have no cap of their own.</summary>
     public bool HasCap => Name is not ("Gunnery" or "Piloting");
@@ -410,7 +427,7 @@ public sealed class PilotSkill
         get => _skill.Find<ByteProperty>("SkillCap")?.RawValue ?? 0;
         set
         {
-            var clamped = (byte)Math.Clamp(value, 0, Pilot.MaxSkillCap);
+            var clamped = (byte)Math.Clamp(value, 0, Math.Min(MaxCap, byte.MaxValue));
             var property = _skill.Find<ByteProperty>("SkillCap");
             if (property?.RawValue == clamped)
             {

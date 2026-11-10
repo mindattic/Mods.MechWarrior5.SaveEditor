@@ -48,7 +48,7 @@
  "cant_release": "Entlassen nicht möglich",
  "cantinas": "KANTINEN",
  "cantinas_unlocked": "Kantinen freigeschaltet",
- "cap_0_10": "GRENZE (0-10)",
+ "cap_range": "GRENZE (0-{0})",
  "choose_the_game_to_edit": "Spiel wählen; jedes behält seinen eigenen offenen Spielstand",
  "clans_added_item": "{0} x {1} hinzugefügt. Speichern, um es zu behalten.",
  "clans_added_to_items": "{0} zu {1} Gegenstand/Gegenständen hinzugefügt. Speichern, um es zu behalten.",

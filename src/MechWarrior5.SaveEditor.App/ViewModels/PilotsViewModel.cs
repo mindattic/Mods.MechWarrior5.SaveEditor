@@ -16,6 +16,9 @@ public sealed partial class SkillViewModel(PilotSkill skill) : ObservableObject
 
     public bool IsParent => !skill.HasCap;
 
+    /// <summary>The slider's top: the game's highest skill level (a skill-cap mod can raise it above 10).</summary>
+    public int MaxCap => skill.MaxCap;
+
     public int Cap
     {
         get => skill.Cap;
@@ -78,6 +81,9 @@ public sealed partial class PilotViewModel : ObservableObject
     public IReadOnlyList<TraitDefinition> TraitChoices => _catalog.PilotTraits;
 
     public string Name => Pilot.DisplayName;
+
+    /// <summary>The cap column's header, with the game's range, e.g. "CAP (0-10)".</summary>
+    public string CapHeader => Loc.Text("cap_range", "CAP (0-{0})", Pilot.MaxSkillCap);
 
     public string Initials => string.Concat(Name
         .Split(' ', StringSplitOptions.RemoveEmptyEntries)

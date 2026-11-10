@@ -48,7 +48,7 @@
  "cant_release": "解雇できません",
  "cantinas": "カンティーナ",
  "cantinas_unlocked": "カンティーナ解放済み",
- "cap_0_10": "上限 (0-10)",
+ "cap_range": "上限 (0-{0})",
  "choose_the_game_to_edit": "編集するゲームを選択（それぞれ開いているセーブを保持します）",
  "clans_added_item": "{1} を {0} 個追加しました。残すには保存してください。",
  "clans_added_to_items": "{1} 種類のアイテムに {0} を追加しました。残すには保存してください。",

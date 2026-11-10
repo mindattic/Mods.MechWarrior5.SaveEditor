@@ -52,7 +52,7 @@
  "cant_release": "Can't release",
  "cantinas": "CANTINAS",
  "cantinas_unlocked": "Cantinas unlocked",
- "cap_0_10": "CAP (0-10)",
+ "cap_range": "CAP (0-{0})",
  "choose_the_game_to_edit": "Choose the game to edit; each keeps its own open save",
  "clans": "CLANS",
  "clans_added_item": "Added {0} x {1}. Save to keep it.",

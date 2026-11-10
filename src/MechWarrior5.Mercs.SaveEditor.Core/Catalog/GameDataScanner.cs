@@ -23,6 +23,12 @@ public sealed record GameData(
 
     /// <summary>'Mech traits the enabled mods add.</summary>
     public IReadOnlyList<TraitDefinition> MechTraits { get; init; } = [];
+
+    /// <summary>
+    /// The highest pilot skill level: the top of the game's <c>PilotSkillLevelCurve</c> (experience to level, 1..10 in
+    /// the base game), a mod's copy winning; null when the curve couldn't be read.
+    /// </summary>
+    public int? MaxSkillCap { get; init; }
 }
 
 /// <summary>
@@ -32,6 +38,8 @@ public sealed record GameData(
 /// </summary>
 public static partial class GameDataScanner
 {
+    private const string SkillLevelCurve = "PilotSkillLevelCurve";
+
     public static GameData Scan(string gameFolder, MechCatalog catalog)
     {
         var mechs = new Dictionary<string, ScannedMech>(StringComparer.OrdinalIgnoreCase);
@@ -64,6 +72,7 @@ public static partial class GameDataScanner
             Items = [.. extras.Items.Values],
             PilotTraits = [.. extras.PilotTraits.Values],
             MechTraits = [.. extras.MechTraits.Values],
+            MaxSkillCap = extras.MaxSkillCap,
         };
     }
 
@@ -77,6 +86,13 @@ public static partial class GameDataScanner
             foreach (var file in pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)))
             {
                 assets.Add(Path.GetFileNameWithoutExtension(file));
+            }
+
+            // The skill level curve tops out at the highest level a skill cap can reach; a mod's copy replaces the game's.
+            if (pak.Files.FirstOrDefault(f => f.EndsWith($"/{SkillLevelCurve}.uasset", StringComparison.OrdinalIgnoreCase)) is { } curve
+                && MaxLevel(pak, curve) is { } max)
+            {
+                extras.MaxSkillCap = max;
             }
 
             if (modName is not null)
@@ -171,6 +187,33 @@ public static partial class GameDataScanner
             tons switch { <= 35 => WeightClass.Light, <= 55 => WeightClass.Medium, <= 75 => WeightClass.Heavy, _ => WeightClass.Assault },
             null,
             dlc) { ModName = modName };
+    }
+
+    /// <summary>The highest level on a skill level curve (rounded), or null when unreadable or outside a save's 1..255 byte.</summary>
+    private static int? MaxLevel(PakFile pak, string uasset)
+    {
+        var uexp = uasset[..^".uasset".Length] + ".uexp";
+        if (!pak.Contains(uexp))
+        {
+            return null;
+        }
+
+        try
+        {
+            var package = CookedPackage.Parse(pak.Read(uasset), pak.Read(uexp));
+            var keys = package.FindExport("CurveFloat") is { } export ? package.ReadCurveKeys(export) : [];
+            if (keys.Count == 0)
+            {
+                return null;
+            }
+
+            var top = (int)Math.Round(keys.Max(k => k.Value));
+            return top is >= 1 and <= byte.MaxValue ? top : null;
+        }
+        catch (SaveFormatException)
+        {
+            return null;
+        }
     }
 
     private static PropertyList? Read(PakFile pak, string uasset, string exportClass)

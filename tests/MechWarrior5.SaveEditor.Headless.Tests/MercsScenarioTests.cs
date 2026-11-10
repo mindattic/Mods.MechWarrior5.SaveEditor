@@ -325,7 +325,7 @@ public class MercsScenarioTests
             return back =>
             {
                 var p = back.Roster.Pilots.First(x => x.PersonaId == id);
-                Assert.That(p.Skills.Where(s => s.HasCap).Select(s => s.Cap), Is.All.EqualTo(Pilot.MaxSkillCap), "skill caps");
+                Assert.That(p.Skills.Where(s => s.HasCap).Select(s => s.Cap), Is.All.EqualTo(p.MaxSkillCap), "skill caps");
                 Assert.That(p.IsHealthy, Is.True, "healed");
             };
         }),

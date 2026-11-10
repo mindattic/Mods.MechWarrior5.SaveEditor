@@ -48,7 +48,7 @@
  "cant_release": "No se puede despedir",
  "cantinas": "CANTINAS",
  "cantinas_unlocked": "Cantinas desbloqueadas",
- "cap_0_10": "LÍMITE (0-10)",
+ "cap_range": "LÍMITE (0-{0})",
  "choose_the_game_to_edit": "Elige el juego; cada uno conserva su partida abierta",
  "clans_added_item": "Añadido {0} x {1}. Guarda para conservarlo.",
  "clans_added_to_items": "Añadido {0} a {1} objeto(s). Guarda para conservarlo.",

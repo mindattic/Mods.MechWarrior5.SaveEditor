@@ -1,4 +1,5 @@
 using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
+using MechWarrior5.Mercs.SaveEditor.Core.Game;
 using MechWarrior5.Shared.Unreal;
 using MechWarrior5.Shared.Unreal.Properties;
 
@@ -148,6 +149,19 @@ public class ModCatalogTests
         items.Apply(Game(items: [builtIn with { Hardpoint = HardpointClass.Missile, ModName = "Rebalance" }]));
 
         Assert.That(items.Find("MediumLaser_Lvl2"), Is.SameAs(builtIn));
+    }
+
+    [Test]
+    public void Skill_cap_maximum_follows_the_scanned_game_and_falls_back_to_ten()
+    {
+        var mechs = MechCatalog.LoadBuiltIn();
+        Assert.That(mechs.MaxSkillCap, Is.EqualTo(Pilot.DefaultMaxSkillCap));
+
+        mechs.Apply(new GameData("game", [], [], [], new HashSet<string>()) { MaxSkillCap = 20 });
+        Assert.That(mechs.MaxSkillCap, Is.EqualTo(20));
+
+        mechs.Apply(new GameData("game", [], [], [], new HashSet<string>()));
+        Assert.That(mechs.MaxSkillCap, Is.EqualTo(Pilot.DefaultMaxSkillCap));
     }
 
     private static PropertyList WeaponProps(string tag, bool equippable, string? name = null)
