@@ -33,7 +33,7 @@ public sealed partial class MainViewModel : ObservableObject
     private IReadOnlyList<MissingAsset> _baselineMissing = [];
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(HasDocument), nameof(FileName), nameof(WindowTitle), nameof(DlcSummary))]
+    [NotifyPropertyChangedFor(nameof(HasDocument), nameof(FileName), nameof(SaveTitle), nameof(WindowTitle), nameof(DlcSummary))]
     [NotifyCanExecuteChangedFor(nameof(SaveCommand), nameof(SaveAsCommand), nameof(CloseCommand))]
     private Mw5Document? _document;
 
@@ -129,8 +129,11 @@ public sealed partial class MainViewModel : ObservableObject
 
     public string? FileName => Document is null ? null : Path.GetFileName(Document.FilePath);
 
+    /// <summary>The open save's friendly load-menu name (from Campaign.json), else its file name.</summary>
+    public string? SaveTitle => Document is null ? null : Document.DisplayName ?? Path.GetFileNameWithoutExtension(Document.FilePath);
+
     public string WindowTitle =>
-        Document is null ? "MW5 Mercs Save Editor" : $"{(IsDirty ? "* " : string.Empty)}{FileName} - MW5 Mercs Save Editor";
+        Document is null ? "MW5 Mercs Save Editor" : $"{(IsDirty ? "* " : string.Empty)}{SaveTitle} - MW5 Mercs Save Editor";
 
     public string DlcSummary => Document?.Dlc.Source switch
     {
@@ -207,7 +210,7 @@ public sealed partial class MainViewModel : ObservableObject
             return true;
         }
 
-        return _dialogs.AskSaveChanges(FileName!) switch
+        return _dialogs.AskSaveChanges(SaveTitle!) switch
         {
             true => TrySave(null),
             false => true,
@@ -299,6 +302,7 @@ public sealed partial class MainViewModel : ObservableObject
             _settings.Save();
             IsOriginal = Document.IsOriginalGameSave;
             OnPropertyChanged(nameof(FileName));
+            OnPropertyChanged(nameof(SaveTitle));
             OnPropertyChanged(nameof(WindowTitle));
             ShowToast(outcome switch
             {

@@ -26,7 +26,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
     private readonly DispatcherTimer _toastTimer = new() { Interval = TimeSpan.FromSeconds(6) };
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(HasDocument), nameof(FileName), nameof(IsOriginal), nameof(WindowTitle), nameof(SaveLabel))]
+    [NotifyPropertyChangedFor(nameof(HasDocument), nameof(FileName), nameof(SaveTitle), nameof(IsOriginal), nameof(WindowTitle), nameof(SaveLabel))]
     private ClansDocument? _document;
 
     [ObservableProperty]
@@ -77,6 +77,9 @@ public sealed partial class ClansMainViewModel : ObservableObject
     public bool IsOriginal => Document?.IsOriginalGameSave == true;
 
     public string? FileName => Document is null ? null : Path.GetFileName(Document.Path);
+
+    /// <summary>The open save's friendly load-menu name (from UserSaveMetaData), else its file name.</summary>
+    public string? SaveTitle => Document is null ? null : Document.DisplayName() ?? Path.GetFileNameWithoutExtension(Document.Path);
 
     public string WindowTitle => Document is null
         ? "MW5 Clans Save Editor"
@@ -158,7 +161,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
         _settings.Save();
         RefreshSummary();
         Navigate(Page.Resources);
-        ShowToast($"Loaded {Path.GetFileName(path)}: {doc.Inventory.Mechs.Count()} mechs, {doc.Currency("Kerenskies_CurrencyItem"):N0} Kerenskies");
+        ShowToast($"Loaded {SaveTitle}: {doc.Inventory.Mechs.Count()} mechs, {doc.Currency("Kerenskies_CurrencyItem"):N0} Kerenskies");
     }
 
     /// <summary>Asks about unsaved edits; false means stay.</summary>
@@ -242,6 +245,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
             IsDirty = false;
             OnPropertyChanged(nameof(IsOriginal));
             OnPropertyChanged(nameof(FileName));
+            OnPropertyChanged(nameof(SaveTitle));
             OnPropertyChanged(nameof(SaveLabel));
             ShowToast(outcome switch
             {
