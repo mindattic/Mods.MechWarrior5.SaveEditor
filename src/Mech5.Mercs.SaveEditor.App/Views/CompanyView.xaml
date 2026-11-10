@@ -1,0 +1,111 @@
+<UserControl x:Class="Mech5.Mercs.SaveEditor.App.Views.CompanyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:Mech5.Shared.Wpf.Controls;assembly=Mech5.Shared.Wpf">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="28,22,28,28">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="18" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.ColumnSpan="3" Text="COMPANY OVERVIEW" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
+
+            <!-- Identity & finances -->
+            <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="22,18">
+                <StackPanel>
+                    <TextBlock Text="IDENTITY" Style="{StaticResource Text.Section}" />
+                    <TextBlock Text="COMPANY NAME" Style="{StaticResource Text.Label}" Margin="0,14,0,4" />
+                    <TextBox Text="{Binding CompanyName, UpdateSourceTrigger=LostFocus}" FontSize="18" />
+
+                    <TextBlock Text="REPUTATION" Style="{StaticResource Text.Label}" Margin="0,16,0,4" />
+                    <TextBox Text="{Binding Reputation, UpdateSourceTrigger=LostFocus}" Width="180" HorizontalAlignment="Left" />
+
+                    <TextBlock Text="CAMPAIGN DATE" Style="{StaticResource Text.Label}" Margin="0,16,0,2" />
+                    <TextBlock Text="{Binding CampaignDate}" FontSize="18" FontWeight="SemiBold" />
+                </StackPanel>
+            </c:ChamferBorder>
+
+            <c:ChamferBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" Padding="22,18">
+                <StackPanel>
+                    <TextBlock Text="FINANCES" Style="{StaticResource Text.Section}" />
+                    <TextBlock Text="AVAILABLE C-BILLS" Style="{StaticResource Text.Label}" Margin="0,14,0,2" />
+                    <TextBlock Text="{Binding CBillsText}" Style="{StaticResource Text.Readout}" FontSize="40" />
+                    <TextBlock Text="SET EXACT AMOUNT" Style="{StaticResource Text.Label}" Margin="0,12,0,4" />
+                    <TextBox Text="{Binding CBills, UpdateSourceTrigger=LostFocus}" Width="260" HorizontalAlignment="Left" />
+                    <WrapPanel Margin="0,14,0,0">
+                        <Button Content="+1M" Command="{Binding AddCBillsCommand}" CommandParameter="1000000" Margin="0,0,8,8" MinWidth="80" />
+                        <Button Content="+10M" Command="{Binding AddCBillsCommand}" CommandParameter="10000000" Margin="0,0,8,8" MinWidth="80" />
+                        <Button Content="+100M" Command="{Binding AddCBillsCommand}" CommandParameter="100000000" Margin="0,0,8,8" MinWidth="80" />
+                        <Button Content="MAX" Command="{Binding MaxCBillsCommand}" Style="{StaticResource Button.Command}" Margin="0,0,8,8" MinWidth="80"
+                                ToolTip="2,000,000,000 - the largest amount the game displays safely" />
+                    </WrapPanel>
+                </StackPanel>
+            </c:ChamferBorder>
+
+            <!-- Readouts -->
+            <c:ChamferBorder Grid.Row="2" Style="{StaticResource Panel}" Margin="0,18,0,0" Padding="22,18">
+                <StackPanel>
+                    <TextBlock Text="ASSETS" Style="{StaticResource Text.Section}" />
+                    <UniformGrid Columns="4" Margin="0,14,0,0">
+                        <StackPanel>
+                            <TextBlock Text="MECHBAY" Style="{StaticResource Text.Label}" />
+                            <TextBlock Text="{Binding MechBayCount}" Style="{StaticResource Text.Readout}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="COLD STORAGE" Style="{StaticResource Text.Label}" />
+                            <TextBlock Text="{Binding ColdStorageCount}" Style="{StaticResource Text.Readout}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="PILOTS" Style="{StaticResource Text.Label}" />
+                            <TextBlock Text="{Binding PilotCount}" Style="{StaticResource Text.Readout}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="ITEMS" Style="{StaticResource Text.Label}" />
+                            <TextBlock Text="{Binding ItemCount}" Style="{StaticResource Text.Readout}" />
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </c:ChamferBorder>
+
+            <c:ChamferBorder Grid.Row="2" Grid.Column="2" Style="{StaticResource Panel}" Margin="0,18,0,0" Padding="22,18">
+                <StackPanel>
+                    <TextBlock Text="DLC CONTENT" Style="{StaticResource Text.Section}" />
+                    <TextBlock Text="{Binding DlcNote}" Style="{StaticResource Text.Muted}" FontSize="14" TextWrapping="Wrap" Margin="0,4,0,10" />
+                    <ItemsControl ItemsSource="{Binding Dlcs}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Margin="0,3">
+                                    <Border DockPanel.Dock="Left" Style="{StaticResource Chip}" Width="56" Margin="0,0,10,0">
+                                        <TextBlock Text="{Binding Code}" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <TextBlock DockPanel.Dock="Right" FontWeight="Bold" FontSize="13" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                <Setter Property="Text" Value="NOT IN CAMPAIGN" />
+                                                <Setter Property="Foreground" Value="{StaticResource Brush.TextFaint}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Owned}" Value="True">
+                                                        <Setter Property="Text" Value="ACTIVE" />
+                                                        <Setter Property="Foreground" Value="{StaticResource Brush.Ok}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Name}" FontSize="15" VerticalAlignment="Center" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </c:ChamferBorder>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>Mech5.Mercs.SaveEditor.App</RootNamespace>
+    <NoWarn>$(NoWarn);CA1716</NoWarn>
+    <AssemblyName>MW5SaveEditor</AssemblyName>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+<ItemGroup>
+    <ProjectReference Include="..\Mech5.Mercs.SaveEditor.Core\Mech5.Mercs.SaveEditor.Core.csproj" />
+    <ProjectReference Include="..\..\shared\src\Mech5.Shared.Wpf\Mech5.Shared.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Mech5.Shared.Wpf.Services" />
+    <Using Include="Mech5.Shared.Wpf.ViewModels" />
+  </ItemGroup>
+
+</Project>

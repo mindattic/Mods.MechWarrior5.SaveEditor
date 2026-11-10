@@ -6,7 +6,7 @@ Many thanks to JJ, whose [MW5 Merc Save Editor](https://www.nexusmods.com/mechwa
 inspired this editor's scope: stock loadouts, repairs, and bulk inventory and pilot editing. **No code from
 that project is used.** This editor's save engine, game logic and interface were written independently.
 
-The game reference data in `src/Mw5SaveEditor.Core/Data/stock_loadouts.json.gz`, `items.json` and the
+The game reference data in `src/Mech5.Mercs.SaveEditor.Core/Data/stock_loadouts.json.gz`, `items.json` and the
 variant, chassis, tonnage and hero-name columns of `mechs.json` were derived from the data catalogs
 shipped with JJ's editor (v1.21.0), so its license notice is reproduced here as that license requires:
 
@@ -43,7 +43,7 @@ editor. Image rights belong to their respective owners; each picture links back 
 
 ## Rajdhani font
 
-The bundled Rajdhani typeface (`src/Mw5SaveEditor.App/Assets/Fonts`) is © Indian Type Foundry,
+The bundled Rajdhani typeface (`shared/src/Mech5.Shared.Wpf/Assets/Fonts`, from the Mods.Mech5.Shared submodule) is © Indian Type Foundry,
 licensed under the SIL Open Font License 1.1 (see `OFL.txt` in that folder).
 
 ## MechWarrior / BattleTech

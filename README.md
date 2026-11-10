@@ -1,4 +1,4 @@
-# Mods.Mech5Mercs.SaveEditor
+# Mods.Mech5.Mercs.SaveEditor
 
 **MW5 Mercs Save Editor 2.0**
 
@@ -52,18 +52,23 @@ listed in the game's load menu.
 
 ## Building
 
-Requires the .NET 10 SDK on Windows.
+Requires the .NET 10 SDK on Windows. The shared engine and UI kit come from
+[Mods.Mech5.Shared](https://github.com/mindattic/Mods.Mech5.Shared), included as a git submodule, which a
+future Clans editor will also use.
 
 ```powershell
-dotnet build Mw5SaveEditor.sln -c Release
-dotnet run --project src/Mw5SaveEditor.App
+git clone --recurse-submodules https://github.com/mindattic/Mods.Mech5.Mercs.SaveEditor.git
+dotnet build Mech5.Mercs.SaveEditor.sln -c Release
+dotnet run --project src/Mech5.Mercs.SaveEditor.App
 ```
 
 | Project | What it is |
 | --- | --- |
-| `src/Mw5SaveEditor.Core` | Unreal property-stream serializer, MW5 save model, game editors, catalogs |
-| `src/Mw5SaveEditor.App` | WPF/MVVM desktop app (CommunityToolkit.Mvvm) |
-| `tests/Mw5SaveEditor.Core.Tests` | NUnit tests; `RealSaveTests` run against copies of real saves in `MW5_SAVE_DIR` |
+| `shared/src/Mech5.Shared` | Lossless Unreal property-stream engine (submodule) |
+| `shared/src/Mech5.Shared.Wpf` | MW5 HUD theme, check-list multi-select, Sarna art, dialogs (submodule) |
+| `src/Mech5.Mercs.SaveEditor.Core` | MW5 Mercenaries save model, game editors, catalogs |
+| `src/Mech5.Mercs.SaveEditor.App` | WPF/MVVM desktop app (CommunityToolkit.Mvvm) |
+| `tests/Mech5.Mercs.SaveEditor.Core.Tests` | NUnit tests; `RealSaveTests` run against copies of real saves in `MW5_SAVE_DIR` |
 
 ## How the save format works
 
