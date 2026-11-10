@@ -50,6 +50,34 @@ public class RegressionTests
         });
     }
 
+    /// <summary>M5SE-T75: the Honor level follows Honor experience on the game's own curve, up and down.</summary>
+    [Test]
+    public void Honor_level_follows_honor_experience()
+    {
+        var pairs = SaveLibrary.List(SaveFixtures.ClansRoot)
+            .Select(s => ClansDocument.Load(s.Path).Progress)
+            .Where(p => p.HonorExperience is not null && p.HonorLevel is not null)
+            .Select(p => (Exp: p.HonorExperience!.Value, Level: p.HonorLevel!.Value))
+            .Distinct()
+            .ToList();
+        Assume.That(pairs, Is.Not.Empty, "no Clans saves with an Honor track");
+        Assert.That(pairs.Where(p => ProgressEditor.HonorLevelFor(p.Exp) != p.Level), Is.Empty, "the curve matches every real save");
+
+        var (_, save) = SaveFixtures.ClansSaveOfKind("ManualSave");
+        var doc = ClansDocument.Load(save);
+        Assume.That(doc.Progress.HonorExperience, Is.Not.Null);
+        doc.Progress.HonorExperience = 5_300;
+        var up = ClansDocument.Load(doc.Save("Regression Honor Up").Path);
+        Assert.That(up.Progress.HonorLevel, Is.EqualTo(14), "5300 Honor is level 14");
+        up.Progress.HonorExperience = 99;
+        var down = ClansDocument.Load(up.Save("Regression Honor Down").Path);
+        Assert.Multiple(() =>
+        {
+            Assert.That(down.Progress.HonorExperience, Is.EqualTo(99));
+            Assert.That(down.Progress.HonorLevel, Is.EqualTo(1), "99 Honor is level 1");
+        });
+    }
+
     /// <summary>M5SE-T76: Clans Repair restores internal structure, not only armor and part health.</summary>
     [Test]
     public void Clans_repair_restores_internal_structure()

@@ -16,7 +16,20 @@ public sealed class ProgressEditor
         _models = models;
     }
 
-    /// <summary>Total Honor experience on the Honor leveling track; null when the track is absent.</summary>
+    /// <summary>
+    /// Honor experience needed for each level from 2 up, cumulative, as the game's HonorLevelingAsset defines it
+    /// (matches every TotalEXP / CurrentDisplayLevel pair in real saves).
+    /// </summary>
+    public static readonly IReadOnlyList<int> HonorLevelThresholds = [100, 225, 370, 535, 720, 930, 1180, 1470, 1800, 2170, 2845, 3745, 5295, 7270];
+
+    /// <summary>The Honor level a given total experience reaches (1 to 15).</summary>
+    public static int HonorLevelFor(int experience) => 1 + HonorLevelThresholds.Count(t => experience >= t);
+
+    /// <summary>
+    /// Total Honor experience on the Honor leveling track; null when the track is absent. Setting it moves the level
+    /// with it; lowering it also lowers the awarded level and last-seen experience, which may not exceed the current
+    /// ones (raising leaves them, so the game awards the new levels itself).
+    /// </summary>
     public int? HonorExperience
     {
         get => HonorTrack()?.Find<IntProperty>("TotalEXP")?.Value;
@@ -28,6 +41,17 @@ public sealed class ProgressEditor
             }
 
             SetInt(track, "TotalEXP", exp);
+            var level = HonorLevelFor(exp);
+            SetInt(track, "CurrentDisplayLevel", level);
+            if (track.Find<IntProperty>("LastAwardedDisplayLevel") is { } awarded && awarded.Value > level)
+            {
+                awarded.Value = level;
+            }
+
+            if (track.Find<IntProperty>("LastSeenExp") is { } seen && seen.Value > exp)
+            {
+                seen.Value = exp;
+            }
         }
     }
 

@@ -132,6 +132,11 @@ public class ClansScenarioTests
         return back =>
         {
             Assert.That(back.Inventory.Total(asset), Is.EqualTo(value), asset);
+            if (asset == "Honor_CurrencyItem" && back.Progress.HonorLevel is not null)
+            {
+                Assert.That(back.Progress.HonorLevel, Is.EqualTo(ProgressEditor.HonorLevelFor(value)), "Honor level follows");
+            }
+
             if (asset == "Kerenskies_CurrencyItem")
             {
                 Assert.That(SaveLibrary.List(Path.GetDirectoryName(back.Path)!).Single(s => s.Path == back.Path).Kerenskies, Is.EqualTo(value), "load menu shows the new Kerenskies");

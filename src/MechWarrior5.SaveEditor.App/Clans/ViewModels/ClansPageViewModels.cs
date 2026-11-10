@@ -107,10 +107,13 @@ public sealed partial class AmountRow : ObservableObject
 }
 
 /// <summary>Kerenskies, Merits, Honor, salvage, crew and per-chassis mech XP.</summary>
-public sealed class ResourcesViewModel
+public sealed partial class ResourcesViewModel : ObservableObject
 {
+    private readonly ClansDocument _doc;
+
     public ResourcesViewModel(ClansDocument doc, ClansMainViewModel main)
     {
+        _doc = doc;
         const string Currency = "KelCurrencyItemDataAsset";
         const string Crew = "KelCrewItemDataAsset";
         Currencies =
@@ -139,7 +142,7 @@ public sealed class ResourcesViewModel
             .Distinct()
             .Order(StringComparer.Ordinal)
             .Select(asset => new AmountRow(doc, main, Currency, asset, ClansCatalog.MechXpLabel(asset).ToUpperInvariant()))];
-        HonorLevel = doc.Progress.HonorLevel;
+        Currencies[2].PropertyChanged += (_, _) => OnPropertyChanged(nameof(HonorLevel));
     }
 
     public IReadOnlyList<AmountRow> Currencies { get; }
@@ -150,7 +153,7 @@ public sealed class ResourcesViewModel
 
     public IReadOnlyList<AmountRow> MechXp { get; }
 
-    public int? HonorLevel { get; }
+    public int? HonorLevel => _doc.Progress.HonorLevel;
 }
 
 /// <summary>Research and campaign clock, read from the save.</summary>
