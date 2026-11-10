@@ -191,7 +191,7 @@ public class ClansPermutationTests
         doc.Inventory.DuplicateMechs([source], copies: 2);
         var copies = doc.Inventory.Mechs.Skip(count).ToList();
         copies[0].CustomName = "Perm Copy";
-        InventoryEditor.RepairMechs(doc.Inventory.Mechs);
+        doc.Inventory.RepairMechs(doc.Inventory.Mechs);
         var ids = copies.Select(m => m.InventoryId).ToHashSet();
         var back = SaveAndReopen(doc, "Perm Mechs");
         var reloaded = back.Inventory.Mechs.Where(m => ids.Contains(m.InventoryId)).ToList();
@@ -256,7 +256,7 @@ public class ClansPermutationTests
             doc.Inventory.DuplicateMechs([doc.Inventory.Mechs.First()]);
         }
 
-        InventoryEditor.RepairMechs(doc.Inventory.Mechs);
+        doc.Inventory.RepairMechs(doc.Inventory.Mechs);
         var back = SaveAndReopen(doc, "Perm Everything");
         Assert.Multiple(() =>
         {

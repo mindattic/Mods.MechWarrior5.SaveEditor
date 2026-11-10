@@ -136,7 +136,7 @@ public sealed class InventoryEditor
             for (var i = 0; i < copies; i++)
             {
                 var clone = new ClansMech(mech.Actor.CloneWithNewId());
-                clone.Repair();
+                clone.Repair(FullStructure(mech));
                 Append(clone.Actor);
             }
 
@@ -171,13 +171,28 @@ public sealed class InventoryEditor
         return new BatchResult(done, skipped);
     }
 
-    public static BatchResult RepairMechs(IEnumerable<ClansMech> mechs)
+    /// <summary>
+    /// A variant's full internal structure, taken from an undamaged entry of it in this save (the shop's, planned or
+    /// unavailable copies included), else of its chassis; null when the save has none. The save keeps no maximum.
+    /// </summary>
+    public IReadOnlyDictionary<string, float>? FullStructure(ClansMech mech)
+    {
+        var pristine = _actors.Where(a => a.Kind == ActorKind.Mech).Select(a => new ClansMech(a)).Where(m => !m.IsDamaged).ToList();
+        var references = pristine.Where(m => m.Variant == mech.Variant).ToList() is { Count: > 0 } same
+            ? same
+            : pristine.Where(m => m.Chassis == mech.Chassis).ToList();
+        return references.Count == 0
+            ? null
+            : references.SelectMany(m => m.Structure).GroupBy(kv => kv.Key).ToDictionary(g => g.Key, g => g.Max(kv => kv.Value));
+    }
+
+    public BatchResult RepairMechs(IEnumerable<ClansMech> mechs)
     {
         var done = new List<string>();
         var skipped = new List<Skipped>();
-        foreach (var mech in mechs)
+        foreach (var mech in mechs.ToList())
         {
-            if (mech.Repair())
+            if (mech.Repair(FullStructure(mech)))
             {
                 done.Add(Label(mech));
             }

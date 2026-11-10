@@ -102,7 +102,7 @@ public sealed partial class MechsViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void Repair() => Run("Repaired", picks => InventoryEditor.RepairMechs(picks));
+    private void Repair() => Run("Repaired", picks => _doc.Inventory.RepairMechs(picks));
 
     [RelayCommand]
     private void Duplicate() => Run($"Duplicated x{Copies}", picks => _doc.Inventory.DuplicateMechs(picks, Math.Clamp(Copies, 1, 20)));

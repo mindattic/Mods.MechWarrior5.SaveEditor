@@ -121,7 +121,7 @@ public class ClansEndToEndTests
         var copies = doc.Inventory.Mechs.Skip(count).ToList();
         copies[0].CustomName = "Headless Copy";
         var copyIds = copies.Select(m => m.InventoryId).ToHashSet();
-        InventoryEditor.RepairMechs(doc.Inventory.Mechs);
+        doc.Inventory.RepairMechs(doc.Inventory.Mechs);
         var back = Reopen(doc.Save("Headless Mechs 1"));
 
         var reloadedCopies = back.Inventory.Mechs.Where(m => copyIds.Contains(m.InventoryId)).ToList();

@@ -59,10 +59,30 @@ public sealed class ClansMech
 
     internal PropertyList Loadout => Actor.Properties.Get<StructProperty>("Loadout").Properties;
 
-    /// <summary>Restores armor to its installed values and every installed part to Healthy.</summary>
-    public bool Repair()
+    /// <summary>Internal structure per location (<c>CurrentStructure</c>); the save keeps no maximum.</summary>
+    public IReadOnlyDictionary<string, float> Structure =>
+        (Loadout.Find<StructProperty>("CurrentStructure")?.Value as PropertyList)?.OfType<FloatProperty>().ToDictionary(f => f.Name, f => f.Value)
+        ?? [];
+
+    /// <summary>
+    /// Restores armor to its installed values, every installed part to Healthy, and internal structure up to
+    /// <paramref name="fullStructure"/> (the save keeps no structure maximum, so the caller supplies one).
+    /// </summary>
+    public bool Repair(IReadOnlyDictionary<string, float>? fullStructure = null)
     {
         var changed = false;
+        if (fullStructure is not null && Loadout.Find<StructProperty>("CurrentStructure")?.Value is PropertyList structure)
+        {
+            foreach (var part in structure.OfType<FloatProperty>())
+            {
+                if (fullStructure.TryGetValue(part.Name, out var full) && part.Value < full)
+                {
+                    part.Value = full;
+                    changed = true;
+                }
+            }
+        }
+
         foreach (var pair in ArmorPairs)
         {
             foreach (var location in Locations(pair).Where(l => l.Current < l.Installed))

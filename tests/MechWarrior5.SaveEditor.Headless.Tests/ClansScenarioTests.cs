@@ -267,8 +267,14 @@ public class ClansScenarioTests
         }),
         ("RepairMechs", (doc, rng, touched) =>
         {
-            InventoryEditor.RepairMechs(doc.Inventory.Mechs);
-            return back => Assert.That(back.Inventory.Mechs.Any(m => m.IsDamaged), Is.False, "all repaired");
+            doc.Inventory.RepairMechs(doc.Inventory.Mechs);
+            return back =>
+            {
+                Assert.That(back.Inventory.Mechs.Any(m => m.IsDamaged), Is.False, "all repaired");
+                Assert.That(back.Inventory.Mechs.Where(m => back.Inventory.FullStructure(m) is { } full
+                        && m.Structure.Any(kv => kv.Value < full.GetValueOrDefault(kv.Key) - 0.01f)).Select(m => m.Variant),
+                    Is.Empty, "internal structure restored to full");
+            };
         }),
         ("RemoveDuplicate", (doc, rng, touched) =>
         {

@@ -50,6 +50,31 @@ public class RegressionTests
         });
     }
 
+    /// <summary>M5SE-T76: Clans Repair restores internal structure, not only armor and part health.</summary>
+    [Test]
+    public void Clans_repair_restores_internal_structure()
+    {
+        var (_, save) = SaveFixtures.ClansFolderCopy();
+        var doc = ClansDocument.Load(save);
+        var hurt = doc.Inventory.Mechs.FirstOrDefault(m => doc.Inventory.FullStructure(m) is { } full
+            && m.Structure.Any(kv => kv.Value < full.GetValueOrDefault(kv.Key) - 0.01f));
+        Assume.That(hurt, Is.Not.Null, "no mech with structure damage in this save");
+        var full = doc.Inventory.FullStructure(hurt!)!;
+        var id = hurt!.InventoryId;
+        var result = doc.Inventory.RepairMechs([hurt]);
+        var back = ClansDocument.Load(doc.Save("Regression Structure").Path);
+        var mech = back.Inventory.Mechs.Single(m => m.InventoryId == id);
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.Succeeded, Has.Count.EqualTo(1));
+            Assert.That(mech.IsDamaged, Is.False);
+            foreach (var (part, value) in mech.Structure)
+            {
+                Assert.That(value, Is.GreaterThanOrEqualTo(full.GetValueOrDefault(part) - 0.01f), part);
+            }
+        });
+    }
+
     /// <summary>M5SE-T61: a pilot whose save has no PilotTraits array can still be given a trait.</summary>
     [Test]
     public void A_trait_can_be_added_to_a_pilot_with_no_trait_array()
