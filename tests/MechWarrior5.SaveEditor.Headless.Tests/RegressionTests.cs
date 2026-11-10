@@ -120,13 +120,14 @@ public class RegressionTests
         Assume.That(removed.Succeeded, Is.Not.Empty, "every mech in this save is deployed or worked on");
         var back = ClansDocument.Load(doc.Save("Regression Remove Planned").Path);
         var left = back.Inventory.Mechs.Count();
+        var plannedLeft = Planned(back); // counted before the duplicate below adds to back
         back.Inventory.DuplicateMechs([back.Inventory.Mechs.First()], copies: 2);
         var copied = ClansDocument.Load(back.Save("Regression Duplicate Planned").Path);
 
         Assert.Multiple(() =>
         {
             Assert.That(left, Is.EqualTo(mechs - removed.Succeeded.Count), "unreferenced mechs removed");
-            Assert.That(Planned(back), Is.EqualTo(left), "each removed mech took its planned copy");
+            Assert.That(plannedLeft, Is.EqualTo(left), "each removed mech took its planned copy");
             Assert.That(copied.Inventory.Mechs.Count(), Is.EqualTo(left + 2));
             Assert.That(Planned(copied), Is.EqualTo(left + 2), "each copy has its own planned copy");
         });

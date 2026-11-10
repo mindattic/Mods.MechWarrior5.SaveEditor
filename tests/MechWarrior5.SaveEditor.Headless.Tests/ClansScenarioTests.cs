@@ -98,6 +98,7 @@ public class ClansScenarioTests
             }
 
             before.AssertUnchanged(back, touched);
+            Snapshot.AssertPlansFollowMechs(ClansDocument.Load(save), back);
         });
 
         if (seed % 4 == 0)
@@ -318,7 +319,13 @@ public class ClansScenarioTests
             d.Inventory.Mechs.Count(),
             string.Join(";", d.Inventory.Stacks.Where(s => s.Category == StackCategory.Equipment).GroupBy(s => s.AssetName).OrderBy(g => g.Key, StringComparer.Ordinal).Select(g => $"{g.Key}={g.Sum(s => s.Quantity)}")),
             string.Join(";", d.Inventory.AllStacks.Where(s => !s.IsPlayers).Select(s => $"{s.AssetName}={s.Quantity}")),
-            d.Inventory.Actors.Count(a => a.Kind == ActorKind.Mech && !a.IsPlayers));
+            // Planned copies (mech bay plans) follow the player's mechs on duplicate and remove, so they're checked
+            // separately below; every other non-player mech (shop, saved loadouts, unavailable) must never change.
+            d.Inventory.Actors.Count(a => a.Kind == ActorKind.Mech && !a.IsPlayers && a.InventoryTag != PlannedTag));
+
+        private const string PlannedTag = "Inventory.Planned";
+
+        private static int Planned(ClansDocument d) => d.Inventory.Actors.Count(a => a.Kind == ActorKind.Mech && a.InventoryTag == PlannedTag);
 
         public void AssertUnchanged(ClansDocument back, HashSet<string> touched)
         {
@@ -331,7 +338,22 @@ public class ClansScenarioTests
             if (!touched.Contains("Mechs")) Assert.That(now.Mechs, Is.EqualTo(Mechs), "untouched mech count");
             if (!touched.Contains("Equipment")) Assert.That(now.Equipment, Is.EqualTo(Equipment), "untouched equipment");
             Assert.That(now.Shop, Is.EqualTo(Shop), "the shop's stock never changes");
-            Assert.That(now.ShopMechs, Is.EqualTo(ShopMechs), "shop, planned and saved-loadout mechs never change");
+            Assert.That(now.ShopMechs, Is.EqualTo(ShopMechs), "shop, saved-loadout and unavailable mechs never change");
+        }
+
+        /// <summary>
+        /// Planned copies change only with the mechs they belong to: as many come and go as player mechs do. Checked
+        /// when every mech in the original has its plan (a save where some don't can't be counted this way).
+        /// </summary>
+        public static void AssertPlansFollowMechs(ClansDocument original, ClansDocument back)
+        {
+            if (Planned(original) != original.Inventory.Mechs.Count())
+            {
+                return;
+            }
+
+            Assert.That(Planned(back) - Planned(original), Is.EqualTo(back.Inventory.Mechs.Count() - original.Inventory.Mechs.Count()),
+                "every added or removed mech brings or takes exactly its own planned copy");
         }
     }
 }

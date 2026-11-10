@@ -178,15 +178,22 @@ public sealed class InventoryEditor
 
             var plan = _plans.RecordOf(id);
             var at = plan is null ? -1 : _plans.Detach(plan);
-            if (_isReferenced(id))
+            var planned = plan is null ? null : PlannedCopy(plan);
+            // In use if the mech is (deployment, technicians), or if its planned copy is: a planned refit waiting in
+            // the mech bay's work queue means the mech is being worked on, so mech, plan and planned copy all stay.
+            if (_isReferenced(id) || (planned?.InventoryId is { } plannedId && _isReferenced(plannedId)))
             {
-                _plans.Restore(at, plan!);
+                if (plan is not null)
+                {
+                    _plans.Restore(at, plan);
+                }
+
                 skipped.Add(new Skipped(Label(mech), "it is deployed, being worked on, or planned"));
                 continue;
             }
 
             Remove(mech.Actor);
-            if (plan is not null && PlannedCopy(plan) is { } planned && !_isReferenced(planned.InventoryId!.Value))
+            if (planned is not null)
             {
                 Remove(planned);
             }
