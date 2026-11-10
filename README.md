@@ -15,6 +15,18 @@ Player documentation is in
 [docs/USER_GUIDE.md](docs/USER_GUIDE.md); the NexusMods listing text is in
 [docs/NEXUS_PAGE.md](docs/NEXUS_PAGE.md).
 
+## Download
+
+The same zip, `MechWarrior5.SaveEditor-<version>.zip`, from any of these:
+
+- **GitHub:** [latest release](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest)
+  ([all releases](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases))
+- **NexusMods, MechWarrior 5: Mercenaries:** [mod 1666](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666)
+- **NexusMods, MechWarrior 5: Clans:** [mod 70](https://www.nexusmods.com/mechwarrior5clans/mods/70)
+
+Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `MW5SaveEditor.exe`
+(with Vortex, see above). Full steps are in the [user guide](docs/USER_GUIDE.md#install).
+
 ## Features
 
 ### Both games

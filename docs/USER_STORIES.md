@@ -129,4 +129,5 @@ _Nothing recorded yet._
 | M5SE-T106 | 2026-11-10 | feature | closed | Pilots page: a framed box listing the selected pilot's current traits (name and description, remove per trait), not just small chips (user feature request) | — |
 | M5SE-T107 | 2026-11-10 | chore | closed | Read-only nexus-files workflow: lists each NexusMods page's file IDs (via the repo's API key secret) so nexus.json can be filled in | .github/workflows/nexus-files.yml |
 | M5SE-T108 | 2026-11-10 | chore | closed | Deploy released 2.0.0 (with mod items/traits, skill caps, trait box) to C:\Apps with run.ps1 | — |
-| M5SE-T109 | 2026-11-10 | feature | open | Mech Lab traits tab lists the mech's traits in the same framed box as the Pilots page (name, description, MOD chip, remove; empty state), picker below | — |
+| M5SE-T109 | 2026-11-10 | feature | closed | Mech Lab traits tab lists the mech's traits in the same framed box as the Pilots page (name, description, MOD chip, remove; empty state), picker below | — |
+| M5SE-T110 | 2026-11-10 | docs | closed | README (and so the GitHub Page) gets a Download section: latest GitHub release, all releases, both NexusMods pages, requirements and where the install steps are | README.md#download |
