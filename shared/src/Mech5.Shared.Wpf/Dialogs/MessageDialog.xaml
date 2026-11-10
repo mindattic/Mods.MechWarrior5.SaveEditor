@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
         Title="{Binding Title}">
     <c:ChamferBorder Style="{StaticResource Panel}" Chamfer="18" Padding="26,20,26,22"
-                     Background="{StaticResource Brush.Panel}" BorderBrush="{Binding ToneBrush}" BorderThickness="1.5"
+                     Background="{DynamicResource Brush.Panel}" BorderBrush="{Binding ToneBrush}" BorderThickness="1.5"
                      AccentBrush="{Binding ToneBrush}">
         <Grid>
             <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
             </StackPanel>
 
             <TextBlock Grid.Row="1" Margin="0,12,0,0" Text="{Binding Message}" TextWrapping="Wrap" FontSize="16"
-                       Foreground="{StaticResource Brush.Text}" />
+                       Foreground="{DynamicResource Brush.Text}" />
 
             <ScrollViewer Grid.Row="2" Margin="0,10,0,0" VerticalScrollBarVisibility="Auto" MaxHeight="420">
                 <ItemsControl ItemsSource="{Binding Sections}">
@@ -37,7 +37,7 @@
                                             <DockPanel Margin="0,1">
                                                 <Rectangle Width="4" Height="4" Fill="{Binding DataContext.Brush, RelativeSource={RelativeSource AncestorType=StackPanel}}"
                                                            Margin="2,0,8,0" VerticalAlignment="Center" />
-                                                <TextBlock Text="{Binding}" TextWrapping="Wrap" Foreground="{StaticResource Brush.TextMuted}" />
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap" Foreground="{DynamicResource Brush.TextMuted}" />
                                             </DockPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
