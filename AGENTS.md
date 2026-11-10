@@ -42,5 +42,5 @@ Clans (mod 70). Every release goes to both.
    every target, using `NEXUSMODS_API_KEY`.
 
 While any target's `fileId` is `0`, stop and say which page still needs its first file uploaded by
-hand. Then read its file ID from `https://api.nexusmods.com/v1/games/<gameDomain>/mods/<modId>/files.json`,
-or from the page's Manage files, then the file's edit menu, then API info.
+hand. Then put its file's global `uid` (not the per-page `file_id`; the upload API wants the uid) in `fileId`:
+run the read-only `nexus-files` workflow (`gh workflow run nexus-files.yml`), which lists every file with both.

@@ -5,7 +5,7 @@
   "payload": "obj/package/MW5SaveEditor",
   "category": "main",
   "targets": [
-    { "game": "MechWarrior 5: Mercenaries", "gameDomain": "mechwarrior5mercenaries", "modId": 1666, "fileId": 14440, "url": "https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666" },
-    { "game": "MechWarrior 5: Clans", "gameDomain": "mechwarrior5clans", "modId": 70, "fileId": 264, "url": "https://www.nexusmods.com/mechwarrior5clans/mods/70" }
+    { "game": "MechWarrior 5: Mercenaries", "gameDomain": "mechwarrior5mercenaries", "modId": 1666, "fileId": 13310103664744, "url": "https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666" },
+    { "game": "MechWarrior 5: Clans", "gameDomain": "mechwarrior5clans", "modId": 70, "fileId": 29785598198024, "url": "https://www.nexusmods.com/mechwarrior5clans/mods/70" }
   ]
 }
