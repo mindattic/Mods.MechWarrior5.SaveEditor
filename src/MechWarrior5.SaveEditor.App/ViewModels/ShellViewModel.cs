@@ -74,8 +74,10 @@ public sealed partial class ShellViewModel : ObservableObject
             var head = new byte[5];
             isClans = stream.Read(head) == 5 && GzipChunkArchive.IsArchive(head);
         }
-        catch (IOException)
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
         {
+            // Unreadable here: let the current game's editor try, so the player gets its "Can't open save" message.
+            isClans = Game == Game.Clans;
         }
 
         Game = isClans ? Game.Clans : Game.Mercs;

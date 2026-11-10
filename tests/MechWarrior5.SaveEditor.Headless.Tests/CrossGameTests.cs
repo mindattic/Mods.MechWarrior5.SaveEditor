@@ -193,6 +193,45 @@ public partial class UiHeadlessTests
         lab.Close();
     }
 
+    [Test]
+    public void Broken_or_foreign_files_are_refused_with_a_message_in_either_game()
+    {
+        var (mercsFolder, mercsSave) = SaveFixtures.MercsCampaignCopy();
+        var (clansFolder, clansSave) = SaveFixtures.ClansFolderCopy();
+        var bad = Path.Combine(mercsFolder, "..", "bad");
+        Directory.CreateDirectory(bad);
+        var mercsBytes = File.ReadAllBytes(mercsSave);
+        var clansBytes = File.ReadAllBytes(clansSave);
+        var random = new byte[4096];
+        new Random(42).NextBytes(random);
+        var cases = new Dictionary<string, byte[]>
+        {
+            ["empty.sav"] = [],
+            ["random.sav"] = random,
+            ["text.sav"] = System.Text.Encoding.UTF8.GetBytes("not a save at all"),
+            ["mercs-truncated-head.sav"] = mercsBytes[..64],
+            ["mercs-truncated-half.sav"] = mercsBytes[..(mercsBytes.Length / 2)],
+            ["clans-truncated-head.sav"] = clansBytes[..64],
+            ["clans-truncated-half.sav"] = clansBytes[..(clansBytes.Length / 2)],
+            ["gvas-garbage.sav"] = [.. "GVAS"u8.ToArray(), .. random],
+        };
+
+        var (shell, _, dialogs) = Launch(clansFolder: clansFolder);
+        foreach (var (name, bytes) in cases)
+        {
+            var path = Path.Combine(bad, name);
+            File.WriteAllBytes(path, bytes);
+            var errorsBefore = dialogs.Errors.Count;
+            Assert.That(() => shell.OpenPath(path), Throws.Nothing, $"{name} crashed the open");
+            Assert.Multiple(() =>
+            {
+                Assert.That(dialogs.Errors.Count, Is.EqualTo(errorsBefore + 1), $"{name} was not refused with a message");
+                Assert.That(shell.Mercs.HasDocument, Is.False, $"{name} opened in Mercenaries");
+                Assert.That(shell.Clans.HasDocument, Is.False, $"{name} opened in Clans");
+            });
+        }
+    }
+
     private static List<string> Rows(ShellViewModel shell) =>
         [.. ((MechWarrior5.SaveEditor.App.Clans.ViewModels.MechsViewModel)shell.Clans.CurrentView!).Rows.Select(r => $"{r.Title}|{r.Subtitle}")];
 

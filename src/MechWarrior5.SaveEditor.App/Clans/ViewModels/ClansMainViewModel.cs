@@ -1,3 +1,4 @@
+using MechWarrior5.SaveEditor.App.Localization;
 using System.IO;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -148,7 +149,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
         }
         catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException or InvalidOperationException)
         {
-            _dialogs.Show("Can't open save", e.Message, DialogTone.Error);
+            _dialogs.Show(Loc.Text("cant_open_save", "Can't open save"), e.Message, DialogTone.Error);
             return;
         }
 
