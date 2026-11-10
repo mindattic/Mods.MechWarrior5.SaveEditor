@@ -37,11 +37,18 @@
                            Visibility="{Binding Current.IsDirty, Converter={StaticResource BoolToVisibility}}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,14,0" WindowChrome.IsHitTestVisibleInChrome="True"
-                            ToolTip="{l:T interface_theme_remembered_between_runs}">
-                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="{l:T mercs}" Height="26" IsChecked="{Binding Current.IsMercsTheme}" />
-                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="{l:T clans}" Height="26" IsChecked="{Binding Current.IsClansTheme}" Margin="0" />
-                </StackPanel>
+                <!-- Theme: one button whose icon is the current theme (skull = Mercs amber, star = Clans ice). -->
+                <Button Style="{StaticResource Button.Chrome}" Command="{Binding ToggleThemeCommand}" Margin="0,0,6,0"
+                        ToolTip="{l:T interface_theme_remembered_between_runs}">
+                    <Grid>
+                        <Path Data="{StaticResource Glyph.Skull}" Style="{StaticResource Glyph}" Width="16" Height="16"
+                              Stroke="{DynamicResource Brush.Accent}"
+                              Visibility="{Binding IsClansTheme, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                        <Path Data="{StaticResource Glyph.ClanStar}" Style="{StaticResource Glyph}" Width="16" Height="16"
+                              Stroke="{DynamicResource Brush.Accent}"
+                              Visibility="{Binding IsClansTheme, Converter={StaticResource BoolToVisibility}}" />
+                    </Grid>
+                </Button>
                 <Button Style="{StaticResource Button.Chrome}" Click="OnMinimize" ToolTip="{l:T minimize}">
                     <Path Data="{StaticResource Glyph.Minimize}" Style="{StaticResource Glyph}" Width="11" Height="11" />
                 </Button>

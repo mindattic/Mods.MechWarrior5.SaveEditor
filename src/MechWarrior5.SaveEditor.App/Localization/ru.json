@@ -101,7 +101,7 @@
  "import_company": "ИМПОРТ КОМПАНИИ",
  "import_company_text": "Добавить в эту кампанию {1} мехов (в холодное хранение), {2} пилотов и {3} позиций склада из «{0}»?",
  "import_company_title": "Импорт компании",
- "interface_theme_remembered_between_runs": "Тема интерфейса (запоминается)",
+ "interface_theme_remembered_between_runs": "Цветовая тема: череп = Mercs янтарь, звезда = Clans лёд. Нажмите, чтобы переключить (запоминается).",
  "inv_added": "ДОБАВЛЕНО x{0} ({1})",
  "invalid_date": "Неверная дата",
  "invalid_date_text": "Формат ГГГГ-ММ-ДД, например 3049-05-01.",

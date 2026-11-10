@@ -101,7 +101,7 @@
  "import_company": "IMPORTER UNE COMPAGNIE",
  "import_company_text": "Ajouter à cette campagne {1} mechs (au stockage à froid), {2} pilotes et {3} lots d'inventaire de {0} ?",
  "import_company_title": "Importer une compagnie",
- "interface_theme_remembered_between_runs": "Thème de l'interface (mémorisé)",
+ "interface_theme_remembered_between_runs": "Thème de couleur : crâne = Mercs ambre, étoile = Clans glace. Cliquez pour changer (mémorisé).",
  "inv_added": "AJOUTÉ x{0} ({1})",
  "invalid_date": "Date invalide",
  "invalid_date_text": "Utilisez le format AAAA-MM-JJ, ex. 3049-05-01.",

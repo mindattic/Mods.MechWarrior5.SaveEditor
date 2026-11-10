@@ -101,7 +101,7 @@
  "import_company": "EINHEIT IMPORTIEREN",
  "import_company_text": "{1} Mechs (ins Kühllager), {2} Piloten und {3} Lagerposten von {0} zu dieser Kampagne hinzufügen?",
  "import_company_title": "Einheit importieren",
- "interface_theme_remembered_between_runs": "Oberflächen-Design (wird gespeichert)",
+ "interface_theme_remembered_between_runs": "Farbschema: Totenkopf = Mercs Bernstein, Stern = Clans Eis. Klicken zum Wechseln (wird gespeichert).",
  "inv_added": "HINZUGEFÜGT x{0} ({1})",
  "invalid_date": "Ungültiges Datum",
  "invalid_date_text": "Format JJJJ-MM-TT, z. B. 3049-05-01.",

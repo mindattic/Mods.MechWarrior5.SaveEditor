@@ -108,7 +108,7 @@
  "import_company": "IMPORT COMPANY",
  "import_company_text": "Add {0}'s {1} mechs (to cold storage), {2} pilots and {3} inventory stacks to this campaign?",
  "import_company_title": "Import company",
- "interface_theme_remembered_between_runs": "Interface theme (remembered between runs)",
+ "interface_theme_remembered_between_runs": "Color theme: skull = Mercs amber, star = Clans ice. Click to switch (remembered).",
  "inv_added": "ADDED x{0} ({1})",
  "invalid_date": "Invalid date",
  "invalid_date_text": "Use the form YYYY-MM-DD, e.g. 3049-05-01.",

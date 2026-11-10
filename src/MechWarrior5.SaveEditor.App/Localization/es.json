@@ -101,7 +101,7 @@
  "import_company": "IMPORTAR COMPAÑÍA",
  "import_company_text": "¿Añadir a esta campaña {1} mechs (al almacén en frío), {2} pilotos y {3} lotes de inventario de {0}?",
  "import_company_title": "Importar compañía",
- "interface_theme_remembered_between_runs": "Tema de la interfaz (se recuerda)",
+ "interface_theme_remembered_between_runs": "Tema de color: calavera = Mercs ámbar, estrella = Clanes hielo. Haz clic para cambiar (se recuerda).",
  "inv_added": "AÑADIDO x{0} ({1})",
  "invalid_date": "Fecha no válida",
  "invalid_date_text": "Usa el formato AAAA-MM-DD, p. ej. 3049-05-01.",

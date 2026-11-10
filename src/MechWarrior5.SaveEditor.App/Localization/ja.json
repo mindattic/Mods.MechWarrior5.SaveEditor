@@ -101,7 +101,7 @@
  "import_company": "部隊を読み込み",
  "import_company_text": "{0} のメック {1} 機（コールドストレージへ）・パイロット {2} 人・在庫 {3} 件をこのキャンペーンに追加しますか？",
  "import_company_title": "部隊を読み込み",
- "interface_theme_remembered_between_runs": "画面テーマ（次回も保持）",
+ "interface_theme_remembered_between_runs": "カラーテーマ：ドクロ = Mercs アンバー、星 = Clans アイス。クリックで切り替え（記憶されます）。",
  "inv_added": "追加 x{0} ({1})",
  "invalid_date": "日付が正しくありません",
  "invalid_date_text": "YYYY-MM-DD 形式で入力してください（例: 3049-05-01）。",
