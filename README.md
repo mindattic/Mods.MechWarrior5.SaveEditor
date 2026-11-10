@@ -1,4 +1,6 @@
-# MW5 Mercs Save Editor 2.0
+# Mods.Mech5Mercs.SaveEditor
+
+**MW5 Mercs Save Editor 2.0**
 
 A save editor for **MechWarrior 5: Mercenaries**, rebuilt from scratch: a lossless save engine, every DLC
 through **DLC 9 - Ashes & Ascension**, and an interface styled after the game's own HUD.
@@ -75,6 +77,10 @@ item GUID through `MechStorageModel.MechStorageList`. Cold-storage mechs carry
 
 ## Credits
 
-See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). Stock loadout and item catalogs are derived from
-JJ's MW5 Merc Save Editor (MIT). 'Mech art is fetched from Sarna.net at runtime. The Rajdhani font is
-under the SIL OFL. This is an unofficial fan tool, not affiliated with Piranha Games.
+- Inspired by JJ's [MW5 Merc Save Editor](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466).
+  No code from it is used; this editor was written from scratch.
+- 'Mech art is fetched from [Sarna.net](https://www.sarna.net) at runtime and is never bundled.
+- The Rajdhani font is under the SIL OFL.
+- Full notices, including data catalog licensing: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+
+This is an unofficial fan tool, not affiliated with Piranha Games.

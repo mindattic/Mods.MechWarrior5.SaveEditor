@@ -1,11 +1,14 @@
 # Third-party notices
 
-## JJ's MW5 Merc Save Editor — game catalogs
+## JJ's MW5 Merc Save Editor — inspiration
 
-`src/Mw5SaveEditor.Core/Data/stock_loadouts.json.gz`, `items.json` and the variant, chassis, tonnage and
-hero-name columns of `mechs.json` are derived from the catalog files shipped with
-[JJ's MW5 Merc Save Editor](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466) v1.21.0. No code
-from that project is used.
+Many thanks to JJ, whose [MW5 Merc Save Editor](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466)
+inspired this editor's scope: stock loadouts, repairs, and bulk inventory and pilot editing. **No code from
+that project is used.** This editor's save engine, game logic and interface were written independently.
+
+The game reference data in `src/Mw5SaveEditor.Core/Data/stock_loadouts.json.gz`, `items.json` and the
+variant, chassis, tonnage and hero-name columns of `mechs.json` were derived from the data catalogs
+shipped with JJ's editor (v1.21.0), so its license notice is reproduced here as that license requires:
 
 ```
 MIT License
