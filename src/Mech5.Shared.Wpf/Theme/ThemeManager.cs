@@ -12,8 +12,10 @@ public enum Mech5Theme
 }
 
 /// <summary>
-/// Swaps the palette dictionary inside the app's merged <c>Mech5Theme.xaml</c>. Every style and view
-/// references brushes with DynamicResource, so a swap restyles open windows immediately.
+/// Applies a palette as a top-level merged dictionary of the application, after <c>Mech5Theme.xaml</c>
+/// (whose built-in Mercs palette is only the default). Only top-level changes raise the resource-changed
+/// notification that makes every DynamicResource brush in open windows re-resolve, so a swap restyles
+/// the whole UI at once.
 /// </summary>
 public static class ThemeManager
 {
@@ -27,27 +29,25 @@ public static class ThemeManager
 
     public static void Apply(Mech5Theme theme)
     {
-        if (Application.Current?.Resources is not { } resources || Find(resources) is not { } owner)
+        if (Application.Current?.Resources is not { } resources)
         {
-            throw new InvalidOperationException("Mech5Theme.xaml is not merged into the application resources.");
+            throw new InvalidOperationException("There is no running application to theme.");
         }
 
-        var index = owner.MergedDictionaries.ToList().FindIndex(IsPalette);
-        owner.MergedDictionaries[index] = new ResourceDictionary { Source = new Uri($"{PalettePrefix}{theme}.xaml", UriKind.Absolute) };
+        var palette = new ResourceDictionary { Source = new Uri($"{PalettePrefix}{theme}.xaml", UriKind.Absolute) };
+        var merged = resources.MergedDictionaries;
+        var index = merged.ToList().FindIndex(d =>
+            d.Source?.OriginalString.StartsWith(PalettePrefix, StringComparison.OrdinalIgnoreCase) == true);
+        if (index >= 0)
+        {
+            merged[index] = palette;
+        }
+        else
+        {
+            merged.Add(palette);
+        }
+
         Current = theme;
         ThemeChanged?.Invoke(null, EventArgs.Empty);
     }
-
-    private static ResourceDictionary? Find(ResourceDictionary dictionary)
-    {
-        if (dictionary.MergedDictionaries.Any(IsPalette))
-        {
-            return dictionary;
-        }
-
-        return dictionary.MergedDictionaries.Select(Find).FirstOrDefault(found => found is not null);
-    }
-
-    private static bool IsPalette(ResourceDictionary dictionary) =>
-        dictionary.Source?.OriginalString.StartsWith(PalettePrefix, StringComparison.OrdinalIgnoreCase) == true;
 }
