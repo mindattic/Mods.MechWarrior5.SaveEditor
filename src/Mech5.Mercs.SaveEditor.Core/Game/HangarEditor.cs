@@ -255,7 +255,7 @@ public sealed class HangarEditor
         _changed();
     }
 
-    internal void Commit()
+    public void Commit()
     {
         foreach (var mech in _mechs)
         {

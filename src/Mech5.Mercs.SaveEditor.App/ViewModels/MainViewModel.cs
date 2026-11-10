@@ -28,6 +28,7 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly IDialogService _dialogs;
     private readonly SettingsService _settings;
     private readonly IEditorWindows _windows;
+    private IReadOnlyList<MissingAsset> _baselineMissing = [];
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasDocument), nameof(FileName), nameof(WindowTitle), nameof(DlcSummary))]
@@ -89,6 +90,11 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         _mechs.Apply(data);
+        if (Document is { } open)
+        {
+            _baselineMissing = SaveValidator.FindMissing(open.File, data.AssetNames);
+        }
+
         var mods = data.Mechs.Count(m => m.Variant.ModName is not null);
         GameDataSummary = mods > 0
             ? $"Game data: {data.Mechs.Count} mechs ({mods} from mods)"
@@ -174,6 +180,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         AttachDocument(doc);
+        _baselineMissing = _mechs.Game is { } game ? SaveValidator.FindMissing(doc.File, game.AssetNames) : [];
         _settings.Current.LastSavePath = path;
         _settings.Save();
         Navigate(Page.Mechs);
@@ -268,6 +275,11 @@ public sealed partial class MainViewModel : ObservableObject
     /// <summary>Saves to <paramref name="path"/>, or by default to a new save (originals) or in place (editor saves).</summary>
     private bool TrySave(string? path)
     {
+        if (!ConfirmAssetsResolve())
+        {
+            return false;
+        }
+
         try
         {
             var outcome = Document!.Save(path, SaveName);
@@ -290,6 +302,28 @@ public sealed partial class MainViewModel : ObservableObject
             _dialogs.Show("Save failed", $"Nothing was written. {e.Message}", DialogTone.Error);
             return false;
         }
+    }
+
+    /// <summary>
+    /// Warns before saving when the edits added references the installed game and enabled mods don't
+    /// have (references that were already unresolved, e.g. from disabled mods, don't count).
+    /// </summary>
+    private bool ConfirmAssetsResolve()
+    {
+        if (_mechs.Game is not { } game || Document is not { } doc)
+        {
+            return true;
+        }
+
+        doc.Hangar.Commit();
+        var introduced = SaveValidator.Introduced(SaveValidator.FindMissing(doc.File, game.AssetNames), _baselineMissing);
+        return introduced.Count == 0 || _dialogs.Confirm(
+            "Unknown game assets",
+            $"Your edits reference {introduced.Count} asset(s) that aren't in the installed game or its enabled mods. "
+            + "The game may not load them. Save anyway?\n\n"
+            + string.Join("\n", introduced.Take(12).Select(m => $"  {m.AssetName}  ({m.AssetType})")),
+            "Save anyway",
+            DialogTone.Error);
     }
 
     private void AttachDocument(Mw5Document doc)

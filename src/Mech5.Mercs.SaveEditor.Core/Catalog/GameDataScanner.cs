@@ -8,7 +8,12 @@ namespace Mech5.Mercs.SaveEditor.Core.Catalog;
 /// <summary>A 'Mech variant found in the installed game or an enabled mod.</summary>
 public sealed record ScannedMech(MechVariant Variant, StockLoadout? Loadout);
 
-public sealed record GameData(string GameFolder, IReadOnlyList<ScannedMech> Mechs, IReadOnlyList<string> Mods, IReadOnlyList<string> Problems);
+public sealed record GameData(
+    string GameFolder,
+    IReadOnlyList<ScannedMech> Mechs,
+    IReadOnlyList<string> Mods,
+    IReadOnlyList<string> Problems,
+    IReadOnlySet<string> AssetNames);
 
 /// <summary>
 /// Reads 'Mech data assets (<c>*_MDA</c>) and stock loadouts (<c>*_Loadout</c>) from the game pak and
@@ -20,7 +25,8 @@ public static partial class GameDataScanner
     {
         var mechs = new Dictionary<string, ScannedMech>(StringComparer.OrdinalIgnoreCase);
         var problems = new List<string>();
-        ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems);
+        var assets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets);
 
         var mods = new List<string>();
         foreach (var (folder, name) in EnabledMods(Path.Combine(gameFolder, GameInstall.ModsRelative)))
@@ -36,18 +42,24 @@ public static partial class GameDataScanner
             mods.Add(name);
             foreach (var pak in paks)
             {
-                ScanPak(pak, name, catalog, mechs, problems);
+                ScanPak(pak, name, catalog, mechs, problems, assets);
             }
         }
 
-        return new GameData(gameFolder, [.. mechs.Values], mods, problems);
+        return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets);
     }
 
-    private static void ScanPak(string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems)
+    private static void ScanPak(
+        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets)
     {
         try
         {
             using var pak = PakFile.Open(path);
+            foreach (var file in pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)))
+            {
+                assets.Add(Path.GetFileNameWithoutExtension(file));
+            }
+
             var loadouts = new Dictionary<string, StockLoadout>(StringComparer.OrdinalIgnoreCase);
             foreach (var file in pak.Files.Where(f => f.EndsWith("_Loadout.uasset", StringComparison.OrdinalIgnoreCase)
                                                       && !f.Contains("/CareerMode/", StringComparison.OrdinalIgnoreCase)))
