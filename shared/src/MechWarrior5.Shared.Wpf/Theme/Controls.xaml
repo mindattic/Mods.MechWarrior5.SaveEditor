@@ -1,4 +1,4 @@
-<ResourceDictionary xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns:b="clr-namespace:MechWarrior5.Shared.Wpf.Behaviors" xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Brushes resolve dynamically from whichever palette ThemeManager has applied; fonts and glyphs are static. -->
@@ -133,6 +133,23 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="DisabledOpacity" Value="1" />
+    </Style>
+
+    <!-- A mech picture you can click to see it large (MechArt.ShowCommand; bind CommandParameter to the Sarna title). -->
+    <Style x:Key="Button.Picture" TargetType="ma:MaButton">
+        <Setter Property="Shape" Value="Rectangle" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="HoverBackground" Value="Transparent" />
+        <Setter Property="PressedBackground" Value="Transparent" />
+        <Setter Property="HoverBorderBrush" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="DisabledOpacity" Value="1" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Command" Value="{x:Static b:MechArt.ShowCommand}" />
     </Style>
 
     <!-- Filter chips -->

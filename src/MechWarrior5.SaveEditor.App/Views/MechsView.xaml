@@ -6,14 +6,17 @@
     <UserControl.Resources>
         <!-- Mech portrait: Sarna art over a hex badge with the chassis initials while loading/offline. -->
         <DataTemplate x:Key="Portrait">
-            <Grid Width="{Binding Tag, RelativeSource={RelativeSource AncestorType=ContentPresenter}, FallbackValue=92}" Height="70" ClipToBounds="True">
-                <Rectangle Fill="{DynamicResource Brush.Void}" />
-                <Path Data="M14,0 L42,0 L56,24 L42,48 L14,48 L0,24 Z" Stretch="Uniform" Width="40" Height="34"
-                      Stroke="{DynamicResource Brush.LineBright}" StrokeThickness="1.5" Fill="{DynamicResource Brush.Panel}" />
-                <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontWeight="Bold" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}" />
-                <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
-            </Grid>
+            <ma:MaButton Style="{StaticResource Button.Picture}" CommandParameter="{Binding SarnaTitle}" ToolTip="{l:T click_to_enlarge}"
+                         Width="{Binding Tag, RelativeSource={RelativeSource AncestorType=ContentPresenter}, FallbackValue=120}" Height="90">
+                <Grid ClipToBounds="True">
+                    <Rectangle Fill="{DynamicResource Brush.Void}" />
+                    <Path Data="M14,0 L42,0 L56,24 L42,48 L14,48 L0,24 Z" Stretch="Uniform" Width="40" Height="34"
+                          Stroke="{DynamicResource Brush.LineBright}" StrokeThickness="1.5" Fill="{DynamicResource Brush.Panel}" />
+                    <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontWeight="Bold" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}" />
+                    <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
+                </Grid>
+            </ma:MaButton>
         </DataTemplate>
 
         <Style x:Key="Dlc.Chip" TargetType="Border" BasedOn="{StaticResource Chip}">
@@ -117,7 +120,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
-                                <ContentPresenter Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource Portrait}" Tag="80" Margin="0,0,12,0" />
+                                <ContentPresenter Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource Portrait}" Tag="112" Margin="0,0,12,0" />
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Code}" FontSize="21" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                     <TextBlock Text="{Binding Title}" FontSize="17" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
@@ -219,7 +222,7 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="30" />
-                            <ColumnDefinition Width="104" />
+                            <ColumnDefinition Width="132" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="70" />
                             <ColumnDefinition Width="86" />
@@ -243,7 +246,7 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30" />
-                                    <ColumnDefinition Width="104" />
+                                    <ColumnDefinition Width="132" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="70" />
                                     <ColumnDefinition Width="86" />
@@ -252,7 +255,7 @@
                                     <ColumnDefinition Width="36" />
                                 </Grid.ColumnDefinitions>
                                 <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
-                                <ContentPresenter Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource Portrait}" Tag="92" HorizontalAlignment="Left" />
+                                <ContentPresenter Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource Portrait}" Tag="120" HorizontalAlignment="Left" />
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="4,0,8,0">
                                     <TextBlock Text="{Binding Code}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                     <TextBlock Text="{Binding Title}" FontSize="17" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />

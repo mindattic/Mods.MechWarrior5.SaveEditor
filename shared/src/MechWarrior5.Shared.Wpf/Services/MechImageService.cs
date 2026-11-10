@@ -16,7 +16,11 @@ namespace MechWarrior5.Shared.Wpf.Services;
 public sealed class MechImageService : IDisposable
 {
     private const string Api = "https://www.sarna.net/wiki/api.php";
-    private const int ThumbnailWidth = 320;
+    /// <summary>The list-thumbnail width; the default for <see cref="GetAsync"/>.</summary>
+    public const int ThumbnailWidth = 320;
+
+    /// <summary>The width asked for when a picture is shown large (the lightbox).</summary>
+    public const int LargeWidth = 1000;
 
     private readonly HttpClient _http;
     private readonly string _cacheDir;
@@ -36,8 +40,12 @@ public sealed class MechImageService : IDisposable
     public static Uri PageUrl(string sarnaTitle) =>
         new($"https://www.sarna.net/wiki/{Uri.EscapeDataString(sarnaTitle.Replace(' ', '_'))}");
 
-    public Task<BitmapSource?> GetAsync(string sarnaTitle) =>
-        _images.GetOrAdd(sarnaTitle, LoadAsync);
+    /// <summary>
+    /// The chassis picture at about <paramref name="width"/> pixels wide (Sarna scales it; a source
+    /// smaller than that comes back at its own size). Each width is cached separately.
+    /// </summary>
+    public Task<BitmapSource?> GetAsync(string sarnaTitle, int width = ThumbnailWidth) =>
+        _images.GetOrAdd(width + "|" + sarnaTitle, _ => LoadAsync(sarnaTitle, width));
 
     public void Dispose()
     {
@@ -45,12 +53,16 @@ public sealed class MechImageService : IDisposable
         _throttle.Dispose();
     }
 
-    private async Task<BitmapSource?> LoadAsync(string title)
+    private async Task<BitmapSource?> LoadAsync(string title, int width)
     {
-        var file = Path.Combine(_cacheDir, CacheKey(title) + ".img");
+        // The thumbnail keeps its original cache name so existing caches stay valid.
+        var name = width == ThumbnailWidth ? CacheKey(title) : CacheKey(title) + "-" + width;
+        var file = Path.Combine(_cacheDir, name + ".img");
+        // Thumbnails decode small to keep long lists light; large pictures keep their own size.
+        var decodeWidth = width == ThumbnailWidth ? 200 : 0;
         if (File.Exists(file))
         {
-            return Decode(await File.ReadAllBytesAsync(file).ConfigureAwait(false));
+            return Decode(await File.ReadAllBytesAsync(file).ConfigureAwait(false), decodeWidth);
         }
 
         if (!Enabled)
@@ -61,14 +73,14 @@ public sealed class MechImageService : IDisposable
         await _throttle.WaitAsync().ConfigureAwait(false);
         try
         {
-            var url = await FindThumbnailAsync(title).ConfigureAwait(false);
+            var url = await FindThumbnailAsync(title, width).ConfigureAwait(false);
             if (url is null)
             {
                 return null;
             }
 
             var bytes = await _http.GetByteArrayAsync(url).ConfigureAwait(false);
-            var image = Decode(bytes);
+            var image = Decode(bytes, decodeWidth);
             if (image is not null)
             {
                 await File.WriteAllBytesAsync(file, bytes).ConfigureAwait(false);
@@ -86,9 +98,9 @@ public sealed class MechImageService : IDisposable
         }
     }
 
-    private async Task<Uri?> FindThumbnailAsync(string title)
+    private async Task<Uri?> FindThumbnailAsync(string title, int width)
     {
-        var query = $"{Api}?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize={ThumbnailWidth}"
+        var query = $"{Api}?action=query&format=json&prop=pageimages&piprop=thumbnail&pithumbsize={width}"
             + $"&redirects=1&titles={Uri.EscapeDataString(title)}";
         using var response = await _http.GetAsync(query).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
@@ -112,14 +124,18 @@ public sealed class MechImageService : IDisposable
         return null;
     }
 
-    private static BitmapImage? Decode(byte[] bytes)
+    private static BitmapImage? Decode(byte[] bytes, int decodeWidth)
     {
         try
         {
             var image = new BitmapImage();
             image.BeginInit();
             image.CacheOption = BitmapCacheOption.OnLoad;
-            image.DecodePixelWidth = 200;
+            if (decodeWidth > 0)
+            {
+                image.DecodePixelWidth = decodeWidth;
+            }
+
             image.StreamSource = new MemoryStream(bytes);
             image.EndInit();
             image.Freeze();
