@@ -2,7 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
-        xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf"
         xmlns:b="clr-namespace:MechWarrior5.Shared.Wpf.Behaviors;assembly=MechWarrior5.Shared.Wpf"
         xmlns:vm="clr-namespace:MechWarrior5.SaveEditor.App.ViewModels"
         Title="{Binding Title}" Width="1080" Height="800" MinWidth="900" MinHeight="600"
@@ -63,9 +62,9 @@
                 <Rectangle Fill="{DynamicResource Brush.Grid}" />
 
                 <!-- Weapons -->
-                <c:ChamferBorder Margin="20,18" Padding="0,10">
-                    <c:ChamferBorder.Style>
-                        <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+                <ma:MaShapeBorder Margin="20,18" Padding="0,10">
+                    <ma:MaShapeBorder.Style>
+                        <Style TargetType="ma:MaShapeBorder" BasedOn="{StaticResource Panel}">
                             <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Tab}" Value="Weapons">
@@ -73,7 +72,7 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </c:ChamferBorder.Style>
+                    </ma:MaShapeBorder.Style>
                     <DockPanel>
                         <Grid DockPanel.Dock="Top" Margin="20,4,20,8">
                             <Grid.ColumnDefinitions>
@@ -126,12 +125,12 @@
                             </ItemsControl>
                         </ScrollViewer>
                     </DockPanel>
-                </c:ChamferBorder>
+                </ma:MaShapeBorder>
 
                 <!-- Equipment -->
-                <c:ChamferBorder Margin="20,18" Padding="0,10">
-                    <c:ChamferBorder.Style>
-                        <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+                <ma:MaShapeBorder Margin="20,18" Padding="0,10">
+                    <ma:MaShapeBorder.Style>
+                        <Style TargetType="ma:MaShapeBorder" BasedOn="{StaticResource Panel}">
                             <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Tab}" Value="Equipment">
@@ -139,7 +138,7 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </c:ChamferBorder.Style>
+                    </ma:MaShapeBorder.Style>
                     <DockPanel>
                         <Grid DockPanel.Dock="Top" Margin="20,4,20,8">
                             <Grid.ColumnDefinitions>
@@ -172,12 +171,12 @@
                             </ItemsControl>
                         </ScrollViewer>
                     </DockPanel>
-                </c:ChamferBorder>
+                </ma:MaShapeBorder>
 
                 <!-- Armor -->
-                <c:ChamferBorder Margin="20,18" Padding="0,10">
-                    <c:ChamferBorder.Style>
-                        <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+                <ma:MaShapeBorder Margin="20,18" Padding="0,10">
+                    <ma:MaShapeBorder.Style>
+                        <Style TargetType="ma:MaShapeBorder" BasedOn="{StaticResource Panel}">
                             <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Tab}" Value="Armor">
@@ -185,7 +184,7 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </c:ChamferBorder.Style>
+                    </ma:MaShapeBorder.Style>
                     <DockPanel>
                         <Grid DockPanel.Dock="Top" Margin="20,4,20,8">
                             <Grid.ColumnDefinitions>
@@ -234,13 +233,13 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </DockPanel>
-                </c:ChamferBorder>
+                </ma:MaShapeBorder>
             </Grid>
 
             <!-- Traits (overlays the content row) -->
-            <c:ChamferBorder Grid.Row="1" Margin="20,18" Padding="22,16" VerticalAlignment="Top">
-                <c:ChamferBorder.Style>
-                    <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+            <ma:MaShapeBorder Grid.Row="1" Margin="20,18" Padding="22,16" VerticalAlignment="Top">
+                <ma:MaShapeBorder.Style>
+                    <Style TargetType="ma:MaShapeBorder" BasedOn="{StaticResource Panel}">
                         <Setter Property="Visibility" Value="Collapsed" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Tab}" Value="Traits">
@@ -248,7 +247,7 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </c:ChamferBorder.Style>
+                </ma:MaShapeBorder.Style>
                 <StackPanel>
                     <TextBlock Text="{l:T mech_traits}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{l:T traits_installed_on_this_mech_applied_with_the_r}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,4,0,10" />
@@ -275,7 +274,7 @@
                     <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380" />
                 </DockPanel>
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
 
             <!-- Footer -->
             <Border Grid.Row="2" Background="{DynamicResource Brush.Void}" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="20,14">

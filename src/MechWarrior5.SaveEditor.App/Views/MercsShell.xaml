@@ -2,7 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
-             xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf"
              xmlns:vm="clr-namespace:MechWarrior5.SaveEditor.App.ViewModels">
     <UserControl.InputBindings>
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding BrowseCommand}" />

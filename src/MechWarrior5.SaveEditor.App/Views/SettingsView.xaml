@@ -1,8 +1,7 @@
 <UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.SettingsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
-             xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf">
+             xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="28,22,28,28">
             <Grid.RowDefinitions>
@@ -18,7 +17,7 @@
 
             <TextBlock Grid.ColumnSpan="3" Text="{l:T settings_title}" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
 
-            <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="22,18">
+            <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="22,18">
                 <StackPanel>
                     <TextBlock Text="{l:T settings_interface}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{l:T settings_language}" Style="{StaticResource Text.Label}" Margin="0,14,0,4" />
@@ -32,9 +31,9 @@
                         <TextBlock Text="{Binding CacheStatus}" Style="{StaticResource Text.Muted}" FontSize="16" VerticalAlignment="Center" Margin="12,0,0,0" />
                     </StackPanel>
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
 
-            <c:ChamferBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" Padding="22,18">
+            <ma:MaShapeBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" Padding="22,18">
                 <StackPanel>
                     <TextBlock Text="{l:T settings_game_data}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{Binding MainViewSummary}" FontSize="18" FontWeight="SemiBold" Margin="0,10,0,0" />
@@ -47,9 +46,9 @@
                             HorizontalAlignment="Left" Margin="0,10,0,0" />
                     <TextBlock Text="{l:T settings_game_data_hint}" Style="{StaticResource Text.Muted}" FontSize="16" TextWrapping="Wrap" Margin="0,12,0,0" />
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
 
-            <c:ChamferBorder Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource Panel}" Padding="22,18" Margin="0,18,0,0">
+            <ma:MaShapeBorder Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource Panel}" Padding="22,18" Margin="0,18,0,0">
                 <StackPanel>
                     <TextBlock Text="{l:T settings_about}" Style="{StaticResource Text.Section}" />
                     <TextBlock FontSize="18" Margin="0,10,0,0">
@@ -61,7 +60,7 @@
                     </TextBlock>
                     <ma:MaButton Content="{l:T settings_project_page}" Command="{Binding OpenProjectPageCommand}" HorizontalAlignment="Left" Margin="0,12,0,0" />
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
         </Grid>
     </ScrollViewer>
 </UserControl>

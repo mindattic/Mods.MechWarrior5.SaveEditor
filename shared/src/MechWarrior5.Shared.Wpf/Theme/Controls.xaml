@@ -1,6 +1,5 @@
 <ResourceDictionary xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Brushes resolve dynamically from whichever palette ThemeManager has applied; fonts and glyphs are static. -->
     <ResourceDictionary.MergedDictionaries>
@@ -44,10 +43,12 @@
     </Style>
 
     <!-- ===== Panels ===== -->
-    <Style x:Key="Panel" TargetType="c:ChamferBorder">
-        <Setter Property="Background" Value="{DynamicResource Brush.PanelGradient}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Brush.Line}" />
+    <Style x:Key="Panel" TargetType="ma:MaShapeBorder">
+        <Setter Property="Shape" Value="Chamfer" />
+        <Setter Property="Fill" Value="{DynamicResource Brush.PanelGradient}" />
+        <Setter Property="Stroke" Value="{DynamicResource Brush.Line}" />
         <Setter Property="AccentBrush" Value="{DynamicResource Brush.Accent}" />
+        <Setter Property="AccentEdge" Value="ChamferTicks" />
         <Setter Property="Chamfer" Value="14" />
         <Setter Property="Padding" Value="18,14" />
     </Style>

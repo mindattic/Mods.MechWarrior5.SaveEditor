@@ -1,8 +1,7 @@
 <UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.CompanyView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
-             xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf">
+        xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="28,22,28,28">
             <Grid.RowDefinitions>
@@ -19,7 +18,7 @@
             <TextBlock Grid.ColumnSpan="3" Text="{l:T company_overview}" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
 
             <!-- Identity & finances -->
-            <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="22,18">
+            <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="22,18">
                 <StackPanel>
                     <TextBlock Text="{l:T identity}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{l:T company_name}" Style="{StaticResource Text.Label}" Margin="0,14,0,4" />
@@ -75,9 +74,9 @@
                         </DockPanel>
                     </StackPanel>
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
 
-            <c:ChamferBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" Padding="22,18">
+            <ma:MaShapeBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" Padding="22,18">
                 <StackPanel>
                     <TextBlock Text="{l:T finances}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{l:T available_c_bills}" Style="{StaticResource Text.Label}" Margin="0,14,0,2" />
@@ -92,10 +91,10 @@
                                 ToolTip="{l:T 2_000_000_000_the_largest_amount_the_game_displa}" />
                     </WrapPanel>
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
 
             <!-- Readouts -->
-            <c:ChamferBorder Grid.Row="2" Style="{StaticResource Panel}" Margin="0,18,0,0" Padding="22,18">
+            <ma:MaShapeBorder Grid.Row="2" Style="{StaticResource Panel}" Margin="0,18,0,0" Padding="22,18">
                 <StackPanel>
                     <TextBlock Text="{l:T assets}" Style="{StaticResource Text.Section}" />
                     <UniformGrid Columns="4" Margin="0,14,0,0">
@@ -117,9 +116,9 @@
                         </StackPanel>
                     </UniformGrid>
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
 
-            <c:ChamferBorder Grid.Row="2" Grid.Column="2" Style="{StaticResource Panel}" Margin="0,18,0,0" Padding="22,18">
+            <ma:MaShapeBorder Grid.Row="2" Grid.Column="2" Style="{StaticResource Panel}" Margin="0,18,0,0" Padding="22,18">
                 <StackPanel>
                     <TextBlock Text="{l:T dlc_content}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{Binding DlcNote}" Style="{StaticResource Text.Muted}" FontSize="16" TextWrapping="Wrap" Margin="0,4,0,10" />
@@ -150,7 +149,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
         </Grid>
     </ScrollViewer>
 </UserControl>

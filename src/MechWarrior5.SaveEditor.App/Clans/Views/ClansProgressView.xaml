@@ -1,7 +1,6 @@
-<UserControl x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansProgressView"
+<UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansProgressView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Margin="28,22,28,22">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,7 +16,7 @@
 
         <TextBlock Grid.ColumnSpan="3" Text="CAMPAIGN PROGRESS" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
 
-        <c:ChamferBorder Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource Panel}">
+        <ma:MaShapeBorder Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource Panel}">
             <UniformGrid Columns="4">
                 <StackPanel>
                     <TextBlock Text="HONOR LEVEL" Style="{StaticResource Text.Label}" />
@@ -36,20 +35,20 @@
                     <TextBlock Text="{Binding Technicians, TargetNullValue='-'}" Style="{StaticResource Text.Readout}" />
                 </StackPanel>
             </UniformGrid>
-        </c:ChamferBorder>
+        </ma:MaShapeBorder>
 
-        <c:ChamferBorder Grid.Row="3" Style="{StaticResource Panel}" Padding="0">
+        <ma:MaShapeBorder Grid.Row="3" Style="{StaticResource Panel}" Padding="0">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Top" Text="RESEARCH QUEUE" Style="{StaticResource Text.Section}" FontSize="19" Margin="18,14,18,8" />
                 <ListBox ItemsSource="{Binding Queue}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}" Margin="8,0,4,8" />
             </DockPanel>
-        </c:ChamferBorder>
+        </ma:MaShapeBorder>
 
-        <c:ChamferBorder Grid.Row="3" Grid.Column="2" Style="{StaticResource Panel}" Padding="0">
+        <ma:MaShapeBorder Grid.Row="3" Grid.Column="2" Style="{StaticResource Panel}" Padding="0">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Top" Text="COMPLETED RESEARCH" Style="{StaticResource Text.Section}" FontSize="19" Margin="18,14,18,8" />
                 <ListBox ItemsSource="{Binding Completed}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}" Margin="8,0,4,8" />
             </DockPanel>
-        </c:ChamferBorder>
+        </ma:MaShapeBorder>
     </Grid>
 </UserControl>

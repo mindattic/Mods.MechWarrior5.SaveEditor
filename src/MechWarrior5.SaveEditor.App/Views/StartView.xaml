@@ -1,8 +1,7 @@
 <UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.StartView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
-             xmlns:c="clr-namespace:MechWarrior5.Shared.Wpf.Controls;assembly=MechWarrior5.Shared.Wpf">
+        xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization">
     <Grid Margin="36,30,36,30">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -34,7 +33,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <c:ChamferBorder Style="{StaticResource Panel}" Padding="0,10">
+            <ma:MaShapeBorder Style="{StaticResource Panel}" Padding="0,10">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Text="{l:T campaigns}" Style="{StaticResource Text.Section}" Margin="18,4,18,10" />
                     <ListBox ItemsSource="{Binding Campaigns}" SelectedItem="{Binding SelectedCampaign}" Style="{StaticResource List.Rows}">
@@ -76,9 +75,9 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </DockPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
 
-            <c:ChamferBorder Grid.Column="2" Style="{StaticResource Panel}" Padding="0,10">
+            <ma:MaShapeBorder Grid.Column="2" Style="{StaticResource Panel}" Padding="0,10">
                 <DockPanel>
                     <DockPanel DockPanel.Dock="Top" Margin="18,4,18,10">
                         <TextBlock Text="{l:T double_click_a_save_to_open_it}" DockPanel.Dock="Right" Style="{StaticResource Text.Label}" />
@@ -148,16 +147,16 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </DockPanel>
-            </c:ChamferBorder>
+            </ma:MaShapeBorder>
         </Grid>
 
-        <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Margin="0,22,0,0" VerticalAlignment="Top" Padding="28,24"
+        <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Margin="0,22,0,0" VerticalAlignment="Top" Padding="28,24"
                          Visibility="{Binding HasCampaigns, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}">
             <StackPanel>
                 <TextBlock Text="{l:T no_campaigns_found}" Style="{StaticResource Text.Section}" FontSize="22" />
                 <TextBlock TextWrapping="Wrap" Margin="0,8,0,0" Style="{StaticResource Text.Muted}"
                            Text="{l:T mw5_mercenaries_keeps_campaign_saves_under_local}" />
             </StackPanel>
-        </c:ChamferBorder>
+        </ma:MaShapeBorder>
     </Grid>
 </UserControl>
