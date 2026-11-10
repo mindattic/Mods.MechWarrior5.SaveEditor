@@ -169,11 +169,11 @@ public partial class UiHeadlessTests
         });
     }
 
-    private (ShellViewModel Shell, Window Window, FakeDialogs Dialogs) Launch(string? clansFolder, IEditorWindows? windows = null)
+    private (ShellViewModel Shell, Window Window, FakeDialogs Dialogs) Launch(string? clansFolder, IEditorWindows? windows = null, bool downloads = false)
     {
         var settings = new JsonSettings<AppSettings>(_settingsDir);
         settings.Current.ClansSaveFolder = clansFolder;
-        settings.Current.DownloadMechImages = false;
+        settings.Current.DownloadMechImages = downloads;
         var dialogs = new FakeDialogs();
         var mercs = new MainViewModel(MechCatalog.LoadBuiltIn(), ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), dialogs, settings, windows ?? new EditorWindows(), Path.Combine(_settingsDir, "img"));
         var shell = new ShellViewModel(mercs, new ClansMainViewModel(dialogs, settings), settings);
