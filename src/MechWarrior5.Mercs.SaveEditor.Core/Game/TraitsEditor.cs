@@ -84,7 +84,8 @@ internal static class TraitIds
     public static List<string> Read(StructArrayStorage? array) =>
         array?.PropertyElements.Select(e => Ue.AssetName(e)).OfType<string>().ToList() ?? [];
 
-    public static void Add(PropertyList owner, string arrayName, string structType, string asset, string? insertAfter = null)
+    public static void Add(PropertyList owner, string arrayName, string structType, string asset, string? insertAfter = null,
+        string assetType = PilotCatalog.MechTraitType)
     {
         if (owner.Find<ArrayProperty>(arrayName)?.Storage is not StructArrayStorage array)
         {
@@ -102,7 +103,7 @@ internal static class TraitIds
             array = created.Structs;
         }
 
-        array.Elements.Add(new PropertyList([Ue.PrimaryAssetId(PilotCatalog.MechTraitType, asset)]));
+        array.Elements.Add(new PropertyList([Ue.PrimaryAssetId(assetType, asset)]));
     }
 
     public static bool Remove(StructArrayStorage? array, string asset)

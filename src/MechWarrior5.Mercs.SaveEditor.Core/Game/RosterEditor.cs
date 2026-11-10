@@ -297,12 +297,13 @@ public sealed class Pilot
 
     public bool AddTrait(string traitAsset)
     {
-        if (TraitStorage is not { } traits || Traits.Contains(traitAsset, StringComparer.OrdinalIgnoreCase))
+        if (Traits.Contains(traitAsset, StringComparer.OrdinalIgnoreCase))
         {
             return false;
         }
 
-        traits.Elements.Add(new PropertyList([Ue.PrimaryAssetId(PilotCatalog.PilotTraitType, traitAsset)]));
+        // Unreal omits an empty PilotTraits array, so a traitless pilot gets one created where the game writes it.
+        TraitIds.Add(Element, "PilotTraits", "PilotTraitDataAssetId", traitAsset, insertAfter: "HealthState", assetType: PilotCatalog.PilotTraitType);
         _changed();
         return true;
     }
