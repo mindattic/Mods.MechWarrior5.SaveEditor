@@ -27,8 +27,11 @@ Player documentation is in
   names.
 - **Batch everything.** A checkbox on every row. **Shift+click** ticks a range, **Ctrl+A** or **Select
   all** takes everything shown. One summary dialog covers each batch (done and skipped, with reasons).
-- **Themes.** Mercs (gunmetal and amber) and Clans (cold steel and ice cyan), switchable at any time and
-  remembered between runs.
+- **Batch actions match the screen.** A row hidden by a search or filter is unticked, and batch buttons are
+  disabled until something is ticked, so an action never touches rows you can't see.
+- **Themes.** The look follows the game tab: Mercs (gunmetal and amber) for Mercenaries, Clans (cold steel
+  and ice cyan) for Clans. Every page, dialog and the Mech Lab share one chamfered, HUD-styled frame built
+  on MindAttic.Components.
 - **Mech art** from Sarna.net, fetched once and cached. It can be switched off in Settings.
 
 ### MechWarrior 5: Mercenaries
@@ -114,6 +117,51 @@ Mods.MechWarrior5.Shared repo they came from is archived.
   trees and tag flags instead of UE4 tag data. Everything owned (currencies, salvage, crew, weapons,
   mechs, pilots) lives in `InventoryData` as `ActorSaveData` items. See
   [docs/research/clans-save-format.md](docs/research/clans-save-format.md).
+
+## Changelog
+
+### 2.0.0
+
+A rebuilt interface and a long list of fixes from a full review of every feature in both games.
+
+**Interface**
+- Every page, dialog and the Mech Lab share one HUD-style look built on MindAttic.Components: chamfered
+  panels, matching margins and spacing, and columns whose chips and buttons line up.
+- The game picker in the title bar is one linked pair, MERCENARIES and CLANS; the look follows the game
+  (amber for Mercenaries, ice blue for Clans). The title bar reads MechWarrior 5 // Save Editor.
+- Batch buttons stay greyed out until something is ticked, and a search or filter unticks the rows it
+  hides, so an action only ever touches what you can see.
+- Empty pickers show a hint, every DLC code shows the DLC's name on hover, and dialog buttons for
+  destructive actions are red.
+- Everything is translated in all six languages (English, Deutsch, Español, Français, 日本語, Русский),
+  including the Clans pages.
+- Ctrl+S and Ctrl+O work anywhere in the window and include a value you're still typing.
+
+**Mercenaries**
+- The Mech Lab keeps a mech's damage when you apply a refit; use Repair to fix it.
+- Mechs imported from a company package arrive fully repaired, and injured pilots arrive healthy.
+- Mods that replace a mech's stock loadout are honored, a rescan forgets mods you've disabled, and a
+  mod pilot voice shows instead of an empty box.
+- Save As into another campaign lists the save with its own details.
+
+**Clans**
+- Remove mechs works (it was blocked by each mech's own mech bay plan), and the plan is removed with it;
+  Duplicate gives every copy its own plan, and Rename renames it too.
+- Repair restores destroyed body parts, and mechs missing one now show as DAMAGED.
+- Saving keeps working when the game has a load-menu index file open.
+
+**Safety**
+- Save files and the game's index files are written to a temporary file first, so a crash or full disk
+  can never leave them half-written; a read-only backup no longer blocks saving.
+- A locked or damaged save in the folder no longer breaks the save list.
+
+**Install**
+- The download is a standalone program, not a mod the game loads. With Vortex, open its folder from
+  Vortex's Mods list (Open in File Manager) and run MW5SaveEditor.exe, or add it as a Vortex tool.
+
+### 1.0.0
+
+First release: one save editor for MechWarrior 5: Mercenaries and Clans.
 
 ## Credits
 

@@ -40,13 +40,15 @@ a clean removal.
 
 ## The window
 
-- **MERCENARIES / CLANS** (title bar, left) chooses the game. Each keeps its own open save.
-- **MERCS / CLANS** (title bar, right) chooses the color theme. It is independent of the game.
+- **MERCENARIES / CLANS** (title bar, left) chooses the game. Each keeps its own open save, and the
+  color theme follows it: amber for Mercenaries, ice blue for Clans.
 - The **left rail** shows the open save, the pages, the **Save name** box and the save buttons.
 - The **status bar** at the bottom confirms what each action did.
 
-Keyboard: **Ctrl+O** open, **Ctrl+S** save, **Ctrl+Shift+S** save as (Mercenaries). In any list,
-**Shift+click** ticks a range and **Ctrl+A** ticks everything shown.
+Keyboard: **Ctrl+O** open, **Ctrl+S** save, **Ctrl+Shift+S** save as (Mercenaries). They work anywhere in
+the window, and Ctrl+S includes a number or name you're still typing. In any list, **Shift+click**
+ticks a range and **Ctrl+A** ticks everything shown. A search or filter unticks the rows it hides, and
+batch buttons stay greyed out until something is ticked, so an action only ever touches rows you can see.
 
 ## Saving
 
@@ -66,14 +68,15 @@ campaigns and their saves by name; double-click one to open it, or use **Open** 
     contracts with it, so their timing is kept.
   - Which DLC the campaign has.
   - **Export company** writes mechs, pilots and inventory to a `.mw5company` file. **Import** adds them
-    to another campaign.
+    to another campaign: mechs arrive in cold storage fully repaired, and injured pilots arrive healthy.
   - Mech trait unlocks and locked Cantinas.
 - **Mechs.**
   - The left list is your hangar (MechBay and cold storage): repair, reset to the stock loadout, or
     remove cold-storage mechs.
   - Double-click a mech, or **Edit loadout**, to open the **Mech Lab**: weapons per hardpoint (only
     what fits), equipment per slot, front and rear armor against the maximum, mech traits, and
-    `.mw5loadout` export and import.
+    `.mw5loadout` export and import. **Apply** changes only what you refitted: a damaged mech keeps its
+    missing armor and damaged parts (use **Repair** to fix them).
   - The right list is **requisition**: every variant, filterable by search, weight class, heroes, DLC
     pack, or *owned DLC only*. Tick any number and **Add to cold storage**, with copies of each if you
     like. They arrive with factory loadouts and paint.
@@ -106,10 +109,11 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
 - **Mechs.** Every mech with its picture, variant, weight, installed gear and condition (READY or
   DAMAGED). Tick mechs (or **Select damaged**), then:
   - **Repair:** restores armor and every installed part to working order.
-  - **Duplicate:** adds copies with the same loadout, fully repaired.
-  - **Rename:** sets a custom name; leave the box empty to clear it.
-  - **Remove:** deletes ticked mechs. Mechs that are deployed in your Star, or in the mech bay's work
-    queue, are kept and listed in the summary.
+  - **Duplicate:** adds copies with the same loadout, fully repaired (up to 20 of each at a time), each
+    with its own mech bay plan.
+  - **Rename:** sets a custom name, on the mech and its mech bay plan; leave the box empty to clear it.
+  - **Remove:** deletes ticked mechs along with their mech bay plans. Mechs that are deployed in your
+    Star, or in the mech bay's work queue, are kept and listed in the summary.
 - **Inventory.** Your weapons and equipment, with editable counts. **Requisition** adds any weapon or
   piece of equipment seen in Clans campaigns. **+1 / +5 / +10 each** and **Remove** act on ticked items.
 - **Progress.** Honor level and experience, cycles elapsed, the technician pool, the research queue
@@ -134,7 +138,21 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
 | My edited save isn't in the load menu | Check the status bar after saving. If it says the save wasn't found in the index, open the folder and use the new file name, or re-save from an original. Restart the game so it rereads its index. |
 | "Can't open save" | The file isn't a campaign save, or it doesn't read back exactly. The editor refuses rather than risk it; please report the game version. |
 | Mech pictures are missing | They download from Sarna.net on first view. Check your connection, or turn them off in Settings. |
+| A batch button is greyed out | Tick at least one row first. Rows hidden by a search or filter are unticked. |
+| I can't find the editor after installing with Vortex | Vortex doesn't start it. In Vortex's **Mods** list, right-click **MW5 Save Editor**, choose **Open in File Manager**, and run **MW5SaveEditor.exe** (see [Install](#install)). |
 | I want my original back | It was never changed. Load it from the game's menu. Editor saves keep their previous version as `.bak`. |
+
+## What's new in 2.0.0
+
+- A rebuilt interface: one HUD-style look across every page, dialog and the Mech Lab, a linked
+  MERCENARIES / CLANS game picker, and the look follows the game.
+- Batch buttons stay greyed out until something is ticked; searches and filters untick what they hide.
+- Mercenaries: Mech Lab refits keep a mech's damage; imported mechs arrive repaired and pilots healthy.
+- Clans: Remove mechs works, mech bay plans follow their mechs, and Repair restores destroyed parts.
+- Safer saving: files are written to a temporary file first, and locked files no longer break the save list.
+- Everything translated in all six languages.
+
+The full list is in the [changelog](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor#changelog).
 
 ## Credits
 

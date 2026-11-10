@@ -25,11 +25,11 @@ Every 'Mech with its Sarna.net art, variant, tonnage, installed gear and conditi
 
 [b]Repair, duplicate, rename[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-04-mechs-damaged-selected.png[/img]
-Tick 'Mechs (Shift+click, Select all, or [b]Select damaged[/b]) and [b]repair[/b] armor and every installed part, [b]duplicate[/b] them with the same loadout, fully repaired, as many times as you like, or [b]rename[/b] them.
+Tick 'Mechs (Shift+click, Select all, or [b]Select damaged[/b]) and [b]repair[/b] armor, every installed part and destroyed body parts, [b]duplicate[/b] them with the same loadout, fully repaired, or [b]rename[/b] them. Each 'Mech's mech bay plan follows it: copies get their own, and renames and removals carry over.
 
 [b]Find and copy any 'Mech you own[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-05-mechs-duplicate.png[/img]
-Filter by name, chassis, variant or weapon. 'Mechs deployed in your Star or in the work queue are never removed.
+Filter by name, chassis, variant or weapon. [b]Remove[/b] 'Mechs you don't want; any deployed in your Star or in the mech bay's work queue are kept.
 
 [b]Weapons and equipment[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-06-inventory.png[/img]
@@ -39,9 +39,9 @@ Edit your stock, requisition any weapon or piece of equipment seen in Clans camp
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/clans-07-progress.png[/img]
 Honor level and experience, cycles elapsed, the technician pool, the research queue and completed research.
 
-[b]Two themes: Clans ice and Mercs amber[/b]
+[b]One look per game: Clans ice and Mercs amber[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/06-two-themes-mercs-amber-clans-ice.png[/img]
-A cold steel and ice-cyan Clans theme and a gunmetal and amber Mercs theme, modeled on the games' own menus. Switch any time; the choice is remembered.
+A cold steel and ice-cyan look for Clans and a gunmetal and amber look for Mercenaries, modeled on the games' own menus; it follows the game tab. Batch buttons stay greyed out until something is ticked, so an action only touches what you see. Six languages: English, Deutsch, Español, Français, 日本語, Русский.
 
 [size=5][b]Your saves are safe[/b][/size]
 [list]
@@ -53,15 +53,31 @@ A cold steel and ice-cyan Clans theme and a gunmetal and amber Mercs theme, mode
 [/list]
 
 [size=5][b]Installation instructions[/b][/size]
+[b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b] (no .NET install needed). The game never starts it and it adds nothing to the game: you run it yourself.
+
+[b]With Vortex[/b]
 [list=1]
-[*]Download the archive and extract it anywhere, for example your Desktop. It is a standalone program, not a game mod: nothing goes into the game folder, and no .NET install is needed.
+[*]Click [b]Mod Manager Download[/b]. Vortex installs it like any mod; the game ignores it.
+[*]Vortex doesn't start it for you. In Vortex's [b]Mods[/b] list, right-click [b]MW5 Save Editor[/b] and choose [b]Open in File Manager[/b].
+[*]In that folder, double-click [b]MW5SaveEditor.exe[/b].
+[/list]
+Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's [b]Dashboard[/b], choose [b]Add Tool[/b] and point it at that MW5SaveEditor.exe. Or right-click the exe and send a shortcut to your Desktop.
+
+[b]Manual[/b]
+[list=1]
+[*]Click [b]Manual Download[/b] and extract the archive anywhere, for example your Desktop.
+[*]Double-click [b]MW5SaveEditor.exe[/b].
+[/list]
+
+[b]Using it[/b]
+[list=1]
 [*]Quit the game, or stay on its main menu, so the save you edit isn't in use.
 [*]Run [b]MW5SaveEditor.exe[/b] and choose [b]MERCENARIES[/b] or [b]CLANS[/b] at the top. Your saves are listed by name; double-click one to open it.
 [*]Make your changes, type a name for the edited save, and press [b]Save as new[/b] (Ctrl+S).
 [*]In the game, load the save with that name. Your original save is still there, unchanged.
 [/list]
 
-[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
+[b]Uninstalling:[/b] remove it in Vortex, or delete the folder you extracted (your settings are the [b]settings.json[/b] beside the exe). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
 
 [size=5][b]Requirements[/b][/size]
 [list]

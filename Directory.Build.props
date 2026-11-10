@@ -8,8 +8,9 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <Deterministic>true</Deterministic>
-    <!-- 1.0.0 is the first file, uploaded by hand to both NexusMods pages; /publish bumps the leading integer. -->
-    <Version>1.0.0</Version>
+    <!-- Whole-number versions only (MindAttic rule): each release bumps the major. 1.0.0 was the first, hand-uploaded file;
+         2.0.0 is the MindAttic.Components UI rewrite (M5SE-T98). -->
+    <Version>2.0.0</Version>
     <Company>MindAttic</Company>
     <Product>MW5 Save Editor</Product>
   </PropertyGroup>

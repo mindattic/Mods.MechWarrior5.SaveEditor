@@ -22,8 +22,10 @@ this step is manual. The single-description version further down is kept for ref
    the fields below. Paste the full description with the description editor's **Import description**
    (BBCode).
 2. **Images:** the square icon (512×512) is the primary image, and the header (1920×1080) goes in the
-   page's media settings. Add the screenshots listed in [SCREENSHOTS.md](SCREENSHOTS.md), then paste each
-   screenshot's image address over `IMAGE_1_URL` to `IMAGE_6_URL` in the description.
+   page's media settings. Add the screenshots listed in [SCREENSHOTS.md](SCREENSHOTS.md) to the page's
+   media gallery. The description's six `[img]` tags already point at those files on GitHub
+   (`raw.githubusercontent.com/.../main/assets/nexus/...`), so it shows whatever screenshots are on `main`:
+   retaking and pushing them updates the description with no edit (allow a few minutes for caching).
 3. **First file:** upload `dist/MechWarrior5.SaveEditor-<version>.zip` (from `tools/package.ps1`) as a *Main file*.
 4. **Wire up `/publish`:** put the page's mod ID (from its URL, `.../mods/<modId>`) and the file's ID
    (Manage files, then the file's edit menu, then API info) into `nexus.json` as `modId` and `fileId`. From then on,
@@ -44,6 +46,8 @@ check in game:
 - [ ] **Clans:** an edited save appears in the load menu under its new name and loads with the edited
       Kerenskies, Merits, Honor, salvage and crew.
 - [ ] **Clans:** repaired and duplicated mechs show in the mech bay and can be deployed.
+- [ ] **Clans:** a save with a mech removed, and one with a duplicated mech, load from the menu and the
+  mech bay plans show right (M5SE-T77).
 
 ## Mod name
 
@@ -51,7 +55,7 @@ MW5 Save Editor - Mercenaries and Clans
 
 ## Version
 
-Set by `/publish` (the first publish makes it 1.0.0).
+Set by `/publish`: whole numbers only, each release bumps the major (1.0.0, then 2.0.0, ...).
 
 ## Category
 
@@ -59,7 +63,7 @@ Utilities
 
 ## Summary (max 350 characters)
 
-One save editor for MechWarrior 5: Mercenaries and Clans. Tick any number of 'Mechs and add, repair, duplicate or refit them; edit C-Bills, Kerenskies, Honor, salvage, crew, inventory, pilots and factions. Every DLC through Ashes & Ascension. HUD-styled UI. Never overwrites your saves: edits go to a new, named save.
+The complete save editor for MechWarrior 5: Mercenaries and Clans. Add any 'Mech from every DLC with factory loadouts, refit in a hardpoint-aware Mech Lab, repair and duplicate in bulk, and set C-Bills, Kerenskies, Honor, salvage, pilots, factions and inventory. Reads your mods. Saves stay safe: every edit becomes a new, named save in the menu.
 
 ## Tags
 
@@ -85,22 +89,22 @@ One save editor for [b]MechWarrior 5: Mercenaries[/b] and [b]MechWarrior 5: Clan
 Switch games with the tabs at the top; each keeps its own open save. Every save is read into a complete copy and written back byte-for-byte before any edit is allowed, so the editor never guesses at offsets.
 
 [b]Requisition: tick, shift-click, add[/b]
-[img]IMAGE_1_URL[/img]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/01-requisition-tick-shift-click-add.png[/img]
 
 [b]Mech Lab: hardpoint-aware refits (Mercenaries)[/b]
-[img]IMAGE_2_URL[/img]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/02-mech-lab-hardpoint-aware-refits.png[/img]
 
 [b]Clans resources: Kerenskies, Honor, salvage, crew, MXP[/b]
-[img]IMAGE_3_URL[/img]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/03-clans-resources-kerenskies-honor-salvage-crew-mxp.png[/img]
 
 [b]Clans mechs: repair, duplicate, rename[/b]
-[img]IMAGE_4_URL[/img]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/04-clans-mechs-repair-duplicate-rename.png[/img]
 
 [b]Pick saves by name, not by GUID[/b]
-[img]IMAGE_5_URL[/img]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/05-pick-saves-by-name-not-guid.png[/img]
 
 [b]Two themes: Mercs amber and Clans ice[/b]
-[img]IMAGE_6_URL[/img]
+[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/06-two-themes-mercs-amber-clans-ice.png[/img]
 
 [size=5][b]Installation instructions[/b][/size]
 [b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b]. The game never starts it and it adds nothing to the game: you run it yourself.
@@ -143,7 +147,7 @@ Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's 
 [*][b]Every 'Mech variant[/b] through [b]DLC 9: Ashes & Ascension[/b], each with its Sarna.net artwork, tonnage, weight class, hero name, DLC source and how many you own. Modded 'Mechs from your enabled mods are listed too.
 [*][b]A checkbox on every row:[/b] Shift+click ticks a range, Ctrl+A or [b]Select all shown[/b] takes everything the filters show.
 [*][b]Add N to cold storage[/b] in one click, with copies of each. Every 'Mech arrives with its factory loadout and default paint. [b]One summary per batch[/b], not a message box per 'Mech.
-[*][b]Mech Lab:[/b] each hardpoint offers only the weapons that fit it, at every tier; equipment slots, front and rear armor against the maximum, mech traits, and .mw5loadout export and import.
+[*][b]Mech Lab:[/b] each hardpoint offers only the weapons that fit it, at every tier; equipment slots, front and rear armor against the maximum, mech traits, and .mw5loadout export and import. Applying a refit changes only what you refitted; a damaged 'Mech keeps its damage until you repair it.
 [*][b]Hangar:[/b] repair, reset to stock or remove cold-storage 'Mechs, in batches.
 [*][b]Company:[/b] C-Bills (+1M / +10M / +100M / Max), reputation, name, and the campaign date (payroll and contracts move with it). Export or import a whole company.
 [*][b]Inventory:[/b] any weapon, equipment or ammo at any tier, in bulk.
@@ -156,14 +160,14 @@ Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's 
 [b]MechWarrior 5: Clans[/b]
 [list]
 [*][b]Resources:[/b] Kerenskies, Merits and Honor (Honor moves the Honor level track too), mech, weapon and equipment components, technicians (and the mech bay's technician pool), scientists, crew upgrades, and per-chassis mech experience.
-[*][b]Mechs:[/b] repair armor and every installed part, duplicate with the same loadout, rename, or remove. 'Mechs deployed in your Star or in the work queue are never removed.
+[*][b]Mechs:[/b] repair armor and every installed part, duplicate with the same loadout, rename, or remove; the mech bay plan of each 'Mech follows it. 'Mechs deployed in your Star or in the work queue are never removed.
 [*][b]Weapons and equipment:[/b] edit stock, requisition any item seen in Clans campaigns, or add to ticked items in bulk.
 [*][b]Progress:[/b] Honor level, cycles, technician pool, the research queue and completed research.
 [/list]
 
 [b]Built to feel like MW5[/b]
 [list]
-[*]A dark gunmetal and amber [b]Mercs[/b] theme and a cold steel and ice-cyan [b]Clans[/b] theme, modeled on the games' own menus. Switch any time; the choice is remembered.
+[*]A dark gunmetal and amber [b]Mercs[/b] look for Mercenaries and a cold steel and ice-cyan [b]Clans[/b] look for Clans, modeled on the games' own menus; the look follows the game tab.
 [*]Saves listed by their in-game names, dates and money instead of GUID file names.
 [/list]
 

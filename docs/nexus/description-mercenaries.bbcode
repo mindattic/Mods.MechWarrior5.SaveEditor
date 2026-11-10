@@ -21,7 +21,7 @@ Weight-class chips, hero 'Mechs, DLC pack, [b]owned DLC only[/b], and search by 
 
 [b]Mech Lab: hardpoint-aware refits[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-06-mechlab-weapons.png[/img]
-Double-click a hangar 'Mech to refit it. Each hardpoint offers only the weapons that fit it (energy, ballistic, missile, AMS, omni, melee) at every tier, with weapon groups kept.
+Double-click a hangar 'Mech to refit it. Each hardpoint offers only the weapons that fit it (energy, ballistic, missile, AMS, omni, melee) at every tier, with weapon groups kept. Applying a refit changes only what you refitted: a damaged 'Mech keeps its damage until you repair it.
 
 [b]Armor, equipment and traits[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-07-mechlab-armor.png[/img]
@@ -29,7 +29,7 @@ Front and rear armor per location against the variant's maximum, plus [b]Max arm
 
 [b]Company[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-02-company.png[/img]
-C-Bills (+1M / +10M / +100M / Max), reputation, company name, and the campaign date: moving it moves payroll, injuries and contracts with it. Export a whole company and import it into another campaign.
+C-Bills (+1M / +10M / +100M / Max), reputation, company name, and the campaign date: moving it moves payroll, injuries and contracts with it. Export a whole company and import it into another campaign: its 'Mechs arrive fully repaired and its pilots healthy.
 
 [b]Inventory[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/mercs-08-inventory.png[/img]
@@ -47,9 +47,9 @@ Standing from -100 to +100 for every faction, or set them all allied or neutral.
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/05-pick-saves-by-name-not-guid.png[/img]
 Campaigns and saves are listed by their in-game names, dates, systems and reputation.
 
-[b]Two themes: Mercs amber and Clans ice[/b]
+[b]One look per game: Mercs amber and Clans ice[/b]
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/06-two-themes-mercs-amber-clans-ice.png[/img]
-A gunmetal and amber Mercs theme and a cold steel and ice-cyan Clans theme, modeled on the games' own menus. Switch any time; the choice is remembered. Six languages: English, Deutsch, Español, Français, 日本語, Русский.
+A gunmetal and amber look for Mercenaries and a cold steel and ice-cyan look for Clans, modeled on the games' own menus; it follows the game tab. Batch buttons stay greyed out until something is ticked, so an action only touches what you see. Six languages: English, Deutsch, Español, Français, 日本語, Русский.
 
 [size=5][b]Your saves are safe[/b][/size]
 [list]
@@ -61,15 +61,31 @@ A gunmetal and amber Mercs theme and a cold steel and ice-cyan Clans theme, mode
 [/list]
 
 [size=5][b]Installation instructions[/b][/size]
+[b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b] (no .NET install needed). The game never starts it and it adds nothing to the game: you run it yourself.
+
+[b]With Vortex[/b]
 [list=1]
-[*]Download the archive and extract it anywhere, for example your Desktop. It is a standalone program, not a game mod: nothing goes into the game folder, and no .NET install is needed.
+[*]Click [b]Mod Manager Download[/b]. Vortex installs it like any mod; the game ignores it.
+[*]Vortex doesn't start it for you. In Vortex's [b]Mods[/b] list, right-click [b]MW5 Save Editor[/b] and choose [b]Open in File Manager[/b].
+[*]In that folder, double-click [b]MW5SaveEditor.exe[/b].
+[/list]
+Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's [b]Dashboard[/b], choose [b]Add Tool[/b] and point it at that MW5SaveEditor.exe. Or right-click the exe and send a shortcut to your Desktop.
+
+[b]Manual[/b]
+[list=1]
+[*]Click [b]Manual Download[/b] and extract the archive anywhere, for example your Desktop.
+[*]Double-click [b]MW5SaveEditor.exe[/b].
+[/list]
+
+[b]Using it[/b]
+[list=1]
 [*]Quit the game, or stay on its main menu, so the save you edit isn't in use.
 [*]Run [b]MW5SaveEditor.exe[/b] and choose [b]MERCENARIES[/b] or [b]CLANS[/b] at the top. Your saves are listed by name; double-click one to open it.
 [*]Make your changes, type a name for the edited save, and press [b]Save as new[/b] (Ctrl+S).
 [*]In the game, load the save with that name. Your original save is still there, unchanged.
 [/list]
 
-[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
+[b]Uninstalling:[/b] remove it in Vortex, or delete the folder you extracted (your settings are the [b]settings.json[/b] beside the exe). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
 
 [size=5][b]Requirements[/b][/size]
 [list]
