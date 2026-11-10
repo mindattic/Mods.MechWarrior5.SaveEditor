@@ -71,6 +71,10 @@
                                 </Button>
                             </StackPanel>
                         </DockPanel>
+                        <Button Command="{Binding EditLoadoutCommand}" Style="{StaticResource Button.Command}" Margin="0,0,0,8"
+                                ToolTip="Weapons, equipment and armor for the ticked mech (or double-click a row)">
+                            <TextBlock Text="EDIT LOADOUT" FontWeight="Bold" Foreground="{StaticResource Brush.Void}" />
+                        </Button>
                         <UniformGrid Columns="2">
                             <Button Command="{Binding RepairSelectedCommand}" Margin="0,0,4,8" ToolTip="Restore armor, structure and component health">
                                 <StackPanel Orientation="Horizontal">
@@ -101,7 +105,8 @@
                 </Border>
 
                 <ListBox ItemsSource="{Binding HangarView}" Style="{StaticResource List.Rows}" ItemContainerStyle="{StaticResource List.Row}"
-                         b:CheckList.IsEnabled="True" Margin="8,0,4,0">
+                         b:CheckList.IsEnabled="True" Margin="8,0,4,0" MouseDoubleClick="OnHangarDoubleClick"
+                         ToolTip="Double-click a mech to open it in the Mech Lab">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>

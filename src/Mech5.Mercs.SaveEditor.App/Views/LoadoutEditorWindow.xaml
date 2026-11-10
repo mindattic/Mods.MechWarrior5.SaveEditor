@@ -1,0 +1,256 @@
+<Window x:Class="Mech5.Mercs.SaveEditor.App.Views.LoadoutEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:Mech5.Shared.Wpf.Controls;assembly=Mech5.Shared.Wpf"
+        xmlns:b="clr-namespace:Mech5.Shared.Wpf.Behaviors;assembly=Mech5.Shared.Wpf"
+        xmlns:vm="clr-namespace:Mech5.Mercs.SaveEditor.App.ViewModels"
+        Title="{Binding Title}" Width="1080" Height="800" MinWidth="900" MinHeight="600"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Background="{StaticResource Brush.Base}"
+        FontFamily="{StaticResource Font.Hud}" UseLayoutRounding="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="86" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False" />
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <Style x:Key="GroupBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="ToolTip" Value="Weapon group" />
+        </Style>
+    </Window.Resources>
+
+    <Border BorderBrush="{StaticResource Brush.Amber}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="86" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Grid Background="{StaticResource Brush.Void}">
+                <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" />
+                <StackPanel Orientation="Horizontal" Margin="18,0,0,0" VerticalAlignment="Center">
+                    <Grid Width="84" Height="64" Margin="0,0,14,0">
+                        <Rectangle Fill="{StaticResource Brush.Panel}" />
+                        <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"
+                                   Foreground="{StaticResource Brush.TextMuted}" />
+                        <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" />
+                    </Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="MECH LAB" Style="{StaticResource Text.Label}" FontSize="12" />
+                        <TextBlock Text="{Binding Title}" Style="{StaticResource Text.Title}" FontSize="26" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,18,14"
+                            WindowChrome.IsHitTestVisibleInChrome="True">
+                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="WEAPONS" Command="{Binding ShowTabCommand}"
+                                  CommandParameter="{x:Static vm:LoadoutTab.Weapons}"
+                                  IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Weapons}" />
+                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="EQUIPMENT" Command="{Binding ShowTabCommand}"
+                                  CommandParameter="{x:Static vm:LoadoutTab.Equipment}"
+                                  IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Equipment}" />
+                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="ARMOR" Command="{Binding ShowTabCommand}"
+                                  CommandParameter="{x:Static vm:LoadoutTab.Armor}"
+                                  IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Armor}" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Rectangle Fill="{StaticResource Brush.Grid}" />
+
+                <!-- Weapons -->
+                <c:ChamferBorder Margin="20,18" Padding="0,10">
+                    <c:ChamferBorder.Style>
+                        <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Tab}" Value="Weapons">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </c:ChamferBorder.Style>
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top" Margin="20,4,20,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170" />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="LOCATION" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="1" Text="HARDPOINT" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="2" Text="WEAPON" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="3" Text="GROUPS  1  2  3  4  5  6" Style="{StaticResource Text.Label}" />
+                        </Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding Weapons}" Margin="20,0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="170" />
+                                                    <ColumnDefinition Width="110" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="200" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Location}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" />
+                                                <Border Grid.Column="1" Style="{StaticResource Chip}" HorizontalAlignment="Left">
+                                                    <TextBlock Text="{Binding ClassLabel}" FontSize="12" FontWeight="Bold" Foreground="{StaticResource Brush.AmberHot}" />
+                                                </Border>
+                                                <ComboBox Grid.Column="2" ItemsSource="{Binding Options}" SelectedItem="{Binding Selected}" Margin="0,0,16,0"
+                                                          MaxDropDownHeight="420" ToolTip="{Binding Slot}">
+                                                    <ComboBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <VirtualizingStackPanel />
+                                                        </ItemsPanelTemplate>
+                                                    </ComboBox.ItemsPanel>
+                                                </ComboBox>
+                                                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="58,0,0,0">
+                                                    <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[0]}" />
+                                                    <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[1]}" />
+                                                    <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[2]}" />
+                                                    <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[3]}" />
+                                                    <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[4]}" />
+                                                    <CheckBox Style="{StaticResource GroupBox}" IsChecked="{Binding Groups[5]}" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </c:ChamferBorder>
+
+                <!-- Equipment -->
+                <c:ChamferBorder Margin="20,18" Padding="0,10">
+                    <c:ChamferBorder.Style>
+                        <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Tab}" Value="Equipment">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </c:ChamferBorder.Style>
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top" Margin="20,4,20,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170" />
+                                <ColumnDefinition Width="170" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="LOCATION" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="1" Text="SLOT" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="2" Text="EQUIPMENT  (EMPTY A SLOT TO FREE IT)" Style="{StaticResource Text.Label}" />
+                        </Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding Equipment}" Margin="20,0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="170" />
+                                                    <ColumnDefinition Width="170" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding PartLabel}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="1" Text="{Binding SlotLabel}" VerticalAlignment="Center" Foreground="{StaticResource Brush.TextMuted}" />
+                                                <ComboBox Grid.Column="2" ItemsSource="{Binding Options}" SelectedItem="{Binding Selected}" MaxDropDownHeight="420" />
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </c:ChamferBorder>
+
+                <!-- Armor -->
+                <c:ChamferBorder Margin="20,18" Padding="0,10">
+                    <c:ChamferBorder.Style>
+                        <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Tab}" Value="Armor">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </c:ChamferBorder.Style>
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Top" Margin="20,4,20,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="LOCATION" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="1" Text="FRONT" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="2" Text="REAR" Style="{StaticResource Text.Label}" />
+                            <TextBlock Grid.Column="3" Text="TOTAL / MAX" Style="{StaticResource Text.Label}" />
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding Armor}" Margin="20,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,7">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="220" />
+                                                <ColumnDefinition Width="150" />
+                                                <ColumnDefinition Width="150" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Label}" FontSize="17" FontWeight="Bold" VerticalAlignment="Center" />
+                                            <TextBox Grid.Column="1" Text="{Binding Front, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left" Height="32" />
+                                            <TextBox Grid.Column="2" Text="{Binding Rear, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left" Height="32"
+                                                     Visibility="{Binding HasRear, Converter={StaticResource BoolToVisibility}}" />
+                                            <TextBlock Grid.Column="3" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                        <Setter Property="Foreground" Value="{StaticResource Brush.TextMuted}" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsOverMax}" Value="True">
+                                                                <Setter Property="Foreground" Value="{StaticResource Brush.Danger}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                                <Run Text="{Binding Front, Mode=OneWay}" /><Run Text=" + " /><Run Text="{Binding Rear, Mode=OneWay}" />
+                                                <Run Text="  /  " /><Run Text="{Binding Max, Mode=OneWay}" />
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DockPanel>
+                </c:ChamferBorder>
+            </Grid>
+
+            <!-- Footer -->
+            <Border Grid.Row="2" Background="{StaticResource Brush.Void}" BorderBrush="{StaticResource Brush.Line}" BorderThickness="0,1,0,0" Padding="20,14">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="IMPORT" Command="{Binding ImportCommand}" Margin="0,0,8,0" ToolTip="Load a .mw5loadout file" />
+                        <Button Content="EXPORT" Command="{Binding ExportCommand}" Margin="0,0,8,0" ToolTip="Save this loadout to share or reuse" />
+                        <Button Content="STOCK" Command="{Binding ResetToStockCommand}" Margin="0,0,8,0" IsEnabled="{Binding HasStock}"
+                                ToolTip="Load the factory loadout (applied only when you press Apply)" />
+                        <Button Content="MAX ARMOR" Command="{Binding MaxArmorCommand}" IsEnabled="{Binding HasStock}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Text="Fitted parts don't come out of inventory." Style="{StaticResource Text.Muted}" FontSize="14"
+                                   VerticalAlignment="Center" Margin="0,0,16,0" />
+                        <Button Content="CANCEL" Command="{Binding CancelCommand}" IsCancel="True" Margin="0,0,8,0" MinWidth="110" />
+                        <Button Content="APPLY" Command="{Binding ApplyCommand}" Style="{StaticResource Button.Command}" MinWidth="130" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

@@ -16,6 +16,8 @@ public sealed partial class MechsViewModel : ObservableObject
     private readonly MainViewModel _main;
     private readonly Mw5Document _doc;
     private readonly IDialogService _dialogs;
+    private readonly IEditorWindows _windows;
+    private readonly ItemCatalog _items;
     private readonly List<CatalogMechViewModel> _catalog;
     private readonly HashSet<WeightClass> _classes = [];
 
@@ -37,11 +39,13 @@ public sealed partial class MechsViewModel : ObservableObject
     [ObservableProperty]
     private bool _showColdStorageOnly;
 
-    public MechsViewModel(MainViewModel main, Mw5Document doc, MechCatalog catalog, IDialogService dialogs)
+    public MechsViewModel(MainViewModel main, Mw5Document doc, MechCatalog catalog, ItemCatalog items, IDialogService dialogs, IEditorWindows windows)
     {
         _main = main;
         _doc = doc;
         _dialogs = dialogs;
+        _windows = windows;
+        _items = items;
         _ownedDlcOnly = main.Settings.OwnedDlcOnly && doc.Dlc.Source != DlcSource.Unknown;
 
         Sources =
@@ -268,6 +272,30 @@ public sealed partial class MechsViewModel : ObservableObject
         }
 
         Report("Reset to stock loadout", _doc.Hangar.ResetToStock(picks), r => $"{r.Code} {r.Variant?.ChassisName}");
+    }
+
+    /// <summary>Opens the Mech Lab for the given row, or for the single ticked hangar mech.</summary>
+    [RelayCommand]
+    public void EditLoadout(HangarMechViewModel? row)
+    {
+        var picks = Hangar.Where(r => r.IsChecked).ToList();
+        row ??= picks.Count == 1 ? picks[0] : null;
+        if (row is null)
+        {
+            _dialogs.Show("Pick one mech", "Tick exactly one hangar mech (or double-click it) to open it in the Mech Lab.");
+            return;
+        }
+
+        if (!row.Record.IsEditable)
+        {
+            _dialogs.Show("Can't edit this mech", "Its data uses a layout this editor can't safely rewrite.", DialogTone.Warning);
+            return;
+        }
+
+        if (_windows.EditLoadout(new LoadoutEditorViewModel(row.Record, _doc.Hangar, _items, _dialogs)))
+        {
+            _main.ShowToast($"Updated {row.Code} loadout. Save to keep it.");
+        }
     }
 
     [RelayCommand]

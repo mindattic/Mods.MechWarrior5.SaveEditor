@@ -24,6 +24,7 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly ItemCatalog _items;
     private readonly IDialogService _dialogs;
     private readonly SettingsService _settings;
+    private readonly IEditorWindows _windows;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasDocument), nameof(FileName), nameof(WindowTitle), nameof(DlcSummary))]
@@ -43,8 +44,9 @@ public sealed partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private string? _toast;
 
-    public MainViewModel(MechCatalog mechs, ItemCatalog items, IDialogService dialogs, SettingsService settings)
+    public MainViewModel(MechCatalog mechs, ItemCatalog items, IDialogService dialogs, SettingsService settings, IEditorWindows windows)
     {
+        _windows = windows;
         _mechs = mechs;
         _items = items;
         _dialogs = dialogs;
@@ -225,7 +227,7 @@ public sealed partial class MainViewModel : ObservableObject
 
         doc.DirtyChanged += OnDirtyChanged;
         Company = new CompanyViewModel(doc, _mechs);
-        Mechs = new MechsViewModel(this, doc, _mechs, _dialogs);
+        Mechs = new MechsViewModel(this, doc, _mechs, _items, _dialogs, _windows);
         Inventory = new InventoryViewModel(doc, _items, _dialogs);
         Pilots = new PilotsViewModel(doc);
         Factions = new FactionsViewModel(doc);
