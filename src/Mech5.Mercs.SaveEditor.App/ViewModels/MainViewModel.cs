@@ -247,7 +247,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         doc.DirtyChanged += OnDirtyChanged;
-        Company = new CompanyViewModel(doc, _mechs);
+        Company = new CompanyViewModel(doc, _mechs, _dialogs, RebuildPages);
         Mechs = new MechsViewModel(this, doc, _mechs, _items, _dialogs, _windows);
         Inventory = new InventoryViewModel(doc, _items, _dialogs);
         Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
@@ -262,6 +262,22 @@ public sealed partial class MainViewModel : ObservableObject
         OnPropertyChanged(nameof(Inventory));
         OnPropertyChanged(nameof(Pilots));
         OnPropertyChanged(nameof(Factions));
+    }
+
+    /// <summary>Recreates the data pages after a bulk change (e.g. an import) so they show the new contents.</summary>
+    private void RebuildPages()
+    {
+        if (Document is not { } doc)
+        {
+            return;
+        }
+
+        Mechs = new MechsViewModel(this, doc, _mechs, _items, _dialogs, _windows);
+        Inventory = new InventoryViewModel(doc, _items, _dialogs);
+        Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
+        OnPropertyChanged(nameof(Mechs));
+        OnPropertyChanged(nameof(Inventory));
+        OnPropertyChanged(nameof(Pilots));
     }
 
     private void OnDirtyChanged(object? sender, EventArgs e)

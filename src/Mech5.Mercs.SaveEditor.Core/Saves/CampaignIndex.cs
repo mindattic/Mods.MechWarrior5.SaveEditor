@@ -20,8 +20,8 @@ public static class CampaignIndex
             ? saves.OfType<JsonObject>().FirstOrDefault(s => Matches(s, fileName))?["Name"]?.GetValue<string>()
             : null;
 
-    /// <summary>Renames a save in the load menu; returns false when the index doesn't list it.</summary>
-    public static bool SetName(string folder, string fileName, string name)
+    /// <summary>Updates a save's load-menu name and/or game date; returns false when the index doesn't list it.</summary>
+    public static bool Update(string folder, string fileName, string? name, DateTime? gameDate)
     {
         if (!TryLoad(folder, out var root, out var hasBom) || root["Saves"] is not JsonArray saves
             || saves.OfType<JsonObject>().FirstOrDefault(s => Matches(s, fileName)) is not { } entry)
@@ -29,21 +29,36 @@ public static class CampaignIndex
             return false;
         }
 
-        if (entry["Name"]?.GetValue<string>() == name)
+        var changed = false;
+        if (!string.IsNullOrWhiteSpace(name) && entry["Name"]?.GetValue<string>() != name.Trim())
         {
-            return true;
+            entry["Name"] = name.Trim();
+            changed = true;
         }
 
-        entry["Name"] = name;
-        Write(folder, root, hasBom);
+        if (gameDate is { } date && entry["GameDate"]?.GetValue<string>() != FormatDate(date))
+        {
+            entry["GameDate"] = FormatDate(date);
+            changed = true;
+        }
+
+        if (changed)
+        {
+            Write(folder, root, hasBom);
+        }
+
         return true;
     }
+
+    /// <summary>MW5's own index format, e.g. <c>3015.10.10-14.00.00</c>.</summary>
+    public static string FormatDate(DateTime date) =>
+        date.ToString("yyyy.MM.dd-HH.mm.ss", System.Globalization.CultureInfo.InvariantCulture);
 
     /// <summary>
     /// Lists a newly written save by cloning its source save's entry under <paramref name="displayName"/>
     /// (default: the source name plus " [Edited]"). Returns false when there is no index or entry to clone.
     /// </summary>
-    public static bool RegisterCopy(string folder, string sourceFileName, string newFileName, string? displayName = null)
+    public static bool RegisterCopy(string folder, string sourceFileName, string newFileName, string? displayName = null, DateTime? gameDate = null)
     {
         if (!TryLoad(folder, out var root, out var hasBom) || root["Saves"] is not JsonArray saves)
         {
@@ -68,6 +83,11 @@ public static class CampaignIndex
             ? DefaultCopyName(copy["Name"]?.GetValue<string>() ?? newFileName)
             : displayName.Trim();
         copy["SaveType"] = 0;
+        if (gameDate is { } date)
+        {
+            copy["GameDate"] = FormatDate(date);
+        }
+
         saves.Insert(0, copy);
         Write(folder, root, hasBom);
         return true;

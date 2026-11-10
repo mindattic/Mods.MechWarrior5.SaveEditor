@@ -12,6 +12,7 @@ public sealed class CompanyEditor
     private readonly PropertyList _company;
     private readonly TextProperty? _name;
     private readonly Action _changed;
+    private readonly Mw5SaveFile _file;
 
     internal CompanyEditor(Mw5SaveFile file, Action changed)
     {
@@ -19,7 +20,7 @@ public sealed class CompanyEditor
         _inventory = file.GetModel("InventoryModel");
         _company = file.GetModel("MercCompanyModel");
         _name = _company.Find<TextProperty>("CompanyName");
-        CampaignDate = ReadCampaignDate(file.TryGetModel("TimelineModel"));
+        _file = file;
     }
 
     public long CBills
@@ -94,13 +95,18 @@ public sealed class CompanyEditor
         }
     }
 
-    /// <summary>In-game date: campaign start plus days elapsed. Read-only (the timeline drives events).</summary>
-    public DateTime? CampaignDate { get; }
+    /// <summary>In-game date: campaign start plus days elapsed.</summary>
+    public DateTime? CampaignDate => CampaignCalendar.Current(_file);
 
-    private static DateTime? ReadCampaignDate(PropertyList? timeline)
+    /// <summary>Moves the whole calendar so today is <paramref name="date"/>; returns the days moved.</summary>
+    public int MoveCampaignDate(DateTime date)
     {
-        var start = timeline?.Find<Int64Property>("StartingDateTicks")?.Value;
-        var days = timeline?.Find<IntProperty>("TotalTimeElapsed")?.Value ?? 0;
-        return start is > 0 and < 3_155_378_975_999_999_999 ? new DateTime(start.Value).AddDays(days) : null;
+        var days = CampaignCalendar.MoveTo(_file, date);
+        if (days != 0)
+        {
+            _changed();
+        }
+
+        return days;
     }
 }

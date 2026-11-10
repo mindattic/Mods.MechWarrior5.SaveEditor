@@ -85,11 +85,7 @@ public sealed class HangarEditor
 
             for (var i = 0; i < copiesEach; i++)
             {
-                var blob = MechLoadoutBuilder.BuildColdStorageBlob(variant.Asset, SkinFor(variant), stock, Guid.NewGuid());
-                var wrapper = template.Wrapper.DeepClone();
-                var record = MechRecord.Create(wrapper, blob, template.Trailing, variant);
-                _wrappers.Elements.Add(wrapper);
-                _mechs.Add(record);
+                Append(template, variant.Asset, variant, SkinFor(variant), stock);
             }
 
             result.Succeed(variant);
@@ -101,6 +97,35 @@ public sealed class HangarEditor
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Adds one mech with the given loadout (e.g. from another campaign) to cold storage; returns why
+    /// it couldn't, or null on success.
+    /// </summary>
+    public string? AddLoadoutToColdStorage(string asset, string? skin, StockLoadout loadout)
+    {
+        var template = _mechs.FirstOrDefault(m => m.IsEditable);
+        if (_wrappers is null || template is null)
+        {
+            return "this save has no hangar data to copy the mech layout from";
+        }
+
+        var variant = _catalog.FindByAsset(asset);
+        if (variant is not null && _dlc.Source != DlcSource.Unknown && !_dlc.Owns(variant.Dlc))
+        {
+            return $"needs the {variant.Dlc!.Name} DLC, which this campaign doesn't have";
+        }
+
+        var resolvedSkin = skin is { Length: > 0 } ? skin : variant is null ? null : SkinFor(variant);
+        if (resolvedSkin is null)
+        {
+            return "unknown variant with no paint scheme to give it";
+        }
+
+        Append(template, asset, variant, resolvedSkin, loadout);
+        _changed();
+        return null;
     }
 
     /// <summary>Removes cold-storage mechs. Hangar-bay mechs stay: lances and pilots reference them.</summary>
@@ -208,6 +233,15 @@ public sealed class HangarEditor
         {
             mech.Commit();
         }
+    }
+
+    private void Append(MechRecord template, string asset, MechVariant? variant, string skin, StockLoadout loadout)
+    {
+        var blob = MechLoadoutBuilder.BuildColdStorageBlob(asset, skin, loadout, Guid.NewGuid());
+        var wrapper = template.Wrapper.DeepClone();
+        var record = MechRecord.Create(wrapper, blob, template.Trailing, variant);
+        _wrappers!.Elements.Add(wrapper);
+        _mechs.Add(record);
     }
 
     private BatchResult<MechRecord> Apply(IEnumerable<MechRecord> mechs, Action<MechRecord, StockLoadout> action)
@@ -345,7 +379,7 @@ public sealed class MechRecord
         return record.Describe(bayIds, catalog) ? record : null;
     }
 
-    internal static MechRecord Create(PropertyList wrapper, PropertyList blob, byte[] trailing, MechVariant variant)
+    internal static MechRecord Create(PropertyList wrapper, PropertyList blob, byte[] trailing, MechVariant? variant)
     {
         var byteData = wrapper.Get<ArrayProperty>("ByteData");
         var record = new MechRecord(wrapper, byteData, blob, (byte[])trailing.Clone(), editable: true)

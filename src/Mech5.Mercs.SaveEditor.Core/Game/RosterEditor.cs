@@ -65,6 +65,22 @@ public sealed class RosterEditor
         return _pilots[^1];
     }
 
+    /// <summary>Adds a roster entry from another campaign under a fresh identity; never as the commander.</summary>
+    public Pilot Import(PropertyList element)
+    {
+        if (_roster is null)
+        {
+            throw new InvalidOperationException("This save has no pilot roster.");
+        }
+
+        element.GetStruct("PersonaData").Set(Ue.ItemId("PersonaId", Guid.NewGuid()));
+        element.Remove("LockedPlayerSlot");
+        _roster.Elements.Add(element);
+        Reload();
+        _changed();
+        return _pilots[^1];
+    }
+
     /// <summary>
     /// Releases MechWarriors. The commander and anyone a lance or a pending timeline event (such as an
     /// injury recovery) still refers to are kept: removing them would leave the game a dangling reference.

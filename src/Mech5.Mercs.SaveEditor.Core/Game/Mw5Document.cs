@@ -74,8 +74,8 @@ public sealed class Mw5Document
         var folder = System.IO.Path.GetDirectoryName(target) ?? ".";
         var file = System.IO.Path.GetFileNameWithoutExtension(target);
         var registered = isNewFile
-            ? CampaignIndex.RegisterCopy(folder, source, file, displayName)
-            : !string.IsNullOrWhiteSpace(displayName) && CampaignIndex.SetName(folder, file, displayName.Trim());
+            ? CampaignIndex.RegisterCopy(folder, source, file, displayName, Company.CampaignDate)
+            : CampaignIndex.Update(folder, file, displayName, Company.CampaignDate);
 
         FilePath = target;
         SetDirty(false);

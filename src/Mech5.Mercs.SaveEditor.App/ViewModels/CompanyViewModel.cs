@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
@@ -11,10 +12,20 @@ public sealed record DlcRow(string Code, string Name, bool Owned);
 public sealed partial class CompanyViewModel : ObservableObject
 {
     private readonly Mw5Document _doc;
+    private readonly MechCatalog _catalog;
+    private readonly IDialogService _dialogs;
+    private readonly Action _imported;
 
-    public CompanyViewModel(Mw5Document doc, MechCatalog catalog)
+    [ObservableProperty]
+    private string _dateText;
+
+    public CompanyViewModel(Mw5Document doc, MechCatalog catalog, IDialogService dialogs, Action imported)
     {
         _doc = doc;
+        _catalog = catalog;
+        _dialogs = dialogs;
+        _imported = imported;
+        _dateText = doc.Company.CampaignDate?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) ?? string.Empty;
         Dlcs = catalog.DlcPacks.Select(p => new DlcRow(p.ShortName, p.Name, doc.Dlc.Tags.Contains(p.Tag))).ToList();
         DlcNote = doc.Dlc.Source switch
         {
@@ -81,4 +92,92 @@ public sealed partial class CompanyViewModel : ObservableObject
 
     [RelayCommand]
     private void MaxCBills() => CBills = CompanyEditor.MaxCBills;
+
+    [RelayCommand]
+    private void MoveDate()
+    {
+        if (!DateTime.TryParseExact(DateText.Trim(), "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+        {
+            _dialogs.Show("Invalid date", "Use the form YYYY-MM-DD, e.g. 3049-05-01.", DialogTone.Error);
+            return;
+        }
+
+        if (!_dialogs.Confirm("Move the calendar",
+                $"Move the campaign to {date:d MMMM yyyy}? Payroll, injuries, contracts and every other dated event move with it, so their timing is kept.",
+                "Move date"))
+        {
+            return;
+        }
+
+        var days = _doc.Company.MoveCampaignDate(date);
+        OnPropertyChanged(nameof(CampaignDate));
+        _dialogs.Show("Calendar moved", days == 0 ? "The campaign is already on that date." : $"Moved {Math.Abs(days):N0} days {(days > 0 ? "forward" : "back")}. Save to keep it.", DialogTone.Success);
+    }
+
+    [RelayCommand]
+    private void Export()
+    {
+        var name = string.Concat(CompanyName.Split(Path.GetInvalidFileNameChars())) + CompanyPackage.Extension;
+        if (_dialogs.PickFileToSave("Export company", name, $"MW5 company (*{CompanyPackage.Extension})|*{CompanyPackage.Extension}") is not { } path)
+        {
+            return;
+        }
+
+        var package = CompanyTransfer.Export(_doc);
+        package.Save(path);
+        _dialogs.Show("Company exported",
+            $"{package.Mechs.Count} mechs, {package.Pilots.Count} pilots and {package.Inventory.Count} inventory stacks written to {Path.GetFileName(path)}.",
+            DialogTone.Success);
+    }
+
+    [RelayCommand]
+    private void Import()
+    {
+        if (_dialogs.PickFileToOpen("Import company", $"MW5 company (*{CompanyPackage.Extension})|*{CompanyPackage.Extension}") is not { } path)
+        {
+            return;
+        }
+
+        CompanyPackage package;
+        try
+        {
+            package = CompanyPackage.Load(path);
+        }
+        catch (Exception e) when (e is IOException or InvalidDataException or System.Text.Json.JsonException)
+        {
+            _dialogs.Show("Can't import", e.Message, DialogTone.Error);
+            return;
+        }
+
+        if (!_dialogs.Confirm("Import company",
+                $"Add {package.Company}'s {package.Mechs.Count} mechs (to cold storage), {package.Pilots.Count} pilots and {package.Inventory.Count} inventory stacks to this campaign?",
+                "Import"))
+        {
+            return;
+        }
+
+        var report = CompanyTransfer.Import(_doc, package, _catalog, new TransferOptions());
+        var sections = new List<DialogSection>();
+        Add("MECHS", report.Mechs);
+        Add("PILOTS", report.Pilots);
+        Add("INVENTORY", report.Inventory);
+        _imported();
+        Refresh();
+        _dialogs.Show("Company imported", "Save to keep it.",
+            sections.Any(s => s.Tone == DialogTone.Warning) ? DialogTone.Warning : DialogTone.Success, [.. sections]);
+
+        void Add(string what, BatchResult<string> result)
+        {
+            if (result.Succeeded.Count > 0)
+            {
+                sections.Add(new DialogSection($"{what} ADDED ({result.Succeeded.Count})", DialogTone.Success, [.. result.Succeeded]));
+            }
+
+            if (result.Skipped.Count > 0)
+            {
+                sections.Add(new DialogSection($"{what} SKIPPED ({result.Skipped.Count})", DialogTone.Warning,
+                    [.. result.Skipped.Select(s => $"{s.Item}: {s.Reason}")]));
+            }
+        }
+    }
 }

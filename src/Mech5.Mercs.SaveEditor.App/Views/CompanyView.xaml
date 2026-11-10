@@ -29,6 +29,18 @@
 
                     <TextBlock Text="CAMPAIGN DATE" Style="{StaticResource Text.Label}" Margin="0,16,0,2" />
                     <TextBlock Text="{Binding CampaignDate}" FontSize="18" FontWeight="SemiBold" />
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                        <TextBox Text="{Binding DateText, UpdateSourceTrigger=PropertyChanged}" Width="150" Tag="YYYY-MM-DD" />
+                        <Button Content="MOVE CALENDAR" Command="{Binding MoveDateCommand}" Margin="8,0,0,0"
+                                ToolTip="Shifts today and every dated event together, so timers keep their spacing" />
+                    </StackPanel>
+
+                    <TextBlock Text="TRANSFER" Style="{StaticResource Text.Section}" Margin="0,22,0,0" />
+                    <TextBlock Text="Move mechs, pilots and stock between campaigns." Style="{StaticResource Text.Muted}" FontSize="14" Margin="0,4,0,8" />
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="EXPORT COMPANY" Command="{Binding ExportCommand}" Margin="0,0,8,0" />
+                        <Button Content="IMPORT COMPANY" Command="{Binding ImportCommand}" />
+                    </StackPanel>
                 </StackPanel>
             </c:ChamferBorder>
 
