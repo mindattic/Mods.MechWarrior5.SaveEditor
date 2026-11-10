@@ -52,6 +52,9 @@
                     <ToggleButton Style="{StaticResource Toggle.Chip}" Content="ARMOR" Command="{Binding ShowTabCommand}"
                                   CommandParameter="{x:Static vm:LoadoutTab.Armor}"
                                   IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Armor}" />
+                    <ToggleButton Style="{StaticResource Toggle.Chip}" Content="TRAITS" Command="{Binding ShowTabCommand}"
+                                  CommandParameter="{x:Static vm:LoadoutTab.Traits}"
+                                  IsChecked="{Binding Tab, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Traits}" />
                 </StackPanel>
             </Grid>
 
@@ -232,6 +235,46 @@
                     </DockPanel>
                 </c:ChamferBorder>
             </Grid>
+
+            <!-- Traits (overlays the content row) -->
+            <c:ChamferBorder Grid.Row="1" Margin="20,18" Padding="22,16" VerticalAlignment="Top">
+                <c:ChamferBorder.Style>
+                    <Style TargetType="c:ChamferBorder" BasedOn="{StaticResource Panel}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Tab}" Value="Traits">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </c:ChamferBorder.Style>
+                <StackPanel>
+                    <TextBlock Text="'MECH TRAITS" Style="{StaticResource Text.Section}" />
+                    <TextBlock Text="Traits installed on this 'Mech. Applied with the rest of the loadout." Style="{StaticResource Text.Muted}" FontSize="14" Margin="0,4,0,10" />
+                <ItemsControl ItemsSource="{Binding Traits}">
+                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Label}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                    <Button Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="Remove" VerticalAlignment="Center"
+                                            Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}">
+                                        <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                              StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
+                                    </Button>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <DockPanel Margin="0,4,0,0">
+                    <Button DockPanel.Dock="Right" Content="ADD" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
+                    <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380" />
+                </DockPanel>
+                </StackPanel>
+            </c:ChamferBorder>
 
             <!-- Footer -->
             <Border Grid.Row="2" Background="{DynamicResource Brush.Void}" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="20,14">

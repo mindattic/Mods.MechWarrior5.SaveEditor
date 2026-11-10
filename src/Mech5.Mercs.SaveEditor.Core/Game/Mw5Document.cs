@@ -19,6 +19,7 @@ public sealed class Mw5Document
         Inventory = new InventoryEditor(file, MarkDirty);
         Roster = new RosterEditor(file, MarkDirty);
         Hangar = new HangarEditor(file, catalog, Dlc, MarkDirty);
+        Traits = new TraitsEditor(file, MarkDirty);
     }
 
     public event EventHandler? DirtyChanged;
@@ -38,6 +39,8 @@ public sealed class Mw5Document
     public RosterEditor Roster { get; }
 
     public HangarEditor Hangar { get; }
+
+    public TraitsEditor Traits { get; }
 
     public bool IsDirty { get; private set; }
 

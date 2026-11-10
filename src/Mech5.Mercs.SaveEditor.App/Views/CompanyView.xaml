@@ -41,6 +41,38 @@
                         <Button Content="EXPORT COMPANY" Command="{Binding ExportCommand}" Margin="0,0,8,0" />
                         <Button Content="IMPORT COMPANY" Command="{Binding ImportCommand}" />
                     </StackPanel>
+
+                    <TextBlock Text="CANTINAS" Style="{StaticResource Text.Section}" Margin="0,22,0,6"
+                               Visibility="{Binding HasCantinas, Converter={StaticResource BoolToVisibility}}" />
+                    <CheckBox Content="Cantinas unlocked" IsChecked="{Binding CantinasUnlocked}"
+                              Visibility="{Binding HasCantinas, Converter={StaticResource BoolToVisibility}}"
+                              ToolTip="Opens the Cantinas without waiting for the story to unlock them" />
+
+                    <StackPanel Visibility="{Binding HasMechTraits, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="'MECH TRAITS UNLOCKED" Style="{StaticResource Text.Section}" Margin="0,22,0,6" />
+                <ItemsControl ItemsSource="{Binding UnlockedTraits}">
+                            <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Label}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                            <Button Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="Remove" VerticalAlignment="Center"
+                                                    Command="{Binding DataContext.LockTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding}">
+                                                <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                      StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <DockPanel Margin="0,4,0,0">
+                            <Button DockPanel.Dock="Right" Content="ADD" Command="{Binding UnlockTraitCommand}" Margin="8,0,0,0" />
+                            <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding UnlockToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380" />
+                        </DockPanel>
+                    </StackPanel>
                 </StackPanel>
             </c:ChamferBorder>
 

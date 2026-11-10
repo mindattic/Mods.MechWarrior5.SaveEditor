@@ -15,12 +15,17 @@ public sealed partial class CompanyViewModel : ObservableObject
     private readonly MechCatalog _catalog;
     private readonly IDialogService _dialogs;
     private readonly Action _imported;
+    private readonly PilotCatalog _traits;
 
     [ObservableProperty]
     private string _dateText;
 
-    public CompanyViewModel(Mw5Document doc, MechCatalog catalog, IDialogService dialogs, Action imported)
+    [ObservableProperty]
+    private TraitDefinition? _unlockToAdd;
+
+    public CompanyViewModel(Mw5Document doc, MechCatalog catalog, PilotCatalog traits, IDialogService dialogs, Action imported)
     {
+        _traits = traits;
         _doc = doc;
         _catalog = catalog;
         _dialogs = dialogs;
@@ -85,6 +90,43 @@ public sealed partial class CompanyViewModel : ObservableObject
     public int ItemCount => _doc.Inventory.Items.Sum(i => i.Count);
 
     public void Refresh() => OnPropertyChanged(string.Empty);
+
+    public bool HasMechTraits => _doc.Traits.HasMechTraits;
+
+    public IReadOnlyList<TraitRow> UnlockedTraits =>
+        [.. _doc.Traits.UnlockedMechTraits.Select(t => new TraitRow(t, _traits.TraitLabel(t)))];
+
+    public IReadOnlyList<TraitDefinition> TraitChoices => _traits.MechTraits;
+
+    public bool HasCantinas => _doc.Traits.HasCantinas;
+
+    public bool CantinasUnlocked
+    {
+        get => !_doc.Traits.CantinasLocked;
+        set
+        {
+            _doc.Traits.CantinasLocked = !value;
+            OnPropertyChanged();
+        }
+    }
+
+    [RelayCommand]
+    private void UnlockTrait()
+    {
+        if (UnlockToAdd is { } trait && _doc.Traits.UnlockMechTrait(trait.Asset))
+        {
+            OnPropertyChanged(nameof(UnlockedTraits));
+        }
+    }
+
+    [RelayCommand]
+    private void LockTrait(TraitRow? trait)
+    {
+        if (trait is not null && _doc.Traits.LockMechTrait(trait.Asset))
+        {
+            OnPropertyChanged(nameof(UnlockedTraits));
+        }
+    }
 
     [RelayCommand]
     private void AddCBills(string amount) =>

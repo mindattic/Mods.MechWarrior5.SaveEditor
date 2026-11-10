@@ -121,6 +121,7 @@ public enum LoadoutTab
     Weapons,
     Equipment,
     Armor,
+    Traits,
 }
 
 public sealed partial class LoadoutEditorViewModel : ObservableObject
@@ -136,14 +137,24 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     private readonly ItemCatalog _items;
     private readonly IDialogService _dialogs;
     private readonly StockLoadout? _stock;
+    private readonly PilotCatalog _traits;
     private Dictionary<string, float> _structure = [];
 
     [ObservableProperty]
     private LoadoutTab _tab = LoadoutTab.Weapons;
 
-    public LoadoutEditorViewModel(MechRecord mech, HangarEditor hangar, ItemCatalog items, IDialogService dialogs)
+    [ObservableProperty]
+    private TraitDefinition? _traitToAdd;
+
+    public LoadoutEditorViewModel(MechRecord mech, HangarEditor hangar, ItemCatalog items, PilotCatalog traits, IDialogService dialogs)
     {
         Mech = mech;
+        _traits = traits;
+        foreach (var trait in HangarEditor.MechTraits(mech))
+        {
+            Traits.Add(new TraitRow(trait, traits.TraitLabel(trait)));
+        }
+
         _hangar = hangar;
         _items = items;
         _dialogs = dialogs;
@@ -168,6 +179,28 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     public ObservableCollection<ArmorRowViewModel> Armor { get; } = [];
 
     public bool HasStock => _stock is not null;
+
+    public ObservableCollection<TraitRow> Traits { get; } = [];
+
+    public IReadOnlyList<TraitDefinition> TraitChoices => _traits.MechTraits;
+
+    [RelayCommand]
+    private void AddTrait()
+    {
+        if (TraitToAdd is { } trait && !Traits.Any(t => string.Equals(t.Asset, trait.Asset, StringComparison.OrdinalIgnoreCase)))
+        {
+            Traits.Add(new TraitRow(trait.Asset, trait.Label));
+        }
+    }
+
+    [RelayCommand]
+    private void RemoveTrait(TraitRow? trait)
+    {
+        if (trait is not null)
+        {
+            Traits.Remove(trait);
+        }
+    }
 
     [RelayCommand]
     private void ShowTab(LoadoutTab tab) => Tab = tab;
@@ -252,6 +285,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
         }
 
         _hangar.ApplyLoadout(Mech, Build());
+        _hangar.SetMechTraits(Mech, Traits.Select(t => t.Asset));
         CloseRequested?.Invoke(this, true);
     }
 

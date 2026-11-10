@@ -189,6 +189,34 @@ public sealed class HangarEditor
 
     public static StockLoadout ReadLoadout(MechRecord mech) => MechLoadoutReader.Read(mech.LoadoutData);
 
+    /// <summary>Traits installed on one 'Mech (<c>MechLoadout.InstalledTraits</c>).</summary>
+    public static IReadOnlyList<string> MechTraits(MechRecord mech) =>
+        TraitIds.Read(mech.LoadoutData.Find<ArrayProperty>("InstalledTraits")?.Storage as StructArrayStorage);
+
+    /// <summary>Replaces a 'Mech's installed traits.</summary>
+    public void SetMechTraits(MechRecord mech, IEnumerable<string> traits)
+    {
+        var wanted = traits.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+        if (wanted.SequenceEqual(MechTraits(mech), StringComparer.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        var data = mech.LoadoutData;
+        if (data.Find<ArrayProperty>("InstalledTraits")?.Storage is StructArrayStorage existing)
+        {
+            existing.Elements.Clear();
+        }
+
+        foreach (var trait in wanted)
+        {
+            TraitIds.Add(data, "InstalledTraits", "MechTraitDataAssetId", trait, insertAfter: "Equipment");
+        }
+
+        mech.MarkModified();
+        _changed();
+    }
+
     public StockLoadout? StockFor(MechRecord mech) => _catalog.FindStock(mech.Asset);
 
     /// <summary>

@@ -273,8 +273,8 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         doc.DirtyChanged += OnDirtyChanged;
-        Company = new CompanyViewModel(doc, _mechs, _dialogs, RebuildPages);
-        Mechs = new MechsViewModel(this, doc, _mechs, _items, _dialogs, _windows);
+        Company = new CompanyViewModel(doc, _mechs, _pilots, _dialogs, RebuildPages);
+        Mechs = new MechsViewModel(this, doc, _mechs, _items, _pilots, _dialogs, _windows);
         Inventory = new InventoryViewModel(doc, _items, _dialogs);
         Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
         Factions = new FactionsViewModel(doc);
@@ -298,7 +298,7 @@ public sealed partial class MainViewModel : ObservableObject
             return;
         }
 
-        Mechs = new MechsViewModel(this, doc, _mechs, _items, _dialogs, _windows);
+        Mechs = new MechsViewModel(this, doc, _mechs, _items, _pilots, _dialogs, _windows);
         Inventory = new InventoryViewModel(doc, _items, _dialogs);
         Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
         OnPropertyChanged(nameof(Mechs));

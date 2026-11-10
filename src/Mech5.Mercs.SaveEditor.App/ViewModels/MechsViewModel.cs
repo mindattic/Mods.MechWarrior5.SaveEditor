@@ -18,6 +18,7 @@ public sealed partial class MechsViewModel : ObservableObject
     private readonly IDialogService _dialogs;
     private readonly IEditorWindows _windows;
     private readonly ItemCatalog _items;
+    private readonly PilotCatalog _traits;
     private readonly List<CatalogMechViewModel> _catalog;
     private readonly HashSet<WeightClass> _classes = [];
 
@@ -39,8 +40,9 @@ public sealed partial class MechsViewModel : ObservableObject
     [ObservableProperty]
     private bool _showColdStorageOnly;
 
-    public MechsViewModel(MainViewModel main, Mw5Document doc, MechCatalog catalog, ItemCatalog items, IDialogService dialogs, IEditorWindows windows)
+    public MechsViewModel(MainViewModel main, Mw5Document doc, MechCatalog catalog, ItemCatalog items, PilotCatalog traits, IDialogService dialogs, IEditorWindows windows)
     {
+        _traits = traits;
         _main = main;
         _doc = doc;
         _dialogs = dialogs;
@@ -292,7 +294,7 @@ public sealed partial class MechsViewModel : ObservableObject
             return;
         }
 
-        if (_windows.EditLoadout(new LoadoutEditorViewModel(row.Record, _doc.Hangar, _items, _dialogs)))
+        if (_windows.EditLoadout(new LoadoutEditorViewModel(row.Record, _doc.Hangar, _items, _traits, _dialogs)))
         {
             _main.ShowToast($"Updated {row.Code} loadout. Save to keep it.");
         }
