@@ -8,6 +8,8 @@ using MechWarrior5.Shared.Assets;
 // 2026-11-10 result: ammo 108/108, equipment 49/49, traits 241/241 identical; weapons: the game has 959
 // weapon-class assets = the 928 built-in + 31 AI-only (turret, VTOL, vehicle, Elemental, LRM carrier), so nothing
 // a player can own is missing or invented. ('Mechs are already read from the pak at runtime: GameDataScanner.)
+// Pilots: personas are exactly the game's 591 MWPersonaAsset (none missing, none extra); every built-in portrait
+// (385) and voice (342) name exists in the game. MWPilotPersonaAsset (141) are career hire presets, not personas.
 var pakPath = args[0];
 var repo = args[1];
 using var pak = PakFile.Open(pakPath);
@@ -60,3 +62,24 @@ Report("ammo", builtAmmo, IsAmmo);
 var equipClasses = builtEquip.Where(classOf.ContainsKey).Select(b => classOf[b].Class).ToHashSet();
 Report("equipment", builtEquip, c => equipClasses.Contains(c));
 Report("traits", builtTraits, IsTrait);
+
+// Pilots: every built-in persona, portrait and voice name should be a real asset; show which classes back them.
+var pilots = JsonDocument.Parse(File.ReadAllText(Path.Combine(repo, @"src\MechWarrior5.Mercs.SaveEditor.Core\Data\pilots.json"))).RootElement;
+void Backing(string label, IEnumerable<string> names)
+{
+    var list = names.ToList();
+    var missing = list.Where(n => !classOf.ContainsKey(n)).ToList();
+    Console.WriteLine($"== {label}: built-in {list.Count}, missing from the game {missing.Count} {string.Join(", ", missing.Take(10))}");
+    foreach (var g in list.Where(classOf.ContainsKey).GroupBy(n => classOf[n].Class).OrderByDescending(g => g.Count()))
+        Console.WriteLine($"    {g.Count(),4} {g.Key}");
+}
+Backing("personas", pilots.GetProperty("personas").EnumerateArray().Select(e => e.GetProperty("asset").GetString()!));
+Backing("portraits", pilots.GetProperty("portraits").EnumerateArray().Select(e => e.GetString()!));
+Backing("voices", pilots.GetProperty("voices").EnumerateArray().Select(e => e.GetString()!));
+var builtPersonas = pilots.GetProperty("personas").EnumerateArray().Select(e => e.GetProperty("asset").GetString()!).ToHashSet(StringComparer.OrdinalIgnoreCase);
+foreach (var cls in new[] { "MWPersonaAsset", "MWPilotPersonaAsset" })
+{
+    var inGame = byClass.GetValueOrDefault(cls)?.Select(x => x.Asset).ToHashSet(StringComparer.OrdinalIgnoreCase) ?? [];
+    var notBuilt = inGame.Where(n => !builtPersonas.Contains(n)).ToList();
+    Console.WriteLine($"== {cls} in game: {inGame.Count}, covered by built-in personas {inGame.Count - notBuilt.Count}, not covered {notBuilt.Count} {string.Join(", ", notBuilt.Take(12))}");
+}
