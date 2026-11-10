@@ -110,3 +110,4 @@ _Nothing recorded yet._
 | M5SE-T87 | 2026-11-10 | fix | closed | Clans rename doesn't rename the mech's planned copy (Inventory.Planned) | — |
 | M5SE-T88 | 2026-11-10 | fix | closed | UE5 property tag OverridableInformation extension under-read (uint8 + 4-byte bool) | — |
 | M5SE-T89 | 2026-11-10 | docs | closed | Regenerated USER_STORIES view for tickets M5SE-T57..T88 | — |
+| M5SE-T90 | 2026-11-10 | chore | closed | Fold Mods.MechWarrior5.Shared into this repo: shared/ becomes an ordinary folder (no subtree pull/push), AGENTS.md updated; archive the Shared GitHub repo (this app is its only user) | AGENTS.md Shared code |

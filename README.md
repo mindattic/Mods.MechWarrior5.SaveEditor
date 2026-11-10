@@ -86,10 +86,10 @@ dotnet run --project src/MechWarrior5.SaveEditor.App
 | `src/MechWarrior5.SaveEditor.App` | The WPF/MVVM app (`MW5SaveEditor.exe`): one shell per game |
 | `tests/` | NUnit tests (real-save tests are `[Explicit]` and read copies from `MW5_SAVE_DIR`) |
 
-`shared/` is a git subtree of [Mods.MechWarrior5.Shared](https://github.com/mindattic/Mods.MechWarrior5.Shared),
-the library for future MechWarrior projects. Pull upstream changes with
-`git subtree pull --prefix shared https://github.com/mindattic/Mods.MechWarrior5.Shared.git main --squash`,
-and send local changes back with `git subtree push`.
+`shared/` holds the game-neutral projects both games use: `MechWarrior5.Shared` (the lossless Unreal
+save engine, pak reading, the editor stamp) and `MechWarrior5.Shared.Wpf` (theme, dialogs, image
+service), with their tests in `shared/tests`. They are ordinary projects of this repo; the former
+Mods.MechWarrior5.Shared repo they came from is archived.
 
 ## Releasing
 

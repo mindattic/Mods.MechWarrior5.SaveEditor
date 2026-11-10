@@ -11,10 +11,12 @@ context only:
   - Mercenaries logic: `src/MechWarrior5.Mercs.SaveEditor.Core`.
   - Clans logic: `src/MechWarrior5.Clans.SaveEditor.Core`.
   - Clans pages: `src/MechWarrior5.SaveEditor.App/Clans/`.
-- **Shared code.** Shared code lives in `shared/`, a git subtree of `mindattic/Mods.MechWarrior5.Shared`
-  (ticket code `MM5S`), the library for future MechWarrior projects. Put game-neutral code there. Pull
-  with `git subtree pull --prefix shared https://github.com/mindattic/Mods.MechWarrior5.Shared.git main
-  --squash`, and send local changes back with `git subtree push` (a cross-repo action).
+- **Shared code.** Game-neutral code (the Unreal save engine, pak reading, the editor stamp, and the WPF
+  theme, dialogs and image service) lives in `shared/` as ordinary projects of this repo: edit, ticket
+  (`M5SE`) and commit it like the rest. It used to be a git subtree of `mindattic/Mods.MechWarrior5.Shared`
+  (ticket code `MM5S`); that repo was folded in and archived on 2026-11-10 because this app was its only
+  user (M5SE-T90). There is no subtree to pull or push. If a second MechWarrior tool ever needs it, split
+  it back out with `git subtree split --prefix shared`.
 - **Saves are sacred.** Never overwrite an unstamped (original) game save. Always work on copies of
   real saves:
   - Mercenaries: `%LOCALAPPDATA%\MW5Mercs\Saved\SaveGames`.
