@@ -23,7 +23,7 @@ namespace MechWarrior5.SaveEditor.Headless.Tests;
 [Category("Headless")]
 [Apartment(ApartmentState.STA)]
 [NonParallelizable]
-public class UiHeadlessTests
+public partial class UiHeadlessTests
 {
     private static App.App? _app;
 
@@ -47,6 +47,22 @@ public class UiHeadlessTests
     {
         _settingsDir = Path.Combine(Path.GetTempPath(), "MechWarrior5.SaveEditor.Headless", TestContext.CurrentContext.Test.ID, "settings");
         Directory.CreateDirectory(_settingsDir);
+
+        // Like the real app: async continuations return to the UI thread, not a worker thread.
+        SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher));
+    }
+
+    /// <summary>Pumps the UI thread until the background game-data scan has finished, as a player would wait.</summary>
+    private static void WaitForGameData(MainViewModel mercs)
+    {
+        var until = DateTime.UtcNow.AddSeconds(90);
+        while (mercs.GameDataSummary.StartsWith("Reading", StringComparison.Ordinal) && DateTime.UtcNow < until)
+        {
+            var frame = new DispatcherFrame();
+            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, () => frame.Continue = false);
+            Dispatcher.PushFrame(frame);
+            Thread.Sleep(20);
+        }
     }
 
     [TearDown]
@@ -63,9 +79,10 @@ public class UiHeadlessTests
     [Test]
     public void Every_mercenaries_page_renders_and_a_ui_edit_saves()
     {
-        var (_, save) = SaveFixtures.MercsCampaignCopy();
+        var (_, save) = SaveFixtures.MercsSaveOfKind("Manual");
         var (shell, window, dialogs) = Launch(clansFolder: null);
         shell.OpenPath(save);
+        WaitForGameData(shell.Mercs);
         Assert.That(shell.Mercs.HasDocument, Is.True, string.Join(" | ", dialogs.Shown));
 
         foreach (var page in Enum.GetValues<MercsPage>())
@@ -92,7 +109,7 @@ public class UiHeadlessTests
     [Test]
     public void Every_clans_page_renders_and_a_ui_edit_saves()
     {
-        var (folder, save) = SaveFixtures.ClansFolderCopy();
+        var (folder, save) = SaveFixtures.ClansSaveOfKind("ManualSave");
         var (shell, window, dialogs) = Launch(clansFolder: folder);
         shell.IsClansGame = true;
         AssertRenders(window, "Clans start");
@@ -152,13 +169,13 @@ public class UiHeadlessTests
         });
     }
 
-    private (ShellViewModel Shell, Window Window, FakeDialogs Dialogs) Launch(string? clansFolder)
+    private (ShellViewModel Shell, Window Window, FakeDialogs Dialogs) Launch(string? clansFolder, IEditorWindows? windows = null)
     {
         var settings = new JsonSettings<AppSettings>(_settingsDir);
         settings.Current.ClansSaveFolder = clansFolder;
         settings.Current.DownloadMechImages = false;
         var dialogs = new FakeDialogs();
-        var mercs = new MainViewModel(MechCatalog.LoadBuiltIn(), ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), dialogs, settings, new EditorWindows(), Path.Combine(_settingsDir, "img"));
+        var mercs = new MainViewModel(MechCatalog.LoadBuiltIn(), ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), dialogs, settings, windows ?? new EditorWindows(), Path.Combine(_settingsDir, "img"));
         var shell = new ShellViewModel(mercs, new ClansMainViewModel(dialogs, settings), settings);
         var window = new App.MainWindow { DataContext = shell, Left = -4000, Top = 0, Width = 1440, Height = 900, ShowActivated = false };
         window.Show();
@@ -182,34 +199,5 @@ public class UiHeadlessTests
         var pixels = new int[bitmap.PixelWidth * bitmap.PixelHeight];
         bitmap.CopyPixels(pixels, bitmap.PixelWidth * 4, 0);
         Assert.That(pixels.Distinct().Take(50).Count(), Is.GreaterThan(20), $"{what} rendered blank");
-    }
-
-    /// <summary>Answers every dialog without a person: confirms, never picks files, records what was shown.</summary>
-    private sealed class FakeDialogs : IDialogService
-    {
-        public List<string> Shown { get; } = [];
-
-        public List<string> Errors { get; } = [];
-
-        public string? PickSaveToOpen(string? initialFolder) => null;
-
-        public string? PickSaveAs(string currentPath) => null;
-
-        public string? PickFileToOpen(string title, string filter) => null;
-
-        public string? PickFileToSave(string title, string defaultName, string filter) => null;
-
-        public void Show(string title, string message, DialogTone tone = DialogTone.Info, params DialogSection[] sections)
-        {
-            Shown.Add($"{title}: {message}");
-            if (tone == DialogTone.Error)
-            {
-                Errors.Add($"{title}: {message}");
-            }
-        }
-
-        public bool Confirm(string title, string message, string confirmText, DialogTone tone = DialogTone.Warning) => true;
-
-        public bool? AskSaveChanges(string fileName) => false;
     }
 }

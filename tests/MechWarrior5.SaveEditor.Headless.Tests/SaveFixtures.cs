@@ -47,7 +47,7 @@ internal static class SaveFixtures
     public static (string Folder, string Save) MercsCampaignCopy()
     {
         var campaign = CampaignLibrary.Scan(MercsRoot)
-            .Where(c => c.Saves.Any(s => !s.IsAutosave))
+            .Where(c => c.Saves.Any(s => !s.IsAutosave && !Mercs.SaveEditor.Core.Saves.EditorStamp.FileHasStamp(s.Path)))
             .OrderByDescending(c => c.Saves.Count)
             .FirstOrDefault();
         if (campaign is null)
@@ -57,7 +57,11 @@ internal static class SaveFixtures
 
         var target = Sandbox("mercs");
         CopyFolder(campaign!.Folder, target);
-        var save = campaign.Saves.Where(s => !s.IsAutosave).OrderByDescending(s => s.LastWrite).First();
+        // Newest original manual save: editor saves are updated in place, which these tests don't want.
+        var save = campaign.Saves
+            .Where(s => !s.IsAutosave && !Mercs.SaveEditor.Core.Saves.EditorStamp.FileHasStamp(s.Path))
+            .OrderByDescending(s => s.LastWrite)
+            .First();
         return (target, Path.Combine(target, Path.GetFileName(save.Path)));
     }
 
@@ -68,7 +72,7 @@ internal static class SaveFixtures
         var target = Sandbox("clans");
         CopyFolder(ClansRoot, target);
         var saves = Clans.SaveEditor.Core.Saves.SaveLibrary.List(target);
-        var save = saves.FirstOrDefault(s => !s.IsAutoSave) ?? saves[0];
+        var save = saves.FirstOrDefault(s => !s.IsAutoSave && !Clans.SaveEditor.Core.Game.ClansDocument.DiskFileIsEditorSave(s.Path)) ?? saves[0];
         return (target, save.Path);
     }
 
