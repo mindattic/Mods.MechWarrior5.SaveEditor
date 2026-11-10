@@ -212,6 +212,7 @@
  "maximize": "最大化",
  "mech_art": "メックのアート",
  "mech_experience_mxp": "メック経験値 (MXP)",
+ "mech_has_no_traits": "このメックには特性がありません。下で追加してください。",
  "mech_lab": "メックラボ",
  "mech_logistics": "メック兵站",
  "mech_traits": "メック特性",

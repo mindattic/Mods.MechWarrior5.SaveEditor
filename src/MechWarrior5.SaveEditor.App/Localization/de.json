@@ -212,6 +212,7 @@
  "maximize": "Maximieren",
  "mech_art": "MECH-BILDER",
  "mech_experience_mxp": "MECH-ERFAHRUNG (MXP)",
+ "mech_has_no_traits": "Dieser Mech hat keine Eigenschaften. Füge unten eine hinzu.",
  "mech_lab": "MECH-LABOR",
  "mech_logistics": "MECH-LOGISTIK",
  "mech_traits": "MECH-EIGENSCHAFTEN",

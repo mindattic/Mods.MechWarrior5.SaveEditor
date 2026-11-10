@@ -219,6 +219,7 @@
  "maximize": "Maximize",
  "mech_art": "MECH ART",
  "mech_experience_mxp": "MECH EXPERIENCE (MXP)",
+ "mech_has_no_traits": "This 'Mech has no traits. Add one below.",
  "mech_lab": "MECH LAB",
  "mech_logistics": "MECH LOGISTICS",
  "mech_traits": "'MECH TRAITS",

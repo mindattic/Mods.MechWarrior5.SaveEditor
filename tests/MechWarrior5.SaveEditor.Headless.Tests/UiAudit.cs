@@ -63,6 +63,16 @@ public partial class UiHeadlessTests
         Size(labWindow);
         foreach (var tab in Enum.GetValues<LoadoutTab>())
         {
+            if (tab == LoadoutTab.Traits && !lab!.HasTraits)
+            {
+                // Two rows, so the trait box's list (not just its empty state) is reviewed.
+                foreach (var trait in lab.TraitChoices.Where(t => t.Description is not null).Take(2))
+                {
+                    lab.TraitToAdd = trait;
+                    lab.AddTraitCommand.Execute(null);
+                }
+            }
+
             lab!.Tab = tab;
             Shot(labWindow, folder, $"m30-mechlab-{tab.ToString().ToLowerInvariant()}");
         }

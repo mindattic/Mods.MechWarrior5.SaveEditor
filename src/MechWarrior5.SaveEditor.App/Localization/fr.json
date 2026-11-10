@@ -212,6 +212,7 @@
  "maximize": "Agrandir",
  "mech_art": "IMAGES DES MECHS",
  "mech_experience_mxp": "EXPÉRIENCE DE MECH (MXP)",
+ "mech_has_no_traits": "Ce mech n'a aucun trait. Ajoute-en un ci-dessous.",
  "mech_lab": "LABO MECH",
  "mech_logistics": "LOGISTIQUE DES MECHS",
  "mech_traits": "TRAITS DU MECH",

@@ -212,6 +212,7 @@
  "maximize": "Развернуть",
  "mech_art": "ИЗОБРАЖЕНИЯ МЕХОВ",
  "mech_experience_mxp": "ОПЫТ МЕХА (MXP)",
+ "mech_has_no_traits": "У этого меха нет черт. Добавьте ниже.",
  "mech_lab": "МЕХЛАБОРАТОРИЯ",
  "mech_logistics": "ЛОГИСТИКА МЕХОВ",
  "mech_traits": "ЧЕРТЫ МЕХА",

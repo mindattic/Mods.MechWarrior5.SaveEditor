@@ -212,6 +212,7 @@
  "maximize": "Maximizar",
  "mech_art": "IMÁGENES DE MECHS",
  "mech_experience_mxp": "EXPERIENCIA DE MECH (MXP)",
+ "mech_has_no_traits": "Este mech no tiene rasgos. Añade uno abajo.",
  "mech_lab": "LABORATORIO MECH",
  "mech_logistics": "LOGÍSTICA DE MECHS",
  "mech_traits": "RASGOS DEL MECH",

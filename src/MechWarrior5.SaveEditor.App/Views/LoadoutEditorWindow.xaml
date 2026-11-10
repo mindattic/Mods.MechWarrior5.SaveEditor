@@ -273,25 +273,46 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="20,0">
                             <TextBlock Text="{l:T traits_installed_on_this_mech_applied_with_the_r}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,0,0,10" />
-                            <ItemsControl ItemsSource="{Binding Traits}">
-                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                                <ma:MaButton Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove}" VerticalAlignment="Center"
-                                                        Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                                        CommandParameter="{Binding}">
-                                                    <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
-                                                          StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
-                                                </ma:MaButton>
-                                            </StackPanel>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                            <DockPanel Margin="0,4,0,0">
+                            <!-- The 'Mech's traits in the same framed list as the Pilots page: name, description, mod, remove. -->
+                            <ma:MaShapeBorder Style="{StaticResource Panel}" Padding="0,8" ClipToShape="True" Margin="0,0,0,8">
+                                <Grid>
+                                    <TextBlock Text="{l:T mech_has_no_traits}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="14,6" TextWrapping="Wrap"
+                                               Visibility="{Binding HasTraits, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                                    <ItemsControl ItemsSource="{Binding Traits}" Grid.IsSharedSizeScope="True">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Background="{DynamicResource Brush.Panel}" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="14,8,8,8">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" SharedSizeGroup="MechTraitRemove" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel VerticalAlignment="Center">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Label}" FontSize="17" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
+                                                                <Border Style="{StaticResource Chip}" Margin="8,0,0,0" ToolTip="{Binding ModTooltip}"
+                                                                        Visibility="{Binding ModName, Converter={StaticResource HasValueToVisibility}}">
+                                                                    <TextBlock Text="MOD" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.Ok}" />
+                                                                </Border>
+                                                            </StackPanel>
+                                                            <TextBlock Text="{Binding Description}" Style="{StaticResource Text.Muted}" FontSize="15" TextWrapping="Wrap" Margin="0,2,0,0"
+                                                                       Visibility="{Binding HasDescription, Converter={StaticResource BoolToVisibility}}" />
+                                                        </StackPanel>
+                                                        <ma:MaButton Grid.Column="1" Style="{StaticResource Button.Link}" Width="28" Height="28" Margin="8,0,0,0" ToolTip="{l:T remove_trait}"
+                                                                     VerticalAlignment="Center"
+                                                                     Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                     CommandParameter="{Binding}">
+                                                            <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                                                  StrokeThickness="1.8" Width="11" Height="11" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        </ma:MaButton>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </ma:MaShapeBorder>
+                            <DockPanel>
                                 <ma:MaButton DockPanel.Dock="Right" Content="{l:T add}" Command="{Binding AddTraitCommand}" Margin="8,0,0,0" />
                                 <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="PickerLabel" MaxDropDownHeight="380"
                                           Tag="{l:T pick_a_trait_to_add}" />

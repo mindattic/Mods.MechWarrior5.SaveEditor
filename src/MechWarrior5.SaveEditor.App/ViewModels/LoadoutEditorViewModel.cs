@@ -156,8 +156,11 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
         _traits = traits;
         foreach (var trait in HangarEditor.MechTraits(mech))
         {
-            Traits.Add(new TraitRow(trait, traits.TraitLabel(trait)));
+            // With its description and mod, like the Pilots page's trait box.
+            Traits.Add(TraitRow.Of(trait, traits));
         }
+
+        Traits.CollectionChanged += (_, _) => OnPropertyChanged(nameof(HasTraits));
 
         _hangar = hangar;
         _items = items;
@@ -186,6 +189,9 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
 
     public ObservableCollection<TraitRow> Traits { get; } = [];
 
+    /// <summary>False shows the trait box's empty-state line.</summary>
+    public bool HasTraits => Traits.Count > 0;
+
     public IReadOnlyList<TraitDefinition> TraitChoices => _traits.MechTraits;
 
     [RelayCommand]
@@ -193,7 +199,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     {
         if (TraitToAdd is { } trait && !Traits.Any(t => string.Equals(t.Asset, trait.Asset, StringComparison.OrdinalIgnoreCase)))
         {
-            Traits.Add(new TraitRow(trait.Asset, trait.Label));
+            Traits.Add(TraitRow.Of(trait.Asset, _traits));
         }
     }
 
