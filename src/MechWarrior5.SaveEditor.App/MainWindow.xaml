@@ -11,30 +11,76 @@
         <WindowChrome CaptionHeight="42" ResizeBorderThickness="6" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
 
+    <Window.Resources>
+        <!--
+            Game tab: an angled trapezoid that sits on the title bar's bottom line. Tabs are equal width and
+            interlock along their slanted edges; the active one takes the page colour so it merges into the
+            page below, with an accent strip along its top.
+        -->
+        <Style x:Key="Tab.Game" TargetType="RadioButton">
+            <Setter Property="Width" Value="190" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
+            <Setter Property="FontFamily" Value="{StaticResource Font.Hud}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="Transparent">
+                            <Path x:Name="Shape" Data="M14,0 L176,0 L190,34 L0,34 Z" Stretch="Fill"
+                                  Fill="{DynamicResource Brush.Panel}" Stroke="{DynamicResource Brush.Line}" StrokeThickness="1" />
+                            <Path x:Name="Edge" Data="M14,0 L176,0" Stretch="None" Margin="0,0,0,0"
+                                  Stroke="{DynamicResource Brush.Accent}" StrokeThickness="3" Visibility="Collapsed" VerticalAlignment="Top" />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,2,0,0" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{DynamicResource Brush.Text}" />
+                                <Setter TargetName="Shape" Property="Stroke" Value="{DynamicResource Brush.LineBright}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="{DynamicResource Brush.Accent}" />
+                                <Setter TargetName="Shape" Property="Fill" Value="{DynamicResource Brush.Base}" />
+                                <Setter TargetName="Shape" Property="Stroke" Value="{DynamicResource Brush.LineBright}" />
+                                <Setter TargetName="Edge" Property="Visibility" Value="Visible" />
+                                <Setter Property="Panel.ZIndex" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="42" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Title bar: game tabs on the left, theme chips and window buttons on the right. -->
+        <!-- Title bar: title on the left, game tabs from the rail divider, window buttons on the right. -->
         <Grid Background="{DynamicResource Brush.Void}">
             <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" />
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0">
                 <Image Source="Assets/app.ico" Width="20" Height="20" Margin="0,0,10,0" />
                 <TextBlock Text="MW5 " FontWeight="Bold" FontSize="19" Foreground="{DynamicResource Brush.Accent}" VerticalAlignment="Center" />
-                <TextBlock Text="{l:T save_editor}" FontWeight="SemiBold" FontSize="19" Foreground="{DynamicResource Brush.TextMuted}" VerticalAlignment="Center" Margin="0,0,18,0" />
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" WindowChrome.IsHitTestVisibleInChrome="True"
-                            ToolTip="{l:T choose_the_game_to_edit}">
-                    <RadioButton Style="{StaticResource Toggle.Chip}" Content="{l:T mercenaries}" Height="28" GroupName="Game"
-                                 IsChecked="{Binding IsMercsGame}" />
-                    <RadioButton Style="{StaticResource Toggle.Chip}" Content="{l:T clans}" Height="28" GroupName="Game"
-                                 IsChecked="{Binding IsClansGame}" Margin="0" />
+                <TextBlock Text="{l:T save_editor}" FontWeight="SemiBold" FontSize="19" Foreground="{DynamicResource Brush.TextMuted}" VerticalAlignment="Center" />
+            </StackPanel>
+            <!-- Game tabs: start on the navigation rail's divider (x = 250) and sit on the title bar's bottom line. -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="250,0,0,0">
+                <StackPanel Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True" ToolTip="{l:T choose_the_game_to_edit}">
+                    <RadioButton Style="{StaticResource Tab.Game}" Content="{l:T mercenaries}" GroupName="Game" IsChecked="{Binding IsMercsGame}" />
+                    <RadioButton Style="{StaticResource Tab.Game}" Content="{l:T clans}" GroupName="Game" IsChecked="{Binding IsClansGame}" Margin="-14,0,0,0" />
                 </StackPanel>
-                <TextBlock Text="{Binding Current.FileName, StringFormat='   [{0}]'}" FontSize="17" Foreground="{DynamicResource Brush.TextFaint}"
-                           Visibility="{Binding Current.HasDocument, Converter={StaticResource BoolToVisibility}}" VerticalAlignment="Center" />
-                <TextBlock Text="{l:T unsaved_changes}" FontWeight="Bold" FontSize="15" Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center" Margin="10,0,0,0"
-                           Visibility="{Binding Current.IsDirty, Converter={StaticResource BoolToVisibility}}" />
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,2">
+                    <TextBlock Text="{Binding Current.FileName, StringFormat='   [{0}]'}" FontSize="17" Foreground="{DynamicResource Brush.TextFaint}"
+                               Visibility="{Binding Current.HasDocument, Converter={StaticResource BoolToVisibility}}" VerticalAlignment="Center" />
+                    <TextBlock Text="{l:T unsaved_changes}" FontWeight="Bold" FontSize="15" Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center" Margin="10,0,0,0"
+                               Visibility="{Binding Current.IsDirty, Converter={StaticResource BoolToVisibility}}" />
+                </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource Button.Chrome}" Click="OnMinimize" ToolTip="{l:T minimize}">
