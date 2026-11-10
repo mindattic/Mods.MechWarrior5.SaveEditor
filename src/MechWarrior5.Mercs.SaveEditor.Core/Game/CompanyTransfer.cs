@@ -126,7 +126,8 @@ public static class CompanyTransfer
             foreach (var group in package.Inventory.GroupBy(i => (i.Asset, i.AssetType, i.IsWeapon, i.IsAmmo)))
             {
                 var kind = group.Key.IsWeapon ? ItemKind.Weapon : group.Key.IsAmmo ? ItemKind.Ammo : ItemKind.Equipment;
-                var count = Math.Min(group.Sum(i => i.Count), InventoryEditor.MaxCount);
+                // Summed as long: a hand-edited package can add up past int.MaxValue, which would throw.
+                var count = (int)Math.Min(group.Sum(i => (long)Math.Max(0, i.Count)), InventoryEditor.MaxCount);
                 var result = doc.Inventory.Add([new ItemDefinition(group.Key.Asset, group.Key.AssetType, kind)], count);
                 if (result.Skipped.Count > 0)
                 {

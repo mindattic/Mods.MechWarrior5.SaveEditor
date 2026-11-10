@@ -23,10 +23,12 @@ public sealed record EditorStamp(string Tool, string Version, string? Source, Da
             return null;
         }
 
+        // A source save name may itself contain ";tool=" or ";version=": the first of each key wins instead of throwing.
         var fields = text.Split(';')
             .Select(f => f.Split('=', 2))
             .Where(kv => kv.Length == 2)
-            .ToDictionary(kv => kv[0], kv => kv[1], StringComparer.Ordinal);
+            .GroupBy(kv => kv[0], StringComparer.Ordinal)
+            .ToDictionary(g => g.Key, g => g.First()[1], StringComparer.Ordinal);
         return new EditorStamp(
             fields.GetValueOrDefault("tool", ToolName),
             fields.GetValueOrDefault("version", "?"),

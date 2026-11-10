@@ -40,8 +40,8 @@ public static class GzipChunkArchive
             ReadUInt64(data, ref position); // total compressed
             var uncompressed = ReadUInt64(data, ref position);
             // Each chunk has a 16-byte size entry, so a count the rest of the file can't hold is corruption.
-            var chunkCount = (uncompressed + ChunkSize - 1) / ChunkSize;
-            if (chunkCount > (ulong)(data.Length - position) / 16)
+            var chunkCount = uncompressed / ChunkSize + (uncompressed % ChunkSize == 0 ? 0UL : 1UL); // no wrap near ulong.MaxValue
+            if (chunkCount > (ulong)Math.Max(0, data.Length - position) / 16)
             {
                 throw new SaveFormatException($"Bad archive block size ({uncompressed} bytes)", blockAt);
             }
@@ -55,7 +55,7 @@ public static class GzipChunkArchive
 
             foreach (var (compressed, expected) in sizes)
             {
-                if (compressed < 0 || position + compressed > data.Length)
+                if (compressed < 0 || compressed > data.Length - position) // compared without adding, so it can't overflow
                 {
                     throw new SaveFormatException("Archive chunk runs past end of file", position);
                 }

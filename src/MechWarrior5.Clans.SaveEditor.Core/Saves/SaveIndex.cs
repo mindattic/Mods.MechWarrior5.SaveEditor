@@ -131,25 +131,26 @@ public static class SaveIndex
 
             var bytes = index.ToFileBytes();
             Ue5SaveFile.Parse(bytes);
-            // The backup never keeps a read-only flag, or one read-only index would block every later backup.
             var bak = file + ".bak";
-            if (File.Exists(bak))
-            {
-                File.SetAttributes(bak, FileAttributes.Normal);
-            }
-
-            File.Copy(file, bak, overwrite: true);
-            File.SetAttributes(bak, FileAttributes.Normal);
-            // Temp file then move, so a crash or full disk never leaves the game's load menu index half-written.
             var temp = file + ".tmp";
             try
             {
+                // The backup never keeps a read-only flag, or one read-only index would block every later backup.
+                if (File.Exists(bak))
+                {
+                    File.SetAttributes(bak, FileAttributes.Normal);
+                }
+
+                File.Copy(file, bak, overwrite: true);
+                File.SetAttributes(bak, FileAttributes.Normal);
+                // Temp file then move, so a crash or full disk never leaves the game's load menu index half-written.
                 File.WriteAllBytes(temp, bytes);
                 File.Move(temp, file, overwrite: true);
             }
-            catch (Exception e) when (registered && e is IOException or UnauthorizedAccessException)
+            catch (Exception e) when (e is IOException or UnauthorizedAccessException)
             {
-                // An earlier index already lists the save: report it listed rather than failing the whole save.
+                // Locked (the game is writing it) or read-only: skip this index and still update the others, so
+                // the save is listed wherever it can be and the result says whether any index lists it.
                 continue;
             }
             finally

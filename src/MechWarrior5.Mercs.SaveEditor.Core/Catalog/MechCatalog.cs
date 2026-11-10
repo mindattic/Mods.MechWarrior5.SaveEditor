@@ -66,6 +66,19 @@ public sealed class MechCatalog
     /// membership from the game's own folders, and the game's stock loadouts (which win over the
     /// built-in ones).
     /// </summary>
+    /// <summary>Drops what an earlier scan added (mod variants, the game's loadouts), back to the built-in data alone.</summary>
+    public void Reset()
+    {
+        _gameStock.Clear();
+        foreach (var added in _variants.Where(v => !_builtInAssets.Contains(v.Asset)).ToList())
+        {
+            _variants.Remove(added);
+            _byAsset.Remove(added.Asset);
+        }
+
+        Game = null;
+    }
+
     public void Apply(GameData game)
     {
         // A rescan replaces the last one: a mod disabled since then no longer offers its mechs or loadouts.

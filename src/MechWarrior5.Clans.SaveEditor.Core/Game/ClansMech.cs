@@ -50,10 +50,28 @@ public sealed class ClansMech
         .Where(name => name is not null and not "None")
         .Select(name => name!)];
 
-    /// <summary>True when any armor is below its installed value or any part is not healthy.</summary>
+    /// <summary>
+    /// True when any armor is below its installed value, any part is not healthy, or a location is destroyed (it has
+    /// armor installed but no structure entry: Unreal omits a 0 value).
+    /// </summary>
     public bool IsDamaged =>
         ArmorPairs.Any(pair => Locations(pair).Any(l => l.Current < l.Installed))
-        || EquippedSlots().Any(slot => slot.Find<EnumProperty>("HealthState") is { } h && Ue.EnumValue(h.Value) != "Healthy");
+        || EquippedSlots().Any(slot => slot.Find<EnumProperty>("HealthState") is { } h && Ue.EnumValue(h.Value) != "Healthy")
+        || DestroyedLocations().Any();
+
+    /// <summary>Locations with armor installed whose structure is missing (destroyed); none when the save keeps no structure.</summary>
+    private IEnumerable<string> DestroyedLocations()
+    {
+        if (Loadout.Find<StructProperty>("CurrentStructure")?.Value is not PropertyList structure
+            || Loadout.Find<StructProperty>("InstalledArmor")?.Value is not PropertyList installed)
+        {
+            return [];
+        }
+
+        return installed.OfType<FloatProperty>()
+            .Where(a => a.Value > 0 && (structure.Find<FloatProperty>(a.Name)?.Value ?? 0) <= 0)
+            .Select(a => a.Name);
+    }
 
     public float TotalArmor => Locations("Armor").Sum(l => l.Installed) + Locations("RearArmor").Sum(l => l.Installed);
 
@@ -78,6 +96,17 @@ public sealed class ClansMech
                 if (fullStructure.TryGetValue(part.Name, out var full) && part.Value < full)
                 {
                     part.Value = full;
+                    changed = true;
+                }
+            }
+
+            // Unreal leaves a 0 value out of the save, so a destroyed location (an arm shot off) has no entry at all:
+            // put it back at full structure too.
+            foreach (var (name, full) in fullStructure)
+            {
+                if (full > 0 && structure.Find<FloatProperty>(name) is null)
+                {
+                    structure.Add(new FloatProperty(name, full) { Ue5 = Ue5Tag.Simple("FloatProperty") });
                     changed = true;
                 }
             }

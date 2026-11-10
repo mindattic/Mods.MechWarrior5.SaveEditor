@@ -277,8 +277,14 @@ public sealed class HangarEditor
     private static Dictionary<string, float> Damage(PropertyList data, string installed, string current)
     {
         var full = Floats(data, installed);
+        if (data.Find<StructProperty>(current) is null)
+        {
+            return full.ToDictionary(kv => kv.Key, _ => 0f); // no current values saved: nothing to carry over
+        }
+
+        // Unreal omits a 0 value, so a location missing from the current values has lost all its armor.
         var now = Floats(data, current);
-        return full.ToDictionary(kv => kv.Key, kv => Math.Max(0, kv.Value - now.GetValueOrDefault(kv.Key, kv.Value)));
+        return full.ToDictionary(kv => kv.Key, kv => Math.Max(0, kv.Value - now.GetValueOrDefault(kv.Key)));
     }
 
     private static void ApplyDamage(PropertyList data, string installed, string current, Dictionary<string, float> damage)
