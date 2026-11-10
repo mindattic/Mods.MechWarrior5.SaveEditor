@@ -81,9 +81,11 @@ campaigns and their saves by name; double-click one to open it, or use **Open** 
     pack, or *owned DLC only*. Tick any number and **Add to cold storage**, with copies of each if you
     like. They arrive with factory loadouts and paint.
 - **Inventory.** Add any weapon, equipment or ammo at any tier in bulk, set counts for ticked stacks,
-  and remove stacks.
+  and remove stacks. Items from your enabled mods are listed too, marked **MOD**.
 - **Pilots.** Hire and release pilots. Change name, callsign, persona, portrait, voice, bio and
-  traits. Edit skill caps and XP; heal, or max all caps.
+  traits: the pilot's traits are listed with their descriptions, and mod traits are offered too. Edit
+  skill caps and XP; heal, or max all caps. The highest cap comes from the game's data, so a mod that
+  raises it (such as Pilot Overhaul) raises the editor's too.
 - **Factions.** Standing from -100 to +100 for every faction, or set all allied or neutral.
 - **Settings.**
   - Language (English, Deutsch, Español, Français, 日本語, Русский).
@@ -147,6 +149,8 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
 - A rebuilt interface: one HUD-style look across every page, dialog and the Mech Lab, a linked
   MERCENARIES / CLANS game picker, and the look follows the game.
 - Batch buttons stay greyed out until something is ticked; searches and filters untick what they hide.
+- Mercenaries: mod weapons, equipment, ammo and traits from your enabled mods appear in every picker;
+  skill caps follow mods that raise them; a pilot's traits are listed with descriptions.
 - Mercenaries: Mech Lab refits keep a mech's damage; imported mechs arrive repaired and pilots healthy.
 - Clans: Remove mechs works, mech bay plans follow their mechs, and Repair restores destroyed parts.
 - Safer saving: files are written to a temporary file first, and locked files no longer break the save list.
