@@ -3,8 +3,8 @@
 Read [`../AGENTS.md`](../AGENTS.md) and the shared `mindattic-agent-standard/` first. Project-specific
 context only:
 
-- **Local folder vs repo name.** The local folder is `MW5-SaveEditor` (the ticket database, code `M5SE`,
-  is keyed to it). The GitHub repo is `mindattic/Mods.MechWarrior5.SaveEditor`. Never push to the `wmtorode`
+- **Names.** Repo, local folder and ticket key are all `Mods.MechWarrior5.SaveEditor` (ticket code `M5SE`;
+  renamed from `MW5-SaveEditor` on 2026-11-09, old IDs still resolve). Never push to the `wmtorode`
   remote: it is the original upstream.
 - **One app, two games.** `src/MechWarrior5.SaveEditor.App` hosts a Mercenaries shell and a Clans shell,
   switched by the title-bar game tabs (`ShellViewModel`).
