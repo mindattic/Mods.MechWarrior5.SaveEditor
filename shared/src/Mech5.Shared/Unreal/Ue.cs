@@ -34,17 +34,17 @@ public static class Ue
         return new ArrayProperty(name, "StructProperty", storage);
     }
 
-    /// <summary>Reads <c>X.ID.PrimaryAssetName</c> from a typed asset id struct.</summary>
+    /// <summary>Reads <c>X.ID.PrimaryAssetName</c> from a typed asset id struct (saves spell it ID, cooked assets Id).</summary>
     public static string? AssetName(PropertyList? assetIdStruct) =>
-        assetIdStruct?.Find<StructProperty>("ID")?.Value is PropertyList id
-            ? id.Find<NameProperty>("PrimaryAssetName")?.Value.Value
-            : null;
+        IdOf(assetIdStruct)?.Find<NameProperty>("PrimaryAssetName")?.Value.Value;
 
     public static string? AssetType(PropertyList? assetIdStruct) =>
-        assetIdStruct?.Find<StructProperty>("ID")?.Value is PropertyList id
-        && id.Find<StructProperty>("PrimaryAssetType")?.Value is PropertyList type
+        IdOf(assetIdStruct)?.Find<StructProperty>("PrimaryAssetType")?.Value is PropertyList type
             ? type.Find<NameProperty>("Name")?.Value.Value
             : null;
+
+    private static PropertyList? IdOf(PropertyList? assetIdStruct) =>
+        (assetIdStruct?.Find<StructProperty>("ID") ?? assetIdStruct?.Find<StructProperty>("Id"))?.Value as PropertyList;
 
     public static Guid? ItemGuid(PropertyList? itemIdStruct) =>
         itemIdStruct?.Find<StructProperty>("Value")?.Value is GuidValue g ? g.Value : null;
