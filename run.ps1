@@ -130,14 +130,24 @@ try {
     $null = Invoke-Git worktree add --detach $snapshot $commit
     if ($LASTEXITCODE -ne 0) { throw "git worktree add $short failed ($LASTEXITCODE)" }
 
-    Get-Process $exeName -ErrorAction SilentlyContinue | Stop-Process -Force
-    Start-Sleep -Milliseconds 500
-
-    Write-Host "Publishing $title at $short to $dest"
+    # Publish beside the snapshot first, so a failed build leaves the installed editor (and any open one) alone.
+    $staged = Join-Path $snapshot '.publish'
+    Write-Host "Publishing $title at $short"
     dotnet publish (Join-Path $snapshot 'src\MechWarrior5.SaveEditor.App\MechWarrior5.SaveEditor.App.csproj') -c Release -r win-x64 --self-contained true `
       -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true `
-      -p:DebugType=None -p:GenerateDocumentationFile=false -o $dest --nologo -v quiet
+      -p:DebugType=None -p:GenerateDocumentationFile=false -o $staged --nologo -v quiet
     if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed ($LASTEXITCODE)" }
+
+    # Ask an open editor to close the normal way, so it can offer to save unsaved edits; never force-kill it.
+    $running = @(Get-Process $exeName -ErrorAction SilentlyContinue | Where-Object { $_.Path -and $_.Path -ieq $exe })
+    foreach ($p in $running) { $null = $p.CloseMainWindow() }
+    foreach ($p in $running) {
+      if (-not $p.WaitForExit(120000)) { throw "$title is still open (it may be asking about unsaved changes). Close it, then run this again." }
+    }
+
+    New-Item -ItemType Directory -Force $dest | Out-Null
+    Write-Host "Installing to $dest"
+    Copy-Item (Join-Path $staged '*') $dest -Recurse -Force
     Set-Content -Path $stamp -Encoding ascii -Value $buildKey, "commit=$commit"
   } else {
     Write-Host "$title is up to date ($short)."

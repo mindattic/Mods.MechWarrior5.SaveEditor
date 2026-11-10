@@ -8,6 +8,11 @@
         WindowStartupLocation="CenterScreen" Background="{DynamicResource Brush.Base}"
         FontFamily="{StaticResource Font.Hud}" Icon="Assets/app.ico"
         UseLayoutRounding="True" SnapsToDevicePixels="True">
+    <!-- Window-wide too, so Ctrl+O / Ctrl+S work right after a game-tab click, before focus is inside the page. -->
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding Current.BrowseCommand}" />
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding Current.SaveCommand}" />
+    </Window.InputBindings>
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="42" ResizeBorderThickness="6" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>

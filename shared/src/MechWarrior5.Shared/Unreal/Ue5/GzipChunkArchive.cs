@@ -39,24 +39,36 @@ public static class GzipChunkArchive
             position++; // compressor id
             ReadUInt64(data, ref position); // total compressed
             var uncompressed = ReadUInt64(data, ref position);
-            var chunks = (int)((uncompressed + ChunkSize - 1) / ChunkSize);
-            var sizes = new (int Compressed, int Uncompressed)[chunks];
+            // Each chunk has a 16-byte size entry, so a count the rest of the file can't hold is corruption.
+            var chunkCount = (uncompressed + ChunkSize - 1) / ChunkSize;
+            if (chunkCount > (ulong)(data.Length - position) / 16)
+            {
+                throw new SaveFormatException($"Bad archive block size ({uncompressed} bytes)", blockAt);
+            }
+
+            var chunks = (int)chunkCount;
+            var sizes = new (long Compressed, long Uncompressed)[chunks];
             for (var i = 0; i < chunks; i++)
             {
-                sizes[i] = ((int)ReadUInt64(data, ref position), (int)ReadUInt64(data, ref position));
+                sizes[i] = ((long)ReadUInt64(data, ref position), (long)ReadUInt64(data, ref position));
             }
 
             foreach (var (compressed, expected) in sizes)
             {
-                if (position + compressed > data.Length)
+                if (compressed < 0 || position + compressed > data.Length)
                 {
                     throw new SaveFormatException("Archive chunk runs past end of file", position);
                 }
 
                 var before = output.Length;
-                using (var gzip = new GZipStream(new MemoryStream(data, position, compressed), CompressionMode.Decompress))
+                try
                 {
+                    using var gzip = new GZipStream(new MemoryStream(data, position, (int)compressed), CompressionMode.Decompress);
                     gzip.CopyTo(output);
+                }
+                catch (InvalidDataException e)
+                {
+                    throw new SaveFormatException($"Corrupt archive chunk: {e.Message}", position);
                 }
 
                 if (output.Length - before != expected)
@@ -64,7 +76,7 @@ public static class GzipChunkArchive
                     throw new SaveFormatException($"Chunk inflated to {output.Length - before} bytes, expected {expected}", position);
                 }
 
-                position += compressed;
+                position += (int)compressed;
             }
         }
 

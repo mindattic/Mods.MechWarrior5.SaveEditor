@@ -76,7 +76,7 @@ public static partial class GameDataScanner
                 var asset = Path.GetFileNameWithoutExtension(file);
                 if (mechs.ContainsKey(asset))
                 {
-                    continue;
+                    continue; // already known; a mod's stock loadout for it is applied below
                 }
 
                 var known = catalog.FindByAsset(asset);
@@ -98,9 +98,24 @@ public static partial class GameDataScanner
 
                 mechs[asset] = new ScannedMech(variant, loadouts.GetValueOrDefault(asset));
             }
+
+            // Like the game, a mod's pak wins over what came before: its loadout replaces the stock one for a
+            // mech already known (e.g. a rebalance mod shipping only AS7-D_Loadout).
+            if (modName is not null)
+            {
+                foreach (var (asset, loadout) in loadouts)
+                {
+                    if (mechs.TryGetValue(asset, out var existing))
+                    {
+                        mechs[asset] = existing with { Loadout = loadout };
+                    }
+                }
+            }
         }
-        catch (Exception e) when (e is IOException or UnauthorizedAccessException or SaveFormatException or InvalidDataException)
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or SaveFormatException or InvalidDataException
+                                       or ArgumentOutOfRangeException or IndexOutOfRangeException)
         {
+            // One pak the reader can't follow (e.g. an index entry stored outside the encoded block) skips only that pak.
             problems.Add($"{Path.GetFileName(path)}: {e.Message}");
         }
     }

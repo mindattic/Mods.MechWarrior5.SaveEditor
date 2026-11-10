@@ -96,14 +96,28 @@ public sealed class Mw5SaveFile
         Parse(bytes);
 
         var temp = path + ".tmp";
-        File.WriteAllBytes(temp, bytes);
-        if (File.Exists(path))
+        try
         {
-            File.Replace(temp, path, backup ? path + ".bak" : null);
+            File.WriteAllBytes(temp, bytes);
+            if (File.Exists(path))
+            {
+                // File.Replace fails on a read-only .bak, which would block every later save in place.
+                var bak = backup ? path + ".bak" : null;
+                if (bak is not null && File.Exists(bak))
+                {
+                    File.SetAttributes(bak, File.GetAttributes(bak) & ~FileAttributes.ReadOnly);
+                }
+
+                File.Replace(temp, path, bak);
+            }
+            else
+            {
+                File.Move(temp, path);
+            }
         }
-        else
+        finally
         {
-            File.Move(temp, path);
+            File.Delete(temp); // never leave a stray .sav.tmp in the campaign folder when a write fails
         }
     }
 }

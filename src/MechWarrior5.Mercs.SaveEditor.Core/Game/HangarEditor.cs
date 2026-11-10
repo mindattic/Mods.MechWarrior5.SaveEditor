@@ -246,13 +246,96 @@ public sealed class HangarEditor
             throw new InvalidOperationException("This mech's data can't be safely rewritten.");
         }
 
+        // A refit changes only what was refitted: the mech keeps its damage (missing armor per location,
+        // damaged or destroyed weapons and equipment left in their slots), as structure already does.
+        var data = mech.LoadoutData;
+        var armorDamage = Damage(data, "InstalledArmor", "CurrentArmor");
+        var rearDamage = Damage(data, "InstalledRearArmor", "CurrentRearArmor");
+        var health = ItemHealth(data).Where(kv => !kv.Value.Value.Value!.EndsWith("::Healthy", StringComparison.Ordinal))
+            .ToDictionary(kv => kv.Key, kv => kv.Value.Value, StringComparer.OrdinalIgnoreCase);
+
         foreach (var field in MechLoadoutBuilder.BuildStockFields(loadout))
         {
-            mech.LoadoutData.Set(field);
+            data.Set(field);
+        }
+
+        ApplyDamage(data, "InstalledArmor", "CurrentArmor", armorDamage);
+        ApplyDamage(data, "InstalledRearArmor", "CurrentRearArmor", rearDamage);
+        foreach (var (key, state) in ItemHealth(data))
+        {
+            if (health.TryGetValue(key, out var kept))
+            {
+                state.Value = kept;
+            }
         }
 
         mech.MarkModified();
         _changed();
+    }
+
+    /// <summary>Armor missing per location: installed minus current (0 for an undamaged location).</summary>
+    private static Dictionary<string, float> Damage(PropertyList data, string installed, string current)
+    {
+        var full = Floats(data, installed);
+        var now = Floats(data, current);
+        return full.ToDictionary(kv => kv.Key, kv => Math.Max(0, kv.Value - now.GetValueOrDefault(kv.Key, kv.Value)));
+    }
+
+    private static void ApplyDamage(PropertyList data, string installed, string current, Dictionary<string, float> damage)
+    {
+        var full = Floats(data, installed);
+        if (data.Find<StructProperty>(current)?.Value is not PropertyList parts)
+        {
+            return;
+        }
+
+        foreach (var part in parts.OfType<FloatProperty>())
+        {
+            part.Value = Math.Max(0, full.GetValueOrDefault(part.Name) - damage.GetValueOrDefault(part.Name));
+        }
+    }
+
+    private static Dictionary<string, float> Floats(PropertyList data, string field) =>
+        data.Find<StructProperty>(field)?.Value is PropertyList parts
+            ? parts.OfType<FloatProperty>().GroupBy(p => p.Name).ToDictionary(g => g.Key, g => g.First().Value)
+            : [];
+
+    /// <summary>Each fitted weapon's and equipment item's health, keyed by where it sits and what it is.</summary>
+    private static Dictionary<string, EnumProperty> ItemHealth(PropertyList data)
+    {
+        var result = new Dictionary<string, EnumProperty>(StringComparer.OrdinalIgnoreCase);
+        if (data.Find<ArrayProperty>("InstalledWeapons")?.Storage is StructArrayStorage weapons)
+        {
+            foreach (var weapon in weapons.PropertyElements)
+            {
+                if (weapon.Find<StructProperty>("WeaponData")?.Value is PropertyList wd && wd.Find<EnumProperty>("HealthState") is { } h)
+                {
+                    result.TryAdd($"W|{weapon.Find<NameProperty>("HardpointSlotID")?.Value}|{Ue.AssetName(wd.Find<StructProperty>("WeaponId")?.Value as PropertyList)}", h);
+                }
+            }
+        }
+
+        if ((data.Find<StructProperty>("Equipment")?.Value as PropertyList)?.Find<ArrayProperty>("MechPartEquipment")?.Storage is StructArrayStorage parts)
+        {
+            foreach (var part in parts.PropertyElements)
+            {
+                var where = part.Find<EnumProperty>("MechPart")?.Value.Value?.Split("::")[^1];
+                if (part.Find<ArrayProperty>("SlottedEquipment")?.Storage is not StructArrayStorage slots)
+                {
+                    continue;
+                }
+
+                foreach (var slot in slots.PropertyElements)
+                {
+                    if (slot.Find<StructProperty>("EquipmentData")?.Value is PropertyList ed && ed.Find<EnumProperty>("HealthState") is { } h)
+                    {
+                        result.TryAdd($"E|{where}|{slot.Find<IntProperty>("SlotId")?.Value}|{Ue.AssetName(ed.Find<StructProperty>("EquipmentId")?.Value as PropertyList)}", h);
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     public void Commit()

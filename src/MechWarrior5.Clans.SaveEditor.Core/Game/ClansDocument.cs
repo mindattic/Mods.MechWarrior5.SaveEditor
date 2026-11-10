@@ -28,7 +28,7 @@ public sealed class ClansDocument
         _models = Expand("PersistentModelData");
         _inventory = Expand("InventoryData");
         _deployment = _file.Properties.Find<ArrayProperty>("DeploymentData") is not null ? Expand("DeploymentData") : null;
-        Inventory = new InventoryEditor(_inventory.Blob.Properties.Get<ArrayProperty>("Array").Structs, IsReferenced);
+        Inventory = new InventoryEditor(_inventory.Blob.Properties.Get<ArrayProperty>("Array").Structs, IsReferenced, new MechPlans(_models.Blob.Properties));
         Progress = new ProgressEditor(_models.Blob.Properties);
         IsOriginalGameSave = EditorStamp.Read(_file.Properties) is null;
     }
@@ -76,16 +76,27 @@ public sealed class ClansDocument
 
         if (!createNew)
         {
-            File.Copy(target, target + ".bak", overwrite: true);
+            // A read-only .bak (or a read-only save copied onto it) would block every later save in place.
+            var bak = target + ".bak";
+            ClearReadOnly(bak);
+            File.Copy(target, bak, overwrite: true);
+            ClearReadOnly(bak);
         }
 
         var temp = target + ".tmp";
-        File.WriteAllBytes(temp, bytes);
-        File.Move(temp, target, overwrite: true);
+        try
+        {
+            File.WriteAllBytes(temp, bytes);
+            File.Move(temp, target, overwrite: true);
+        }
+        finally
+        {
+            File.Delete(temp);
+        }
 
         var summary = new SaveSummary(Currency("Kerenskies_CurrencyItem"), Currency("Merits_CurrencyItem"), Currency("Honor_CurrencyItem"));
-        var newId = System.IO.Path.GetFileNameWithoutExtension(target).Split('_')[1];
         Path = target;
+        var newId = SaveId; // a stamped file renamed without '_' (e.g. backup.sav) is its own id
         IsOriginalGameSave = false;
         bool registered;
         try
@@ -101,6 +112,14 @@ public sealed class ClansDocument
         return new SaveOutcome(target, createNew, registered);
     }
 
+    private static void ClearReadOnly(string path)
+    {
+        if (File.Exists(path) && File.GetAttributes(path).HasFlag(FileAttributes.ReadOnly))
+        {
+            File.SetAttributes(path, File.GetAttributes(path) & ~FileAttributes.ReadOnly);
+        }
+    }
+
     private static string Version =>
         typeof(ClansDocument).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+')[0] ?? "1";
 
@@ -111,8 +130,9 @@ public sealed class ClansDocument
         {
             return File.Exists(path) && EditorStamp.Read(Ue5SaveFile.Load(path).Properties) is not null;
         }
-        catch (SaveFormatException)
+        catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException or InvalidDataException)
         {
+            // Unreadable right now: treat as not ours, so the save goes to a new file instead of over it.
             return false;
         }
     }
@@ -134,7 +154,10 @@ public sealed class ClansDocument
         }
     }
 
-    /// <summary>Whether anything outside the inventory (deployment, models) mentions this inventory id.</summary>
+    /// <summary>
+    /// Whether anything outside the inventory (deployment, models) mentions this inventory id. The mech-lab plan
+    /// record every owned mech has counts too, so <see cref="InventoryEditor.RemoveMechs"/> takes it out first.
+    /// </summary>
     private bool IsReferenced(Guid id)
     {
         var needle = id.ToByteArray();

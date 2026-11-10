@@ -43,12 +43,14 @@ public sealed class MechCatalog
     private readonly List<MechVariant> _variants;
     private readonly Lazy<Dictionary<string, StockLoadout>> _stock;
     private readonly Dictionary<string, StockLoadout> _gameStock = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _builtInAssets;
 
     private MechCatalog(IReadOnlyList<DlcPack> packs, IReadOnlyList<MechVariant> variants)
     {
         DlcPacks = packs;
         _variants = [.. variants];
         _byAsset = variants.ToDictionary(v => v.Asset, StringComparer.OrdinalIgnoreCase);
+        _builtInAssets = variants.Select(v => v.Asset).ToHashSet(StringComparer.OrdinalIgnoreCase);
         _stock = new Lazy<Dictionary<string, StockLoadout>>(LoadStock);
     }
 
@@ -66,6 +68,15 @@ public sealed class MechCatalog
     /// </summary>
     public void Apply(GameData game)
     {
+        // A rescan replaces the last one: a mod disabled since then no longer offers its mechs or loadouts.
+        _gameStock.Clear();
+        var scannedAssets = game.Mechs.Select(m => m.Variant.Asset).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        foreach (var stale in _variants.Where(v => !_builtInAssets.Contains(v.Asset) && !scannedAssets.Contains(v.Asset)).ToList())
+        {
+            _variants.Remove(stale);
+            _byAsset.Remove(stale.Asset);
+        }
+
         foreach (var scanned in game.Mechs)
         {
             if (_byAsset.TryGetValue(scanned.Variant.Asset, out var existing))

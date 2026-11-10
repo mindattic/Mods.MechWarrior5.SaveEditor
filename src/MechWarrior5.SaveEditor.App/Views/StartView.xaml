@@ -11,7 +11,7 @@
         <DockPanel>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
                 <ma:MaButton Content="{l:T rescan}" Command="{Binding RescanCommand}" Margin="0,0,10,0" />
-                <ma:MaButton Command="{Binding DataContext.BrowseCommand, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource Button.Command}">
+                <ma:MaButton Command="{Binding DataContext.Current.BrowseCommand, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource Button.Command}">
                     <StackPanel Orientation="Horizontal">
                         <Path Data="{StaticResource Glyph.Open}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
                         <TextBlock Text="{l:T browse_for_save}" Foreground="{DynamicResource Brush.Void}" FontWeight="Bold" />

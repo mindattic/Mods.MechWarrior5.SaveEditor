@@ -58,15 +58,23 @@ public static class CampaignIndex
     /// Lists a newly written save by cloning its source save's entry under <paramref name="displayName"/>
     /// (default: the source name plus " [Edited]"). Returns false when there is no index or entry to clone.
     /// </summary>
-    public static bool RegisterCopy(string folder, string sourceFileName, string newFileName, string? displayName = null, DateTime? gameDate = null)
+    public static bool RegisterCopy(string folder, string sourceFileName, string newFileName, string? displayName = null, DateTime? gameDate = null, string? sourceFolder = null)
     {
         if (!TryLoad(folder, out var root, out var hasBom) || root["Saves"] is not JsonArray saves)
         {
             return false;
         }
 
-        var source = saves.OfType<JsonObject>().FirstOrDefault(s => Matches(s, sourceFileName))
-            ?? saves.OfType<JsonObject>().FirstOrDefault(s => Matches(s, root["LastSaveFileName"]?.GetValue<string>()));
+        // Saved into another campaign's folder: the entry to copy is the source save's, from its own index.
+        // Falling back to this folder's latest save would carry another campaign's DLC tags, system and reputation.
+        var crossCampaign = sourceFolder is not null
+            && !string.Equals(Path.GetFullPath(sourceFolder), Path.GetFullPath(folder), StringComparison.OrdinalIgnoreCase);
+        var source = crossCampaign
+            ? (TryLoad(sourceFolder!, out var sourceRoot, out _) && sourceRoot["Saves"] is JsonArray sourceSaves
+                ? sourceSaves.OfType<JsonObject>().FirstOrDefault(s => Matches(s, sourceFileName))
+                : null)
+            : saves.OfType<JsonObject>().FirstOrDefault(s => Matches(s, sourceFileName))
+                ?? saves.OfType<JsonObject>().FirstOrDefault(s => Matches(s, root["LastSaveFileName"]?.GetValue<string>()));
         if (source is null)
         {
             return false;

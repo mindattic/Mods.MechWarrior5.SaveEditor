@@ -17,7 +17,7 @@
         <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0">
             <DockPanel>
                 <Grid DockPanel.Dock="Top" Margin="18,14,18,8">
-                    <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Delay=120}" Tag="Filter by name, chassis, variant or weapon" />
+                    <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Delay=120}" Tag="{l:T clans_filter_mechs}" />
                 </Grid>
 
                 <!-- Footer: selection on top, actions below (two rows so nothing overlaps). -->
@@ -55,7 +55,7 @@
                                 </ma:MaButton>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
-                                <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Width="170" Margin="0,0,4,0" Tag="Mech name (empty clears)" />
+                                <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Width="170" Margin="0,0,4,0" Tag="{l:T clans_mech_name_hint}" />
                                 <ma:MaButton Command="{Binding RenameCommand}" Content="{l:T rename}" />
                             </StackPanel>
                             <ma:MaButton Command="{Binding RemoveCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">

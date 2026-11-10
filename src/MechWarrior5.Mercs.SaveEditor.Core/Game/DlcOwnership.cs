@@ -54,7 +54,7 @@ public sealed class DlcOwnership
 
             return new DlcOwnership([], DlcSource.Unknown);
         }
-        catch (JsonException)
+        catch (Exception e) when (e is JsonException or IOException or UnauthorizedAccessException)
         {
             return new DlcOwnership([], DlcSource.Unknown);
         }

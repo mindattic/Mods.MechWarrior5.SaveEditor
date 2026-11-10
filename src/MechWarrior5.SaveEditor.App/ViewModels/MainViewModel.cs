@@ -75,6 +75,7 @@ public sealed partial class MainViewModel : ObservableObject
         Loc.Instance.PropertyChanged += (_, _) =>
         {
             RebuildPages();
+            GameDataSummary = _summary();
             OnPropertyChanged(nameof(SaveLabel));
         };
     }
@@ -89,22 +90,34 @@ public sealed partial class MainViewModel : ObservableObject
     /// </summary>
     public async Task ReloadGameDataAsync()
     {
-        GameDataSummary = Loc.Text("game_data_reading", "Reading game data...");
+        // A rescan started while an earlier one runs supersedes it: only the latest result is applied.
+        var generation = ++_scanGeneration;
+        SetSummary(() => Loc.Text("game_data_reading", "Reading game data..."));
         var preferred = _settings.Current.GameFolder;
         GameData? data;
         try
         {
             data = await Task.Run(() => GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null);
         }
-        catch (Exception e) when (e is IOException or UnauthorizedAccessException or InvalidOperationException or System.Text.Json.JsonException)
+        catch (Exception e)
         {
-            GameDataSummary = Loc.Text("game_data_failed", "Couldn't read game data: using built-in data ({0})", e.Message);
+            // Started fire-and-forget at launch, so nothing may escape: report it and keep the built-in data.
+            if (generation == _scanGeneration)
+            {
+                SetSummary(() => Loc.Text("game_data_failed", "Couldn't read game data: using built-in data ({0})", e.Message));
+            }
+
+            return;
+        }
+
+        if (generation != _scanGeneration)
+        {
             return;
         }
 
         if (data is null)
         {
-            GameDataSummary = Loc.Text("game_data_missing", "Game not found: using built-in data");
+            SetSummary(() => Loc.Text("game_data_missing", "Game not found: using built-in data"));
             return;
         }
 
@@ -115,10 +128,20 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         var mods = data.Mechs.Count(m => m.Variant.ModName is not null);
-        GameDataSummary = mods > 0
+        SetSummary(() => mods > 0
             ? Loc.Text("game_data_mods", "Game data: {0} mechs ({1} from mods)", data.Mechs.Count, mods)
-            : Loc.Text("game_data", "Game data: {0} mechs", data.Mechs.Count);
+            : Loc.Text("game_data", "Game data: {0} mechs", data.Mechs.Count));
         RebuildPages();
+    }
+
+    private int _scanGeneration;
+    private Func<string> _summary = () => Loc.Text("game_data_reading", "Reading game data...");
+
+    /// <summary>Keeps how the summary is worded, so a language change can re-word it.</summary>
+    private void SetSummary(Func<string> summary)
+    {
+        _summary = summary;
+        GameDataSummary = summary();
     }
 
     public StartViewModel Start { get; }
@@ -148,7 +171,7 @@ public sealed partial class MainViewModel : ObservableObject
     public string DlcSummary => Document?.Dlc.Source switch
     {
         null => string.Empty,
-        DlcSource.Unknown => "DLC: unknown (no Campaign.json)",
+        DlcSource.Unknown => Loc.Text("dlc_unknown_summary", "DLC: unknown (no Campaign.json)"),
         _ => $"DLC {Document.Dlc.Tags.Count}/{_mechs.DlcPacks.Count}",
     };
 
@@ -307,29 +330,39 @@ public sealed partial class MainViewModel : ObservableObject
             return false;
         }
 
+        SaveOutcome outcome;
         try
         {
-            var outcome = Document!.Save(path, SaveName);
-            _settings.Current.LastSavePath = outcome.Path;
-            _settings.Save();
-            IsOriginal = Document.IsOriginalGameSave;
-            OnPropertyChanged(nameof(FileName));
-            OnPropertyChanged(nameof(SaveTitle));
-            OnPropertyChanged(nameof(WindowTitle));
-            ShowToast(outcome switch
-            {
-                { CreatedNewFile: true, RegisteredInCampaign: true } => Loc.Text("saved_new", "Saved as new save \"{0}\" in the game's load menu. The original is untouched.", SaveName),
-                { CreatedNewFile: true } => Loc.Text("saved_unlisted", "Saved as {0} (not listed in the campaign index). The original is untouched.", Path.GetFileName(outcome.Path)),
-                _ => Loc.Text("saved_in_place", "Saved \"{0}\" (previous version kept as .bak).", SaveName),
-            });
-            Start.Refresh();
-            return true;
+            outcome = Document!.Save(path, SaveName);
         }
         catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
         {
             _dialogs.Show(Loc.Text("save_failed", "Save failed"), Loc.Text("save_failed_text", "Nothing was written. {0}", e.Message), DialogTone.Error);
             return false;
         }
+
+        // The save is on disk from here on: nothing below may report it as failed.
+        _settings.Current.LastSavePath = outcome.Path;
+        try
+        {
+            _settings.Save();
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+        }
+
+        IsOriginal = Document.IsOriginalGameSave;
+        OnPropertyChanged(nameof(FileName));
+        OnPropertyChanged(nameof(SaveTitle));
+        OnPropertyChanged(nameof(WindowTitle));
+        ShowToast(outcome switch
+        {
+            { CreatedNewFile: true, RegisteredInCampaign: true } => Loc.Text("saved_new", "Saved as new save \"{0}\" in the game's load menu. The original is untouched.", SaveName),
+            { CreatedNewFile: true } => Loc.Text("saved_unlisted", "Saved as {0} (not listed in the campaign index). The original is untouched.", Path.GetFileName(outcome.Path)),
+            _ => Loc.Text("saved_in_place", "Saved \"{0}\" (previous version kept as .bak).", SaveName),
+        });
+        Start.Refresh();
+        return true;
     }
 
     /// <summary>
@@ -408,12 +441,14 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         Company?.Refresh();
+        Factions = new FactionsViewModel(doc); // mood labels are worded in the current language
         OnPropertyChanged(nameof(Mechs));
         OnPropertyChanged(nameof(Inventory));
         OnPropertyChanged(nameof(Pilots));
+        OnPropertyChanged(nameof(Factions));
 
         // The page on screen still shows the old view model; point it at the rebuilt one.
-        if (Page is Page.Mechs or Page.Inventory or Page.Pilots)
+        if (Page is Page.Mechs or Page.Inventory or Page.Pilots or Page.Factions)
         {
             Navigate(Page);
         }

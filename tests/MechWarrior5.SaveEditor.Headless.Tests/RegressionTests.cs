@@ -103,6 +103,80 @@ public class RegressionTests
         });
     }
 
+    /// <summary>
+    /// M5SE-T85: every owned Clans mech has a mech-lab plan record and planned copy; that alone doesn't stop Remove,
+    /// which takes the planned copy with it, and Duplicate gives each copy its own.
+    /// </summary>
+    [Test]
+    public void Clans_remove_mechs_is_not_blocked_by_their_own_plan()
+    {
+        var (_, save) = SaveFixtures.ClansFolderCopy();
+        var doc = ClansDocument.Load(save);
+        static int Planned(ClansDocument d) => d.Inventory.Actors.Count(a => a.Kind == ActorKind.Mech && a.InventoryTag == "Inventory.Planned");
+        Assume.That(Planned(doc), Is.EqualTo(doc.Inventory.Mechs.Count()).And.GreaterThan(0), "no mech-lab plans in this save");
+        var mechs = doc.Inventory.Mechs.Count();
+
+        var removed = doc.Inventory.RemoveMechs(doc.Inventory.Mechs.ToList());
+        Assume.That(removed.Succeeded, Is.Not.Empty, "every mech in this save is deployed or worked on");
+        var back = ClansDocument.Load(doc.Save("Regression Remove Planned").Path);
+        var left = back.Inventory.Mechs.Count();
+        back.Inventory.DuplicateMechs([back.Inventory.Mechs.First()], copies: 2);
+        var copied = ClansDocument.Load(back.Save("Regression Duplicate Planned").Path);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(left, Is.EqualTo(mechs - removed.Succeeded.Count), "unreferenced mechs removed");
+            Assert.That(Planned(back), Is.EqualTo(left), "each removed mech took its planned copy");
+            Assert.That(copied.Inventory.Mechs.Count(), Is.EqualTo(left + 2));
+            Assert.That(Planned(copied), Is.EqualTo(left + 2), "each copy has its own planned copy");
+        });
+    }
+
+    /// <summary>M5SE-T87: renaming a Clans mech renames its planned copy (its mech bay plan) too.</summary>
+    [Test]
+    public void Clans_rename_reaches_the_planned_copy()
+    {
+        var (_, save) = SaveFixtures.ClansFolderCopy();
+        var doc = ClansDocument.Load(save);
+        var planned = doc.Inventory.Actors.Count(a => a.Kind == ActorKind.Mech && a.InventoryTag == "Inventory.Planned");
+        Assume.That(planned, Is.GreaterThan(0), "no mech-lab plans in this save");
+
+        doc.Inventory.RenameMechs(doc.Inventory.Mechs.ToList(), "  Regression Name  ");
+        var back = ClansDocument.Load(doc.Save("Regression Rename").Path);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(back.Inventory.Mechs.Select(m => m.CustomName), Is.All.EqualTo("Regression Name"));
+            Assert.That(back.Inventory.Actors.Where(a => a.Kind == ActorKind.Mech && a.InventoryTag == "Inventory.Planned")
+                .Select(a => System.Text.Encoding.UTF8.GetString(a.Item.ToArray())), Has.All.Contains("Regression Name"),
+                "every planned copy carries the new name");
+        });
+    }
+
+    /// <summary>M5SE-T86: applying a refit in the Mech Lab keeps the mech's armor damage instead of half-repairing it.</summary>
+    [Test]
+    public void Mercs_loadout_apply_keeps_existing_damage()
+    {
+        var (_, save) = SaveFixtures.MercsCampaignCopy();
+        var doc = Mw5Document.Open(save, Mechs);
+        var mech = doc.Hangar.Mechs.FirstOrDefault(m => m.IsEditable && m.Location == MechLocation.MechBay)
+            ?? doc.Hangar.Mechs.FirstOrDefault(m => m.IsEditable);
+        Assume.That(mech, Is.Not.Null, "no editable mech");
+        var data = (MechWarrior5.Shared.Unreal.PropertyList)typeof(MechRecord)
+            .GetProperty("LoadoutData", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)!.GetValue(mech)!;
+        static MechWarrior5.Shared.Unreal.Properties.FloatProperty Part(MechWarrior5.Shared.Unreal.PropertyList d, string field) =>
+            ((MechWarrior5.Shared.Unreal.PropertyList)d.Get<MechWarrior5.Shared.Unreal.Properties.StructProperty>(field).Value)
+                .OfType<MechWarrior5.Shared.Unreal.Properties.FloatProperty>().First(p => p.Name == "CenterTorso");
+        var installed = Part(data, "InstalledArmor").Value;
+        Assume.That(installed, Is.GreaterThan(5f), "no centre-torso armor to damage");
+        Part(data, "CurrentArmor").Value = installed - 5f;
+
+        doc.Hangar.ApplyLoadout(mech!, HangarEditor.ReadLoadout(mech!));
+
+        Assert.That(Part(data, "CurrentArmor").Value, Is.EqualTo(Part(data, "InstalledArmor").Value - 5f).Within(0.01f),
+            "the 5 points of missing armor are still missing after Apply");
+    }
+
     /// <summary>M5SE-T81: an impossible calendar move is refused untouched; the same item twice in one add makes one stack.</summary>
     [Test]
     public void Mercs_calendar_and_inventory_edge_cases()

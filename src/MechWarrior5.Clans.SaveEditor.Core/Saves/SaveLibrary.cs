@@ -69,9 +69,9 @@ public static class SaveLibrary
             {
                 index = Ue5SaveFile.Load(file);
             }
-            catch (SaveFormatException)
+            catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
             {
-                continue;
+                continue; // unreadable or locked while the game writes it: the other indexes still name the saves
             }
 
             if (index.Properties.Find<ArrayProperty>("UserProfiles")?.Storage is not StructArrayStorage profiles)

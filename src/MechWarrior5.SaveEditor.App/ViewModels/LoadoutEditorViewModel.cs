@@ -12,7 +12,8 @@ namespace MechWarrior5.SaveEditor.App.ViewModels;
 /// <summary>A pick-list entry; <see cref="Item"/> is null for "empty".</summary>
 public sealed record ItemOption(ItemDefinition? Item, string Label)
 {
-    public static readonly ItemOption Empty = new(null, "- empty -");
+    /// <summary>Worded in the current language each time; a record, so two of them are still equal.</summary>
+    public static ItemOption Empty => new(null, Loc.Text("empty_slot_option", "- empty -"));
 
     public static ItemOption Of(ItemDefinition item) =>
         new(item, Names.Humanize(item.Asset) + (Names.Tier(item.Asset) is { } tier ? $"  [{tier}]" : string.Empty));
@@ -308,9 +309,12 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
         _structure = loadout.Structure.Count > 0 ? new Dictionary<string, float>(loadout.Structure) : _structure;
 
         Weapons.Clear();
+        // A hand-edited .mw5loadout can name a slot twice: the first entry wins instead of crashing the import.
         var installed = loadout.Weapons.Where(w => w.IsInstalledWeapon)
+            .DistinctBy(w => w.Slot, StringComparer.OrdinalIgnoreCase)
             .ToDictionary(w => w.Slot, StringComparer.OrdinalIgnoreCase);
-        var groups = loadout.Groups.ToDictionary(g => g.Slot, g => g.G, StringComparer.OrdinalIgnoreCase);
+        var groups = loadout.Groups.DistinctBy(g => g.Slot, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Slot, g => g.G, StringComparer.OrdinalIgnoreCase);
         foreach (var slot in _hangar.HardpointsFor(Mech).Union(installed.Keys, StringComparer.OrdinalIgnoreCase))
         {
             var options = WeaponOptions(Hardpoints.ClassOf(slot));

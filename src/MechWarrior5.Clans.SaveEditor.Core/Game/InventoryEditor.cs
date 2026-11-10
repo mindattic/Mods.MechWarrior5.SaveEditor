@@ -17,12 +17,14 @@ public sealed class InventoryEditor
 
     private readonly StructArrayStorage _array;
     private readonly Func<Guid, bool> _isReferenced;
+    private readonly MechPlans _plans;
     private readonly List<InventoryActor> _actors;
 
-    internal InventoryEditor(StructArrayStorage array, Func<Guid, bool> isReferenced)
+    internal InventoryEditor(StructArrayStorage array, Func<Guid, bool> isReferenced, MechPlans plans)
     {
         _array = array;
         _isReferenced = isReferenced;
+        _plans = plans;
         _actors = [.. array.PropertyElements.Select(e => new InventoryActor(e))];
     }
 
@@ -126,18 +128,30 @@ public sealed class InventoryEditor
         return new BatchResult(done, skipped);
     }
 
-    /// <summary>Adds copies of mechs (same loadout, new inventory ids); they arrive repaired.</summary>
+    /// <summary>
+    /// Adds copies of mechs (same loadout, new inventory ids); they arrive repaired. A mech with a mech-lab plan
+    /// gives each copy its own plan record and planned copy, as the game keeps one per owned mech.
+    /// </summary>
     public BatchResult DuplicateMechs(IEnumerable<ClansMech> mechs, int copies = 1)
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(copies, 1);
         var done = new List<string>();
         foreach (var mech in mechs.ToList())
         {
+            var plan = mech.InventoryId is { } sourceId ? _plans.RecordOf(sourceId) : null;
+            var planned = plan is null ? null : PlannedCopy(plan);
             for (var i = 0; i < copies; i++)
             {
                 var clone = new ClansMech(mech.Actor.CloneWithNewId());
                 clone.Repair(FullStructure(mech));
                 Append(clone.Actor);
+                if (planned is not null)
+                {
+                    var plannedClone = new ClansMech(planned.CloneWithNewId());
+                    plannedClone.Repair(FullStructure(mech));
+                    Append(plannedClone.Actor);
+                    _plans.Add(plan!, clone.InventoryId!.Value, plannedClone.InventoryId!.Value);
+                }
             }
 
             done.Add(Label(mech));
@@ -146,7 +160,10 @@ public sealed class InventoryEditor
         return new BatchResult(done, []);
     }
 
-    /// <summary>Removes mechs that nothing else in the campaign refers to (deployment, technicians, plans).</summary>
+    /// <summary>
+    /// Removes mechs that nothing else in the campaign refers to (deployment, technicians, work queue). Every owned
+    /// mech has a mech-lab plan record, which doesn't count: it goes with the mech, along with its planned copy.
+    /// </summary>
     public BatchResult RemoveMechs(IEnumerable<ClansMech> mechs)
     {
         var done = new List<string>();
@@ -156,20 +173,51 @@ public sealed class InventoryEditor
             if (mech.InventoryId is not { } id)
             {
                 skipped.Add(new Skipped(Label(mech), "it has no inventory id"));
+                continue;
             }
-            else if (_isReferenced(id))
+
+            var plan = _plans.RecordOf(id);
+            var at = plan is null ? -1 : _plans.Detach(plan);
+            if (_isReferenced(id))
             {
+                _plans.Restore(at, plan!);
                 skipped.Add(new Skipped(Label(mech), "it is deployed, being worked on, or planned"));
+                continue;
             }
-            else
+
+            Remove(mech.Actor);
+            if (plan is not null && PlannedCopy(plan) is { } planned && !_isReferenced(planned.InventoryId!.Value))
             {
-                Remove(mech.Actor);
-                done.Add(Label(mech));
+                Remove(planned);
             }
+
+            done.Add(Label(mech));
         }
 
         return new BatchResult(done, skipped);
     }
+
+    /// <summary>
+    /// Names mechs (empty clears the name). Each mech's planned copy (its mech bay plan) takes the same name,
+    /// as the game keeps the two alike.
+    /// </summary>
+    public void RenameMechs(IEnumerable<ClansMech> mechs, string name)
+    {
+        foreach (var mech in mechs.ToList())
+        {
+            mech.CustomName = name;
+            if (mech.InventoryId is { } id && _plans.RecordOf(id) is { } plan && PlannedCopy(plan) is { } planned)
+            {
+                new ClansMech(planned).CustomName = name;
+            }
+        }
+    }
+
+    /// <summary>The planned-copy actor a plan record points at; null when the inventory has none.</summary>
+    private InventoryActor? PlannedCopy(PropertyList plan) =>
+        MechPlans.PlannedId(plan) is { } plannedId
+            ? _actors.FirstOrDefault(a => a.Kind == ActorKind.Mech && a.InventoryTag == MechPlans.PlannedTag && a.InventoryId == plannedId)
+            : null;
 
     /// <summary>
     /// A variant's full internal structure, taken from an undamaged entry of it in this save (the shop's, planned or

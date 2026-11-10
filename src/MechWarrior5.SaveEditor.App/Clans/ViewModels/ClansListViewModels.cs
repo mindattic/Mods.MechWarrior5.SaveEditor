@@ -104,9 +104,10 @@ public sealed partial class MechsViewModel : ObservableObject
     [RelayCommand]
     private void SelectDamaged()
     {
+        // Only rows the filter shows: a hidden row stays unticked, so Repair/Remove act on what's on screen.
         foreach (var row in Rows)
         {
-            row.IsChecked = row.IsDamaged;
+            row.IsChecked = row.IsDamaged && Matches(row);
         }
     }
 
@@ -114,7 +115,12 @@ public sealed partial class MechsViewModel : ObservableObject
     private void Repair() => Run(Loc.Text("clans_repaired", "Repaired"), picks => _doc.Inventory.RepairMechs(picks));
 
     [RelayCommand]
-    private void Duplicate() => Run(Loc.Text("clans_duplicated", "Duplicated x{0}", Copies), picks => _doc.Inventory.DuplicateMechs(picks, Math.Clamp(Copies, 1, 20)));
+    private void Duplicate()
+    {
+        var copies = Math.Clamp(Copies, 1, 20);
+        Copies = copies;
+        Run(Loc.Text("clans_duplicated", "Duplicated x{0}", copies), picks => _doc.Inventory.DuplicateMechs(picks, copies));
+    }
 
     [RelayCommand]
     private void Remove()
@@ -139,16 +145,14 @@ public sealed partial class MechsViewModel : ObservableObject
             return;
         }
 
-        foreach (var mech in picks)
-        {
-            mech.CustomName = NewName;
-        }
+        var name = NewName.Trim();
+        _doc.Inventory.RenameMechs(picks, name);
 
         _main.MarkDirty();
         Rebuild();
-        _main.ShowToast(string.IsNullOrWhiteSpace(NewName)
+        _main.ShowToast(name.Length == 0
             ? Loc.Text("clans_name_cleared", "Cleared the name of {0} mech(s).", picks.Count)
-            : Loc.Text("clans_named", "Named {0} mech(s) \"{1}\".", picks.Count, NewName.Trim()));
+            : Loc.Text("clans_named", "Named {0} mech(s) \"{1}\".", picks.Count, name));
     }
 
     private void Run(string title, Func<IReadOnlyList<ClansMech>, BatchResult> action)
@@ -371,6 +375,8 @@ public sealed partial class InventoryViewModel : ObservableObject
 
     private void Rebuild()
     {
+        // Keep the ticks across a rebuild (e.g. after Add), like the Mechs page.
+        var keep = Rows.Where(r => r.IsChecked).Select(r => r.Asset).ToHashSet(StringComparer.Ordinal);
         Rows.Clear();
         foreach (var asset in _doc.Inventory.Stacks
             .Where(s => s.Category == StackCategory.Equipment)
@@ -378,7 +384,7 @@ public sealed partial class InventoryViewModel : ObservableObject
             .Distinct()
             .OrderBy(s => ClansCatalog.ItemLabel(s.AssetName), StringComparer.CurrentCulture))
         {
-            Rows.Add(new StackRow(_doc, _main, asset.AssetType, asset.AssetName));
+            Rows.Add(new StackRow(_doc, _main, asset.AssetType, asset.AssetName) { IsChecked = keep.Contains(asset.AssetName) });
         }
     }
 }

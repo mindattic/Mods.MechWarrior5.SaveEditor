@@ -18,7 +18,7 @@ public partial class MechsView : UserControl
         if (ItemsControl.ContainerFromElement((ItemsControl)sender, (DependencyObject)e.OriginalSource) is ListBoxItem { DataContext: HangarMechViewModel row }
             && DataContext is MechsViewModel vm)
         {
-            row.IsChecked = !row.IsChecked;
+            // No tick change here: CheckList already toggled the row on each of the two clicks, which cancel out.
             vm.EditLoadout(row);
             e.Handled = true;
         }

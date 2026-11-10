@@ -84,12 +84,13 @@ public static class CampaignLibrary
                             save.TryGetProperty("DLCTags", out var tags) && tags.ValueKind == JsonValueKind.Array
                                 ? tags.GetArrayLength()
                                 : 0,
-                            Saves.EditorStamp.FileHasStamp(path)));
+                            Stamped(path)));
                     }
                 }
             }
-            catch (JsonException)
+            catch (Exception e) when (e is JsonException or IOException or UnauthorizedAccessException)
             {
+                // A Campaign.json the game is writing right now: list the rest by file name.
             }
         }
 
@@ -97,8 +98,21 @@ public static class CampaignLibrary
         saves.AddRange(files.Values
             .Where(IsCampaignSaveFile)
             .Select(p => new SaveInfo(p, System.IO.Path.GetFileNameWithoutExtension(p), null, null, null, File.GetLastWriteTime(p), false, 0,
-                Saves.EditorStamp.FileHasStamp(p))));
+                Stamped(p))));
         return new CampaignInfo(folder, name, gameDate, saves.OrderByDescending(s => s.LastWrite).ToList());
+    }
+
+    /// <summary>Whether this editor wrote the save; a file the game has locked counts as unstamped instead of failing the scan.</summary>
+    private static bool Stamped(string path)
+    {
+        try
+        {
+            return Saves.EditorStamp.FileHasStamp(path);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            return false;
+        }
     }
 
     private static bool IsCampaignSaveFile(string path)

@@ -75,6 +75,13 @@ public sealed class RosterEditor
 
         element.GetStruct("PersonaData").Set(Ue.ItemId("PersonaId", Guid.NewGuid()));
         element.Remove("LockedPlayerSlot");
+        // An injury's recovery is a timeline event in the source campaign, which doesn't come along:
+        // an imported pilot arrives healthy, as a hired one does, instead of injured with nothing to heal them.
+        if (element.Find<EnumProperty>("HealthState") is not null)
+        {
+            element.Set(Ue.Enum("HealthState", "EPilotHealthState", "Healthy"));
+        }
+
         _roster.Elements.Add(element);
         Reload();
         _changed();

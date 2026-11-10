@@ -31,7 +31,7 @@ public static class SaveIndex
         {
             return Ue5SaveFile.Load(file).Properties.Find<IntProperty>("SaveCounter")?.Value ?? 0;
         }
-        catch (Exception e) when (e is SaveFormatException or IOException)
+        catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
         {
             return -1;
         }
@@ -49,8 +49,9 @@ public static class SaveIndex
                     return header.Find<TextProperty>("Name")?.DisplayString;
                 }
             }
-            catch (SaveFormatException)
+            catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
             {
+                // Unreadable or locked (the game is writing it): look in the next index, else no name.
             }
         }
 
@@ -73,8 +74,9 @@ public static class SaveIndex
             {
                 indexes.Add((file, Ue5SaveFile.Load(file)));
             }
-            catch (SaveFormatException)
+            catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
             {
+                // Skip an unreadable or locked index; the others still list the save.
             }
         }
 
@@ -138,7 +140,23 @@ public static class SaveIndex
 
             File.Copy(file, bak, overwrite: true);
             File.SetAttributes(bak, FileAttributes.Normal);
-            File.WriteAllBytes(file, bytes);
+            // Temp file then move, so a crash or full disk never leaves the game's load menu index half-written.
+            var temp = file + ".tmp";
+            try
+            {
+                File.WriteAllBytes(temp, bytes);
+                File.Move(temp, file, overwrite: true);
+            }
+            catch (Exception e) when (registered && e is IOException or UnauthorizedAccessException)
+            {
+                // An earlier index already lists the save: report it listed rather than failing the whole save.
+                continue;
+            }
+            finally
+            {
+                File.Delete(temp);
+            }
+
             registered = true;
         }
 

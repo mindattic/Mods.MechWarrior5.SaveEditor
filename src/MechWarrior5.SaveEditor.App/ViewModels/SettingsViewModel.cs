@@ -28,6 +28,14 @@ public sealed partial class SettingsViewModel : ObservableObject
         _settings = settings;
         _imageCache = imageCache;
         _gameFolder = settings.Current.GameFolder ?? string.Empty;
+        // The startup scan can finish (or the language change) while this page is on screen.
+        main.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(MainViewModel.GameDataSummary))
+            {
+                OnPropertyChanged(nameof(MainViewSummary));
+            }
+        };
     }
 
     public IReadOnlyList<LanguageOption> Languages { get; } = Loc.Languages;
@@ -83,7 +91,6 @@ public sealed partial class SettingsViewModel : ObservableObject
         _settings.Current.GameFolder = string.IsNullOrWhiteSpace(GameFolder) ? null : GameFolder.Trim();
         _settings.Save();
         await _main.ReloadGameDataAsync();
-        OnPropertyChanged(nameof(MainViewSummary));
     }
 
     [RelayCommand]
@@ -99,8 +106,9 @@ public sealed partial class SettingsViewModel : ObservableObject
                     File.Delete(file);
                     removed++;
                 }
-                catch (IOException)
+                catch (Exception e) when (e is IOException or UnauthorizedAccessException)
                 {
+                    // In use or read-only: leave it and clear the rest.
                 }
             }
         }

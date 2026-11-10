@@ -65,6 +65,7 @@ public sealed class Mw5Document
     {
         Hangar.Commit();
         var source = System.IO.Path.GetFileNameWithoutExtension(FilePath);
+        var sourceFolder = System.IO.Path.GetDirectoryName(FilePath) ?? ".";
         var createNew = path is null && IsOriginalGameSave;
         var target = path
             ?? (createNew
@@ -81,7 +82,7 @@ public sealed class Mw5Document
         try
         {
             registered = isNewFile
-                ? CampaignIndex.RegisterCopy(folder, source, file, displayName, Company.CampaignDate)
+                ? CampaignIndex.RegisterCopy(folder, source, file, displayName, Company.CampaignDate, sourceFolder)
                 : CampaignIndex.Update(folder, file, displayName, Company.CampaignDate);
         }
         catch (Exception e) when (e is IOException or UnauthorizedAccessException)

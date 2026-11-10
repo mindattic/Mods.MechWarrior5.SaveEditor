@@ -277,6 +277,14 @@ public sealed partial class InventoryViewModel : ObservableObject
         {
             var row = new InventoryRowViewModel(item);
             row.CheckedChanged += (_, _) => OnPropertyChanged(nameof(SelectedCount));
+            // An inline count edit changes the "N units" header too.
+            row.PropertyChanged += (_, e) =>
+            {
+                if (e.PropertyName == nameof(InventoryRowViewModel.Count))
+                {
+                    OnPropertyChanged(nameof(TotalCount));
+                }
+            };
             Items.Add(row);
         }
 

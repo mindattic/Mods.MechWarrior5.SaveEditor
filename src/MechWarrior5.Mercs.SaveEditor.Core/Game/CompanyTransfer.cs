@@ -84,7 +84,16 @@ public static class CompanyTransfer
             foreach (var mech in package.Mechs)
             {
                 var label = catalog.FindByAsset(mech.Asset)?.DisplayName ?? mech.Asset;
-                if (doc.Hangar.AddLoadoutToColdStorage(mech.Asset, mech.Skin, mech.Loadout) is { } reason)
+                // The package carries the mech's damaged structure but full armor and healthy gear: it arrives
+                // fully repaired (as the stock does) rather than half-repaired, when the full structure is known.
+                var loadout = catalog.FindStock(mech.Asset) is { Structure.Count: > 0 } stock
+                    ? mech.Loadout with
+                    {
+                        Structure = stock.Structure.Keys.Union(mech.Loadout.Structure.Keys)
+                            .ToDictionary(p => p, p => Math.Max(stock.Structure.GetValueOrDefault(p), mech.Loadout.Structure.GetValueOrDefault(p))),
+                    }
+                    : mech.Loadout;
+                if (doc.Hangar.AddLoadoutToColdStorage(mech.Asset, mech.Skin, loadout) is { } reason)
                 {
                     report.Mechs.Skip(label, reason);
                 }
