@@ -32,8 +32,9 @@ Clans (mod 70). Every release goes to both.
    `obj/package/MW5SaveEditor/` and zips it to `dist/MW5SaveEditor-<version>.zip`. That staged folder is
    the payload to hash.
 2. **Hash:** the payload has no per-publish files, so pass no `-ExcludeNames`.
-3. **Version:** the canonical version is `<Version>` in `Directory.Build.props`. 1.0.0 is the first file,
-   uploaded by hand; bump the leading integer from there.
+3. **Version:** the canonical version is `<Version>` in `Directory.Build.props`. **Hold it at 1.0.0:** the
+   owner said on 2026-11-09 to keep it at v1 until they say otherwise. `/publish` must not bump it; a
+   republish of changed code goes out as 1.0.0 again until the owner lifts the hold.
 4. **Changelog:** keep a `## Changelog` section in `README.md`, newest first.
 5. **Release:** cut a GitHub release with the zip attached. `.github/workflows/publish.yml` uploads it to
    every target, using `NEXUSMODS_API_KEY`.
