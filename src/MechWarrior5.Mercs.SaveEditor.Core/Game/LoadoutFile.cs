@@ -23,11 +23,21 @@ public sealed record LoadoutFile(string Format, int Version, string Variant, Sto
     public static LoadoutFile Load(string path)
     {
         var file = JsonSerializer.Deserialize<LoadoutFile>(File.ReadAllText(path), Json);
-        if (file is null || file.Format != FormatId || file.Loadout is null)
+        if (file is null || file.Format != FormatId || Checked(file.Loadout) is not { } loadout)
         {
             throw new InvalidDataException("This is not an MW5 Save Editor loadout file.");
         }
 
-        return file;
+        return file with { Loadout = loadout };
     }
+
+    /// <summary>
+    /// The loadout with every list present, or null for a damaged or hand-made file missing one (it would fail
+    /// partway through applying). Armor maxima may be absent: they're optional and default to none.
+    /// </summary>
+    internal static StockLoadout? Checked(StockLoadout? loadout) =>
+        loadout is { Armor: not null, RearArmor: not null, Structure: not null, Weapons: not null, Groups: not null, Equipment: not null }
+        && loadout.Weapons.All(w => w is not null) && loadout.Groups.All(g => g?.G is not null) && loadout.Equipment.All(p => p?.Items is not null)
+            ? loadout with { MaxArmor = loadout.MaxArmor ?? [] }
+            : null;
 }

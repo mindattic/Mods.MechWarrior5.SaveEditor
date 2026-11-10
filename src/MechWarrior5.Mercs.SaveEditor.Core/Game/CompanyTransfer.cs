@@ -35,12 +35,13 @@ public sealed record CompanyPackage(
     public static CompanyPackage Load(string path)
     {
         var package = JsonSerializer.Deserialize<CompanyPackage>(File.ReadAllText(path), Json);
-        if (package is null || package.Format != FormatId)
+        if (package is null || package.Format != FormatId || package.Mechs is null || package.Pilots is null || package.Inventory is null
+            || package.Mechs.Any(m => m is null || LoadoutFile.Checked(m.Loadout) is null) || package.Pilots.Any(p => p is null) || package.Inventory.Any(i => i is null))
         {
             throw new InvalidDataException("This is not an MW5 Save Editor company file.");
         }
 
-        return package;
+        return package with { Mechs = [.. package.Mechs.Select(m => m with { Loadout = LoadoutFile.Checked(m.Loadout)! })] };
     }
 }
 
