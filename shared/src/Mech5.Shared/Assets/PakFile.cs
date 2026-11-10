@@ -187,7 +187,7 @@ public sealed class PakFile : IDisposable
 
     private byte[] ReadAt(long offset, int count)
     {
-        var buffer = new byte[Math.Min(count, Math.Max(0, (int)(_stream.Length - offset)))];
+        var buffer = new byte[(int)Math.Min(count, Math.Max(0L, _stream.Length - offset))];
         _stream.Seek(offset, SeekOrigin.Begin);
         _stream.ReadExactly(buffer);
         return buffer;
