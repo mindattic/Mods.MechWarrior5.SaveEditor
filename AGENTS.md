@@ -42,5 +42,7 @@ Clans (mod 70). Every release goes to both.
    every target, using `NEXUSMODS_API_KEY`.
 
 While any target's `fileId` is `0`, stop and say which page still needs its first file uploaded by
-hand. Then put its file's global `uid` (not the per-page `file_id`; the upload API wants the uid) in `fileId`:
-run the read-only `nexus-files` workflow (`gh workflow run nexus-files.yml`), which lists every file with both.
+hand. Then put that file's upload-API **File ID** in `fileId`: on the page, Manage files, the file's menu,
+**Advanced**, then the **File ID** under **API** (e.g. Mercenaries 8353341, Clans 8353350). It is neither the per-page
+`file_id` nor the `uid` that the v1 files.json lists (the read-only `nexus-files` workflow shows those); both are
+rejected by the upload API.
