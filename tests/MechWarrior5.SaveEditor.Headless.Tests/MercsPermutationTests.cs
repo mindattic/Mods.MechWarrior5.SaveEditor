@@ -38,10 +38,19 @@ public class MercsPermutationTests
     private string _save = null!;
     private string _originalHash = null!;
 
+    /// <summary>
+    /// Every save kind gets the combined check (<c>Everything</c>: all operations in one save, each verified after
+    /// reopening) and <c>SaveInPlace</c> (the kind-specific write-back); each single operation also runs once on
+    /// its own on the manual save, so a failure names the feature. (The full kind x operation product was judged
+    /// excessive: M5SE-T53.)
+    /// </summary>
     public static IEnumerable<TestCaseData> Matrix() =>
-        from kind in SaveKinds
-        from op in Operations
-        select new TestCaseData(kind, op).SetName($"Mercs [{kind}] {op}");
+        (from kind in SaveKinds
+         from op in new[] { "Everything", "SaveInPlace" }
+         select new TestCaseData(kind, op).SetName($"Mercs [{kind}] {op}"))
+        .Concat(
+            from op in Operations.Except(["Everything", "SaveInPlace"])
+            select new TestCaseData("Manual", op).SetName($"Mercs [Manual] {op}"));
 
     [TearDown]
     public void TearDown() => SaveFixtures.CleanUp();
