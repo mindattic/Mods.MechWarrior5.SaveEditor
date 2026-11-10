@@ -1,6 +1,7 @@
 using Mech5.Mercs.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
+using Mech5.Mercs.SaveEditor.App.Localization;
 
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
@@ -20,7 +21,9 @@ public sealed partial class CatalogMechViewModel : SelectableItem
 
     public string Title => Variant.HeroName ?? Variant.ChassisName;
 
-    public string Subtitle => Variant.HeroName is null ? $"{Variant.WeightClass} {Variant.Tons}T" : $"Hero {Variant.ChassisName} - {Variant.Tons}T";
+    public string Subtitle => Variant.HeroName is null
+        ? $"{Names.WeightClass(Variant.WeightClass)} {Variant.Tons}T"
+        : $"{Loc.Text("hero", "Hero")} {Variant.ChassisName} - {Variant.Tons}T";
 
     public string Initials => Variant.ChassisName.Length >= 2 ? Variant.ChassisName[..2].ToUpperInvariant() : Variant.ChassisName;
 
@@ -29,6 +32,8 @@ public sealed partial class CatalogMechViewModel : SelectableItem
     public string? DlcName => Variant.ModName is { } mod ? $"Mod: {mod}" : Variant.Dlc?.Name;
 
     public bool IsMod => Variant.ModName is not null;
+
+    public string ClassLabel => Names.WeightClass(Variant.WeightClass);
 
     public bool IsHero => Variant.HeroName is not null;
 
@@ -65,16 +70,16 @@ public sealed partial class HangarMechViewModel : SelectableItem
         ? custom
         : Record.Variant?.HeroName ?? Record.Variant?.ChassisName ?? Record.Asset;
 
-    public string Subtitle => Record.Variant is { } v ? $"{v.WeightClass} {v.Tons}T" : "Unknown variant";
+    public string Subtitle => Record.Variant is { } v ? $"{Names.WeightClass(v.WeightClass)} {v.Tons}T" : Loc.Text("unknown_variant", "Unknown variant");
 
     public string Initials => Title.Length >= 2 ? Title[..2].ToUpperInvariant() : Title;
 
     public string LocationLabel => Record.Location switch
     {
-        MechLocation.MechBay => "MECHBAY",
-        MechLocation.ColdStorage => "COLD STORAGE",
-        MechLocation.Unassigned => "UNASSIGNED",
-        _ => "MARKET",
+        MechLocation.MechBay => Loc.Instance["mechbay"],
+        MechLocation.ColdStorage => Loc.Instance["cold_storage"],
+        MechLocation.Unassigned => Loc.Text("unassigned", "UNASSIGNED"),
+        _ => Loc.Text("market", "MARKET"),
     };
 
     public bool IsColdStorage => Record.Location == MechLocation.ColdStorage;

@@ -1,4 +1,7 @@
+using System.Globalization;
 using System.Text.RegularExpressions;
+using Mech5.Mercs.SaveEditor.App.Localization;
+using Mech5.Mercs.SaveEditor.Core.Catalog;
 
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
@@ -14,6 +17,10 @@ public static partial class Names
         name = WordBreak().Replace(name, " ");
         return MultiSpace().Replace(name, " ").Trim();
     }
+
+    /// <summary>Localized weight class in title case, e.g. "Leicht".</summary>
+    public static string WeightClass(WeightClass weight) =>
+        CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Loc.Instance[weight.ToString().ToLowerInvariant()].ToLower(CultureInfo.CurrentCulture));
 
     public static string? Tier(string asset)
     {

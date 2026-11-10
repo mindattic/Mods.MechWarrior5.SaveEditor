@@ -5,6 +5,7 @@ using Mech5.Mercs.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 using Mech5.Mercs.SaveEditor.Core.Saves;
+using Mech5.Mercs.SaveEditor.App.Localization;
 using Mech5.Shared.Wpf.Theme;
 using Mech5.Shared.Unreal;
 
@@ -18,6 +19,7 @@ public enum Page
     Inventory,
     Pilots,
     Factions,
+    Settings,
 }
 
 public sealed partial class MainViewModel : ObservableObject
@@ -56,10 +58,11 @@ public sealed partial class MainViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(SaveLabel))]
     private bool _isOriginal;
 
-    public string SaveLabel => IsOriginal ? "SAVE AS NEW" : "SAVE";
+    public string SaveLabel => IsOriginal ? Loc.Text("save_as_new", "SAVE AS NEW") : Loc.Text("save", "SAVE");
 
-    public MainViewModel(MechCatalog mechs, ItemCatalog items, PilotCatalog pilots, IDialogService dialogs, SettingsService settings, IEditorWindows windows)
+    public MainViewModel(MechCatalog mechs, ItemCatalog items, PilotCatalog pilots, IDialogService dialogs, SettingsService settings, IEditorWindows windows, string imageCache)
     {
+        SettingsPage = new SettingsViewModel(this, settings, imageCache);
         _pilots = pilots;
         _windows = windows;
         _mechs = mechs;
@@ -68,7 +71,12 @@ public sealed partial class MainViewModel : ObservableObject
         _settings = settings;
         Start = new StartViewModel(this);
         CurrentView = Start;
-        _ = LoadGameDataAsync();
+        _ = ReloadGameDataAsync();
+        Loc.Instance.PropertyChanged += (_, _) =>
+        {
+            RebuildPages();
+            OnPropertyChanged(nameof(SaveLabel));
+        };
     }
 
     /// <summary>Summary of what the game scan found, for the status bar.</summary>
@@ -79,13 +87,14 @@ public sealed partial class MainViewModel : ObservableObject
     /// Reads the installed game's and enabled mods' 'Mech data in the background, then folds it into the
     /// catalog (new and modded variants, DLC membership, stock loadouts) and refreshes the open pages.
     /// </summary>
-    private async Task LoadGameDataAsync()
+    public async Task ReloadGameDataAsync()
     {
+        GameDataSummary = Loc.Text("game_data_reading", "Reading game data...");
         var preferred = _settings.Current.GameFolder;
         var data = await Task.Run(() => GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null);
         if (data is null)
         {
-            GameDataSummary = "Game not found: using built-in data";
+            GameDataSummary = Loc.Text("game_data_missing", "Game not found: using built-in data");
             return;
         }
 
@@ -97,12 +106,14 @@ public sealed partial class MainViewModel : ObservableObject
 
         var mods = data.Mechs.Count(m => m.Variant.ModName is not null);
         GameDataSummary = mods > 0
-            ? $"Game data: {data.Mechs.Count} mechs ({mods} from mods)"
-            : $"Game data: {data.Mechs.Count} mechs";
+            ? Loc.Text("game_data_mods", "Game data: {0} mechs ({1} from mods)", data.Mechs.Count, mods)
+            : Loc.Text("game_data", "Game data: {0} mechs", data.Mechs.Count);
         RebuildPages();
     }
 
     public StartViewModel Start { get; }
+
+    public SettingsViewModel SettingsPage { get; }
 
     public CompanyViewModel? Company { get; private set; }
 
@@ -255,7 +266,7 @@ public sealed partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void Navigate(Page page)
     {
-        if (page != Page.Start && Document is null)
+        if (page is not (Page.Start or Page.Settings) && Document is null)
         {
             return;
         }
@@ -268,6 +279,7 @@ public sealed partial class MainViewModel : ObservableObject
             Page.Inventory => Inventory,
             Page.Pilots => Pilots,
             Page.Factions => Factions,
+            Page.Settings => SettingsPage,
             _ => Start,
         };
     }
@@ -365,6 +377,12 @@ public sealed partial class MainViewModel : ObservableObject
         OnPropertyChanged(nameof(Mechs));
         OnPropertyChanged(nameof(Inventory));
         OnPropertyChanged(nameof(Pilots));
+
+        // The page on screen still shows the old view model; point it at the rebuilt one.
+        if (Page is Page.Mechs or Page.Inventory or Page.Pilots)
+        {
+            Navigate(Page);
+        }
     }
 
     private void OnDirtyChanged(object? sender, EventArgs e)

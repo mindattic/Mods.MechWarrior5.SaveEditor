@@ -7,6 +7,9 @@ public sealed class AppSettings
 {
     public string? LastSavePath { get; set; }
 
+    /// <summary>UI language code (en, de, es, fr, ja, ru); empty means the Windows language.</summary>
+    public string? Language { get; set; }
+
     /// <summary>"Mercs" or "Clans".</summary>
     public string Theme { get; set; } = "Mercs";
 

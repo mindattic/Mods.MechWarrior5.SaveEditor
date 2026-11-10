@@ -1,6 +1,7 @@
 <UserControl x:Class="Mech5.Mercs.SaveEditor.App.Views.StartView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:Mech5.Mercs.SaveEditor.App.Localization"
              xmlns:c="clr-namespace:Mech5.Shared.Wpf.Controls;assembly=Mech5.Shared.Wpf">
     <Grid Margin="36,30,36,30">
         <Grid.RowDefinitions>
@@ -10,18 +11,18 @@
 
         <DockPanel>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
-                <Button Content="RESCAN" Command="{Binding RescanCommand}" Margin="0,0,10,0" />
+                <Button Content="{l:T rescan}" Command="{Binding RescanCommand}" Margin="0,0,10,0" />
                 <Button Command="{Binding DataContext.BrowseCommand, RelativeSource={RelativeSource AncestorType=Window}}" Style="{StaticResource Button.Command}">
                     <StackPanel Orientation="Horizontal">
                         <Path Data="{StaticResource Glyph.Open}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
-                        <TextBlock Text="BROWSE FOR SAVE" Foreground="{DynamicResource Brush.Void}" FontWeight="Bold" />
+                        <TextBlock Text="{l:T browse_for_save}" Foreground="{DynamicResource Brush.Void}" FontWeight="Bold" />
                     </StackPanel>
                 </Button>
             </StackPanel>
             <StackPanel>
-                <TextBlock Text="SELECT CAMPAIGN" Style="{StaticResource Text.Title}" />
+                <TextBlock Text="{l:T select_campaign}" Style="{StaticResource Text.Title}" />
                 <TextBlock Style="{StaticResource Text.Muted}" Margin="0,2,0,0">
-                    <Run Text="Campaigns found in" /> <Run Text="{Binding SaveRoot, Mode=OneWay}" Foreground="{DynamicResource Brush.TextFaint}" />
+                    <Run Text="{l:T campaigns_found_in}" /> <Run Text="{Binding SaveRoot, Mode=OneWay}" Foreground="{DynamicResource Brush.TextFaint}" />
                 </TextBlock>
             </StackPanel>
         </DockPanel>
@@ -35,7 +36,7 @@
 
             <c:ChamferBorder Style="{StaticResource Panel}" Padding="0,10">
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" Text="CAMPAIGNS" Style="{StaticResource Text.Section}" Margin="18,4,18,10" />
+                    <TextBlock DockPanel.Dock="Top" Text="{l:T campaigns}" Style="{StaticResource Text.Section}" Margin="18,4,18,10" />
                     <ListBox ItemsSource="{Binding Campaigns}" SelectedItem="{Binding SelectedCampaign}" Style="{StaticResource List.Rows}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -67,7 +68,7 @@
                                 <StackPanel>
                                     <TextBlock Text="{Binding Name}" FontSize="19" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
                                     <TextBlock Style="{StaticResource Text.Muted}" FontSize="14">
-                                        <Run Text="{Binding Saves.Count, Mode=OneWay}" /> <Run Text="saves" />
+                                        <Run Text="{Binding Saves.Count, Mode=OneWay}" /> <Run Text="{l:T saves}" />
                                         <Run Text="{Binding CompanyGameDate, Mode=OneWay, StringFormat='  /  {0}'}" />
                                     </TextBlock>
                                 </StackPanel>
@@ -80,7 +81,7 @@
             <c:ChamferBorder Grid.Column="2" Style="{StaticResource Panel}" Padding="0,10">
                 <DockPanel>
                     <DockPanel DockPanel.Dock="Top" Margin="18,4,18,10">
-                        <TextBlock Text="DOUBLE-CLICK A SAVE TO OPEN IT" DockPanel.Dock="Right" Style="{StaticResource Text.Label}" />
+                        <TextBlock Text="{l:T double_click_a_save_to_open_it}" DockPanel.Dock="Right" Style="{StaticResource Text.Label}" />
                         <TextBlock Text="{Binding SelectedCampaign.Name, StringFormat='SAVES  //  {0}'}" Style="{StaticResource Text.Section}" />
                     </DockPanel>
                     <ListBox x:Name="Saves" ItemsSource="{Binding SelectedCampaign.Saves}" Style="{StaticResource List.Rows}"
@@ -121,25 +122,25 @@
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Bold" />
                                             <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Visibility="{Binding IsAutosave, Converter={StaticResource BoolToVisibility}}">
-                                                <TextBlock Text="AUTO" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
+                                                <TextBlock Text="{l:T auto}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
                                             </Border>
                                             <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Background="{DynamicResource Brush.AccentWash}" BorderBrush="{DynamicResource Brush.Accent}"
-                                                    Visibility="{Binding IsEditorSave, Converter={StaticResource BoolToVisibility}}" ToolTip="Written by this editor">
-                                                <TextBlock Text="EDITED" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
+                                                    Visibility="{Binding IsEditorSave, Converter={StaticResource BoolToVisibility}}" ToolTip="{l:T written_by_this_editor}">
+                                                <TextBlock Text="{l:T edited}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                             </Border>
                                         </StackPanel>
                                         <TextBlock Text="{Binding StarSystem}" Style="{StaticResource Text.Muted}" FontSize="14" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="GAME DATE" Style="{StaticResource Text.Label}" FontSize="11" />
+                                        <TextBlock Text="{l:T game_date}" Style="{StaticResource Text.Label}" FontSize="11" />
                                         <TextBlock Text="{Binding GameDate}" FontSize="15" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                        <TextBlock Text="REPUTATION" Style="{StaticResource Text.Label}" FontSize="11" />
+                                        <TextBlock Text="{l:T reputation}" Style="{StaticResource Text.Label}" FontSize="11" />
                                         <TextBlock Text="{Binding Reputation}" FontSize="15" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="3" VerticalAlignment="Center">
-                                        <TextBlock Text="SAVED" Style="{StaticResource Text.Label}" FontSize="11" />
+                                        <TextBlock Text="{l:T saved}" Style="{StaticResource Text.Label}" FontSize="11" />
                                         <TextBlock Text="{Binding LastWrite, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" FontSize="15" />
                                     </StackPanel>
                                 </Grid>
@@ -153,9 +154,9 @@
         <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Margin="0,22,0,0" VerticalAlignment="Top" Padding="28,24"
                          Visibility="{Binding HasCampaigns, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}">
             <StackPanel>
-                <TextBlock Text="NO CAMPAIGNS FOUND" Style="{StaticResource Text.Section}" FontSize="20" />
+                <TextBlock Text="{l:T no_campaigns_found}" Style="{StaticResource Text.Section}" FontSize="20" />
                 <TextBlock TextWrapping="Wrap" Margin="0,8,0,0" Style="{StaticResource Text.Muted}"
-                           Text="MW5 Mercenaries keeps campaign saves under %LOCALAPPDATA%\MW5Mercs\Saved\SaveGames. Use Browse to open a .sav from anywhere else (Xbox / Game Pass saves live in a different folder)." />
+                           Text="{l:T mw5_mercenaries_keeps_campaign_saves_under_local}" />
             </StackPanel>
         </c:ChamferBorder>
     </Grid>

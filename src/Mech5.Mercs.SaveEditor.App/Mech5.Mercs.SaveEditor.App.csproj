@@ -11,13 +11,18 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
-<ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Mech5.Mercs.SaveEditor.Core\Mech5.Mercs.SaveEditor.Core.csproj" />
     <ProjectReference Include="..\..\shared\src\Mech5.Shared.Wpf\Mech5.Shared.Wpf.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\app.ico" />
+    <EmbeddedResource Include="Localization\*.json" LogicalName="Mech5.Mercs.SaveEditor.App.Localization.%(Filename)%(Extension)" />
   </ItemGroup>
 
   <ItemGroup>

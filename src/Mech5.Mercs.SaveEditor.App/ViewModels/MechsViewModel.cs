@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
+using Mech5.Mercs.SaveEditor.App.Localization;
 
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
@@ -52,9 +53,9 @@ public sealed partial class MechsViewModel : ObservableObject
 
         Sources =
         [
-            new SourceFilter("All sources", null),
-            new SourceFilter("Base game", null, BaseGameOnly: true),
-            new SourceFilter("Mods", null, ModsOnly: true),
+            new SourceFilter(Loc.Text("all_sources", "All sources"), null),
+            new SourceFilter(Loc.Text("base_game", "Base game"), null, BaseGameOnly: true),
+            new SourceFilter(Loc.Text("mods", "Mods"), null, ModsOnly: true),
             .. catalog.DlcPacks.Select(p => new SourceFilter($"{p.ShortName} - {p.Name}", p.Tag)),
         ];
         _source = Sources[0];

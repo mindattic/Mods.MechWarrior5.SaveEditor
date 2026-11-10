@@ -16,6 +16,7 @@
             <DataTemplate DataType="{x:Type vm:InventoryViewModel}"><v:InventoryView /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:PilotsViewModel}"><v:PilotsView /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:FactionsViewModel}"><v:FactionsView /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}"><v:SettingsView /></DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
