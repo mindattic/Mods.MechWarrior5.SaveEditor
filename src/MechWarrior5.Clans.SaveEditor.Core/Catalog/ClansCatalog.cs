@@ -10,6 +10,8 @@ public sealed record Chassis(string Code, string Name, string SarnaTitle, int To
 /// </summary>
 public static partial class ClansCatalog
 {
+    // Every Clan chassis the game sells (30; tools/clans/classify_mia.py). Tonnage and weight class are checked
+    // against the game's own data by tools/clans/read_tonnage.py (30/30 match, 2026-11-10).
     private static readonly Chassis[] KnownChassis =
     [
         new("ACH", "Arctic Cheetah", "Arctic Cheetah (Hankyu)", 30, "Light"),
