@@ -40,7 +40,7 @@ Clans (mod 70). Every release goes to both.
 4. **Changelog:** keep a `## Changelog` section in `README.md`, newest first.
 5. **Release:** cut a GitHub release with the zip attached; the **exe zip is downloaded from GitHub only**. NexusMods
    quarantines executables, so `.github/workflows/publish.yml` uploads a pointer instead to every target, using
-   `NEXUSMODS_API_KEY`: `MechWarrior5.SaveEditor-<version>-download-from-github.zip`, holding one self-contained page
+   `NEXUSMODS_API_KEY`: `MechWarrior5.SaveEditor-<version>-GitHub.zip`, holding one self-contained page
    built from `tools/nexus-pointer.html` with a link to `releases/latest`. On each page the "Mod manager download"
    button is removed and a GitHub mirror points at `releases/latest` (both set by hand).
 

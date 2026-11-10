@@ -44,7 +44,7 @@ jobs:
           mkdir pointer
           sed -e "s|{{VERSION}}|${version}|g" -e "s|{{TAG}}|${tag}|g" -e "s|{{REPO}}|${{ github.repository }}|g" \
             tools/nexus-pointer.html > "pointer/Download MW5 Save Editor.html"
-          name="MechWarrior5.SaveEditor-${version}-download-from-github.zip"
+          name="MechWarrior5.SaveEditor-${version}-GitHub.zip"
           (cd pointer && zip -q "../${name}" "Download MW5 Save Editor.html")
           echo "path=${name}" >> "$GITHUB_OUTPUT"
           echo "version=${version}" >> "$GITHUB_OUTPUT"
