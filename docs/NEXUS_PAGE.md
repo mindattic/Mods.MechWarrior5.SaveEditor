@@ -1,6 +1,10 @@
 # NexusMods page: MW5 Save Editor
 
-Everything needed to create the NexusMods listing and keep it updated through `/publish`.
+Everything needed to create the NexusMods listings and keep them updated through `/publish`.
+
+**Pages (one mod, uploaded for each game):**
+- MechWarrior 5: Mercenaries: https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666
+- MechWarrior 5: Clans: https://www.nexusmods.com/mechwarrior5clans/mods/70
 
 ## One-time setup: create the page (manual; NexusMods has no API for this)
 

@@ -24,17 +24,20 @@ context only:
 
 ## Publishing (`/publish`)
 
-`nexus.json` is a third kind of publish config, beside the RogueTrader and GTFO ones:
+`nexus.json` is a third kind of publish config, beside the RogueTrader and GTFO ones. It has **one
+package and two NexusMods pages** (`targets`): MechWarrior 5: Mercenaries (mod 1666) and MechWarrior 5:
+Clans (mod 70). Every release goes to both.
 
 1. **Build:** `pwsh tools/package.ps1` writes a self-contained single-file `MW5SaveEditor.exe` to
    `obj/package/MW5SaveEditor/` and zips it to `dist/MW5SaveEditor-<version>.zip`. That staged folder is
    the payload to hash.
 2. **Hash:** the payload has no per-publish files, so pass no `-ExcludeNames`.
-3. **Version:** the canonical version is `<Version>` in `Directory.Build.props`. It starts at 0.0.0, so the
-   first publish makes it 1.0.0, then 2.0.0 and so on.
+3. **Version:** the canonical version is `<Version>` in `Directory.Build.props`. 1.0.0 is the first file,
+   uploaded by hand; bump the leading integer from there.
 4. **Changelog:** keep a `## Changelog` section in `README.md`, newest first.
-5. **Release:** cut a GitHub release with the zip attached. `.github/workflows/publish.yml` then uploads
-   it to NexusMods with `NEXUSMODS_API_KEY`.
+5. **Release:** cut a GitHub release with the zip attached. `.github/workflows/publish.yml` uploads it to
+   every target, using `NEXUSMODS_API_KEY`.
 
-While `modId` or `fileId` in `nexus.json` is `0`, stop and say so: the page is created by hand first
-(see `docs/NEXUS_PAGE.md`, "One-time setup").
+While any target's `fileId` is `0`, stop and say which page still needs its first file uploaded by
+hand. Then read its file ID from `https://api.nexusmods.com/v1/games/<gameDomain>/mods/<modId>/files.json`,
+or from the page's Manage files, then the file's edit menu, then API info.

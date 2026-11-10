@@ -1,43 +1,58 @@
 name: Publish to NexusMods
 
+# One mod, two pages: the same release zip goes to every target in nexus.json
+# (MechWarrior 5: Mercenaries and MechWarrior 5: Clans).
+
 on:
   release:
     types: [published]
 
 jobs:
-  publish:
+  targets:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.read.outputs.matrix }}
     steps:
-      - name: Check out repo (for nexus.json)
-        uses: actions/checkout@v4
-
-      - name: Read nexus.json
-        id: cfg
+      - uses: actions/checkout@v4
+      - name: Read nexus.json targets
+        id: read
         run: |
-          echo "mod_id=$(jq -r .modId nexus.json)" >> "$GITHUB_OUTPUT"
-          echo "file_id=$(jq -r .fileId nexus.json)" >> "$GITHUB_OUTPUT"
-          echo "category=$(jq -r '.category // "main"' nexus.json)" >> "$GITHUB_OUTPUT"
+          missing=$(jq -r '[.targets[] | select((.fileId // 0) == 0) | .game] | join(", ")' nexus.json)
+          if [ -n "$missing" ]; then
+            echo "::error::nexus.json has no fileId for: $missing (upload the first file by hand, then fill it in)"
+            exit 1
+          fi
+          echo "matrix=$(jq -c '{include: .targets}' nexus.json)" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: targets
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.targets.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Download release asset
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh release download "${{ github.event.release.tag_name }}" --repo "${{ github.repository }}" --pattern '*.zip' --dir .
 
-      - name: Resolve downloaded zip and version
+      - name: Resolve zip, version and category
         id: zip
         run: |
-          zip_path=$(ls *.zip | head -n1)
-          echo "path=$zip_path" >> "$GITHUB_OUTPUT"
+          echo "path=$(ls *.zip | head -n1)" >> "$GITHUB_OUTPUT"
           version="${{ github.event.release.tag_name }}"
           echo "version=${version#v}" >> "$GITHUB_OUTPUT"
+          echo "category=$(jq -r '.category // "main"' nexus.json)" >> "$GITHUB_OUTPUT"
 
-      - name: Upload to NexusMods
+      - name: Upload to ${{ matrix.game }}
         uses: Nexus-Mods/upload-action@v1.0.0-beta.11
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY }}
-          mod_id: ${{ steps.cfg.outputs.mod_id }}
-          file_id: ${{ steps.cfg.outputs.file_id }}
+          mod_id: ${{ matrix.modId }}
+          file_id: ${{ matrix.fileId }}
           filename: ${{ steps.zip.outputs.path }}
           version: ${{ steps.zip.outputs.version }}
-          category: ${{ steps.cfg.outputs.category }}
+          category: ${{ steps.zip.outputs.category }}
           changelog: ${{ github.event.release.body }}

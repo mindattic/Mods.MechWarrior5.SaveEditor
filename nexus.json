@@ -1,10 +1,11 @@
 {
-  "modId": 0,
-  "fileId": 0,
-  "gameDomain": "mechwarrior5mercenaries",
   "modFolderName": "MW5SaveEditor",
   "project": "src/MechWarrior5.SaveEditor.App",
   "packageScript": "tools/package.ps1",
   "payload": "obj/package/MW5SaveEditor",
-  "category": "main"
+  "category": "main",
+  "targets": [
+    { "game": "MechWarrior 5: Mercenaries", "gameDomain": "mechwarrior5mercenaries", "modId": 1666, "fileId": 0, "url": "https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666" },
+    { "game": "MechWarrior 5: Clans", "gameDomain": "mechwarrior5clans", "modId": 70, "fileId": 0, "url": "https://www.nexusmods.com/mechwarrior5clans/mods/70" }
+  ]
 }

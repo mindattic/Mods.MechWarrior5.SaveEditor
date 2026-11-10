@@ -8,8 +8,8 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <Deterministic>true</Deterministic>
-    <!-- Bumped by /publish (leading integer); the first publish makes it 1.0.0. -->
-    <Version>0.0.0</Version>
+    <!-- 1.0.0 is the first file, uploaded by hand to both NexusMods pages; /publish bumps the leading integer. -->
+    <Version>1.0.0</Version>
     <Company>MindAttic</Company>
     <Product>MW5 Save Editor</Product>
   </PropertyGroup>
