@@ -66,18 +66,26 @@ public static class SaveIndex
     {
         ArgumentNullException.ThrowIfNull(summary);
         var registered = false;
-        foreach (var file in Files(folder).ToList())
+        var indexes = new List<(string File, Ue5SaveFile Index)>();
+        foreach (var file in Files(folder))
         {
-            Ue5SaveFile index;
             try
             {
-                index = Ue5SaveFile.Load(file);
+                indexes.Add((file, Ue5SaveFile.Load(file)));
             }
             catch (SaveFormatException)
             {
-                continue;
             }
+        }
 
+        // The rotating index files hold different subsets of saves: take the source save's header from
+        // the most authoritative file that has it, so every index for the profile lists the new save.
+        var template = indexes
+            .Select(i => Headers(i.Index, profileKey)?.PropertyElements.FirstOrDefault(h => SaveFileName(h) == sourceId))
+            .FirstOrDefault(h => h is not null);
+
+        foreach (var (file, index) in indexes)
+        {
             if (Headers(index, profileKey) is not { } headers)
             {
                 continue;
@@ -86,12 +94,12 @@ public static class SaveIndex
             var header = headers.PropertyElements.FirstOrDefault(h => SaveFileName(h) == newId);
             if (header is null)
             {
-                if (headers.PropertyElements.FirstOrDefault(h => SaveFileName(h) == sourceId) is not { } source)
+                if (template is null)
                 {
                     continue;
                 }
 
-                header = source.DeepClone();
+                header = template.DeepClone();
                 header.Get<StrProperty>("SaveFileName").Value = newId;
                 if (header.Find<EnumProperty>("SaveType") is { } type)
                 {
