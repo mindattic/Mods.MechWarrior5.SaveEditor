@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
     Builds the release package: a self-contained, single-file win-x64 MW5SaveEditor.exe plus its
-    notices, staged in obj\package\MW5SaveEditor\ and zipped to dist\MW5SaveEditor-<version>.zip.
+    notices, staged in obj\package\MW5SaveEditor\ and zipped to dist\MechWarrior5.SaveEditor-<version>.zip.
 
 .DESCRIPTION
     The staged folder is the payload /publish hashes for its no-op guard (it holds no file whose
@@ -38,7 +38,7 @@ Get-ChildItem $stage -File | Where-Object { $_.Name -notin @('MW5SaveEditor.exe'
 Copy-Item (Join-Path $root 'THIRD-PARTY-NOTICES.md') $stage
 Copy-Item (Join-Path $root 'docs\USER_GUIDE.md') (Join-Path $stage 'README.md')
 
-$zip = Join-Path $dist "MW5SaveEditor-$version.zip"
+$zip = Join-Path $dist "MechWarrior5.SaveEditor-$version.zip"
 if (Test-Path $zip) { Remove-Item $zip -Force }
 Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip
 $zip

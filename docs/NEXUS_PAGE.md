@@ -24,7 +24,7 @@ this step is manual. The single-description version further down is kept for ref
 2. **Images:** the square icon (512×512) is the primary image, and the header (1920×1080) goes in the
    page's media settings. Add the screenshots listed in [SCREENSHOTS.md](SCREENSHOTS.md), then paste each
    screenshot's image address over `IMAGE_1_URL` to `IMAGE_6_URL` in the description.
-3. **First file:** upload `dist/MW5SaveEditor-<version>.zip` (from `tools/package.ps1`) as a *Main file*.
+3. **First file:** upload `dist/MechWarrior5.SaveEditor-<version>.zip` (from `tools/package.ps1`) as a *Main file*.
 4. **Wire up `/publish`:** put the page's mod ID (from its URL, `.../mods/<modId>`) and the file's ID
    (Manage files, then the file's edit menu, then API info) into `nexus.json` as `modId` and `fileId`. From then on,
    `/publish` uploads every new version to that file slot.

@@ -29,7 +29,7 @@ package and two NexusMods pages** (`targets`): MechWarrior 5: Mercenaries (mod 1
 Clans (mod 70). Every release goes to both.
 
 1. **Build:** `pwsh tools/package.ps1` writes a self-contained single-file `MW5SaveEditor.exe` to
-   `obj/package/MW5SaveEditor/` and zips it to `dist/MW5SaveEditor-<version>.zip`. That staged folder is
+   `obj/package/MW5SaveEditor/` and zips it to `dist/MechWarrior5.SaveEditor-<version>.zip`. That staged folder is
    the payload to hash.
 2. **Hash:** the payload has no per-publish files, so pass no `-ExcludeNames`.
 3. **Version:** the canonical version is `<Version>` in `Directory.Build.props`. **Hold it at 1.0.0:** the
