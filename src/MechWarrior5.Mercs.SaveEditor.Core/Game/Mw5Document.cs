@@ -76,11 +76,20 @@ public sealed class Mw5Document
 
         var folder = System.IO.Path.GetDirectoryName(target) ?? ".";
         var file = System.IO.Path.GetFileNameWithoutExtension(target);
-        var registered = isNewFile
-            ? CampaignIndex.RegisterCopy(folder, source, file, displayName, Company.CampaignDate)
-            : CampaignIndex.Update(folder, file, displayName, Company.CampaignDate);
-
         FilePath = target;
+        bool registered;
+        try
+        {
+            registered = isNewFile
+                ? CampaignIndex.RegisterCopy(folder, source, file, displayName, Company.CampaignDate)
+                : CampaignIndex.Update(folder, file, displayName, Company.CampaignDate);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            // The save itself is already on disk; a locked or read-only index must not report it as unwritten.
+            registered = false;
+        }
+
         SetDirty(false);
         return new SaveOutcome(target, isNewFile, registered);
     }

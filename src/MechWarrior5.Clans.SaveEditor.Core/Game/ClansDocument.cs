@@ -85,10 +85,19 @@ public sealed class ClansDocument
 
         var summary = new SaveSummary(Currency("Kerenskies_CurrencyItem"), Currency("Merits_CurrencyItem"), Currency("Honor_CurrencyItem"));
         var newId = System.IO.Path.GetFileNameWithoutExtension(target).Split('_')[1];
-        var registered = SaveIndex.Register(folder, ProfileKey, createNew ? sourceId : newId, newId, displayName, summary);
-
         Path = target;
         IsOriginalGameSave = false;
+        bool registered;
+        try
+        {
+            registered = SaveIndex.Register(folder, ProfileKey, createNew ? sourceId : newId, newId, displayName, summary);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            // The save itself is already on disk; a locked or read-only index must not report it as unwritten.
+            registered = false;
+        }
+
         return new SaveOutcome(target, createNew, registered);
     }
 
