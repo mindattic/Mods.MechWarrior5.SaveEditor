@@ -129,7 +129,15 @@ public static class SaveIndex
 
             var bytes = index.ToFileBytes();
             Ue5SaveFile.Parse(bytes);
-            File.Copy(file, file + ".bak", overwrite: true);
+            // The backup never keeps a read-only flag, or one read-only index would block every later backup.
+            var bak = file + ".bak";
+            if (File.Exists(bak))
+            {
+                File.SetAttributes(bak, FileAttributes.Normal);
+            }
+
+            File.Copy(file, bak, overwrite: true);
+            File.SetAttributes(bak, FileAttributes.Normal);
             File.WriteAllBytes(file, bytes);
             registered = true;
         }

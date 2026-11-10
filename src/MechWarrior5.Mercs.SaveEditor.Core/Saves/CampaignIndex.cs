@@ -127,11 +127,34 @@ public static class CampaignIndex
     private static void Write(string folder, JsonObject root, bool hasBom)
     {
         var path = Path.Combine(folder, "Campaign.json");
-        File.Copy(path, path + ".bak", overwrite: true);
+        Backup(path);
         var text = Encoding.UTF8.GetBytes(root.ToJsonString(Json));
         var temp = path + ".tmp";
-        File.WriteAllBytes(temp, hasBom ? [.. Encoding.UTF8.Preamble, .. text] : text);
-        File.Move(temp, path, overwrite: true);
+        try
+        {
+            File.WriteAllBytes(temp, hasBom ? [.. Encoding.UTF8.Preamble, .. text] : text);
+            File.Move(temp, path, overwrite: true);
+        }
+        finally
+        {
+            File.Delete(temp);
+        }
+    }
+
+    /// <summary>
+    /// Keeps the previous version as <c>.bak</c>. The copy never keeps a read-only flag, or one read-only index
+    /// would block every later backup (and so every later registration) after the index is writable again.
+    /// </summary>
+    internal static void Backup(string path)
+    {
+        var bak = path + ".bak";
+        if (File.Exists(bak))
+        {
+            File.SetAttributes(bak, FileAttributes.Normal);
+        }
+
+        File.Copy(path, bak, overwrite: true);
+        File.SetAttributes(bak, FileAttributes.Normal);
     }
 
     private static bool Matches(JsonObject save, string? fileName) =>
