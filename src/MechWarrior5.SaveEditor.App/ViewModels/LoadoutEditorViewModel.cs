@@ -229,9 +229,18 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     private void Export()
     {
         var name = $"{Mech.Code}{LoadoutFile.Extension}";
-        if (_dialogs.PickFileToSave("Export loadout", name, $"MW5 loadout (*{LoadoutFile.Extension})|*{LoadoutFile.Extension}") is { } path)
+        if (_dialogs.PickFileToSave("Export loadout", name, $"MW5 loadout (*{LoadoutFile.Extension})|*{LoadoutFile.Extension}") is not { } path)
+        {
+            return;
+        }
+
+        try
         {
             LoadoutFile.Create(Mech.Asset, Build()).Save(path);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            _dialogs.Show(Loc.Text("cant_export", "Can't export"), e.Message, DialogTone.Error);
         }
     }
 
@@ -248,7 +257,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
         {
             file = LoadoutFile.Load(path);
         }
-        catch (Exception e) when (e is IOException or InvalidDataException or System.Text.Json.JsonException)
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or InvalidDataException or System.Text.Json.JsonException)
         {
             _dialogs.Show(Loc.Text("cant_import_loadout", "Can't import loadout"), e.Message, DialogTone.Error);
             return;

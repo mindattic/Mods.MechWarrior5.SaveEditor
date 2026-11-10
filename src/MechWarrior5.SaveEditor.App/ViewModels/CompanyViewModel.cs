@@ -172,7 +172,16 @@ public sealed partial class CompanyViewModel : ObservableObject
         }
 
         var package = CompanyTransfer.Export(_doc);
-        package.Save(path);
+        try
+        {
+            package.Save(path);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            _dialogs.Show(Loc.Text("cant_export", "Can't export"), e.Message, DialogTone.Error);
+            return;
+        }
+
         _dialogs.Show(Loc.Text("company_exported", "Company exported"),
             Loc.Text("company_exported_text", "{0} mechs, {1} pilots and {2} inventory stacks written to {3}.", package.Mechs.Count, package.Pilots.Count, package.Inventory.Count, Path.GetFileName(path)),
             DialogTone.Success);
@@ -191,7 +200,7 @@ public sealed partial class CompanyViewModel : ObservableObject
         {
             package = CompanyPackage.Load(path);
         }
-        catch (Exception e) when (e is IOException or InvalidDataException or System.Text.Json.JsonException)
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or InvalidDataException or System.Text.Json.JsonException)
         {
             _dialogs.Show(Loc.Text("cant_import", "Can't import"), e.Message, DialogTone.Error);
             return;
