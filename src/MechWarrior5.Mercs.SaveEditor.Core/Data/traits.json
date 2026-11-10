@@ -426,7 +426,8 @@
   },
   {
    "asset": "BadPatient_PilotTrait",
-   "label": "Bad Patient"
+   "label": "Bad Patient",
+   "description": "This pilot recovers from injury {InjuryRecoveryAdjPct}% slower."
   },
   {
    "asset": "BitterEnd_PilotTrait",
@@ -438,11 +439,13 @@
   },
   {
    "asset": "Bulwark_PilotTrait",
-   "label": "Bulwark"
+   "label": "Bulwark",
+   "description": "Getting the most out of their armor by careful angling and torso twisting, this pilot's 'Mech effectively has {Abs0}% additional armor."
   },
   {
    "asset": "ClusterHitter_PilotTrait",
-   "label": "Cluster Hitter"
+   "label": "Cluster Hitter",
+   "description": "Reduces spread radius by {Abs0}% for all varieties of LBX, SRM, LRM, and PPC-X."
   },
   {
    "asset": "Criminal_Davion_PilotTrait",
@@ -546,11 +549,13 @@
   },
   {
    "asset": "Firebug_PilotTrait",
-   "label": "Firebug"
+   "label": "Firebug",
+   "description": "Some people just want to watch the world burn. This pilot applies {Abs0}% additional heat damage to targets with Flamers and Inferno SRMs."
   },
   {
    "asset": "Frail_PilotTrait",
-   "label": "Frail"
+   "label": "Frail",
+   "description": "Increases chance of death by {DeathPct}%"
   },
   {
    "asset": "Frugal_PilotTrait",
@@ -606,15 +611,18 @@
   },
   {
    "asset": "Hearty_PilotTrait",
-   "label": "Hearty"
+   "label": "Hearty",
+   "description": "Reduces chance of injury by {InjuryChancePct}%."
   },
   {
    "asset": "HotDog_PilotTrait",
-   "label": "Hot Dog"
+   "label": "Hot Dog",
+   "description": "A hotseat is no problem for this pilot, counting heat generated as {Abs0}% less."
   },
   {
    "asset": "Hypochondriac_PilotTrait",
-   "label": "Hypochondriac"
+   "label": "Hypochondriac",
+   "description": "Increases chance of injury by {InjuryChancePct}%."
   },
   {
    "asset": "Master_Autocannon10_PilotTrait",
@@ -686,11 +694,13 @@
   },
   {
    "asset": "Precise_PilotTrait",
-   "label": "Precise"
+   "label": "Precise",
+   "description": "This pilot prefers putting focused damage on a single location. Increases range and velocity for standard autocannons, solid slug LBX autocannons, gauss rifles, rifles, and single projectile PPCs by {ProjectileQuirk}%. Also reduces laser duration by {LaserQuirk}%."
   },
   {
    "asset": "QuickHealer_PilotTrait",
-   "label": "Quick Healer"
+   "label": "Quick Healer",
+   "description": "This pilot recovers from injury {InjuryRecoveryAdjPct}% faster."
   },
   {
    "asset": "Sharpshooter_PilotTrait",
@@ -714,7 +724,8 @@
   },
   {
    "asset": "Specialist_PointBlank_PilotTrait",
-   "label": "Point Blank Specialist"
+   "label": "Point Blank Specialist",
+   "description": "This pilot excels at fighting up close, gaining {Abs0}% damage with Flamers, Machine Guns, and Melee."
   },
   {
    "asset": "Specialist_SRM_PilotTrait",
@@ -726,7 +737,8 @@
   },
   {
    "asset": "Survivor_PilotTrait",
-   "label": "Survivor"
+   "label": "Survivor",
+   "description": "Reduces chance of pilot death by {DeathPct}%."
   },
   {
    "asset": "TriggerDiscipline_PilotTrait",
@@ -740,203 +752,253 @@
  "mech": [
   {
    "asset": "IncreasedAccelerationDeceleration_Trait1",
-   "label": "Responsive Movement I"
+   "label": "Responsive Movement I",
+   "description": "Additional electrical connections to myomer bundles decrease signal reaction time across the bundle, increasing both acceleration and deceleration performance."
   },
   {
    "asset": "IncreasedAccelerationDeceleration_Trait2",
-   "label": "Responsive Movement II"
+   "label": "Responsive Movement II",
+   "description": "Additional electrical connections to myomer bundles decrease signal reaction time across the bundle, increasing both acceleration and deceleration performance."
   },
   {
    "asset": "IncreasedArmor_Trait1",
-   "label": "Refined Armor I"
+   "label": "Refined Armor I",
+   "description": "Improvements in lamination techniques, and a more efficient arrangement of ceramic components, have created a refined version of the standard armor plating that reduces penetration without using any new materials or increased mass."
   },
   {
    "asset": "IncreasedArmor_Trait2",
-   "label": "Refined Armor II"
+   "label": "Refined Armor II",
+   "description": "Improvements in lamination techniques, and a more efficient arrangement of ceramic components, have created a refined version of the standard armor plating that reduces penetration without using any new materials or increased mass."
   },
   {
    "asset": "IncreasedBallisticDamage_Trait1",
-   "label": "Superior Detonation I"
+   "label": "Superior Detonation I",
+   "description": "A newly designed fuse and detonator combination fitted to existing explosive shells increase the damage output of ballistic weaponry."
   },
   {
    "asset": "IncreasedBallisticDamage_Trait2",
-   "label": "Superior Detonation II"
+   "label": "Superior Detonation II",
+   "description": "A newly designed fuse and detonator combination fitted to existing explosive shells increase the damage output of ballistic weaponry."
   },
   {
    "asset": "IncreasedBallisticRangeAndSpeed_Trait1",
-   "label": "Faster Projectiles I"
+   "label": "Faster Projectiles I",
+   "description": "More powerful propellant charges give greater range and velocity to ballistic projectiles."
   },
   {
    "asset": "IncreasedBallisticRangeAndSpeed_Trait2",
-   "label": "Faster Projectiles II"
+   "label": "Faster Projectiles II",
+   "description": "More powerful propellant charges give greater range and velocity to ballistic projectiles."
   },
   {
    "asset": "IncreasedEnergyDamage_Trait1",
-   "label": "Enhanced Energy Output I"
+   "label": "Enhanced Energy Output I",
+   "description": "Adjusting the fusion reactor to allow for higher electrical output, and swapping some minor components to use the extra load, increases the damage potential of energy weapon systems."
   },
   {
    "asset": "IncreasedEnergyDamage_Trait2",
-   "label": "Enhanced Energy Output II"
+   "label": "Enhanced Energy Output II",
+   "description": "Adjusting the fusion reactor to allow for higher electrical output, and swapping some minor components to use the extra load, increases the damage potential of energy weapon systems."
   },
   {
    "asset": "IncreasedEnergyRangeAndSpeed_Trait1",
-   "label": "Accurate Focusing Arrays I"
+   "label": "Accurate Focusing Arrays I",
+   "description": "Improvements to focusing arrays for both optical and electromagnetic systems increase range and velocity of energy based weapon systems."
   },
   {
    "asset": "IncreasedEnergyRangeAndSpeed_Trait2",
-   "label": "Accurate Focusing Arrays II"
+   "label": "Accurate Focusing Arrays II",
+   "description": "Improvements to focusing arrays for both optical and electromagnetic systems increase range and velocity of energy based weapon systems."
   },
   {
    "asset": "IncreasedHeatCapacity_Trait1",
-   "label": "Heat Containment I"
+   "label": "Heat Containment I",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   },
   {
    "asset": "IncreasedHeatCapacity_Trait2",
-   "label": "Heat Containment II"
+   "label": "Heat Containment II",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   },
   {
    "asset": "IncreasedHeatCooling_Trait1",
-   "label": "Faster Cooling"
+   "label": "Faster Cooling",
+   "description": "A new design for the cooling enclosure around the fusion reactor reduces the engine's load on heat sinks, allowing them to cool the 'Mech faster."
   },
   {
    "asset": "IncreasedJJAccelXYZ_Trait1",
-   "label": "Jump Jet Thrust"
+   "label": "Jump Jet Thrust",
+   "description": "Larger turbo-compressors feed more reaction mass into the jet, which increases compression efficiency and acceleration."
   },
   {
    "asset": "IncreasedJJFuelBurnTime_Trait1",
-   "label": "Longer Burn Time"
+   "label": "Longer Burn Time",
+   "description": "A compact magnetic shielding system allows more space to be used for insulation, allowing the Jump Jet to operate longer before overheating prevents operation."
   },
   {
    "asset": "IncreasedJJFuelRegenTime_Trait1",
-   "label": "Rapid Jump Jet Recharge"
+   "label": "Rapid Jump Jet Recharge",
+   "description": "Additional heat conducting materials are installed around Jump Jets, cooling the jet between uses faster and allowing for repeated use over shorter periods."
   },
   {
    "asset": "IncreasedLockRetentionAndLoseLockTime_Trait1",
-   "label": "Target Lock Retention"
+   "label": "Target Lock Retention",
+   "description": "New software for predicting enemy movement and additional magnetic anomaly sensors installed in the 'Mech increase precision for targeting systems, retaining target lock longer, and through brief interruptions of line of sight."
   },
   {
    "asset": "IncreasedMissileDamage_Trait1",
-   "label": "Potent Warheads I"
+   "label": "Potent Warheads I",
+   "description": "A new warhead design directs the same explosive charge more efficiently towards the target."
   },
   {
    "asset": "IncreasedMissileDamage_Trait2",
-   "label": "Potent Warheads II"
+   "label": "Potent Warheads II",
+   "description": "A new warhead design directs the same explosive charge more efficiently towards the target."
   },
   {
    "asset": "IncreasedMissileRangeAndSpeed_Trait1",
-   "label": "Aerodynamic Hull I"
+   "label": "Aerodynamic Hull I",
+   "description": "A new aerodynamic hull with less drag allows missiles to travel faster and farther."
   },
   {
    "asset": "IncreasedMissileRangeAndSpeed_Trait2",
-   "label": "Aerodynamic Hull II"
+   "label": "Aerodynamic Hull II",
+   "description": "A new aerodynamic hull with less drag allows missiles to travel faster and farther."
   },
   {
    "asset": "IncreasedSensorRange_Trait1",
-   "label": "Expanded Sensor Range I"
+   "label": "Expanded Sensor Range I",
+   "description": "Larger and more precise optics, broader electromagnetic spectrum perception, and updated unit recognition software extend target detection range."
   },
   {
    "asset": "IncreasedSensorRange_Trait2",
-   "label": "Expanded Sensor Range II"
+   "label": "Expanded Sensor Range II",
+   "description": "Larger and more precise optics, broader electromagnetic spectrum perception, and updated unit recognition software extend target detection range."
   },
   {
    "asset": "IncreasedStructure_Trait1",
-   "label": "Fortified Internal Structure I"
+   "label": "Fortified Internal Structure I",
+   "description": "New, more shock-resistant fasteners are installed throughout the internal structure to allow for higher stress before failure."
   },
   {
    "asset": "IncreasedStructure_Trait2",
-   "label": "Fortified Internal Structure II"
+   "label": "Fortified Internal Structure II",
+   "description": "New, more shock-resistant fasteners are installed throughout the internal structure to allow for higher stress before failure."
   },
   {
    "asset": "IncreasedTopSpeed_Trait1",
-   "label": "Boosted Top Speed"
+   "label": "Boosted Top Speed",
+   "description": "Adding redundant electrical subsystems, and replacing key stress components with tougher materials, allows technicians to tune the 'Mech for increased top speed with a negligible increase in risk of failure."
   },
   {
    "asset": "IncreasedTorsoTwistRate_Trait1",
-   "label": "Torso Twist Speed"
+   "label": "Torso Twist Speed",
+   "description": "Replacing the entire core section's myomer bundles with an unusual arrangement of longer strands increases twist speed."
   },
   {
    "asset": "IncreasedTurnSpeed_Trait1",
-   "label": "Anchor Turn I"
+   "label": "Anchor Turn I",
+   "description": "Refitting the 'Mech's gyro to support slightly larger rotors increases both control and turn assistance."
   },
   {
    "asset": "IncreasedTurnSpeed_Trait2",
-   "label": "Anchor Turn II"
+   "label": "Anchor Turn II",
+   "description": "Refitting the 'Mech's gyro to support slightly larger rotors increases both control and turn assistance."
   },
   {
    "asset": "IncreasedWeaponDamage_Trait1",
-   "label": "Damage Tuning"
+   "label": "Damage Tuning",
+   "description": "A series of leaked documents from several weapons manufacturers allow your technicians to tune a 'Mech's weapon systems slightly beyond spec, for increased damage."
   },
   {
    "asset": "IncreasedWeaponRangeAndSpeed_Trait1",
-   "label": "Improved Range"
+   "label": "Improved Range",
+   "description": "Classified documentation regarding several weapon targeting systems gives your technicians the ability to tune yours to much higher tolerances, maintaining accurate delivery at increased range."
   },
   {
    "asset": "ReducedBallisticCooldown_Trait1",
-   "label": "Quick Ammo Feed I"
+   "label": "Quick Ammo Feed I",
+   "description": "Faster ammunition feed motors improve reload times for ballistic weapons."
   },
   {
    "asset": "ReducedBallisticCooldown_Trait2",
-   "label": "Quick Ammo Feed II"
+   "label": "Quick Ammo Feed II",
+   "description": "Faster ammunition feed motors improve reload times for ballistic weapons."
   },
   {
    "asset": "ReducedBallisticHeat_Trait1",
-   "label": "Ballistic Heat Transfer I"
+   "label": "Ballistic Heat Transfer I",
+   "description": "Additional heat conducting materials are integrated into and around weapon barrels, transferring a small amount of excess heat into spent casings just before they are ejected."
   },
   {
    "asset": "ReducedBallisticHeat_Trait2",
-   "label": "Ballistic Heat Transfer II"
+   "label": "Ballistic Heat Transfer II",
+   "description": "Additional heat conducting materials are integrated into and around weapon barrels, transferring a small amount of excess heat into spent casings just before they are ejected."
   },
   {
    "asset": "ReducedEnergyCooldown_Trait1",
-   "label": "Condensed Cycle Time I"
+   "label": "Condensed Cycle Time I",
+   "description": "Rapid charging capacitors reduce cycle time for energy weapons."
   },
   {
    "asset": "ReducedEnergyCooldown_Trait2",
-   "label": "Condensed Cycle Time II"
+   "label": "Condensed Cycle Time II",
+   "description": "Rapid charging capacitors reduce cycle time for energy weapons."
   },
   {
    "asset": "ReducedEnergyHeat_Trait1",
-   "label": "Reduced Power Consumption I"
+   "label": "Reduced Power Consumption I",
+   "description": "More efficient electronic components consume less power, reducing the amount of waste heat generated while operating."
   },
   {
    "asset": "ReducedEnergyHeat_Trait2",
-   "label": "Reduced Power Consumption II"
+   "label": "Reduced Power Consumption II",
+   "description": "More efficient electronic components consume less power, reducing the amount of waste heat generated while operating."
   },
   {
    "asset": "ReducedHeatGeneration_Trait1",
-   "label": "Reduced Heat Spikes"
+   "label": "Reduced Heat Spikes",
+   "description": "A new coolant pump within the 'Mech moves extra coolant through systems as they are used, reducing heat spikes."
   },
   {
    "asset": "ReducedLaserDuration_Trait1",
-   "label": "Shorter Burn Time"
+   "label": "Shorter Burn Time",
+   "description": "Overriding safety mechanisms and replacing key components with higher heat tolerance variants allow the same energy output over a shorter duration, concentrating firepower."
   },
   {
    "asset": "ReducedMissileCooldown_Trait1",
-   "label": "Faster Missile Reload I"
+   "label": "Faster Missile Reload I",
+   "description": "Faster missile tube feed mechanisms deliver missiles to racks in record time."
   },
   {
    "asset": "ReducedMissileCooldown_Trait2",
-   "label": "Faster Missile Reload II"
+   "label": "Faster Missile Reload II",
+   "description": "Faster missile tube feed mechanisms deliver missiles to racks in record time."
   },
   {
    "asset": "ReducedMissileHeat_Trait1",
-   "label": "Missile Exhaust Venting I"
+   "label": "Missile Exhaust Venting I",
+   "description": "Faster missile exhaust venting reduces heat buildup within the 'Mech when firing missiles."
   },
   {
    "asset": "ReducedMissileHeat_Trait2",
-   "label": "Missile Exhaust Venting II"
+   "label": "Missile Exhaust Venting II",
+   "description": "Faster missile exhaust venting reduces heat buildup within the 'Mech when firing missiles."
   },
   {
    "asset": "ReducedMissileSpread_Trait1",
-   "label": "Tighter Missile Clusters"
+   "label": "Tighter Missile Clusters",
+   "description": "Stronger inter-missile signaling receivers allow missiles to fly in closer proximity to each other without risk of collisions."
   },
   {
    "asset": "ReducedWeaponCooldown_Trait1",
-   "label": "Faster Weapon Cycling"
+   "label": "Faster Weapon Cycling",
+   "description": "Fine-tuning the power flow system increases electrical output to both capacitors and ammunition feed motors, reducing the interval between firing for all systems."
   },
   {
    "asset": "ReducedWeaponHeat_Trait1",
-   "label": "Weapon Heat Transfer"
+   "label": "Weapon Heat Transfer",
+   "description": "Improved cooling jackets move heat from weapons to heat sinks more efficiently, reducing overall weapon heat."
   },
   {
    "asset": "TargetingComputerMk1_Trait",
@@ -944,27 +1006,33 @@
   },
   {
    "asset": "TargetingComputerMk2_Trait",
-   "label": "Targeting Computer Mk2"
+   "label": "Targeting Computer Mk2",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   },
   {
    "asset": "TargetingComputerMk3_Trait",
-   "label": "Targeting Computer Mk3"
+   "label": "Targeting Computer Mk3",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   },
   {
    "asset": "TargetingComputerMk4_Trait",
-   "label": "Targeting Computer Mk4"
+   "label": "Targeting Computer Mk4",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   },
   {
    "asset": "TargetingComputerMk5_Trait",
-   "label": "Targeting Computer Mk5"
+   "label": "Targeting Computer Mk5",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   },
   {
    "asset": "TargetingComputerMk6_Trait",
-   "label": "Targeting Computer Mk6"
+   "label": "Targeting Computer Mk6",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   },
   {
    "asset": "TargetingComputerMk7_Trait",
-   "label": "Targeting Computer Mk7"
+   "label": "Targeting Computer Mk7",
+   "description": "Additional insulation around critical engine systems allows for greater heat buildup before the shutdown safety system becomes necessary."
   }
  ]
 }

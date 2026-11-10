@@ -42,7 +42,18 @@ public sealed partial class SkillViewModel(PilotSkill skill) : ObservableObject
     public void Refresh() => OnPropertyChanged(string.Empty);
 }
 
-public sealed record TraitRow(string Asset, string Label);
+/// <summary>A trait a pilot, 'Mech or company has: its label, and its description and mod when known.</summary>
+public sealed record TraitRow(string Asset, string Label, string? Description = null, string? ModName = null)
+{
+    public static TraitRow Of(string asset, PilotCatalog catalog) =>
+        catalog.FindTrait(asset) is { } trait
+            ? new TraitRow(asset, trait.Label, trait.Description, trait.ModName)
+            : new TraitRow(asset, asset);
+
+    public bool HasDescription => Description is not null;
+
+    public string? ModTooltip => ModName is null ? null : Loc.Text("mod_named", "Mod: {0}", ModName);
+}
 
 public sealed partial class PilotViewModel : ObservableObject
 {
@@ -67,6 +78,9 @@ public sealed partial class PilotViewModel : ObservableObject
     public IReadOnlyList<SkillViewModel> Skills { get; }
 
     public ObservableCollection<TraitRow> Traits { get; } = [];
+
+    /// <summary>False shows the trait box's empty-state line.</summary>
+    public bool HasTraits => Traits.Count > 0;
 
     public IReadOnlyList<string> Portraits => _catalog.Portraits;
 
@@ -219,8 +233,10 @@ public sealed partial class PilotViewModel : ObservableObject
         Traits.Clear();
         foreach (var asset in Pilot.Traits)
         {
-            Traits.Add(new TraitRow(asset, _catalog.TraitLabel(asset)));
+            Traits.Add(TraitRow.Of(asset, _catalog));
         }
+
+        OnPropertyChanged(nameof(HasTraits));
     }
 }
 

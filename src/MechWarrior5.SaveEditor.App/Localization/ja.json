@@ -266,6 +266,7 @@
  "pick_game_folder": "MechWarrior 5 Mercenaries のフォルダーを選択",
  "pick_one": "メックを 1 機選択",
  "pick_one_text": "格納庫のメックを 1 機だけチェック（またはダブルクリック）するとメックラボで開きます。",
+ "pilot_has_no_traits": "このパイロットには特性がありません。下で追加できます。",
  "pilot_traits": "パイロット特性",
  "pilots": "パイロット",
  "portrait": "肖像",

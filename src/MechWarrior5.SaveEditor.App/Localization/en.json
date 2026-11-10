@@ -275,6 +275,7 @@
  "pick_game_folder": "Pick the MechWarrior 5 Mercenaries folder",
  "pick_one": "Pick one mech",
  "pick_one_text": "Tick exactly one hangar mech (or double-click it) to open it in the Mech Lab.",
+ "pilot_has_no_traits": "This pilot has no traits. Add one below.",
  "pilot_traits": "PILOT TRAITS",
  "pilots": "PILOTS",
  "portrait": "PORTRAIT",

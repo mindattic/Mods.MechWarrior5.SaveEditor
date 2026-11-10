@@ -150,25 +150,46 @@
                             </Grid>
 
                             <TextBlock Text="{l:T pilot_traits}" Style="{StaticResource Text.Section}" Margin="0,22,0,6" />
-                            <ItemsControl ItemsSource="{Binding Traits}">
-                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
-                                                <ma:MaButton Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove_trait}" VerticalAlignment="Center"
-                                                        Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                                        CommandParameter="{Binding}">
-                                                    <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
-                                                          StrokeThickness="1.8" Width="9" Height="9" Stretch="Uniform" />
-                                                </ma:MaButton>
-                                            </StackPanel>
-                                        </Border>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                            <Grid Margin="0,4,0,0">
+                            <!-- The pilot's traits in a framed list: one row per trait (name, description, mod), each with its own remove button. -->
+                            <ma:MaShapeBorder Style="{StaticResource Panel}" Padding="0,8" ClipToShape="True">
+                                <Grid>
+                                    <TextBlock Text="{l:T pilot_has_no_traits}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="14,6" TextWrapping="Wrap"
+                                               Visibility="{Binding HasTraits, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                                    <ItemsControl ItemsSource="{Binding Traits}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Background="{DynamicResource Brush.Panel}" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="14,8,8,8">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" SharedSizeGroup="PilotTraitRemove" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel VerticalAlignment="Center">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Label}" FontSize="17" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
+                                                                <Border Style="{StaticResource Chip}" Margin="8,0,0,0" ToolTip="{Binding ModTooltip}"
+                                                                        Visibility="{Binding ModName, Converter={StaticResource HasValueToVisibility}}">
+                                                                    <TextBlock Text="MOD" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.Ok}" />
+                                                                </Border>
+                                                            </StackPanel>
+                                                            <TextBlock Text="{Binding Description}" Style="{StaticResource Text.Muted}" FontSize="15" TextWrapping="Wrap" Margin="0,2,0,0"
+                                                                       Visibility="{Binding HasDescription, Converter={StaticResource BoolToVisibility}}" />
+                                                        </StackPanel>
+                                                        <ma:MaButton Grid.Column="1" Style="{StaticResource Button.Link}" Width="28" Height="28" Margin="8,0,0,0" ToolTip="{l:T remove_trait}"
+                                                                     VerticalAlignment="Center"
+                                                                     Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                     CommandParameter="{Binding}">
+                                                            <Path Data="{StaticResource Glyph.Close}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
+                                                                  StrokeThickness="1.8" Width="11" Height="11" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                        </ma:MaButton>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </ma:MaShapeBorder>
+                            <Grid Margin="0,8,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="PilotAction" />
