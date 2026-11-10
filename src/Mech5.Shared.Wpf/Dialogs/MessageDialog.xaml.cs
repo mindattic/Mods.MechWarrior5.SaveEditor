@@ -25,7 +25,7 @@ public sealed record MessageDialogModel(
     private static Brush BrushFor(DialogTone tone) => (Brush)Application.Current.FindResource(tone switch
     {
         DialogTone.Success => "Brush.Ok",
-        DialogTone.Warning => "Brush.Amber",
+        DialogTone.Warning => "Brush.Accent",
         DialogTone.Error => "Brush.Danger",
         _ => "Brush.Info",
     });

@@ -10,7 +10,7 @@ Each editor includes this repo as a git submodule at `shared/`.
 | Project | What it is |
 | --- | --- |
 | `src/Mech5.Shared` | Lossless Unreal Engine tagged-property engine: `FString`/`FText`, typed property tree, a serializer that round-trips byte-for-byte with raw fallbacks for anything unknown, and `Ue` builders for the struct shapes MW5 writes (`ItemId`, `PrimaryAssetId`, typed asset ids). |
-| `src/Mech5.Shared.Wpf` | MW5 HUD-styled WPF kit: `Theme/Mech5Theme.xaml` (palette, Rajdhani type, buttons, inputs, lists, scrollbars, sliders), `ChamferBorder` panels, the `CheckList` multi-select behavior (row checkboxes, Shift+click ranges, Ctrl+A, Space), Sarna.net 'Mech art (`MechArt` + `MechImageService`), themed dialogs and converters. |
+| `src/Mech5.Shared.Wpf` | MW5 HUD-styled WPF kit: `Theme/Mech5Theme.xaml` with two palettes (Mercs: gunmetal/amber, Clans: steel/ice-cyan) that `ThemeManager.Apply` swaps live, Rajdhani type, buttons, inputs, lists, scrollbars, sliders; `ChamferBorder` panels, the `CheckList` multi-select behavior (row checkboxes, Shift+click ranges, Ctrl+A, Space), Sarna.net 'Mech art (`MechArt` + `MechImageService`), themed dialogs and converters. |
 | `tests/Mech5.Shared.Tests` | NUnit tests for the engine. |
 
 ## Using it in an editor
