@@ -89,7 +89,7 @@ It edits your campaign the way the game itself writes it. Every save is read int
 [*]In MW5, load the save with that name. Your original save is still there, unchanged.
 [/list]
 
-[b]Uninstalling:[/b] delete the folder. Settings and the 'Mech picture cache live in [b]%APPDATA%\MindAttic\MW5SaveEditor[/b] and [b]%LOCALAPPDATA%\MindAttic\MW5SaveEditor[/b]; delete those too for a clean removal.
+[b]Uninstalling:[/b] delete the folder (your settings are the [b]settings.json[/b] inside it). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\Mech5SaveEditor[/b]; delete it too for a clean removal.
 
 [size=5][b]Main features[/b][/size]
 [b]Your saves are safe.[/b]
@@ -129,7 +129,7 @@ It edits your campaign the way the game itself writes it. Every save is read int
 
 [b]Built to feel like MW5[/b]
 [list]
-[*]A dark gunmetal and amber interface modeled on the game's own menus: cut-corner panels, condensed type and a tactical grid.
+[*]A dark gunmetal and amber interface modeled on the game's own menus (cut-corner panels, condensed type, a tactical grid), plus a cold steel and ice-cyan [b]Clans[/b] theme. Switch any time; the choice is remembered.
 [*]Your campaigns and saves listed by their in-game names, dates, systems and reputation instead of GUID file names. Saves the editor made are marked [b]EDITED[/b].
 [/list]
 
