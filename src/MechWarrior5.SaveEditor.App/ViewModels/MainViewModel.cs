@@ -363,26 +363,9 @@ public sealed partial class MainViewModel : ObservableObject
 
         doc.DirtyChanged += OnDirtyChanged;
         Company = new CompanyViewModel(doc, _mechs, _pilots, _dialogs, RebuildPages);
-        var (oldMechs, oldInventory, oldPilots) = (Mechs, Inventory, Pilots);
         Mechs = new MechsViewModel(this, doc, _mechs, _items, _pilots, _dialogs, _windows);
         Inventory = new InventoryViewModel(doc, _items, _dialogs);
         Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
-        if (oldMechs is not null)
-        {
-            Mechs.CarryOver(oldMechs);
-        }
-
-        if (oldInventory is not null)
-        {
-            Inventory.CarryOver(oldInventory);
-        }
-
-        if (oldPilots is not null)
-        {
-            Pilots.CarryOver(oldPilots);
-        }
-
-        Company?.Refresh();
         Factions = new FactionsViewModel(doc);
         Document = doc;
         IsDirty = false;
@@ -404,9 +387,27 @@ public sealed partial class MainViewModel : ObservableObject
             return;
         }
 
+        // Same save, new language or game data: keep each page's searches, filters, ticks and selection.
+        var (oldMechs, oldInventory, oldPilots) = (Mechs, Inventory, Pilots);
         Mechs = new MechsViewModel(this, doc, _mechs, _items, _pilots, _dialogs, _windows);
         Inventory = new InventoryViewModel(doc, _items, _dialogs);
         Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
+        if (oldMechs is not null)
+        {
+            Mechs.CarryOver(oldMechs);
+        }
+
+        if (oldInventory is not null)
+        {
+            Inventory.CarryOver(oldInventory);
+        }
+
+        if (oldPilots is not null)
+        {
+            Pilots.CarryOver(oldPilots);
+        }
+
+        Company?.Refresh();
         OnPropertyChanged(nameof(Mechs));
         OnPropertyChanged(nameof(Inventory));
         OnPropertyChanged(nameof(Pilots));
