@@ -1,0 +1,10 @@
+{
+  "modId": 0,
+  "fileId": 0,
+  "gameDomain": "mechwarrior5mercenaries",
+  "modFolderName": "MW5SaveEditor",
+  "project": "src/Mech5.SaveEditor.App",
+  "packageScript": "tools/package.ps1",
+  "payload": "obj/package/MW5SaveEditor",
+  "category": "main"
+}

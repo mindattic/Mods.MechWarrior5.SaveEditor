@@ -8,8 +8,9 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <Deterministic>true</Deterministic>
-    <Version>2.0.0</Version>
+    <!-- Bumped by /publish (leading integer); the first publish makes it 1.0.0. -->
+    <Version>0.0.0</Version>
     <Company>MindAttic</Company>
-    <Product>MW5 Mercs Save Editor</Product>
+    <Product>MW5 Save Editor</Product>
   </PropertyGroup>
 </Project>

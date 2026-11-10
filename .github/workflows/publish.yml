@@ -1,0 +1,43 @@
+name: Publish to NexusMods
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo (for nexus.json)
+        uses: actions/checkout@v4
+
+      - name: Read nexus.json
+        id: cfg
+        run: |
+          echo "mod_id=$(jq -r .modId nexus.json)" >> "$GITHUB_OUTPUT"
+          echo "file_id=$(jq -r .fileId nexus.json)" >> "$GITHUB_OUTPUT"
+          echo "category=$(jq -r '.category // "main"' nexus.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Download release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "${{ github.event.release.tag_name }}" --repo "${{ github.repository }}" --pattern '*.zip' --dir .
+
+      - name: Resolve downloaded zip and version
+        id: zip
+        run: |
+          zip_path=$(ls *.zip | head -n1)
+          echo "path=$zip_path" >> "$GITHUB_OUTPUT"
+          version="${{ github.event.release.tag_name }}"
+          echo "version=${version#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload to NexusMods
+        uses: Nexus-Mods/upload-action@v1.0.0-beta.11
+        with:
+          api_key: ${{ secrets.NEXUSMODS_API_KEY }}
+          mod_id: ${{ steps.cfg.outputs.mod_id }}
+          file_id: ${{ steps.cfg.outputs.file_id }}
+          filename: ${{ steps.zip.outputs.path }}
+          version: ${{ steps.zip.outputs.version }}
+          category: ${{ steps.cfg.outputs.category }}
+          changelog: ${{ github.event.release.body }}
