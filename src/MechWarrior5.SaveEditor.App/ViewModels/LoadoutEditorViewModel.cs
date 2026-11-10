@@ -229,7 +229,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     private void Export()
     {
         var name = $"{Mech.Code}{LoadoutFile.Extension}";
-        if (_dialogs.PickFileToSave("Export loadout", name, $"MW5 loadout (*{LoadoutFile.Extension})|*{LoadoutFile.Extension}") is not { } path)
+        if (_dialogs.PickFileToSave(Loc.Text("dlg_export_loadout", "Export loadout"), name, $"MW5 loadout (*{LoadoutFile.Extension})|*{LoadoutFile.Extension}") is not { } path)
         {
             return;
         }
@@ -247,7 +247,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     [RelayCommand]
     private void Import()
     {
-        if (_dialogs.PickFileToOpen("Import loadout", $"MW5 loadout (*{LoadoutFile.Extension})|*{LoadoutFile.Extension}") is not { } path)
+        if (_dialogs.PickFileToOpen(Loc.Text("dlg_import_loadout", "Import loadout"), $"MW5 loadout (*{LoadoutFile.Extension})|*{LoadoutFile.Extension}") is not { } path)
         {
             return;
         }

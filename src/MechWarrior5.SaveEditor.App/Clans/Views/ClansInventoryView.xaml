@@ -1,4 +1,4 @@
-<UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansInventoryView"
+<UserControl xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization" xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansInventoryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:b="clr-namespace:MechWarrior5.Shared.Wpf.Behaviors;assembly=MechWarrior5.Shared.Wpf">
@@ -13,12 +13,12 @@
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="3" Text="WEAPONS AND EQUIPMENT" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
+        <TextBlock Grid.ColumnSpan="3" Text="{l:T weapons_and_equipment}" Style="{StaticResource Text.Title}" Margin="0,0,0,14" />
 
         <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top" Margin="18,14,18,8">
-                    <TextBlock Text="ON HAND" Style="{StaticResource Text.Section}" FontSize="19" />
+                    <TextBlock Text="{l:T on_hand}" Style="{StaticResource Text.Section}" FontSize="19" />
                     <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged, Delay=120}" Tag="Filter your stock" Margin="0,10,0,0" />
                 </StackPanel>
 
@@ -26,20 +26,20 @@
                     <StackPanel>
                         <WrapPanel Margin="0,0,0,8">
                             <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectAllCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="SELECT ALL" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                                <TextBlock Text="{l:T select_all}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </ma:MaButton>
                             <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}">
-                                <TextBlock Text="CLEAR" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                                <TextBlock Text="{l:T clear}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </ma:MaButton>
                         </WrapPanel>
                         <WrapPanel>
-                            <ma:MaButton Content="+1 EACH" Command="{Binding AddToTickedCommand}" CommandParameter="1" Margin="0,0,8,6" />
-                            <ma:MaButton Content="+5 EACH" Command="{Binding AddToTickedCommand}" CommandParameter="5" Margin="0,0,8,6" />
-                            <ma:MaButton Content="+10 EACH" Command="{Binding AddToTickedCommand}" CommandParameter="10" Margin="0,0,8,6" />
+                            <ma:MaButton Content="{l:T 1_each}" Command="{Binding AddToTickedCommand}" CommandParameter="1" Margin="0,0,8,6" />
+                            <ma:MaButton Content="{l:T 5_each}" Command="{Binding AddToTickedCommand}" CommandParameter="5" Margin="0,0,8,6" />
+                            <ma:MaButton Content="{l:T 10_each}" Command="{Binding AddToTickedCommand}" CommandParameter="10" Margin="0,0,8,6" />
                             <ma:MaButton Command="{Binding RemoveTickedCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
-                                    <TextBlock Text="REMOVE" FontWeight="Bold" />
+                                    <TextBlock Text="{l:T remove_2}" FontWeight="Bold" />
                                 </StackPanel>
                             </ma:MaButton>
                         </WrapPanel>
@@ -71,19 +71,19 @@
 
         <ma:MaShapeBorder Grid.Row="1" Grid.Column="2" Style="{StaticResource Panel}" VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="REQUISITION" Style="{StaticResource Text.Section}" FontSize="19" Margin="0,0,0,10" />
-                <TextBlock Text="ITEM" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
+                <TextBlock Text="{l:T requisition}" Style="{StaticResource Text.Section}" FontSize="19" Margin="0,0,0,10" />
+                <TextBlock Text="{l:T item}" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
                 <ComboBox ItemsSource="{Binding Catalog}" SelectedItem="{Binding ItemToAdd}" DisplayMemberPath="Label"
                           IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Label" Margin="0,0,0,12" />
-                <TextBlock Text="QUANTITY" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
+                <TextBlock Text="{l:T quantity}" Style="{StaticResource Text.Label}" Margin="0,0,0,4" />
                 <TextBox Text="{Binding AddCount, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0,0,0,14" />
                 <ma:MaButton Command="{Binding AddItemCommand}" Style="{StaticResource Button.Command}" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <Path Data="{StaticResource Glyph.Plus}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
-                        <TextBlock Text="ADD TO INVENTORY" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
+                        <TextBlock Text="{l:T add_to_inventory}" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
                     </StackPanel>
                 </ma:MaButton>
-                <TextBlock Text="Items arrive in perfect condition. The list covers every weapon and piece of equipment seen in Clans campaign saves, plus anything already in this one."
+                <TextBlock Text="{l:T items_arrive_in_perfect_condition_the_list_cover}"
                            Style="{StaticResource Text.Muted}" FontSize="14" TextWrapping="Wrap" Margin="0,14,0,0" />
             </StackPanel>
         </ma:MaShapeBorder>

@@ -44,7 +44,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
     private string _saveName = string.Empty;
 
     [ObservableProperty]
-    private string _toast = "Open a campaign save to begin.";
+    private string _toast = Loc.Text("clans_open_to_begin", "Open a campaign save to begin.");
 
     [ObservableProperty]
     private string _kerenskiesText = string.Empty;
@@ -53,6 +53,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
     {
         _dialogs = dialogs;
         _settings = settings;
+        Loc.Instance.PropertyChanged += (_, _) => OnPropertyChanged(nameof(SaveLabel));
         _toastTimer.Tick += (_, _) =>
         {
             _toastTimer.Stop();
@@ -86,7 +87,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
         ? "MW5 Clans Save Editor"
         : $"{(IsDirty ? "* " : string.Empty)}{SaveName} - MW5 Clans Save Editor";
 
-    public string SaveLabel => IsOriginal ? "SAVE AS NEW" : "SAVE";
+    public string SaveLabel => IsOriginal ? Loc.Text("save_as_new", "SAVE AS NEW") : Loc.Text("save", "SAVE");
 
     public bool IsClansTheme
     {
@@ -156,13 +157,13 @@ public sealed partial class ClansMainViewModel : ObservableObject
         Document = doc;
         SaveName = doc.DisplayName() is { Length: > 0 } name
             ? (doc.IsOriginalGameSave ? name + " [Edited]" : name)
-            : "Edited Save";
+            : Loc.Text("clans_edited_save", "Edited Save");
         IsDirty = false;
         _settings.Current.ClansLastSavePath = path;
         _settings.Save();
         RefreshSummary();
         Navigate(Page.Resources);
-        ShowToast($"Loaded {SaveTitle}: {doc.Inventory.Mechs.Count()} mechs, {doc.Currency("Kerenskies_CurrencyItem"):N0} Kerenskies");
+        ShowToast(Loc.Text("clans_loaded", "Loaded {0}: {1} mechs, {2:N0} Kerenskies", SaveTitle!, doc.Inventory.Mechs.Count(), doc.Currency("Kerenskies_CurrencyItem")));
     }
 
     /// <summary>Asks about unsaved edits; false means stay.</summary>
@@ -236,7 +237,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
 
         if (string.IsNullOrWhiteSpace(SaveName))
         {
-            _dialogs.Show("Name the save", "Give the save a name; it is how the game's load menu will list it.", DialogTone.Warning);
+            _dialogs.Show(Loc.Text("clans_name_the_save", "Name the save"), Loc.Text("clans_name_the_save_text", "Give the save a name; it is how the game's load menu will list it."), DialogTone.Warning);
             return false;
         }
 
@@ -250,15 +251,15 @@ public sealed partial class ClansMainViewModel : ObservableObject
             OnPropertyChanged(nameof(SaveLabel));
             ShowToast(outcome switch
             {
-                { CreatedNewFile: true, RegisteredInLoadMenu: true } => $"Saved as new save \"{SaveName}\" in the game's load menu. The original is untouched.",
-                { CreatedNewFile: true } => $"Saved as {Path.GetFileName(outcome.Path)} (not found in the load-menu index). The original is untouched.",
-                _ => $"Saved \"{SaveName}\" (previous version kept as .bak).",
+                { CreatedNewFile: true, RegisteredInLoadMenu: true } => Loc.Text("saved_new", "Saved as new save \"{0}\" in the game's load menu. The original is untouched.", SaveName),
+                { CreatedNewFile: true } => Loc.Text("clans_saved_unlisted", "Saved as {0} (not found in the load-menu index). The original is untouched.", Path.GetFileName(outcome.Path)),
+                _ => Loc.Text("saved_in_place", "Saved \"{0}\" (previous version kept as .bak).", SaveName),
             });
             return true;
         }
         catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException or InvalidOperationException)
         {
-            _dialogs.Show("Save failed", $"Nothing was overwritten. {e.Message}", DialogTone.Error);
+            _dialogs.Show(Loc.Text("save_failed", "Save failed"), Loc.Text("clans_save_failed_text", "Nothing was overwritten. {0}", e.Message), DialogTone.Error);
             return false;
         }
     }

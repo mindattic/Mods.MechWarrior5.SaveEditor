@@ -175,7 +175,7 @@ public sealed partial class CompanyViewModel : ObservableObject
     private void Export()
     {
         var name = string.Concat(CompanyName.Split(Path.GetInvalidFileNameChars())) + CompanyPackage.Extension;
-        if (_dialogs.PickFileToSave("Export company", name, $"MW5 company (*{CompanyPackage.Extension})|*{CompanyPackage.Extension}") is not { } path)
+        if (_dialogs.PickFileToSave(Loc.Text("dlg_export_company", "Export company"), name, $"MW5 company (*{CompanyPackage.Extension})|*{CompanyPackage.Extension}") is not { } path)
         {
             return;
         }
@@ -199,7 +199,7 @@ public sealed partial class CompanyViewModel : ObservableObject
     [RelayCommand]
     private void Import()
     {
-        if (_dialogs.PickFileToOpen("Import company", $"MW5 company (*{CompanyPackage.Extension})|*{CompanyPackage.Extension}") is not { } path)
+        if (_dialogs.PickFileToOpen(Loc.Text("dlg_import_company", "Import company"), $"MW5 company (*{CompanyPackage.Extension})|*{CompanyPackage.Extension}") is not { } path)
         {
             return;
         }

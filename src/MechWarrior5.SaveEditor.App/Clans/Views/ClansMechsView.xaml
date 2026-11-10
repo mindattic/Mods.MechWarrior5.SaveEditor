@@ -11,7 +11,7 @@
 
         <DockPanel Margin="0,0,0,14">
             <TextBlock DockPanel.Dock="Right" Text="{Binding Summary}" Style="{StaticResource Text.Label}" VerticalAlignment="Bottom" />
-            <TextBlock Text="MECHS" Style="{StaticResource Text.Title}" />
+            <TextBlock Text="{l:T mechs}" Style="{StaticResource Text.Title}" />
         </DockPanel>
 
         <ma:MaShapeBorder Grid.Row="1" Style="{StaticResource Panel}" Padding="0">
@@ -25,43 +25,43 @@
                     <StackPanel>
                         <WrapPanel Margin="0,0,0,8">
                             <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectAllCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="SELECT ALL" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                                <TextBlock Text="{l:T select_all}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </ma:MaButton>
                             <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectDamagedCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="SELECT DAMAGED" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                                <TextBlock Text="{l:T select_damaged}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </ma:MaButton>
                             <ma:MaButton Style="{StaticResource Button.Link}" Command="{Binding SelectNoneCommand}" Margin="0,0,14,0">
-                                <TextBlock Text="CLEAR" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                                <TextBlock Text="{l:T clear}" FontWeight="Bold" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                             </ma:MaButton>
                             <TextBlock Style="{StaticResource Text.Label}" VerticalAlignment="Center">
-                                <Run Text="{Binding CheckedCount, Mode=OneWay}" Foreground="{DynamicResource Brush.AccentHot}" /> <Run Text="SELECTED" />
+                                <Run Text="{Binding CheckedCount, Mode=OneWay}" Foreground="{DynamicResource Brush.AccentHot}" /> <Run Text="{l:T selected}" />
                             </TextBlock>
                         </WrapPanel>
                         <WrapPanel>
                             <ma:MaButton Command="{Binding RepairCommand}" Style="{StaticResource Button.Command}" Margin="0,0,8,6">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Repair}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" Margin="0,0,8,0" />
-                                    <TextBlock Text="REPAIR" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
+                                    <TextBlock Text="{l:T repair}" FontWeight="Bold" Foreground="{DynamicResource Brush.Void}" />
                                 </StackPanel>
                             </ma:MaButton>
                             <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
                                 <TextBox Text="{Binding Copies, UpdateSourceTrigger=PropertyChanged}" Width="48" HorizontalContentAlignment="Center" Margin="0,0,4,0"
-                                         ToolTip="Copies of each ticked mech" />
-                                <ma:MaButton Command="{Binding DuplicateCommand}" ToolTip="Adds copies with the same loadout, fully repaired">
+                                         ToolTip="{l:T copies_of_each_ticked_mech}" />
+                                <ma:MaButton Command="{Binding DuplicateCommand}" ToolTip="{l:T adds_copies_with_the_same_loadout_fully_repaired}">
                                     <StackPanel Orientation="Horizontal">
                                         <Path Data="{StaticResource Glyph.Plus}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
-                                        <TextBlock Text="DUPLICATE" FontWeight="Bold" />
+                                        <TextBlock Text="{l:T duplicate}" FontWeight="Bold" />
                                     </StackPanel>
                                 </ma:MaButton>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,8,6">
                                 <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Width="170" Margin="0,0,4,0" Tag="Mech name (empty clears)" />
-                                <ma:MaButton Command="{Binding RenameCommand}" Content="RENAME" />
+                                <ma:MaButton Command="{Binding RenameCommand}" Content="{l:T rename}" />
                             </StackPanel>
                             <ma:MaButton Command="{Binding RemoveCommand}" Style="{StaticResource Button.Danger}" Margin="0,0,0,6">
                                 <StackPanel Orientation="Horizontal">
                                     <Path Data="{StaticResource Glyph.Trash}" Style="{StaticResource Glyph}" Margin="0,0,8,0" />
-                                    <TextBlock Text="REMOVE" FontWeight="Bold" />
+                                    <TextBlock Text="{l:T remove_2}" FontWeight="Bold" />
                                 </StackPanel>
                             </ma:MaButton>
                         </WrapPanel>

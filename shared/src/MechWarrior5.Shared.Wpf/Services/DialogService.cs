@@ -7,13 +7,16 @@ namespace MechWarrior5.Shared.Wpf.Services;
 
 public sealed class DialogService : IDialogService
 {
-    private const string SaveFilter = "MW5 campaign save (*.sav)|*.sav|All files (*.*)|*.*";
+    /// <summary>Translates this service's own wording: (key, English) to text. The app sets it; English by default.</summary>
+    public static Func<string, string, string> Text { get; set; } = (_, english) => english;
+
+    private static string SaveFilter => Text("dlg_save_filter", "MW5 campaign save (*.sav)|*.sav|All files (*.*)|*.*");
 
     public string? PickSaveToOpen(string? initialFolder)
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Open MW5 campaign save",
+            Title = Text("dlg_open_save", "Open MW5 campaign save"),
             Filter = SaveFilter,
             InitialDirectory = Directory.Exists(initialFolder) ? initialFolder : string.Empty,
         };
@@ -24,7 +27,7 @@ public sealed class DialogService : IDialogService
     {
         var dialog = new SaveFileDialog
         {
-            Title = "Save campaign copy as",
+            Title = Text("dlg_save_copy_as", "Save campaign copy as"),
             Filter = SaveFilter,
             InitialDirectory = Path.GetDirectoryName(currentPath) ?? string.Empty,
             FileName = Path.GetFileName(currentPath),
@@ -46,20 +49,20 @@ public sealed class DialogService : IDialogService
     }
 
     public void Show(string title, string message, DialogTone tone = DialogTone.Info, params DialogSection[] sections) =>
-        MessageDialog.Run(Owner, new MessageDialogModel(title, message, tone, sections, "OK", null, null));
+        MessageDialog.Run(Owner, new MessageDialogModel(title, message, tone, sections, Text("dlg_ok", "OK"), null, null));
 
     public bool Confirm(string title, string message, string confirmText, DialogTone tone = DialogTone.Warning) =>
-        MessageDialog.Run(Owner, new MessageDialogModel(title, message, tone, [], confirmText, "Cancel", null)) == true;
+        MessageDialog.Run(Owner, new MessageDialogModel(title, message, tone, [], confirmText, Text("dlg_cancel", "Cancel"), null)) == true;
 
     public bool? AskSaveChanges(string fileName) =>
         MessageDialog.Run(Owner, new MessageDialogModel(
-            "Unsaved changes",
-            $"Save your changes to {fileName} first?",
+            Text("dlg_unsaved_changes", "Unsaved changes"),
+            string.Format(System.Globalization.CultureInfo.CurrentCulture, Text("dlg_save_changes_first", "Save your changes to {0} first?"), fileName),
             DialogTone.Warning,
             [],
-            "Save",
-            "Cancel",
-            "Discard"));
+            Text("dlg_save", "Save"),
+            Text("dlg_cancel", "Cancel"),
+            Text("dlg_discard", "Discard")));
 
     private static Window? Owner => Application.Current?.MainWindow is { IsLoaded: true } w ? w : null;
 }

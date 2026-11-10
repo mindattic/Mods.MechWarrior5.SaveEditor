@@ -20,6 +20,7 @@ public partial class App : Application
         var cache = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MechWarrior5SaveEditor", "MechImages");
         var settings = new JsonSettings<AppSettings>();
         Loc.Instance.Language = string.IsNullOrEmpty(settings.Current.Language) ? Loc.DefaultLanguage() : settings.Current.Language;
+        DialogService.Text = (key, english) => Loc.Text(key, english);
         ThemeManager.Apply(ThemeManager.TryParse(settings.Current.Theme, out var theme) ? theme : MechWarrior5Theme.Mercs);
         var images = new MechImageService(cache) { Enabled = settings.Current.DownloadMechImages };
         MechArt.Service = images;
@@ -40,8 +41,8 @@ public partial class App : Application
     private static void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
         new DialogService().Show(
-            "Unexpected error",
-            $"{e.Exception.Message}\n\nYour save on disk was not modified. Use Save As to keep any edits in a separate file.",
+            Loc.Text("unexpected_error", "Unexpected error"),
+            Loc.Text("unexpected_error_text", "{0}\n\nYour save on disk was not modified. Use Save As to keep any edits in a separate file.", e.Exception.Message),
             DialogTone.Error);
         e.Handled = true;
     }

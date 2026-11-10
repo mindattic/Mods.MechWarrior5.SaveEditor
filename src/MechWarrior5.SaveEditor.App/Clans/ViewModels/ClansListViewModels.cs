@@ -1,3 +1,4 @@
+using MechWarrior5.SaveEditor.App.Localization;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -102,22 +103,22 @@ public sealed partial class MechsViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void Repair() => Run("Repaired", picks => _doc.Inventory.RepairMechs(picks));
+    private void Repair() => Run(Loc.Text("clans_repaired", "Repaired"), picks => _doc.Inventory.RepairMechs(picks));
 
     [RelayCommand]
-    private void Duplicate() => Run($"Duplicated x{Copies}", picks => _doc.Inventory.DuplicateMechs(picks, Math.Clamp(Copies, 1, 20)));
+    private void Duplicate() => Run(Loc.Text("clans_duplicated", "Duplicated x{0}", Copies), picks => _doc.Inventory.DuplicateMechs(picks, Math.Clamp(Copies, 1, 20)));
 
     [RelayCommand]
     private void Remove()
     {
         var picks = Picked();
         if (picks.Count == 0
-            || !_dialogs.Confirm("Remove mechs", $"Remove {picks.Count} mech(s) from the inventory? Mechs that are deployed or in the mech bay's work queue are kept.", "Remove", DialogTone.Error))
+            || !_dialogs.Confirm(Loc.Text("remove_mechs", "Remove mechs"), Loc.Text("clans_remove_mechs_text", "Remove {0} mech(s) from the inventory? Mechs that are deployed or in the mech bay's work queue are kept.", picks.Count), Loc.Text("remove", "Remove"), DialogTone.Error))
         {
             return;
         }
 
-        Run("Removed", _ => _doc.Inventory.RemoveMechs(picks));
+        Run(Loc.Text("clans_removed", "Removed"), _ => _doc.Inventory.RemoveMechs(picks));
     }
 
     [RelayCommand]
@@ -138,8 +139,8 @@ public sealed partial class MechsViewModel : ObservableObject
         _main.MarkDirty();
         Rebuild();
         _main.ShowToast(string.IsNullOrWhiteSpace(NewName)
-            ? $"Cleared the name of {picks.Count} mech(s)."
-            : $"Named {picks.Count} mech(s) \"{NewName.Trim()}\".");
+            ? Loc.Text("clans_name_cleared", "Cleared the name of {0} mech(s).", picks.Count)
+            : Loc.Text("clans_named", "Named {0} mech(s) \"{1}\".", picks.Count, NewName.Trim()));
     }
 
     private void Run(string title, Func<IReadOnlyList<ClansMech>, BatchResult> action)
@@ -160,23 +161,23 @@ public sealed partial class MechsViewModel : ObservableObject
         Rebuild();
         if (result.Skipped.Count == 0)
         {
-            _main.ShowToast($"{title}: {result.Succeeded.Count} mech(s). Save to keep the change.");
+            _main.ShowToast(Loc.Text("clans_batch_done", "{0}: {1} mech(s). Save to keep the change.", title, result.Succeeded.Count));
             return;
         }
 
         var sections = new List<DialogSection>();
         if (result.Succeeded.Count > 0)
         {
-            sections.Add(new DialogSection($"DONE ({result.Succeeded.Count})", DialogTone.Success, result.Succeeded));
+            sections.Add(new DialogSection(Loc.Text("section_done", "DONE ({0})", result.Succeeded.Count), DialogTone.Success, result.Succeeded));
         }
 
-        sections.Add(new DialogSection($"SKIPPED ({result.Skipped.Count})", DialogTone.Warning,
+        sections.Add(new DialogSection(Loc.Text("section_skipped", "SKIPPED ({0})", result.Skipped.Count), DialogTone.Warning,
             [.. result.Skipped.Select(s => $"{s.Item}: {s.Reason}")]));
-        _dialogs.Show(title, "Save to keep the changes.", result.Succeeded.Count > 0 ? DialogTone.Success : DialogTone.Warning, [.. sections]);
+        _dialogs.Show(title, Loc.Text("clans_save_to_keep_changes", "Save to keep the changes."), result.Succeeded.Count > 0 ? DialogTone.Success : DialogTone.Warning, [.. sections]);
     }
 
     private void Nothing() =>
-        _dialogs.Show("Nothing selected", "Tick the mechs to change (Shift+click ticks a range, Ctrl+A ticks everything shown).");
+        _dialogs.Show(Loc.Text("nothing_selected", "Nothing selected"), Loc.Text("clans_tick_mechs", "Tick the mechs to change (Shift+click ticks a range, Ctrl+A ticks everything shown)."));
 
     private List<ClansMech> Picked() => [.. Rows.Where(r => r.IsChecked).Select(r => r.Mech)];
 
@@ -285,14 +286,14 @@ public sealed partial class InventoryViewModel : ObservableObject
     {
         if (ItemToAdd is not { } item)
         {
-            _dialogs.Show("Pick an item", "Choose a weapon or piece of equipment to add.");
+            _dialogs.Show(Loc.Text("clans_pick_item", "Pick an item"), Loc.Text("clans_pick_item_text", "Choose a weapon or piece of equipment to add."));
             return;
         }
 
         _doc.Inventory.AddStack(item.Type, item.Asset, Math.Clamp(AddCount, 1, 10_000));
         _main.MarkDirty();
         Rebuild();
-        _main.ShowToast($"Added {Math.Clamp(AddCount, 1, 10_000)} x {item.Label}. Save to keep it.");
+        _main.ShowToast(Loc.Text("clans_added_item", "Added {0} x {1}. Save to keep it.", Math.Clamp(AddCount, 1, 10_000), item.Label));
     }
 
     [RelayCommand]
@@ -306,7 +307,7 @@ public sealed partial class InventoryViewModel : ObservableObject
         var picks = Rows.Where(r => r.IsChecked).ToList();
         if (picks.Count == 0)
         {
-            _dialogs.Show("Nothing selected", "Tick the items to change (Shift+click ticks a range, Ctrl+A ticks everything shown).");
+            _dialogs.Show(Loc.Text("nothing_selected", "Nothing selected"), Loc.Text("clans_tick_items", "Tick the items to change (Shift+click ticks a range, Ctrl+A ticks everything shown)."));
             return;
         }
 
@@ -315,7 +316,7 @@ public sealed partial class InventoryViewModel : ObservableObject
             row.Quantity = (int)Math.Min(InventoryEditor.MaxQuantity, (long)row.Quantity + delta);
         }
 
-        _main.ShowToast($"Added {delta} to {picks.Count} item(s). Save to keep it.");
+        _main.ShowToast(Loc.Text("clans_added_to_items", "Added {0} to {1} item(s). Save to keep it.", delta, picks.Count));
     }
 
     [RelayCommand]
@@ -323,7 +324,7 @@ public sealed partial class InventoryViewModel : ObservableObject
     {
         var picks = Rows.Where(r => r.IsChecked).Select(r => r.Asset).ToHashSet(StringComparer.Ordinal);
         if (picks.Count == 0
-            || !_dialogs.Confirm("Remove items", $"Remove {picks.Count} item type(s) from the inventory? Installed gear on mechs is not affected.", "Remove", DialogTone.Error))
+            || !_dialogs.Confirm(Loc.Text("remove_items", "Remove items"), Loc.Text("clans_remove_items_text", "Remove {0} item type(s) from the inventory? Installed gear on mechs is not affected.", picks.Count), Loc.Text("remove", "Remove"), DialogTone.Error))
         {
             return;
         }
@@ -331,7 +332,7 @@ public sealed partial class InventoryViewModel : ObservableObject
         var result = _doc.Inventory.RemoveStacks(_doc.Inventory.Stacks.Where(s => picks.Contains(s.AssetName)));
         _main.MarkDirty();
         Rebuild();
-        _main.ShowToast($"Removed {result.Succeeded.Count} stack(s). Save to keep it.");
+        _main.ShowToast(Loc.Text("clans_removed_stacks", "Removed {0} stack(s). Save to keep it.", result.Succeeded.Count));
     }
 
     [RelayCommand]

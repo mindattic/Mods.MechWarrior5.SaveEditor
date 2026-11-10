@@ -1,4 +1,4 @@
-<UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansStartView"
+<UserControl xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization" xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Clans.Views.ClansStartView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Margin="28,22,28,22">
@@ -8,9 +8,9 @@
         </Grid.RowDefinitions>
 
         <DockPanel Margin="0,0,0,14">
-            <ma:MaButton DockPanel.Dock="Right" Command="{Binding ReloadCommand}" Content="REFRESH" VerticalAlignment="Center" />
+            <ma:MaButton DockPanel.Dock="Right" Command="{Binding ReloadCommand}" Content="{l:T refresh}" VerticalAlignment="Center" />
             <StackPanel>
-                <TextBlock Text="CAMPAIGN SAVES" Style="{StaticResource Text.Title}" />
+                <TextBlock Text="{l:T campaign_saves}" Style="{StaticResource Text.Title}" />
                 <TextBlock Text="{Binding Folder}" Style="{StaticResource Text.Muted}" FontSize="15" />
             </StackPanel>
         </DockPanel>
@@ -36,7 +36,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Name}" FontSize="19" FontWeight="Bold" />
                                         <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Visibility="{Binding IsAutoSave, Converter={StaticResource BoolToVisibility}}">
-                                            <TextBlock Text="AUTO" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
+                                            <TextBlock Text="{l:T auto}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
                                         </Border>
                                     </StackPanel>
                                     <TextBlock Text="{Binding Campaign}" Style="{StaticResource Text.Muted}" FontSize="15" />
@@ -45,14 +45,14 @@
                                            Foreground="{DynamicResource Brush.TextMuted}" />
                                 <TextBlock Grid.Column="2" Text="{Binding Kerenskies, StringFormat='{}{0:N0} K'}" VerticalAlignment="Center"
                                            FontWeight="SemiBold" Foreground="{DynamicResource Brush.AccentHot}" />
-                                <ma:MaButton Grid.Column="3" Content="OPEN" Style="{StaticResource Button.Command}"
+                                <ma:MaButton Grid.Column="3" Content="{l:T open}" Style="{StaticResource Button.Command}"
                                         Command="{Binding DataContext.OpenCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                         CommandParameter="{Binding}" />
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <TextBlock Text="No MechWarrior 5: Clans saves were found here. Use OPEN to pick a save, or set the folder in SETTINGS."
+                <TextBlock Text="{l:T no_mechwarrior_5_clans_saves_were_found_here_use}"
                            Style="{StaticResource Text.Muted}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="460"
                            TextAlignment="Center" FontSize="18">
                     <TextBlock.Visibility>
