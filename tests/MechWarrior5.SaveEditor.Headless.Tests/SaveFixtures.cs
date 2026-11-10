@@ -133,20 +133,31 @@ internal static class SaveFixtures
         var root = Path.Combine(Path.GetTempPath(), "MechWarrior5.SaveEditor.Headless", TestContext.CurrentContext.Test.ID);
         if (Directory.Exists(root))
         {
-            Directory.Delete(root, recursive: true);
+            DeleteTree(root);
         }
     }
 
-    private static string Sandbox(string name)
+    internal static string Sandbox(string name)
     {
         var dir = Path.Combine(Path.GetTempPath(), "MechWarrior5.SaveEditor.Headless", TestContext.CurrentContext.Test.ID, name);
         if (Directory.Exists(dir))
         {
-            Directory.Delete(dir, recursive: true);
+            DeleteTree(dir);
         }
 
         Directory.CreateDirectory(dir);
         return dir;
+    }
+
+    /// <summary>Deletes a sandbox even when a test left read-only files in it.</summary>
+    private static void DeleteTree(string dir)
+    {
+        foreach (var file in Directory.EnumerateFiles(dir, "*", SearchOption.AllDirectories))
+        {
+            File.SetAttributes(file, FileAttributes.Normal);
+        }
+
+        Directory.Delete(dir, recursive: true);
     }
 
     private static void CopyFolder(string from, string to)
