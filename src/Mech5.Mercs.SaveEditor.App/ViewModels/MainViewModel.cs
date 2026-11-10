@@ -81,7 +81,7 @@ public sealed partial class MainViewModel : ObservableObject
 
     /// <summary>Summary of what the game scan found, for the status bar.</summary>
     [ObservableProperty]
-    private string _gameDataSummary = "Reading game data...";
+    private string _gameDataSummary = Loc.Text("game_data_reading", "Reading game data...");
 
     /// <summary>
     /// Reads the installed game's and enabled mods' 'Mech data in the background, then folds it into the
@@ -186,7 +186,7 @@ public sealed partial class MainViewModel : ObservableObject
         }
         catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
         {
-            _dialogs.Show("Can't open save", e.Message, DialogTone.Error);
+            _dialogs.Show(Loc.Text("cant_open_save", "Can't open save"), e.Message, DialogTone.Error);
             return false;
         }
 
@@ -195,7 +195,7 @@ public sealed partial class MainViewModel : ObservableObject
         _settings.Current.LastSavePath = path;
         _settings.Save();
         Navigate(Page.Mechs);
-        ShowToast($"Loaded {Company!.CompanyName} - {Mechs!.HangarCount} mechs, {doc.Roster.Pilots.Count} pilots");
+        ShowToast(Loc.Text("loaded_toast", "Loaded {0} - {1} mechs, {2} pilots", Company!.CompanyName, Mechs!.HangarCount, doc.Roster.Pilots.Count));
         return true;
     }
 
@@ -302,16 +302,16 @@ public sealed partial class MainViewModel : ObservableObject
             OnPropertyChanged(nameof(WindowTitle));
             ShowToast(outcome switch
             {
-                { CreatedNewFile: true, RegisteredInCampaign: true } => $"Saved as new save \"{SaveName}\" in the game's load menu. The original is untouched.",
-                { CreatedNewFile: true } => $"Saved as {Path.GetFileName(outcome.Path)} (not listed in the campaign index). The original is untouched.",
-                _ => $"Saved \"{SaveName}\" (previous version kept as .bak).",
+                { CreatedNewFile: true, RegisteredInCampaign: true } => Loc.Text("saved_new", "Saved as new save \"{0}\" in the game's load menu. The original is untouched.", SaveName),
+                { CreatedNewFile: true } => Loc.Text("saved_unlisted", "Saved as {0} (not listed in the campaign index). The original is untouched.", Path.GetFileName(outcome.Path)),
+                _ => Loc.Text("saved_in_place", "Saved \"{0}\" (previous version kept as .bak).", SaveName),
             });
             Start.Refresh();
             return true;
         }
         catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
         {
-            _dialogs.Show("Save failed", $"Nothing was written. {e.Message}", DialogTone.Error);
+            _dialogs.Show(Loc.Text("save_failed", "Save failed"), Loc.Text("save_failed_text", "Nothing was written. {0}", e.Message), DialogTone.Error);
             return false;
         }
     }
@@ -330,11 +330,11 @@ public sealed partial class MainViewModel : ObservableObject
         doc.Hangar.Commit();
         var introduced = SaveValidator.Introduced(SaveValidator.FindMissing(doc.File, game.AssetNames), _baselineMissing);
         return introduced.Count == 0 || _dialogs.Confirm(
-            "Unknown game assets",
-            $"Your edits reference {introduced.Count} asset(s) that aren't in the installed game or its enabled mods. "
-            + "The game may not load them. Save anyway?\n\n"
+            Loc.Text("unknown_assets", "Unknown game assets"),
+            Loc.Text("unknown_assets_text", "Your edits reference {0} asset(s) that aren't in the installed game or its enabled mods. The game may not load them. Save anyway?", introduced.Count)
+            + "\n\n"
             + string.Join("\n", introduced.Take(12).Select(m => $"  {m.AssetName}  ({m.AssetType})")),
-            "Save anyway",
+            Loc.Text("save_anyway", "Save anyway"),
             DialogTone.Error);
     }
 

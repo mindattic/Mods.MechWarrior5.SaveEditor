@@ -5,6 +5,8 @@ using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
+using Mech5.Mercs.SaveEditor.App.Localization;
+
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
 /// <summary>A pick-list entry; <see cref="Item"/> is null for "empty".</summary>
@@ -248,7 +250,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
         }
         catch (Exception e) when (e is IOException or InvalidDataException or System.Text.Json.JsonException)
         {
-            _dialogs.Show("Can't import loadout", e.Message, DialogTone.Error);
+            _dialogs.Show(Loc.Text("cant_import_loadout", "Can't import loadout"), e.Message, DialogTone.Error);
             return;
         }
 
@@ -266,10 +268,10 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
         if (dropped.Count > 0 || !string.Equals(file.Variant, Mech.Asset, StringComparison.OrdinalIgnoreCase))
         {
             _dialogs.Show(
-                "Loadout imported",
-                $"Built for {file.Variant.Replace("_MDA", string.Empty, StringComparison.Ordinal)}. Review it, then Apply.",
+                Loc.Text("loadout_imported", "Loadout imported"),
+                Loc.Text("loadout_imported_text", "Built for {0}. Review it, then Apply.", file.Variant.Replace("_MDA", string.Empty, StringComparison.Ordinal)),
                 DialogTone.Warning,
-                dropped.Count > 0 ? [new DialogSection($"NOT FITTED ({dropped.Count})", DialogTone.Warning, dropped)] : []);
+                dropped.Count > 0 ? [new DialogSection(Loc.Text("not_fitted", "NOT FITTED ({0})", dropped.Count), DialogTone.Warning, dropped)] : []);
         }
     }
 
@@ -279,8 +281,8 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
         var over = Armor.Where(a => a.IsOverMax).Select(a => $"{a.Label}: {a.Front + a.Rear} / {a.Max}").ToList();
         if (over.Count > 0)
         {
-            _dialogs.Show("Armor over the limit", "Lower these locations before applying.", DialogTone.Error,
-                new DialogSection("OVER MAXIMUM", DialogTone.Error, over));
+            _dialogs.Show(Loc.Text("armor_over", "Armor over the limit"), Loc.Text("armor_over_text", "Lower these locations before applying."), DialogTone.Error,
+                new DialogSection(Loc.Text("over_maximum", "OVER MAXIMUM"), DialogTone.Error, over));
             return;
         }
 

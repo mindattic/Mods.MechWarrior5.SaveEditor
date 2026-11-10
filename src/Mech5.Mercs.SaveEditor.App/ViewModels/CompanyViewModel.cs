@@ -5,6 +5,8 @@ using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
+using Mech5.Mercs.SaveEditor.App.Localization;
+
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
 public sealed record DlcRow(string Code, string Name, bool Owned);
@@ -34,9 +36,9 @@ public sealed partial class CompanyViewModel : ObservableObject
         Dlcs = catalog.DlcPacks.Select(p => new DlcRow(p.ShortName, p.Name, doc.Dlc.Tags.Contains(p.Tag))).ToList();
         DlcNote = doc.Dlc.Source switch
         {
-            DlcSource.ThisSave => "Read from this save's campaign index.",
-            DlcSource.CampaignLatestSave => "This save isn't in its campaign index; showing the campaign's latest save.",
-            _ => "No Campaign.json beside this save, so DLC ownership can't be checked.",
+            DlcSource.ThisSave => Loc.Text("dlc_note_this", "Read from this save's campaign index."),
+            DlcSource.CampaignLatestSave => Loc.Text("dlc_note_latest", "This save isn't in its campaign index; showing the campaign's latest save."),
+            _ => Loc.Text("dlc_note_unknown", "No Campaign.json beside this save, so DLC ownership can't be checked."),
         };
     }
 
@@ -77,7 +79,7 @@ public sealed partial class CompanyViewModel : ObservableObject
         }
     }
 
-    public string CampaignDate => _doc.Company.CampaignDate?.ToString("d MMMM yyyy", CultureInfo.InvariantCulture) ?? "Unknown";
+    public string CampaignDate => _doc.Company.CampaignDate?.ToString("d MMMM yyyy", CultureInfo.InvariantCulture) ?? Loc.Text("unknown", "Unknown");
 
     public string? GameVersion => _doc.File.ProjectVersion;
 
@@ -140,20 +142,24 @@ public sealed partial class CompanyViewModel : ObservableObject
     {
         if (!DateTime.TryParseExact(DateText.Trim(), "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
         {
-            _dialogs.Show("Invalid date", "Use the form YYYY-MM-DD, e.g. 3049-05-01.", DialogTone.Error);
+            _dialogs.Show(Loc.Text("invalid_date", "Invalid date"), Loc.Text("invalid_date_text", "Use the form YYYY-MM-DD, e.g. 3049-05-01."), DialogTone.Error);
             return;
         }
 
-        if (!_dialogs.Confirm("Move the calendar",
-                $"Move the campaign to {date:d MMMM yyyy}? Payroll, injuries, contracts and every other dated event move with it, so their timing is kept.",
-                "Move date"))
+        if (!_dialogs.Confirm(Loc.Text("move_calendar_title", "Move the calendar"),
+                Loc.Text("move_calendar_text", "Move the campaign to {0:d MMMM yyyy}? Payroll, injuries, contracts and every other dated event move with it, so their timing is kept.", date),
+                Loc.Text("move_date", "Move date")))
         {
             return;
         }
 
         var days = _doc.Company.MoveCampaignDate(date);
         OnPropertyChanged(nameof(CampaignDate));
-        _dialogs.Show("Calendar moved", days == 0 ? "The campaign is already on that date." : $"Moved {Math.Abs(days):N0} days {(days > 0 ? "forward" : "back")}. Save to keep it.", DialogTone.Success);
+        _dialogs.Show(Loc.Text("calendar_moved", "Calendar moved"), days == 0
+            ? Loc.Text("calendar_same", "The campaign is already on that date.")
+            : days > 0
+                ? Loc.Text("calendar_forward", "Moved {0:N0} days forward. Save to keep it.", days)
+                : Loc.Text("calendar_back", "Moved {0:N0} days back. Save to keep it.", -days), DialogTone.Success);
     }
 
     [RelayCommand]
@@ -167,8 +173,8 @@ public sealed partial class CompanyViewModel : ObservableObject
 
         var package = CompanyTransfer.Export(_doc);
         package.Save(path);
-        _dialogs.Show("Company exported",
-            $"{package.Mechs.Count} mechs, {package.Pilots.Count} pilots and {package.Inventory.Count} inventory stacks written to {Path.GetFileName(path)}.",
+        _dialogs.Show(Loc.Text("company_exported", "Company exported"),
+            Loc.Text("company_exported_text", "{0} mechs, {1} pilots and {2} inventory stacks written to {3}.", package.Mechs.Count, package.Pilots.Count, package.Inventory.Count, Path.GetFileName(path)),
             DialogTone.Success);
     }
 
@@ -187,37 +193,37 @@ public sealed partial class CompanyViewModel : ObservableObject
         }
         catch (Exception e) when (e is IOException or InvalidDataException or System.Text.Json.JsonException)
         {
-            _dialogs.Show("Can't import", e.Message, DialogTone.Error);
+            _dialogs.Show(Loc.Text("cant_import", "Can't import"), e.Message, DialogTone.Error);
             return;
         }
 
-        if (!_dialogs.Confirm("Import company",
-                $"Add {package.Company}'s {package.Mechs.Count} mechs (to cold storage), {package.Pilots.Count} pilots and {package.Inventory.Count} inventory stacks to this campaign?",
-                "Import"))
+        if (!_dialogs.Confirm(Loc.Text("import_company_title", "Import company"),
+                Loc.Text("import_company_text", "Add {0}'s {1} mechs (to cold storage), {2} pilots and {3} inventory stacks to this campaign?", package.Company, package.Mechs.Count, package.Pilots.Count, package.Inventory.Count),
+                Loc.Text("import_button", "Import")))
         {
             return;
         }
 
         var report = CompanyTransfer.Import(_doc, package, _catalog, new TransferOptions());
         var sections = new List<DialogSection>();
-        Add("MECHS", report.Mechs);
-        Add("PILOTS", report.Pilots);
-        Add("INVENTORY", report.Inventory);
+        Add(Loc.Instance["mechs"], report.Mechs);
+        Add(Loc.Instance["pilots"], report.Pilots);
+        Add(Loc.Instance["inventory"], report.Inventory);
         _imported();
         Refresh();
-        _dialogs.Show("Company imported", "Save to keep it.",
+        _dialogs.Show(Loc.Text("company_imported", "Company imported"), Loc.Text("save_to_keep", "Save to keep it."),
             sections.Any(s => s.Tone == DialogTone.Warning) ? DialogTone.Warning : DialogTone.Success, [.. sections]);
 
         void Add(string what, BatchResult<string> result)
         {
             if (result.Succeeded.Count > 0)
             {
-                sections.Add(new DialogSection($"{what} ADDED ({result.Succeeded.Count})", DialogTone.Success, [.. result.Succeeded]));
+                sections.Add(new DialogSection(Loc.Text("section_added", "{0} ADDED ({1})", what, result.Succeeded.Count), DialogTone.Success, [.. result.Succeeded]));
             }
 
             if (result.Skipped.Count > 0)
             {
-                sections.Add(new DialogSection($"{what} SKIPPED ({result.Skipped.Count})", DialogTone.Warning,
+                sections.Add(new DialogSection(Loc.Text("section_skipped_what", "{0} SKIPPED ({1})", what, result.Skipped.Count), DialogTone.Warning,
                     [.. result.Skipped.Select(s => $"{s.Item}: {s.Reason}")]));
             }
         }

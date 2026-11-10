@@ -7,6 +7,8 @@ using Mech5.Mercs.SaveEditor.App.Services;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
+using Mech5.Mercs.SaveEditor.App.Localization;
+
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
 public enum ItemFilter
@@ -160,16 +162,16 @@ public sealed partial class InventoryViewModel : ObservableObject
         Rebuild();
         var sections = new List<DialogSection>
         {
-            new($"ADDED x{AddCount} ({result.Succeeded.Count})", DialogTone.Success,
+            new(Loc.Text("inv_added", "ADDED x{0} ({1})", AddCount, result.Succeeded.Count), DialogTone.Success,
                 [.. result.Succeeded.Select(d => Names.Humanize(d.Asset) + (Names.Tier(d.Asset) is { } t ? $" ({t})" : string.Empty))]),
         };
         if (result.Skipped.Count > 0)
         {
-            sections.Add(new DialogSection($"SKIPPED ({result.Skipped.Count})", DialogTone.Warning,
+            sections.Add(new DialogSection(Loc.Text("section_skipped", "SKIPPED ({0})", result.Skipped.Count), DialogTone.Warning,
                 [.. result.Skipped.Select(s => $"{Names.Humanize(s.Item.Asset)}: {s.Reason}")]));
         }
 
-        _dialogs.Show("Inventory updated", "Save to write the new stock to the campaign file.",
+        _dialogs.Show(Loc.Text("inventory_updated", "Inventory updated"), Loc.Text("inventory_updated_text", "Save to write the new stock to the campaign file."),
             result.Skipped.Count == 0 ? DialogTone.Success : DialogTone.Warning, [.. sections]);
     }
 
@@ -196,7 +198,7 @@ public sealed partial class InventoryViewModel : ObservableObject
     {
         var picks = Items.Where(i => i.IsChecked).ToList();
         if (picks.Count == 0
-            || !_dialogs.Confirm("Remove items", $"Remove {picks.Count} inventory stack(s)?", "Remove", DialogTone.Error))
+            || !_dialogs.Confirm(Loc.Text("remove_items", "Remove items"), Loc.Text("remove_items_text", "Remove {0} inventory stack(s)?", picks.Count), Loc.Instance["remove"], DialogTone.Error))
         {
             return;
         }

@@ -4,6 +4,8 @@ using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.Core.Catalog;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
+using Mech5.Mercs.SaveEditor.App.Localization;
+
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
 public sealed partial class SkillViewModel(PilotSkill skill) : ObservableObject
@@ -256,11 +258,11 @@ public sealed partial class PilotsViewModel : ObservableObject
         var template = Selected?.Pilot ?? (_doc.Roster.Pilots.Count > 0 ? _doc.Roster.Pilots[0] : null);
         if (template is null || !_doc.Roster.CanHire)
         {
-            _dialogs.Show("Can't hire", "This save has no pilot to model a recruit on.", DialogTone.Warning);
+            _dialogs.Show(Loc.Text("cant_hire", "Can't hire"), Loc.Text("cant_hire_text", "This save has no pilot to model a recruit on."), DialogTone.Warning);
             return;
         }
 
-        var hired = _doc.Roster.Hire(template, "New Recruit", "Recruit");
+        var hired = _doc.Roster.Hire(template, Loc.Text("new_recruit", "New Recruit"), Loc.Text("recruit", "Recruit"));
         Rebuild(hired);
     }
 
@@ -268,7 +270,7 @@ public sealed partial class PilotsViewModel : ObservableObject
     private void Release()
     {
         if (Selected is not { } pilot
-            || !_dialogs.Confirm("Release pilot", $"Release {pilot.Name} from the company?", "Release", DialogTone.Error))
+            || !_dialogs.Confirm(Loc.Text("release_pilot", "Release pilot"), Loc.Text("release_pilot_text", "Release {0} from the company?", pilot.Name), Loc.Instance["release"], DialogTone.Error))
         {
             return;
         }
@@ -276,7 +278,7 @@ public sealed partial class PilotsViewModel : ObservableObject
         var result = _doc.Roster.Release([pilot.Pilot]);
         if (result.Skipped.Count > 0)
         {
-            _dialogs.Show("Can't release", $"{pilot.Name}: {result.Skipped[0].Reason}.", DialogTone.Warning);
+            _dialogs.Show(Loc.Text("cant_release", "Can't release"), $"{pilot.Name}: {result.Skipped[0].Reason}.", DialogTone.Warning);
             return;
         }
 

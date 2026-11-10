@@ -2,6 +2,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Mech5.Mercs.SaveEditor.Core.Game;
 
+using Mech5.Mercs.SaveEditor.App.Localization;
+
 namespace Mech5.Mercs.SaveEditor.App.ViewModels;
 
 public sealed partial class FactionViewModel(FactionStanding standing) : ObservableObject
@@ -21,11 +23,11 @@ public sealed partial class FactionViewModel(FactionStanding standing) : Observa
 
     public string Mood => Standing switch
     {
-        >= 75 => "ALLIED",
-        >= 25 => "FRIENDLY",
-        > -25 => "NEUTRAL",
-        > -75 => "UNFRIENDLY",
-        _ => "HOSTILE",
+        >= 75 => Loc.Text("mood_allied", "ALLIED"),
+        >= 25 => Loc.Text("mood_friendly", "FRIENDLY"),
+        > -25 => Loc.Text("mood_neutral", "NEUTRAL"),
+        > -75 => Loc.Text("mood_unfriendly", "UNFRIENDLY"),
+        _ => Loc.Text("mood_hostile", "HOSTILE"),
     };
 
     public void Refresh()

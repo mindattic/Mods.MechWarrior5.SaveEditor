@@ -185,7 +185,7 @@ public sealed partial class MechsViewModel : ObservableObject
         var picks = _catalog.Where(r => r.IsChecked).Select(r => r.Variant).ToList();
         if (picks.Count == 0)
         {
-            _dialogs.Show("Nothing selected", "Tick the mechs you want (Shift+click selects a range, Ctrl+A selects everything shown), then add them.");
+            _dialogs.Show(Loc.Text("nothing_selected", "Nothing selected"), Loc.Text("nothing_selected_text", "Tick the mechs you want (Shift+click selects a range, Ctrl+A selects everything shown), then add them."));
             return;
         }
 
@@ -203,19 +203,19 @@ public sealed partial class MechsViewModel : ObservableObject
         var sections = new List<DialogSection>();
         if (added.Count > 0)
         {
-            sections.Add(new DialogSection($"ADDED TO COLD STORAGE ({added.Count * copies})", DialogTone.Success, added));
+            sections.Add(new DialogSection(Loc.Text("added_cold", "ADDED TO COLD STORAGE ({0})", added.Count * copies), DialogTone.Success, added));
         }
 
         if (skipped.Count > 0)
         {
-            sections.Add(new DialogSection($"SKIPPED ({skipped.Count})", DialogTone.Warning, skipped));
+            sections.Add(new DialogSection(Loc.Text("section_skipped", "SKIPPED ({0})", skipped.Count), DialogTone.Warning, skipped));
         }
 
         var message = added.Count > 0
-            ? "New mechs arrive with their factory loadouts. Save to write them to the campaign file."
-            : "No mechs were added.";
+            ? Loc.Text("requisition_done_text", "New mechs arrive with their factory loadouts. Save to write them to the campaign file.")
+            : Loc.Text("requisition_none", "No mechs were added.");
         _dialogs.Show(
-            added.Count > 0 ? "Requisition complete" : "Requisition failed",
+            added.Count > 0 ? Loc.Text("requisition_complete", "Requisition complete") : Loc.Text("requisition_failed", "Requisition failed"),
             message,
             skipped.Count == 0 ? DialogTone.Success : added.Count > 0 ? DialogTone.Warning : DialogTone.Error,
             [.. sections]);
@@ -251,18 +251,18 @@ public sealed partial class MechsViewModel : ObservableObject
         var cold = picks.Count(p => p.IsColdStorage);
         if (cold == 0)
         {
-            _dialogs.Show("Nothing to remove", "Only cold-storage mechs can be removed. MechBay mechs stay because your lances and pilots refer to them.", DialogTone.Warning);
+            _dialogs.Show(Loc.Text("nothing_to_remove", "Nothing to remove"), Loc.Text("nothing_to_remove_text", "Only cold-storage mechs can be removed. MechBay mechs stay because your lances and pilots refer to them."), DialogTone.Warning);
             return;
         }
 
-        if (!_dialogs.Confirm("Remove mechs", $"Remove {cold} mech(s) from cold storage? This can't be undone after you save.", "Remove", DialogTone.Error))
+        if (!_dialogs.Confirm(Loc.Text("remove_mechs", "Remove mechs"), Loc.Text("remove_mechs_text", "Remove {0} mech(s) from cold storage? This can't be undone after you save.", cold), Loc.Instance["remove"], DialogTone.Error))
         {
             return;
         }
 
         var result = _doc.Hangar.RemoveFromColdStorage(picks.Select(p => p.Record));
         RebuildHangar();
-        Report("Removed from cold storage", result, r => $"{r.Code} {r.Variant?.ChassisName}");
+        Report(Loc.Text("removed_cold", "Removed from cold storage"), result, r => $"{r.Code} {r.Variant?.ChassisName}");
     }
 
     [RelayCommand]
@@ -270,12 +270,12 @@ public sealed partial class MechsViewModel : ObservableObject
     {
         var picks = Hangar.Where(r => r.IsChecked).Select(r => r.Record).ToList();
         if (picks.Count == 0
-            || !_dialogs.Confirm("Reset to stock", $"Replace the loadout of {picks.Count} mech(s) with their factory configuration? Installed weapons and equipment are not returned to inventory.", "Reset"))
+            || !_dialogs.Confirm(Loc.Text("reset_stock", "Reset to stock"), Loc.Text("reset_stock_text", "Replace the loadout of {0} mech(s) with their factory configuration? Installed weapons and equipment are not returned to inventory.", picks.Count), Loc.Text("reset", "Reset")))
         {
             return;
         }
 
-        Report("Reset to stock loadout", _doc.Hangar.ResetToStock(picks), r => $"{r.Code} {r.Variant?.ChassisName}");
+        Report(Loc.Text("reset_stock_done", "Reset to stock loadout"), _doc.Hangar.ResetToStock(picks), r => $"{r.Code} {r.Variant?.ChassisName}");
     }
 
     /// <summary>Opens the Mech Lab for the given row, or for the single ticked hangar mech.</summary>
@@ -286,19 +286,19 @@ public sealed partial class MechsViewModel : ObservableObject
         row ??= picks.Count == 1 ? picks[0] : null;
         if (row is null)
         {
-            _dialogs.Show("Pick one mech", "Tick exactly one hangar mech (or double-click it) to open it in the Mech Lab.");
+            _dialogs.Show(Loc.Text("pick_one", "Pick one mech"), Loc.Text("pick_one_text", "Tick exactly one hangar mech (or double-click it) to open it in the Mech Lab."));
             return;
         }
 
         if (!row.Record.IsEditable)
         {
-            _dialogs.Show("Can't edit this mech", "Its data uses a layout this editor can't safely rewrite.", DialogTone.Warning);
+            _dialogs.Show(Loc.Text("cant_edit_mech", "Can't edit this mech"), Loc.Text("cant_edit_mech_text", "Its data uses a layout this editor can't safely rewrite."), DialogTone.Warning);
             return;
         }
 
         if (_windows.EditLoadout(new LoadoutEditorViewModel(row.Record, _doc.Hangar, _items, _traits, _dialogs)))
         {
-            _main.ShowToast($"Updated {row.Code} loadout. Save to keep it.");
+            _main.ShowToast(Loc.Text("loadout_updated", "Updated {0} loadout. Save to keep it.", row.Code));
         }
     }
 
@@ -313,7 +313,7 @@ public sealed partial class MechsViewModel : ObservableObject
     {
         if (picks.Count > 0)
         {
-            Report("Repaired", _doc.Hangar.Repair(picks), r => $"{r.Code} {r.Variant?.ChassisName}");
+            Report(Loc.Text("repaired", "Repaired"), _doc.Hangar.Repair(picks), r => $"{r.Code} {r.Variant?.ChassisName}");
         }
     }
 
@@ -322,22 +322,22 @@ public sealed partial class MechsViewModel : ObservableObject
         var sections = new List<DialogSection>();
         if (result.Succeeded.Count > 0)
         {
-            sections.Add(new DialogSection($"DONE ({result.Succeeded.Count})", DialogTone.Success, [.. result.Succeeded.Select(label)]));
+            sections.Add(new DialogSection(Loc.Text("section_done", "DONE ({0})", result.Succeeded.Count), DialogTone.Success, [.. result.Succeeded.Select(label)]));
         }
 
         if (result.Skipped.Count > 0)
         {
-            sections.Add(new DialogSection($"SKIPPED ({result.Skipped.Count})", DialogTone.Warning,
+            sections.Add(new DialogSection(Loc.Text("section_skipped", "SKIPPED ({0})", result.Skipped.Count), DialogTone.Warning,
                 [.. result.Skipped.Select(s => $"{label(s.Item)}: {s.Reason}")]));
         }
 
         if (result.Skipped.Count == 0)
         {
-            _main.ShowToast($"{title}: {result.Succeeded.Count} mech(s). Save to keep the change.");
+            _main.ShowToast(Loc.Text("report_toast", "{0}: {1} mech(s). Save to keep the change.", title, result.Succeeded.Count));
         }
         else
         {
-            _dialogs.Show(title, "Save to keep the changes.", result.Succeeded.Count > 0 ? DialogTone.Warning : DialogTone.Error, [.. sections]);
+            _dialogs.Show(title, Loc.Text("save_to_keep_changes", "Save to keep the changes."), result.Succeeded.Count > 0 ? DialogTone.Warning : DialogTone.Error, [.. sections]);
         }
 
         ClearHangarSelection();

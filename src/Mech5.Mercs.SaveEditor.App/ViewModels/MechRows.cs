@@ -29,7 +29,7 @@ public sealed partial class CatalogMechViewModel : SelectableItem
 
     public string? DlcCode => Variant.ModName is not null ? "MOD" : Variant.Dlc?.ShortName;
 
-    public string? DlcName => Variant.ModName is { } mod ? $"Mod: {mod}" : Variant.Dlc?.Name;
+    public string? DlcName => Variant.ModName is { } mod ? Loc.Text("mod_named", "Mod: {0}", mod) : Variant.Dlc?.Name;
 
     public bool IsMod => Variant.ModName is not null;
 
