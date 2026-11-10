@@ -19,10 +19,10 @@
 
             <StackPanel Orientation="Horizontal" MouseLeftButtonDown="OnDrag" Background="Transparent">
                 <Rectangle Width="6" Height="22" Fill="{Binding ToneBrush}" Margin="0,0,10,0" />
-                <TextBlock Text="{Binding Title}" Style="{StaticResource Text.Title}" FontSize="24" />
+                <TextBlock Text="{Binding Title}" Style="{StaticResource Text.Title}" FontSize="26" />
             </StackPanel>
 
-            <TextBlock Grid.Row="1" Margin="0,12,0,0" Text="{Binding Message}" TextWrapping="Wrap" FontSize="16"
+            <TextBlock Grid.Row="1" Margin="0,12,0,0" Text="{Binding Message}" TextWrapping="Wrap" FontSize="18"
                        Foreground="{DynamicResource Brush.Text}" />
 
             <ScrollViewer Grid.Row="2" Margin="0,10,0,0" VerticalScrollBarVisibility="Auto" MaxHeight="420">
@@ -30,7 +30,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,8,0,0">
-                                <TextBlock Text="{Binding Header}" Foreground="{Binding Brush}" FontWeight="Bold" FontSize="14" />
+                                <TextBlock Text="{Binding Header}" Foreground="{Binding Brush}" FontWeight="Bold" FontSize="16" />
                                 <ItemsControl ItemsSource="{Binding Lines}" Margin="0,4,0,0">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>

@@ -12,7 +12,7 @@
                 <Path Data="M14,0 L42,0 L56,24 L42,48 L14,48 L0,24 Z" Stretch="Uniform" Width="40" Height="34"
                       Stroke="{DynamicResource Brush.LineBright}" StrokeThickness="1.5" Fill="{DynamicResource Brush.Panel}" />
                 <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           FontWeight="Bold" FontSize="14" Foreground="{DynamicResource Brush.TextMuted}" />
+                           FontWeight="Bold" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}" />
                 <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
             </Grid>
         </DataTemplate>
@@ -51,7 +51,7 @@
                             <Run Text="{l:T bay}" /> <Run Text="{Binding BayCount, Mode=OneWay}" Foreground="{DynamicResource Brush.Text}" />
                             <Run Text="{l:T cold}" /> <Run Text="{Binding ColdCount, Mode=OneWay}" Foreground="{DynamicResource Brush.Text}" />
                         </TextBlock>
-                        <TextBlock Text="{l:T company_hangar}" Style="{StaticResource Text.Section}" FontSize="17" />
+                        <TextBlock Text="{l:T company_hangar}" Style="{StaticResource Text.Section}" FontSize="19" />
                     </DockPanel>
                     <CheckBox Content="{l:T cold_storage_only}" IsChecked="{Binding ShowColdStorageOnly}" Margin="0,10,0,0" />
                 </StackPanel>
@@ -120,21 +120,21 @@
                                 <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
                                 <ContentPresenter Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource Portrait}" Tag="80" Margin="0,0,12,0" />
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Code}" FontSize="19" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
-                                    <TextBlock Text="{Binding Title}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
-                                    <TextBlock Text="{Binding Subtitle}" Style="{StaticResource Text.Muted}" FontSize="13" />
+                                    <TextBlock Text="{Binding Code}" FontSize="21" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
+                                    <TextBlock Text="{Binding Title}" FontSize="17" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding Subtitle}" Style="{StaticResource Text.Muted}" FontSize="15" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
                                     <Border Style="{StaticResource Chip}" HorizontalAlignment="Right">
                                         <StackPanel Orientation="Horizontal">
                                             <Path Data="{StaticResource Glyph.Snowflake}" Stroke="{DynamicResource Brush.Info}" StrokeThickness="1.4" Width="11" Height="11"
                                                   Stretch="Uniform" Margin="0,0,5,0" Visibility="{Binding IsColdStorage, Converter={StaticResource BoolToVisibility}}" />
-                                            <TextBlock Text="{Binding LocationLabel}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
+                                            <TextBlock Text="{Binding LocationLabel}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
                                         </StackPanel>
                                     </Border>
                                     <Border Style="{StaticResource Chip}" Margin="0,4,0,0" HorizontalAlignment="Right" Background="{DynamicResource Brush.AccentWash}"
                                             BorderBrush="{DynamicResource Brush.Accent}" Visibility="{Binding IsNew, Converter={StaticResource BoolToVisibility}}">
-                                        <TextBlock Text="{l:T new}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
+                                        <TextBlock Text="{l:T new}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                     </Border>
                                 </StackPanel>
                             </Grid>
@@ -152,7 +152,7 @@
                         <TextBlock DockPanel.Dock="Right" Style="{StaticResource Text.Label}" VerticalAlignment="Bottom">
                             <Run Text="{Binding VisibleCount, Mode=OneWay}" Foreground="{DynamicResource Brush.Text}" /> <Run Text="{l:T shown}" />
                         </TextBlock>
-                        <TextBlock Text="{l:T requisition_add_to_cold_storage}" Style="{StaticResource Text.Section}" FontSize="17" />
+                        <TextBlock Text="{l:T requisition_add_to_cold_storage}" Style="{StaticResource Text.Section}" FontSize="19" />
                     </DockPanel>
 
                     <Grid Margin="0,12,0,0">
@@ -179,7 +179,7 @@
                         <ToggleButton Style="{StaticResource Toggle.Chip}" Content="{l:T owned_dlc_only}" IsChecked="{Binding OwnedDlcOnly}"
                                       IsEnabled="{Binding HasDlcInfo}" ToolTip="{l:T hide_mechs_from_dlc_this_campaign_doesn_t_have}" />
                         <Button Style="{StaticResource Button.Link}" Command="{Binding ClearFiltersCommand}" VerticalAlignment="Center" Margin="8,0,0,0">
-                            <TextBlock Text="{l:T reset_filters}" FontWeight="Bold" FontSize="14" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                            <TextBlock Text="{l:T reset_filters}" FontWeight="Bold" FontSize="16" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
                         </Button>
                     </WrapPanel>
                 </StackPanel>
@@ -202,7 +202,7 @@
                         <Button DockPanel.Dock="Right" Command="{Binding AddSelectedCommand}" Style="{StaticResource Button.Command}" Height="42" Padding="22,0">
                             <StackPanel Orientation="Horizontal">
                                 <Path Data="{StaticResource Glyph.Plus}" Style="{StaticResource Glyph}" Stroke="{DynamicResource Brush.Void}" StrokeThickness="2.2" Margin="0,0,10,0" />
-                                <TextBlock FontWeight="Bold" FontSize="17" Foreground="{DynamicResource Brush.Void}">
+                                <TextBlock FontWeight="Bold" FontSize="19" Foreground="{DynamicResource Brush.Void}">
                                     <Run Text="{l:T add}" /> <Run Text="{Binding SelectedCount, Mode=OneWay}" /> <Run Text="{l:T to_cold_storage}" />
                                 </TextBlock>
                             </StackPanel>
@@ -255,19 +255,19 @@
                                 <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
                                 <ContentPresenter Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource Portrait}" Tag="92" HorizontalAlignment="Left" />
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="4,0,8,0">
-                                    <TextBlock Text="{Binding Code}" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
-                                    <TextBlock Text="{Binding Title}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
-                                    <TextBlock Text="{Binding Subtitle}" Style="{StaticResource Text.Muted}" FontSize="13" />
+                                    <TextBlock Text="{Binding Code}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
+                                    <TextBlock Text="{Binding Title}" FontSize="17" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding Subtitle}" Style="{StaticResource Text.Muted}" FontSize="15" />
                                 </StackPanel>
-                                <TextBlock Grid.Column="3" Text="{Binding Variant.Tons}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" />
-                                <TextBlock Grid.Column="4" Text="{Binding ClassLabel}" FontSize="15" VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextMuted}" />
+                                <TextBlock Grid.Column="3" Text="{Binding Variant.Tons}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="4" Text="{Binding ClassLabel}" FontSize="17" VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextMuted}" />
                                 <Border Grid.Column="5" HorizontalAlignment="Left" Style="{StaticResource Dlc.Chip}" ToolTip="{Binding DlcName}"
                                         Visibility="{Binding DlcCode, Converter={StaticResource HasValueToVisibility}}">
-                                    <TextBlock Text="{Binding DlcCode}" FontSize="12" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding DlcCode}" FontSize="14" FontWeight="Bold" />
                                 </Border>
-                                <TextBlock Grid.Column="5" Text="{l:T base}" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextFaint}"
+                                <TextBlock Grid.Column="5" Text="{l:T base}" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource Brush.TextFaint}"
                                            Visibility="{Binding DlcCode, Converter={StaticResource HasValueToVisibility}, ConverterParameter=Invert}" />
-                                <TextBlock Grid.Column="6" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"
+                                <TextBlock Grid.Column="6" VerticalAlignment="Center" FontSize="17" FontWeight="Bold"
                                            Visibility="{Binding OwnedCount, Converter={StaticResource HasValueToVisibility}}">
                                     <Run Text="x" Foreground="{DynamicResource Brush.TextMuted}" /><Run Text="{Binding OwnedCount, Mode=OneWay}" />
                                 </TextBlock>

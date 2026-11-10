@@ -66,8 +66,8 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Name}" FontSize="19" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
-                                    <TextBlock Style="{StaticResource Text.Muted}" FontSize="14">
+                                    <TextBlock Text="{Binding Name}" FontSize="21" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Style="{StaticResource Text.Muted}" FontSize="16">
                                         <Run Text="{Binding Saves.Count, Mode=OneWay}" /> <Run Text="{l:T saves}" />
                                         <Run Text="{Binding CompanyGameDate, Mode=OneWay, StringFormat='  /  {0}'}" />
                                     </TextBlock>
@@ -120,28 +120,28 @@
                                     </Grid.ColumnDefinitions>
                                     <StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Bold" />
+                                            <TextBlock Text="{Binding Name}" FontSize="19" FontWeight="Bold" />
                                             <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Visibility="{Binding IsAutosave, Converter={StaticResource BoolToVisibility}}">
-                                                <TextBlock Text="{l:T auto}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
+                                                <TextBlock Text="{l:T auto}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.TextMuted}" />
                                             </Border>
                                             <Border Style="{StaticResource Chip}" Margin="10,0,0,0" Background="{DynamicResource Brush.AccentWash}" BorderBrush="{DynamicResource Brush.Accent}"
                                                     Visibility="{Binding IsEditorSave, Converter={StaticResource BoolToVisibility}}" ToolTip="{l:T written_by_this_editor}">
-                                                <TextBlock Text="{l:T edited}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
+                                                <TextBlock Text="{l:T edited}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.AccentHot}" />
                                             </Border>
                                         </StackPanel>
-                                        <TextBlock Text="{Binding StarSystem}" Style="{StaticResource Text.Muted}" FontSize="14" />
+                                        <TextBlock Text="{Binding StarSystem}" Style="{StaticResource Text.Muted}" FontSize="16" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <TextBlock Text="{l:T game_date}" Style="{StaticResource Text.Label}" FontSize="11" />
-                                        <TextBlock Text="{Binding GameDate}" FontSize="15" />
+                                        <TextBlock Text="{l:T game_date}" Style="{StaticResource Text.Label}" FontSize="13" />
+                                        <TextBlock Text="{Binding GameDate}" FontSize="17" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                        <TextBlock Text="{l:T reputation}" Style="{StaticResource Text.Label}" FontSize="11" />
-                                        <TextBlock Text="{Binding Reputation}" FontSize="15" />
+                                        <TextBlock Text="{l:T reputation}" Style="{StaticResource Text.Label}" FontSize="13" />
+                                        <TextBlock Text="{Binding Reputation}" FontSize="17" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="3" VerticalAlignment="Center">
-                                        <TextBlock Text="{l:T saved}" Style="{StaticResource Text.Label}" FontSize="11" />
-                                        <TextBlock Text="{Binding LastWrite, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" FontSize="15" />
+                                        <TextBlock Text="{l:T saved}" Style="{StaticResource Text.Label}" FontSize="13" />
+                                        <TextBlock Text="{Binding LastWrite, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" FontSize="17" />
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
@@ -154,7 +154,7 @@
         <c:ChamferBorder Grid.Row="1" Style="{StaticResource Panel}" Margin="0,22,0,0" VerticalAlignment="Top" Padding="28,24"
                          Visibility="{Binding HasCampaigns, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}">
             <StackPanel>
-                <TextBlock Text="{l:T no_campaigns_found}" Style="{StaticResource Text.Section}" FontSize="20" />
+                <TextBlock Text="{l:T no_campaigns_found}" Style="{StaticResource Text.Section}" FontSize="22" />
                 <TextBlock TextWrapping="Wrap" Margin="0,8,0,0" Style="{StaticResource Text.Muted}"
                            Text="{l:T mw5_mercenaries_keeps_campaign_saves_under_local}" />
             </StackPanel>

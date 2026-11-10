@@ -23,13 +23,13 @@
                 <StackPanel>
                     <TextBlock Text="{l:T identity}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{l:T company_name}" Style="{StaticResource Text.Label}" Margin="0,14,0,4" />
-                    <TextBox Text="{Binding CompanyName, UpdateSourceTrigger=LostFocus}" FontSize="18" />
+                    <TextBox Text="{Binding CompanyName, UpdateSourceTrigger=LostFocus}" FontSize="20" />
 
                     <TextBlock Text="{l:T reputation}" Style="{StaticResource Text.Label}" Margin="0,16,0,4" />
                     <TextBox Text="{Binding Reputation, UpdateSourceTrigger=LostFocus}" Width="180" HorizontalAlignment="Left" />
 
                     <TextBlock Text="{l:T campaign_date}" Style="{StaticResource Text.Label}" Margin="0,16,0,2" />
-                    <TextBlock Text="{Binding CampaignDate}" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CampaignDate}" FontSize="20" FontWeight="SemiBold" />
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                         <TextBox Text="{Binding DateText, UpdateSourceTrigger=PropertyChanged}" Width="150" Tag="{l:T yyyy_mm_dd}" />
                         <Button Content="{l:T move_calendar}" Command="{Binding MoveDateCommand}" Margin="8,0,0,0"
@@ -37,7 +37,7 @@
                     </StackPanel>
 
                     <TextBlock Text="{l:T transfer}" Style="{StaticResource Text.Section}" Margin="0,22,0,0" />
-                    <TextBlock Text="{l:T move_mechs_pilots_and_stock_between_campaigns}" Style="{StaticResource Text.Muted}" FontSize="14" Margin="0,4,0,8" />
+                    <TextBlock Text="{l:T move_mechs_pilots_and_stock_between_campaigns}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,4,0,8" />
                     <StackPanel Orientation="Horizontal">
                         <Button Content="{l:T export_company}" Command="{Binding ExportCommand}" Margin="0,0,8,0" />
                         <Button Content="{l:T import_company}" Command="{Binding ImportCommand}" />
@@ -57,7 +57,7 @@
                                 <DataTemplate>
                                     <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Label}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                            <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
                                             <Button Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove}" VerticalAlignment="Center"
                                                     Command="{Binding DataContext.LockTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                     CommandParameter="{Binding}">
@@ -81,7 +81,7 @@
                 <StackPanel>
                     <TextBlock Text="{l:T finances}" Style="{StaticResource Text.Section}" />
                     <TextBlock Text="{l:T available_c_bills}" Style="{StaticResource Text.Label}" Margin="0,14,0,2" />
-                    <TextBlock Text="{Binding CBillsText}" Style="{StaticResource Text.Readout}" FontSize="40" />
+                    <TextBlock Text="{Binding CBillsText}" Style="{StaticResource Text.Readout}" FontSize="42" />
                     <TextBlock Text="{l:T set_exact_amount}" Style="{StaticResource Text.Label}" Margin="0,12,0,4" />
                     <TextBox Text="{Binding CBills, UpdateSourceTrigger=LostFocus}" Width="260" HorizontalAlignment="Left" />
                     <WrapPanel Margin="0,14,0,0">
@@ -122,15 +122,15 @@
             <c:ChamferBorder Grid.Row="2" Grid.Column="2" Style="{StaticResource Panel}" Margin="0,18,0,0" Padding="22,18">
                 <StackPanel>
                     <TextBlock Text="{l:T dlc_content}" Style="{StaticResource Text.Section}" />
-                    <TextBlock Text="{Binding DlcNote}" Style="{StaticResource Text.Muted}" FontSize="14" TextWrapping="Wrap" Margin="0,4,0,10" />
+                    <TextBlock Text="{Binding DlcNote}" Style="{StaticResource Text.Muted}" FontSize="16" TextWrapping="Wrap" Margin="0,4,0,10" />
                     <ItemsControl ItemsSource="{Binding Dlcs}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel Margin="0,3">
                                     <Border DockPanel.Dock="Left" Style="{StaticResource Chip}" Width="56" Margin="0,0,10,0">
-                                        <TextBlock Text="{Binding Code}" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding Code}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" />
                                     </Border>
-                                    <TextBlock DockPanel.Dock="Right" FontWeight="Bold" FontSize="13" VerticalAlignment="Center">
+                                    <TextBlock DockPanel.Dock="Right" FontWeight="Bold" FontSize="15" VerticalAlignment="Center">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                                 <Setter Property="Text" Value="NOT IN CAMPAIGN" />
@@ -144,7 +144,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding Name}" FontSize="15" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Name}" FontSize="17" VerticalAlignment="Center" />
                                 </DockPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

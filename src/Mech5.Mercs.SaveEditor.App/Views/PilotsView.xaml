@@ -72,11 +72,11 @@
                                     <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="{DynamicResource Brush.Accent}" />
                                 </Grid>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{l:T commander}" FontSize="12" FontWeight="Bold" Foreground="{DynamicResource Brush.Accent}"
+                                        <TextBlock Text="{l:T commander}" FontSize="14" FontWeight="Bold" Foreground="{DynamicResource Brush.Accent}"
                                                    Visibility="{Binding IsPlayer, Converter={StaticResource BoolToVisibility}}" />
-                                        <TextBlock Text="{Binding Health}" FontSize="13" FontWeight="SemiBold">
+                                        <TextBlock Text="{Binding Health}" FontSize="15" FontWeight="SemiBold">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                                     <Setter Property="Foreground" Value="{DynamicResource Brush.Ok}" />
@@ -106,7 +106,7 @@
                         <Button Content="{l:T heal}" Command="{Binding HealCommand}" Margin="0,0,8,0" />
                         <Button Content="{l:T max_skill_caps}" Command="{Binding MaxCapsCommand}" Style="{StaticResource Button.Command}" />
                     </StackPanel>
-                    <TextBlock Text="{Binding Name}" Style="{StaticResource Text.Title}" FontSize="26" TextTrimming="CharacterEllipsis" />
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource Text.Title}" FontSize="28" TextTrimming="CharacterEllipsis" />
                 </DockPanel>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -126,7 +126,7 @@
                             <TextBox Text="{Binding Callsign, UpdateSourceTrigger=LostFocus}" />
                             <TextBlock Text="{l:T bio}" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
                             <TextBox Text="{Binding Bio, UpdateSourceTrigger=LostFocus}" Height="84" TextWrapping="Wrap" AcceptsReturn="True"
-                                     VerticalContentAlignment="Top" Padding="8,6" FontSize="14" VerticalScrollBarVisibility="Auto" />
+                                     VerticalContentAlignment="Top" Padding="8,6" FontSize="16" VerticalScrollBarVisibility="Auto" />
                             <TextBlock Text="{l:T monthly_salary}" Style="{StaticResource Text.Label}" Margin="0,10,0,4" />
                             <TextBox Text="{Binding Salary, UpdateSourceTrigger=LostFocus}" Width="160" HorizontalAlignment="Left" />
 
@@ -154,7 +154,7 @@
                                     <DataTemplate>
                                         <Border Style="{StaticResource Chip}" Height="28" Margin="0,0,6,6" Padding="8,0,4,0">
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Label}" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center" />
                                                 <Button Style="{StaticResource Button.Link}" Margin="8,0,0,0" ToolTip="{l:T remove_trait}" VerticalAlignment="Center"
                                                         Command="{Binding DataContext.RemoveTraitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                         CommandParameter="{Binding}">
@@ -197,7 +197,7 @@
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="110" />
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" VerticalAlignment="Center">
                                                     <TextBlock.Style>
                                                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                                             <Style.Triggers>
@@ -209,7 +209,7 @@
                                                     </TextBlock.Style>
                                                 </TextBlock>
                                                 <DockPanel Grid.Column="1" Margin="0,0,16,0" Visibility="{Binding HasCap, Converter={StaticResource BoolToVisibility}}">
-                                                    <TextBlock DockPanel.Dock="Right" Text="{Binding Cap}" Width="26" TextAlignment="Right" FontSize="17" FontWeight="Bold"
+                                                    <TextBlock DockPanel.Dock="Right" Text="{Binding Cap}" Width="26" TextAlignment="Right" FontSize="19" FontWeight="Bold"
                                                                Foreground="{DynamicResource Brush.AccentHot}" VerticalAlignment="Center" />
                                                     <Slider Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Cap}" VerticalAlignment="Center" />
                                                 </DockPanel>
