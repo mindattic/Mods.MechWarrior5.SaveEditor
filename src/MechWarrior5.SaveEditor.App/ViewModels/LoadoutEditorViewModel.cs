@@ -16,7 +16,8 @@ public sealed record ItemOption(ItemDefinition? Item, string Label)
     public static ItemOption Empty => new(null, Loc.Text("empty_slot_option", "- empty -"));
 
     public static ItemOption Of(ItemDefinition item) =>
-        new(item, Names.Humanize(item.Asset) + (Names.Tier(item.Asset) is { } tier ? $"  [{tier}]" : string.Empty));
+        new(item, Names.Item(item) + (Names.Tier(item.Asset) is { } tier ? $"  [{tier}]" : string.Empty)
+                  + (item.ModName is { } mod ? $"  ({mod})" : string.Empty));
 
     public override string ToString() => Label;
 }
@@ -377,11 +378,11 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     }
 
     private List<ItemOption> WeaponOptions(HardpointClass slot) =>
-        [ItemOption.Empty, .. _items.WeaponsFor(slot).OrderBy(i => Names.Humanize(i.Asset), StringComparer.OrdinalIgnoreCase).Select(ItemOption.Of)];
+        [ItemOption.Empty, .. _items.WeaponsFor(slot).OrderBy(Names.Item, StringComparer.OrdinalIgnoreCase).Select(ItemOption.Of)];
 
     private List<ItemOption> EquipmentOptions(string slotType) =>
         [ItemOption.Empty, .. _items.Items.Where(i => EquipmentSlots.Accepts(slotType, i))
-            .OrderBy(i => Names.Humanize(i.Asset), StringComparer.OrdinalIgnoreCase).Select(ItemOption.Of)];
+            .OrderBy(Names.Item, StringComparer.OrdinalIgnoreCase).Select(ItemOption.Of)];
 
     /// <summary>
     /// Finds the fitted item among the options. Items the catalog doesn't list (modded or new) get an

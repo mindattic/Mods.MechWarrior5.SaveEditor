@@ -21,10 +21,11 @@ public enum ItemFilter
 
 public sealed partial class InventoryRowViewModel : SelectableItem
 {
-    public InventoryRowViewModel(InventoryItem item)
+    public InventoryRowViewModel(InventoryItem item, ItemDefinition? definition = null)
     {
         Item = item;
-        Name = Names.Humanize(item.Asset);
+        Name = definition is null ? Names.Humanize(item.Asset) : Names.Item(definition);
+        ModName = definition?.ModName;
         Tier = Names.Tier(item.Asset);
         TypeLabel = Names.AssetTypeLabel(item.AssetType);
     }
@@ -32,6 +33,11 @@ public sealed partial class InventoryRowViewModel : SelectableItem
     public InventoryItem Item { get; }
 
     public string Name { get; }
+
+    /// <summary>The mod that adds this item, if any (shown as a MOD chip).</summary>
+    public string? ModName { get; }
+
+    public string? ModTooltip => ModName is null ? null : Loc.Text("mod_named", "Mod: {0}", ModName);
 
     public string? Tier { get; }
 
@@ -61,15 +67,20 @@ public sealed partial class ItemPickViewModel : SelectableItem
     public ItemPickViewModel(ItemDefinition definition)
     {
         Definition = definition;
-        Name = Names.Humanize(definition.Asset);
+        Name = Names.Item(definition);
         Tier = Names.Tier(definition.Asset);
         TypeLabel = Names.AssetTypeLabel(definition.AssetType);
-        SearchText = $"{definition.Asset} {Name} {TypeLabel}";
+        SearchText = $"{definition.Asset} {Name} {TypeLabel} {definition.ModName}";
     }
 
     public ItemDefinition Definition { get; }
 
     public string Name { get; }
+
+    /// <summary>The mod that adds this item, if any (shown as a MOD chip).</summary>
+    public string? ModName => Definition.ModName;
+
+    public string? ModTooltip => ModName is null ? null : Loc.Text("mod_named", "Mod: {0}", ModName);
 
     public string? Tier { get; }
 
@@ -83,6 +94,7 @@ public sealed partial class InventoryViewModel : ObservableObject
     private readonly Mw5Document _doc;
     private readonly IDialogService _dialogs;
     private readonly List<ItemPickViewModel> _catalog;
+    private readonly ItemCatalog _items;
 
     [ObservableProperty]
     private string _search = string.Empty;
@@ -106,7 +118,8 @@ public sealed partial class InventoryViewModel : ObservableObject
     {
         _doc = doc;
         _dialogs = dialogs;
-        _catalog = items.Items.OrderBy(i => Names.Humanize(i.Asset), StringComparer.OrdinalIgnoreCase)
+        _items = items;
+        _catalog = items.Items.OrderBy(Names.Item, StringComparer.OrdinalIgnoreCase)
             .ThenBy(i => i.Asset, StringComparer.Ordinal)
             .Select(i => new ItemPickViewModel(i))
             .ToList();
@@ -216,12 +229,12 @@ public sealed partial class InventoryViewModel : ObservableObject
         var sections = new List<DialogSection>
         {
             new(Loc.Text("inv_added", "ADDED x{0} ({1})", AddCount, result.Succeeded.Count), DialogTone.Success,
-                [.. result.Succeeded.Select(d => Names.Humanize(d.Asset) + (Names.Tier(d.Asset) is { } t ? $" ({t})" : string.Empty))]),
+                [.. result.Succeeded.Select(d => Names.Item(d) +(Names.Tier(d.Asset) is { } t ? $" ({t})" : string.Empty))]),
         };
         if (result.Skipped.Count > 0)
         {
             sections.Add(new DialogSection(Loc.Text("section_skipped", "SKIPPED ({0})", result.Skipped.Count), DialogTone.Warning,
-                [.. result.Skipped.Select(s => $"{Names.Humanize(s.Item.Asset)}: {s.Reason}")]));
+                [.. result.Skipped.Select(s => $"{Names.Item(s.Item)}: {s.Reason}")]));
         }
 
         _dialogs.Show(Loc.Text("inventory_updated", "Inventory updated"), Loc.Text("inventory_updated_text", "Save to write the new stock to the campaign file."),
@@ -285,7 +298,7 @@ public sealed partial class InventoryViewModel : ObservableObject
                      .OrderBy(i => i.IsWeapon ? 0 : i.IsAmmo ? 2 : 1)
                      .ThenBy(i => Names.Humanize(i.Asset), StringComparer.OrdinalIgnoreCase))
         {
-            var row = new InventoryRowViewModel(item);
+            var row = new InventoryRowViewModel(item, _items.Find(item.Asset));
             row.CheckedChanged += (_, _) => OnSelectionChanged();
             // An inline count edit changes the "N units" header too.
             row.PropertyChanged += (_, e) =>

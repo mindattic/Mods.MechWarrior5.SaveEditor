@@ -173,7 +173,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" SharedSizeGroup="PilotAction" />
                                 </Grid.ColumnDefinitions>
-                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380"
+                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding TraitToAdd}" DisplayMemberPath="PickerLabel" MaxDropDownHeight="380"
                                           Tag="{l:T pick_a_trait_to_add}">
                                     <ComboBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate></ComboBox.ItemsPanel>
                                 </ComboBox>

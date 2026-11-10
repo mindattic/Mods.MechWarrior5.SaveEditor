@@ -161,6 +161,7 @@
  "game_data": "Datos del juego: {0} mechs",
  "game_data_failed": "No se pudieron leer los datos del juego: se usan los datos integrados ({0})",
  "game_data_missing": "Juego no encontrado: datos integrados",
+ "game_data_mod_extras": "{0} objetos y {1} rasgos de mods",
  "game_data_mods": "Datos del juego: {0} mechs ({1} de mods)",
  "game_data_reading": "Leyendo datos del juego...",
  "game_date": "FECHA DE JUEGO",

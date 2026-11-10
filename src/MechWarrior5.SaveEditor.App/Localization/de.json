@@ -161,6 +161,7 @@
  "game_data": "Spieldaten: {0} Mechs",
  "game_data_failed": "Spieldaten nicht lesbar: integrierte Daten werden verwendet ({0})",
  "game_data_missing": "Spiel nicht gefunden: eingebaute Daten",
+ "game_data_mod_extras": "{0} Gegenstände und {1} Eigenschaften aus Mods",
  "game_data_mods": "Spieldaten: {0} Mechs ({1} aus Mods)",
  "game_data_reading": "Spieldaten werden gelesen...",
  "game_date": "SPIELDATUM",

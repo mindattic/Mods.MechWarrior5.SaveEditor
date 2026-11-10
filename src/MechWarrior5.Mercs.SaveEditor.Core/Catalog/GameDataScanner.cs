@@ -13,11 +13,22 @@ public sealed record GameData(
     IReadOnlyList<ScannedMech> Mechs,
     IReadOnlyList<string> Mods,
     IReadOnlyList<string> Problems,
-    IReadOnlySet<string> AssetNames);
+    IReadOnlySet<string> AssetNames)
+{
+    /// <summary>Weapons, equipment and ammo the enabled mods add (assets the base game doesn't have).</summary>
+    public IReadOnlyList<ItemDefinition> Items { get; init; } = [];
+
+    /// <summary>Pilot traits the enabled mods add.</summary>
+    public IReadOnlyList<TraitDefinition> PilotTraits { get; init; } = [];
+
+    /// <summary>'Mech traits the enabled mods add.</summary>
+    public IReadOnlyList<TraitDefinition> MechTraits { get; init; } = [];
+}
 
 /// <summary>
 /// Reads 'Mech data assets (<c>*_MDA</c>) and stock loadouts (<c>*_Loadout</c>) from the game pak and
-/// from every enabled mod's paks, so the catalog reflects the installed game, DLC and mods.
+/// from every enabled mod's paks, so the catalog reflects the installed game, DLC and mods. From the mods'
+/// paks it also reads the weapons, equipment, ammo and pilot/'Mech traits they add.
 /// </summary>
 public static partial class GameDataScanner
 {
@@ -26,7 +37,9 @@ public static partial class GameDataScanner
         var mechs = new Dictionary<string, ScannedMech>(StringComparer.OrdinalIgnoreCase);
         var problems = new List<string>();
         var assets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets);
+        var extras = new ModExtras();
+        ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets, extras);
+        extras.BaseAssets.UnionWith(assets);
 
         var mods = new List<string>();
         foreach (var (folder, name) in EnabledMods(Path.Combine(gameFolder, GameInstall.ModsRelative)))
@@ -42,15 +55,21 @@ public static partial class GameDataScanner
             mods.Add(name);
             foreach (var pak in paks)
             {
-                ScanPak(pak, name, catalog, mechs, problems, assets);
+                ScanPak(pak, name, catalog, mechs, problems, assets, extras);
             }
         }
 
-        return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets);
+        return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets)
+        {
+            Items = [.. extras.Items.Values],
+            PilotTraits = [.. extras.PilotTraits.Values],
+            MechTraits = [.. extras.MechTraits.Values],
+        };
     }
 
     private static void ScanPak(
-        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets)
+        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets,
+        ModExtras extras)
     {
         try
         {
@@ -58,6 +77,11 @@ public static partial class GameDataScanner
             foreach (var file in pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)))
             {
                 assets.Add(Path.GetFileNameWithoutExtension(file));
+            }
+
+            if (modName is not null)
+            {
+                ScanModAssets(pak, modName, extras);
             }
 
             var loadouts = new Dictionary<string, StockLoadout>(StringComparer.OrdinalIgnoreCase);

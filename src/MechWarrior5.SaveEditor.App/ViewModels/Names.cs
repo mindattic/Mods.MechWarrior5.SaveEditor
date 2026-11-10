@@ -8,27 +8,10 @@ namespace MechWarrior5.SaveEditor.App.ViewModels;
 /// <summary>Turns asset ids like <c>LBXAutocannon10_Lvl2</c> into readable labels.</summary>
 public static partial class Names
 {
-    public static string Humanize(string asset)
-    {
-        var name = TierSuffix().Replace(asset, string.Empty);
-        name = name.Replace("_AmmoEquipment", " Ammo", StringComparison.Ordinal)
-            .Replace("_Equipment", string.Empty, StringComparison.Ordinal)
-            .Replace('_', ' ');
-        name = WordBreak().Replace(name, " ");
-        name = MultiSpace().Replace(name, " ").Trim();
+    public static string Humanize(string asset) => AssetLabel.Humanize(asset);
 
-        // Small words stay lowercase unless they lead: "Magistracy of Canopus", not "Magistracy Of Canopus".
-        var words = name.Split(' ');
-        for (var i = 1; i < words.Length; i++)
-        {
-            if (words[i] is "Of" or "The" or "And")
-            {
-                words[i] = words[i].ToLowerInvariant();
-            }
-        }
-
-        return string.Join(' ', words);
-    }
+    /// <summary>An item's name: the mod's own name for a mod item, else the readable asset id.</summary>
+    public static string Item(ItemDefinition item) => item.Label ?? Humanize(item.Asset);
 
     /// <summary>Localized weight class in title case, e.g. "Leicht".</summary>
     public static string WeightClass(WeightClass weight) =>
@@ -57,10 +40,4 @@ public static partial class Names
 
     [GeneratedRegex(@"_Lvl(\d+)$")]
     private static partial Regex TierSuffix();
-
-    [GeneratedRegex(@"(?<=[a-z])(?=[A-Z0-9])|(?<=[0-9])(?=[A-Z][a-z])|(?<=[A-Z])(?=[A-Z][a-z])")]
-    private static partial Regex WordBreak();
-
-    [GeneratedRegex(@"\s+")]
-    private static partial Regex MultiSpace();
 }
