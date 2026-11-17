@@ -177,7 +177,7 @@ pages in `nexus.json`. `tools/AddonPack` generates add-on packs from a mod's fil
 
 ## Changelog
 
-### Unreleased
+### 4.0.0
 
 **Company page** (Mercenaries)
 - Cantina career paths: points per path, the level reached and the next level's reward, with Next level, Max

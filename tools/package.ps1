@@ -44,6 +44,9 @@ New-Item -ItemType Directory -Force -Path (Join-Path $stage 'Addons') | Out-Null
 Copy-Item (Join-Path $root 'addons\*.json') (Join-Path $stage 'Addons')
 Copy-Item (Join-Path $root 'docs\USER_GUIDE.md') (Join-Path $stage 'README.md')
 
+# The one NexusMods description always carries the full changelog (M5SE-T132).
+& (Join-Path $PSScriptRoot 'nexus-description.ps1') | Out-Null
+
 $zip = Join-Path $dist "MechWarrior5.SaveEditor-$version.zip"
 if (Test-Path $zip) { Remove-Item $zip -Force }
 Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip

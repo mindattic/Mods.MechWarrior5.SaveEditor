@@ -10,6 +10,9 @@ One program, two pages with the same text and the same file:
 - **Description:** [nexus/description.bbcode](nexus/description.bbcode), with the description editor's **Import
   description** (BBCode). Text only: no screenshots or other images (removed for the quarantine review, M5SE-T124).
 
+The description ends with the full changelog: `tools/package.ps1` regenerates that section from README.md's
+`## Changelog` on every build (`tools/nexus-description.ps1`), so edit the README, never the section.
+
 NexusMods' API can't edit descriptions, so paste both by hand after a release changes them.
 
 ## Page fields

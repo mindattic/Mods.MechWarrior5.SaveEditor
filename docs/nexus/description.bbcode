@@ -98,6 +98,89 @@ Clans keeps its 'Mech pictures Oodle-compressed. If an Oodle DLL (oo2core*.dll, 
 [*]No internet access: the program never connects to the internet. It reads only your saves and your game's and mods' files; Sarna.net links open in your own browser only when you click one.
 [/list]
 
+[size=5][b]Changelog[/b][/size]
+[size=4][b]4.0.0[/b][/size]
+[b]Company page[/b] (Mercenaries)
+[list]
+[*]Cantina career paths: points per path, the level reached and the next level's reward, with Next level, Max and Max all. Paths and levels come from the game's and enabled mods' data.
+[*]Arena fame (DLC 6): points and rank, with Next rank and Max; ranks come from the game's fame table.
+[/list]
+[b]Inventory and pilots[/b] (Mercenaries)
+[list]
+[*]Requisition can add each picked weapon's ammo too, paired by the game's own ammo types (mods included).
+[*]Hire a recruit with the selected pilot's skills, as a rookie (no experience), or with random skills within your roster's range.
+[/list]
+[b]Clans[/b]
+[list]
+[*]Honor levels follow the game's own Honor ladder, read from its files.
+[*]Compatibility report: assets a save uses that the base game lacks, traced to the installed Clans mod (on or off) with its version and page; Settings lists the installed Clans mods.
+[/list]
+[b]Both games[/b]
+[list]
+[*]Every 'Mech links to its Sarna.net page (link icon in the requisition list, VIEW ON SARNA.NET under an enlarged picture); it opens in your browser only when you click. Nothing is downloaded.
+[*]The download is now a folder: MW5SaveEditor.exe beside the .NET runtime files it needs, instead of one large single-file exe (that format can trip antivirus heuristics). Keep the files together.
+[*]Add-on packs can correct a mod's ammo pairing (ammoType).
+[/list]
+
+[size=4][b]3.0.0[/b][/size]
+[b]No network access[/b]
+[list]
+[*]The editor never connects to the internet. 'Mech pictures no longer come from Sarna.net: they are read from your installed MechWarrior 5: Mercenaries files, so every variant, DLC and modded 'Mech gets the game's own picture.
+[*]Clans 'Mechs show Clans' own pictures (all 30 chassis) when an Oodle DLL is already on your PC; the editor finds it, or you choose it in Clans Settings. It is never downloaded or bundled. Without one, Clans uses the Mercenaries picture of the same chassis.
+[*]The picture download setting, the picture cache and the Sarna links are gone.
+[/list]
+[b]Mods[/b] (Mercenaries)
+[list]
+[*]Every enabled mod is read from its own files, from the Mods folder and from Steam Workshop, in the game's load order: its weapons, equipment and ammo (with their in-game names, hardpoints and slots), pilot and 'Mech traits, 'Mechs and their pictures. Mod items show their mod's name in the pickers.
+[*]A mod's pilot skill curve sets the skill cap: with Pilot Overhaul - Eternal enabled, caps go to 30. Every limit (skill cap, experience, salary, C-Bills, faction standing, stack size) follows the active mods, and a value already beyond a limit is kept as it is.
+[*]Add-on packs: JSON files in the new Addons folder carry a mod's values. Packs for Additional Vanilla Traits and Academies, PilotOverhaul - Eternal, Yet Another Weapon - Complete Edition, the YASV Complete Edition Patch and Yet Another Mechlab are included. Settings shows each pack's status (active, mod not installed, mod disabled, version not supported) with a switch, and a switch to turn them all off.
+[/list]
+[b]Compatibility report[/b]
+[list]
+[*]Opening a save checks it against the installed game and mods. Settings, Compatibility lists everything that differs from vanilla: content from mods and values past vanilla limits. Each line names the mod, its version and its page, or says why that mod isn't active (not installed, disabled in the game, wrong version). The load message says when something needs a mod that isn't active.
+[/list]
+[b]Install[/b]
+[list]
+[*]The program is the main file on both NexusMods pages again; GitHub releases carry the same zip.
+[/list]
+
+[size=4][b]2.0.0[/b][/size]
+A rebuilt interface and a long list of fixes from a full review of every feature in both games.
+[b]Interface[/b]
+[list]
+[*]Every page, dialog and the Mech Lab share one HUD-style look built on MindAttic.Components: chamfered panels, matching margins and spacing, and columns whose chips and buttons line up.
+[*]The game picker in the title bar is one linked pair, MERCENARIES and CLANS; the look follows the game (amber for Mercenaries, ice blue for Clans). The title bar reads MechWarrior 5 // Save Editor.
+[*]Batch buttons stay greyed out until something is ticked, and a search or filter unticks the rows it hides, so an action only ever touches what you can see.
+[*]Empty pickers show a hint, every DLC code shows the DLC's name on hover, and dialog buttons for destructive actions are red.
+[*]Everything is translated in all six languages (English, Deutsch, Español, Français, 日本語, Русский), including the Clans pages.
+[*]Ctrl+S and Ctrl+O work anywhere in the window and include a value you're still typing.
+[/list]
+[b]Mercenaries[/b]
+[list]
+[*]The Mech Lab keeps a mech's damage when you apply a refit; use Repair to fix it.
+[*]Mechs imported from a company package arrive fully repaired, and injured pilots arrive healthy.
+[*]Mods that replace a mech's stock loadout are honored, a rescan forgets mods you've disabled, and a mod pilot voice shows instead of an empty box.
+[*]Save As into another campaign lists the save with its own details.
+[/list]
+[b]Clans[/b]
+[list]
+[*]Remove mechs works (it was blocked by each mech's own mech bay plan), and the plan is removed with it; Duplicate gives every copy its own plan, and Rename renames it too.
+[*]Repair restores destroyed body parts, and mechs missing one now show as DAMAGED.
+[*]Saving keeps working when the game has a load-menu index file open.
+[/list]
+[b]Safety[/b]
+[list]
+[*]Save files and the game's index files are written to a temporary file first, so a crash or full disk can never leave them half-written; a read-only backup no longer blocks saving.
+[*]A locked or damaged save in the folder no longer breaks the save list.
+[/list]
+[b]Install[/b]
+[list]
+[*]The editor downloads from GitHub releases; the NexusMods pages link there. It's a standalone program: extract the zip anywhere and run MW5SaveEditor.exe.
+[/list]
+
+[size=4][b]1.0.0[/b][/size]
+First release: one save editor for MechWarrior 5: Mercenaries and Clans.
+
 [size=5][b]Shout outs[/b][/size]
 [list]
 [*][b]JJ[/b], whose [url=https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466]MW5 Merc Save Editor[/url] inspired this one's scope. No code from it is used; its game data catalogs (MIT) seed the Mercenaries 'Mech and item lists.
