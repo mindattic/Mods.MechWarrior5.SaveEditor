@@ -35,11 +35,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Sarna.net — 'Mech images
+## 'Mech pictures
 
-'Mech pictures are fetched at runtime from [Sarna.net](https://www.sarna.net) (BattleTech wiki) through its
-public MediaWiki API, cached on the local machine, and never bundled with or redistributed by this
-editor. Image rights belong to their respective owners; each picture links back to its Sarna page.
+'Mech pictures are read at runtime from the player's own MechWarrior 5: Mercenaries install (the textures
+the game and its enabled mods ship) and decoded in memory. They are neither bundled with nor redistributed
+by this editor, and nothing is downloaded. Image rights belong to their respective owners.
+
+## Add-on packs
+
+The JSON packs in `addons/` (shipped in the release's `Addons` folder) contain asset names and display
+names read from the mods they describe: Additional Vanilla Traits and Academies (Silby), PilotOverhaul -
+Eternal (Jackalope85 & Wpnx330), Yet Another Weapon - Complete Edition (DeadRaiser, cszolee, and
+LittleTex115), YASV Complete Edition Patch (DeadRaiser) and Yet Another Mechlab (cszolee79, trueg,
+DeadRaiser). Each pack credits its mod's authors and links the mod's page. No mod files, art or code are
+included; players get the mods themselves from their authors.
 
 ## Rajdhani font
 

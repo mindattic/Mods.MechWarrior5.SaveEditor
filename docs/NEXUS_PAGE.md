@@ -107,19 +107,10 @@ Switch games with the tabs at the top; each keeps its own open save. Every save 
 [img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/06-two-themes-mercs-amber-clans-ice.png[/img]
 
 [size=5][b]Installation instructions[/b][/size]
-[b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b]. The game never starts it and it adds nothing to the game: you run it yourself.
+[b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b] plus an [b]Addons[/b] folder. The game never starts it and it adds nothing to the game: you run it yourself. It never connects to the internet.
 
-[b]With Vortex[/b]
 [list=1]
-[*]Click [b]Mod Manager Download[/b]. Vortex installs it like any mod; the game ignores it.
-[*]Vortex doesn't start it for you. In Vortex's [b]Mods[/b] list, right-click [b]MW5 Save Editor[/b] and choose [b]Open in File Manager[/b].
-[*]In that folder, double-click [b]MW5SaveEditor.exe[/b].
-[/list]
-Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's [b]Dashboard[/b], choose [b]Add Tool[/b] and point it at that MW5SaveEditor.exe. Or right-click the exe and send a shortcut to your Desktop.
-
-[b]Manual[/b]
-[list=1]
-[*]Click [b]Manual Download[/b] and extract the archive anywhere, for example your Desktop.
+[*]Click [b]Manual Download[/b] on the main file (the same zip is mirrored on [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest]GitHub[/url]) and extract it anywhere, for example your Desktop.
 [*]Double-click [b]MW5SaveEditor.exe[/b].
 [/list]
 
@@ -131,7 +122,7 @@ Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's 
 [*]In the game, load the save with that name. Your original save is still there, unchanged.
 [/list]
 
-[b]Uninstalling:[/b] remove it in Vortex, or delete the folder you extracted (your settings are the [b]settings.json[/b] beside the exe). The 'Mech picture cache lives in [b]%LOCALAPPDATA%\MechWarrior5SaveEditor[/b]; delete it too for a clean removal.
+[b]Uninstalling:[/b] delete the folder you extracted. Your settings are the [b]settings.json[/b] beside the exe; the editor writes nothing anywhere else except your saves.
 
 [size=5][b]Main features[/b][/size]
 [b]Your saves are safe.[/b]
@@ -144,7 +135,7 @@ Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's 
 
 [b]MechWarrior 5: Mercenaries[/b]
 [list]
-[*][b]Every 'Mech variant[/b] through [b]DLC 9: Ashes & Ascension[/b], each with its Sarna.net artwork, tonnage, weight class, hero name, DLC source and how many you own. Modded 'Mechs from your enabled mods are listed too.
+[*][b]Every 'Mech variant[/b] through [b]DLC 9: Ashes & Ascension[/b], each with its picture from your own game files, tonnage, weight class, hero name, DLC source and how many you own. Modded 'Mechs from your enabled mods are listed too.
 [*][b]A checkbox on every row:[/b] Shift+click ticks a range, Ctrl+A or [b]Select all shown[/b] takes everything the filters show.
 [*][b]Add N to cold storage[/b] in one click, with copies of each. Every 'Mech arrives with its factory loadout and default paint. [b]One summary per batch[/b], not a message box per 'Mech.
 [*][b]Mech Lab:[/b] each hardpoint offers only the weapons that fit it, at every tier; equipment slots, front and rear armor against the maximum, mech traits, and .mw5loadout export and import. Applying a refit changes only what you refitted; a damaged 'Mech keeps its damage until you repair it.
@@ -154,13 +145,16 @@ Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's 
 [*][b]Pilots:[/b] hire, release, persona, portrait, voice, bio, traits, skills and XP.
 [*][b]Factions:[/b] standing from -100 to +100, or set all allied or neutral.
 [*]DLC and mod aware: content the campaign or game can't load is flagged before you save.
+[*][b]Follows your mods:[/b] every enabled mod (Mods folder and Steam Workshop) is read from its own files: items, traits, 'Mechs, pictures and the pilot skill curve (Pilot Overhaul's caps of 30 included).
+[*][b]Add-on packs:[/b] JSON files in the Addons folder carry a mod's values and apply only while that mod is installed, enabled and a supported version.
+[*][b]Compatibility report:[/b] everything in a save that isn't vanilla, with the mod, version and page behind it, or why that mod isn't active.
 [*]Six languages: English, Deutsch, Español, Français, 日本語, Русский.
 [/list]
 
 [b]MechWarrior 5: Clans[/b]
 [list]
 [*][b]Resources:[/b] Kerenskies, Merits and Honor (Honor moves the Honor level track too), mech, weapon and equipment components, technicians (and the mech bay's technician pool), scientists, crew upgrades, and per-chassis mech experience.
-[*][b]Mechs:[/b] repair armor and every installed part, duplicate with the same loadout, rename, or remove; the mech bay plan of each 'Mech follows it. 'Mechs deployed in your Star or in the work queue are never removed.
+[*][b]Mechs:[/b] pictures from an installed MechWarrior 5: Mercenaries; repair armor and every installed part, duplicate with the same loadout, rename, or remove; the mech bay plan of each 'Mech follows it. 'Mechs deployed in your Star or in the work queue are never removed.
 [*][b]Weapons and equipment:[/b] edit stock, requisition any item seen in Clans campaigns, or add to ticked items in bulk.
 [*][b]Progress:[/b] Honor level, cycles, technician pool, the research queue and completed research.
 [/list]
@@ -176,14 +170,14 @@ Tip: to start it from Vortex next time, open the [b]Tools[/b] panel on Vortex's 
 [*]MechWarrior 5: Mercenaries and/or Clans on Windows (Steam or Epic). Game Pass / Microsoft Store saves live elsewhere and are untested; use Open to pick them at your own risk.
 [*]Windows 10 or 11, 64-bit. The download is self-contained: no .NET install needed.
 [*]No DLC or other mods required. Back up a campaign you care about before editing it, as with any save editor.
-[*]Internet access only for the 'Mech pictures (from Sarna.net, cached after the first view). Everything else works offline.
+[*]No internet access: the program never connects to the internet.
 [/list]
 
 [size=5][b]Shout outs[/b][/size]
 [list]
 [*][b]JJ[/b], whose [url=https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466]MW5 Merc Save Editor[/url] inspired this one's scope. No code from it is used; its game data catalogs (MIT) seed the Mercenaries 'Mech and item lists.
 [*][b]wmtorode[/b], whose original MW5 Mercs Save Editor showed that editing these saves was possible in the first place.
-[*][url=https://www.sarna.net]Sarna.net[/url], the BattleTech wiki, for the 'Mech artwork shown in the editor.
+[*]The authors of the mods the bundled add-on packs describe; each pack credits and links its mod.
 [*][b]Piranha Games[/b] for MechWarrior 5: Mercenaries and Clans.
 [*]Code written with an AI model (Claude).
 [/list]

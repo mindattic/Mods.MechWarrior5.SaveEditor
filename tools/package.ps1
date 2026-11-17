@@ -36,6 +36,9 @@ if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed ($LASTEXITCODE)." }
 # Only the program and what players should read ship; nothing else from the publish folder.
 Get-ChildItem $stage -File | Where-Object { $_.Name -notin @('MW5SaveEditor.exe') -and $_.Extension -ne '.txt' } | Remove-Item -Force
 Copy-Item (Join-Path $root 'THIRD-PARTY-NOTICES.md') $stage
+# Add-on packs: plain JSON data for other mods, read from the Addons folder beside the exe.
+New-Item -ItemType Directory -Force -Path (Join-Path $stage 'Addons') | Out-Null
+Copy-Item (Join-Path $root 'addons\*.json') (Join-Path $stage 'Addons')
 Copy-Item (Join-Path $root 'docs\USER_GUIDE.md') (Join-Path $stage 'README.md')
 
 $zip = Join-Path $dist "MechWarrior5.SaveEditor-$version.zip"

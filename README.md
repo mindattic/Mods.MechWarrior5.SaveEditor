@@ -5,8 +5,9 @@
 Both games are edited through one interface styled after their own HUDs. Under it sits a lossless save
 engine that never touches your original saves.
 
-**It is a standalone program, not a mod the game loads:** one self-contained `MW5SaveEditor.exe`, downloaded
-from GitHub (see Download below). NexusMods only hosts a page linking there, and Vortex isn't needed.
+**It is a standalone program, not a mod the game loads:** one self-contained `MW5SaveEditor.exe` that you run
+yourself. It never connects to the internet. Download it from either NexusMods page or from GitHub (see Download
+below); Vortex isn't needed.
 
 Player documentation is in
 [docs/USER_GUIDE.md](docs/USER_GUIDE.md); the NexusMods listing text is in
@@ -14,13 +15,13 @@ Player documentation is in
 
 ## Download
 
-Download `MechWarrior5.SaveEditor-<version>.zip` from GitHub:
+Download `MechWarrior5.SaveEditor-<version>.zip`. The same file is in every place:
 
-- **GitHub:** [latest release](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest)
-  ([all releases](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases))
-- **NexusMods pages** (they link here):
+- **NexusMods** (main file):
   [MechWarrior 5: Mercenaries](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666),
   [MechWarrior 5: Clans](https://www.nexusmods.com/mechwarrior5clans/mods/70)
+- **GitHub** (mirror and source): [latest release](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest)
+  ([all releases](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases))
 
 Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `MW5SaveEditor.exe`. Full steps are in the [user guide](docs/USER_GUIDE.md#install).
 
@@ -41,7 +42,11 @@ Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `M
 - **Themes.** The look follows the game tab: Mercs (gunmetal and amber) for Mercenaries, Clans (cold steel
   and ice cyan) for Clans. Every page, dialog and the Mech Lab share one chamfered, HUD-styled frame built
   on MindAttic.Components.
-- **Mech art** from Sarna.net, fetched once and cached. It can be switched off in Settings.
+- **'Mech pictures from your own game.** Pictures are read from the installed MechWarrior 5: Mercenaries
+  files (base game, DLC and mods). Clans 'Mechs use the Mercenaries picture of the same chassis when
+  Mercenaries is installed.
+- **No network access.** The program never connects to the internet. It reads only your save files and your
+  game's and mods' files, and writes only saves and `settings.json`.
 
 ### MechWarrior 5: Mercenaries
 
@@ -58,8 +63,17 @@ Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `M
   - Pilots: hire, release, persona, portrait, voice, bio, traits, skills, XP.
   - Factions: standing -100 to +100.
   - Mech traits and Cantina unlocks.
-- **Game-data aware.** Reads the installed game and its enabled mods, so modded mechs show up. It
-  warns before saving anything the game can't load.
+- **Follows your mods.** Reads every enabled mod (Mods folder and Steam Workshop, in the game's load order)
+  straight from its files: weapons, equipment, ammo, pilot and 'Mech traits, 'Mechs, and the pilot skill
+  curve. A mod that raises the skill cap (such as Pilot Overhaul) raises it in the editor too. It warns
+  before saving anything the game can't load.
+- **Add-on packs.** Optional JSON files in the `Addons` folder carry a mod's values (limits, names,
+  additions). Each applies only while its mod is installed, enabled and a version it lists; packs for AVTA,
+  Pilot Overhaul - Eternal, YAW-CE, the YASV patch and YAML ship with the editor. Format:
+  [docs/ADDONS.md](docs/ADDONS.md).
+- **Compatibility report.** Opening a save lists everything in it that differs from the vanilla game, and
+  the mod behind each item with its version and page, or why that mod isn't active (missing, disabled,
+  wrong version).
 - **Six languages:** English, Deutsch, Español, Français, 日本語, Русский.
 
 ### MechWarrior 5: Clans
@@ -100,22 +114,24 @@ dotnet run --project src/MechWarrior5.SaveEditor.App
 | Project | What it is |
 | --- | --- |
 | `shared/src/MechWarrior5.Shared` | Lossless Unreal save engine: UE4 tagged properties (Mercs), and UE 5.4 type-name tags plus the `!GZIP` chunk archive and GVAS (Clans) |
-| `shared/src/MechWarrior5.Shared.Wpf` | MW5 HUD theme, check-list multi-select, Sarna art, dialogs, settings |
+| `shared/src/MechWarrior5.Shared.Wpf` | MW5 HUD theme, check-list multi-select, 'Mech picture behavior and lightbox, dialogs, settings |
 | `src/MechWarrior5.Mercs.SaveEditor.Core` | MW5 Mercenaries save model, editors, catalogs, game-data scanner |
 | `src/MechWarrior5.Clans.SaveEditor.Core` | MW5 Clans save model: inventory actors, mechs, progress, load-menu index |
 | `src/MechWarrior5.SaveEditor.App` | The WPF/MVVM app (`MW5SaveEditor.exe`): one shell per game |
 | `tests/` | NUnit tests (real-save tests are `[Explicit]` and read copies from `MW5_SAVE_DIR`) |
 
 `shared/` holds the game-neutral projects both games use: `MechWarrior5.Shared` (the lossless Unreal
-save engine, pak reading, the editor stamp) and `MechWarrior5.Shared.Wpf` (theme, dialogs, image
-service), with their tests in `shared/tests`. They are ordinary projects of this repo; the former
+save engine, pak reading, texture decoding, the editor stamp) and `MechWarrior5.Shared.Wpf` (theme,
+dialogs, the 'Mech picture behavior), with their tests in `shared/tests`. They are ordinary projects of this repo; the former
 Mods.MechWarrior5.Shared repo they came from is archived.
 
 ## Releasing
 
 `/publish` builds `tools/package.ps1` (a self-contained, single-file `MW5SaveEditor.exe` zipped to
 `dist/`), bumps the version, writes the changelog, and cuts a GitHub release. The release triggers
-`.github/workflows/publish.yml`, which uploads the zip to the NexusMods page named in `nexus.json`.
+`.github/workflows/publish.yml`, which uploads that same zip, fetched from the release, to both NexusMods
+pages in `nexus.json`. `tools/AddonPack` generates add-on packs from a mod's files (see
+[docs/ADDONS.md](docs/ADDONS.md)).
 
 ## How the save formats work
 
@@ -128,6 +144,36 @@ Mods.MechWarrior5.Shared repo they came from is archived.
   [docs/research/clans-save-format.md](docs/research/clans-save-format.md).
 
 ## Changelog
+
+### 3.0.0
+
+**No network access**
+- The editor never connects to the internet. 'Mech pictures no longer come from Sarna.net: they are read
+  from your installed MechWarrior 5: Mercenaries files, so every variant, DLC and modded 'Mech gets the
+  game's own picture. Clans 'Mechs use the Mercenaries picture of the same chassis when Mercenaries is
+  installed.
+- The picture download setting, the picture cache and the Sarna links are gone.
+
+**Mods** (Mercenaries)
+- Every enabled mod is read from its own files, from the Mods folder and from Steam Workshop, in the game's
+  load order: its weapons, equipment and ammo (with their in-game names, hardpoints and slots), pilot and
+  'Mech traits, 'Mechs and their pictures. Mod items show their mod's name in the pickers.
+- A mod's pilot skill curve sets the skill cap: with Pilot Overhaul - Eternal enabled, caps go to 30. Every
+  limit (skill cap, experience, salary, C-Bills, faction standing, stack size) follows the active mods, and a
+  value already beyond a limit is kept as it is.
+- Add-on packs: JSON files in the new `Addons` folder carry a mod's values. Packs for Additional Vanilla
+  Traits and Academies, PilotOverhaul - Eternal, Yet Another Weapon - Complete Edition, the YASV Complete
+  Edition Patch and Yet Another Mechlab are included. Settings shows each pack's status (active, mod not
+  installed, mod disabled, version not supported) with a switch, and a switch to turn them all off.
+
+**Compatibility report**
+- Opening a save checks it against the installed game and mods. Settings, Compatibility lists everything
+  that differs from vanilla: content from mods and values past vanilla limits. Each line names the mod,
+  its version and its page, or says why that mod isn't active (not installed, disabled in the game, wrong
+  version). The load message says when something needs a mod that isn't active.
+
+**Install**
+- The program is the main file on both NexusMods pages again; GitHub releases carry the same zip.
 
 ### 2.0.0
 
@@ -176,7 +222,7 @@ First release: one save editor for MechWarrior 5: Mercenaries and Clans.
 
 - Inspired by JJ's [MW5 Merc Save Editor](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1466).
   No code from it is used; this editor was written from scratch.
-- Mech art is fetched from [Sarna.net](https://www.sarna.net) at runtime and never bundled.
+- 'Mech pictures are read at runtime from your own MechWarrior 5 install and are never bundled.
 - The Rajdhani font is under the SIL OFL.
 - Full notices, including data catalog licensing: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 

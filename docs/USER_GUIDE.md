@@ -6,16 +6,17 @@ in the download as `README.md`.
 ## Install
 
 **This is a program you run, not a mod the game loads.** The game never starts it and it adds nothing
-to the game, so it isn't installed through NexusMods or Vortex.
+to the game, so it doesn't need Vortex. It never connects to the internet.
 
-1. Download `MechWarrior5.SaveEditor-<version>.zip` from
-   [GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest). The file on
-   NexusMods is just a page with that link.
-2. Extract it anywhere, for example your Desktop.
+1. Download `MechWarrior5.SaveEditor-<version>.zip`: the main file on the NexusMods page
+   ([Mercenaries](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666),
+   [Clans](https://www.nexusmods.com/mechwarrior5clans/mods/70)), or the same zip from
+   [GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest).
+2. Extract it anywhere, for example your Desktop. Keep the `Addons` folder beside the exe.
 3. Double-click **MW5SaveEditor.exe**. No .NET install is needed.
 
-To uninstall, delete the folder. Your settings are the `settings.json` beside the exe. The mech
-picture cache lives in `%LOCALAPPDATA%\MechWarrior5SaveEditor`; delete that too for a clean removal.
+To uninstall, delete the folder. Your settings are the `settings.json` beside the exe; the editor
+writes nothing anywhere else except your saves.
 
 ## Before you edit
 
@@ -74,7 +75,10 @@ campaigns and their saves by name; double-click one to open it, or use **Open** 
   - Language (English, Deutsch, Español, Français, 日本語, Русский).
   - The game folder (found automatically on Steam and Epic), so installed DLC and enabled mods are
     recognized.
-  - Owned-DLC filtering and mech pictures.
+  - Add-on packs and the compatibility report (see [Mods and add-ons](#mods-and-add-ons) and
+    [Compatibility](#compatibility)).
+
+'Mech pictures are read from your installed game (base game, DLC and mods); nothing is downloaded.
 
 If you add something the installed game or its enabled mods don't have, the editor warns you before
 saving.
@@ -91,7 +95,7 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
     upgrades.
   - Mech experience (MXP) for each chassis you've earned it on.
   - Each value has quick +10, +100 and +1K buttons.
-- **Mechs.** Every mech with its picture, variant, weight, installed gear and condition (READY or
+- **Mechs.** Every mech with its picture (from an installed MechWarrior 5: Mercenaries, when there is one), variant, weight, installed gear and condition (READY or
   DAMAGED). Tick mechs (or **Select damaged**), then:
   - **Repair:** restores armor and every installed part to working order.
   - **Duplicate:** adds copies with the same loadout, fully repaired (up to 20 of each at a time), each
@@ -103,7 +107,57 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
   piece of equipment seen in Clans campaigns. **+1 / +5 / +10 each** and **Remove** act on ticked items.
 - **Progress.** Honor level and experience, cycles elapsed, the technician pool, the research queue
   and completed research.
-- **Settings.** The save folder, and mech pictures.
+- **Settings.** The save folder.
+
+## Mods and add-ons
+
+This applies to MechWarrior 5: Mercenaries.
+
+**Read automatically.** The editor reads every enabled mod straight from its own files: mods in the
+game's `Mods` folder and Steam Workshop mods, in the game's load order (`modlist.json`). From each it
+takes weapons, equipment and ammo (with their in-game names, hardpoints and slots), pilot and 'Mech
+traits, 'Mechs and their pictures, and the pilot skill curve. A mod item shows its mod's name in the
+pickers. If a mod raises the skill cap (Pilot Overhaul - Eternal goes to 30), the Pilots page follows it.
+Disabled mods are not offered, but the editor still knows what they contain (see [Compatibility](#compatibility)).
+Use **Rescan game and mods** in Settings after changing mods.
+
+**Add-on packs** are JSON files in the `Addons` folder beside the exe. A pack carries one mod's values:
+limits, names, and lists of what the mod adds. It applies only while its mod is installed, enabled and
+a version the pack lists. Packs for these mods come with the editor: Additional Vanilla Traits and
+Academies, PilotOverhaul - Eternal, Yet Another Weapon - Complete Edition, the YASV Complete Edition
+Patch, and Yet Another Mechlab. You can drop more into the folder; the format is in
+[docs/ADDONS.md](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/blob/main/docs/ADDONS.md).
+
+Settings, **Add-ons** lists every pack with its status:
+
+| Status | Meaning |
+| --- | --- |
+| ACTIVE | The mod is installed, enabled and a supported version; the pack applies. |
+| Mod not installed | The mod isn't in the Mods folder or Steam Workshop. |
+| Mod disabled in the game | The mod is installed but turned off in the game's mod list. |
+| Mod version X not supported | The installed version isn't one the pack lists. |
+| Needs the "X" add-on | The pack builds on another pack that isn't active. |
+| Turned off | You switched it off with its checkbox. |
+| Can't be read | The file isn't a valid pack; the reason is shown. |
+
+Untick a pack to turn it off, or tick **Turn all add-ons off (vanilla)**. **Limits in force** shows each
+limit (skill cap, experience, salary, C-Bills, faction standing, items per stack) and which mod or pack
+set it. A value your save already has beyond a limit is kept as it is; the editor only stops you
+pushing it further. Packs never write anything into a save.
+
+## Compatibility
+
+When you open a Mercenaries save, the editor checks it against the installed game and mods. Settings,
+**Compatibility** lists everything in the save that differs from the vanilla game:
+
+- **MODDED**: content or a value that comes from a mod that is active now. Expected.
+- **NEEDS MOD**: content or a value that needs a mod that isn't active. The game may not load it.
+
+Each line shows what it is (a 'Mech, item, trait, pilot skill, C-Bills...), how many times the save uses
+it, the mod behind it with its version and page link, and why that mod doesn't cover it today: not
+installed, installed but disabled in the game's mod list, the wrong version, or an add-on that is turned
+off. "Unknown mod" means no installed mod or add-on pack contains it. If anything needs a mod, the
+message after opening the save says so. The report only reads; it never changes the save.
 
 ## Safety
 
@@ -122,10 +176,19 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
 | --- | --- |
 | My edited save isn't in the load menu | Check the status bar after saving. If it says the save wasn't found in the index, open the folder and use the new file name, or re-save from an original. Restart the game so it rereads its index. |
 | "Can't open save" | The file isn't a campaign save, or it doesn't read back exactly. The editor refuses rather than risk it; please report the game version. |
-| Mech pictures are missing | They download from Sarna.net on first view. Check your connection, or turn them off in Settings. |
+| Mech pictures are missing | Pictures come from your installed MechWarrior 5: Mercenaries; check the game folder in Settings. Clans pictures need Mercenaries installed too; a chassis Mercenaries doesn't have shows its initials. |
+| A modded item or 'Mech is missing | Make sure the mod is enabled in the game's mod list, then press **Rescan game and mods** in Settings. |
+| A save "needs a mod" | See Settings, **Compatibility**: it names the mod, its version and page. Install or enable it in the game, or leave that content as it is. |
 | A batch button is greyed out | Tick at least one row first. Rows hidden by a search or filter are unticked. |
-| The NexusMods download has no program in it | That file is only a link: download the editor from [GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest) (see [Install](#install)). |
 | I want my original back | It was never changed. Load it from the game's menu. Editor saves keep their previous version as `.bak`. |
+
+## What's new in 3.0.0
+
+- No network access at all: 'Mech pictures are read from your installed game instead of Sarna.net.
+- Mods are read from their own files (Mods folder and Steam Workshop): their items, traits, 'Mechs,
+  pictures and skill caps.
+- Add-on packs in the `Addons` folder, with a status and switch for each in Settings.
+- A compatibility report that names the mod, version and page behind anything in a save that isn't vanilla.
 
 ## What's new in 2.0.0
 
@@ -141,5 +204,5 @@ The full list is in the [changelog](https://github.com/mindattic/Mods.MechWarrio
 
 ## Credits
 
-Inspired by JJ's MW5 Merc Save Editor (no code shared). Mech art comes from Sarna.net; the font is
-Rajdhani (SIL OFL). This is an unofficial fan tool, not affiliated with Piranha Games.
+Inspired by JJ's MW5 Merc Save Editor (no code shared). 'Mech pictures are read from your own game
+install; the add-on packs credit and link each mod's authors. The font is Rajdhani (SIL OFL). This is an unofficial fan tool, not affiliated with Piranha Games.
