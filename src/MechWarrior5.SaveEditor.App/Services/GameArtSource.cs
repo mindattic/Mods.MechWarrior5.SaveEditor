@@ -51,6 +51,10 @@ public sealed class GameArtSource(MechCatalog catalog) : IMechArtSource, IDispos
             {
                 OodlePath = oodle.Path;
                 art = ClansArt.Open(folder, oodle);
+                if (art?.HonorThresholds is { Count: > 0 } honor)
+                {
+                    MechWarrior5.Clans.SaveEditor.Core.Game.ProgressEditor.HonorLevelThresholds = honor;
+                }
                 ClansStatus = art is null ? ClansArtStatus.ClansNotFound : ClansArtStatus.Ready;
             }
 

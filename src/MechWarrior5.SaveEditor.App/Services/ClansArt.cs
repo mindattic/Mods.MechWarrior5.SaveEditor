@@ -23,15 +23,23 @@ public sealed class ClansArt
 
     public int Count => _icons.Count;
 
+    /// <summary>
+    /// The Honor ladder from the game's own <c>Progression/Honor/HonorLevelingAsset</c> (base campaign; the DLC
+    /// campaigns' copies hold the same ladder), or null when it can't be read.
+    /// </summary>
+    public IReadOnlyList<int>? HonorThresholds { get; private init; }
+
     public static ClansArt? Open(string clansFolder, Oodle oodle)
     {
         var icons = new Dictionary<string, (IoStoreContainer, int)>(StringComparer.Ordinal);
+        var containers = new List<IoStoreContainer>();
         foreach (var toc in Directory.EnumerateFiles(Path.Combine(clansFolder, GameInstall.ClansPaksRelative), "*.utoc"))
         {
             IoStoreContainer container;
             try
             {
                 container = IoStoreContainer.Open(toc);
+                containers.Add(container);
             }
             catch (Exception e) when (e is IOException or UnauthorizedAccessException or MechWarrior5.Shared.Unreal.SaveFormatException or ArgumentException)
             {
@@ -48,7 +56,27 @@ public sealed class ClansArt
             }
         }
 
-        return icons.Count == 0 ? null : new ClansArt(oodle, icons);
+        return icons.Count == 0 ? null : new ClansArt(oodle, icons) { HonorThresholds = ReadHonor(containers, oodle) };
+    }
+
+    private static IReadOnlyList<int>? ReadHonor(IEnumerable<IoStoreContainer> containers, Oodle oodle)
+    {
+        foreach (var container in containers)
+        {
+            try
+            {
+                if (container.Files.FirstOrDefault(f => f.Key.EndsWith("/Progression/Honor/HonorLevelingAsset.uasset", StringComparison.OrdinalIgnoreCase)) is { Key: not null } entry)
+                {
+                    var package = container.Read(entry.Value, (method, data, size) => oodle.Decompress(data, size));
+                    return MechWarrior5.Clans.SaveEditor.Core.Game.HonorLadder.Parse(package);
+                }
+            }
+            catch (Exception e) when (e is IOException or UnauthorizedAccessException or InvalidDataException or MechWarrior5.Shared.Unreal.SaveFormatException or ArgumentException)
+            {
+            }
+        }
+
+        return null;
     }
 
     /// <summary>The chassis' picture ("Shadow Hawk IIC" is <c>Shadowhawkiic_Icon_UIX</c>), or null.</summary>

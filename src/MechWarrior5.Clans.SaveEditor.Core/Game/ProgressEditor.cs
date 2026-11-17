@@ -17,12 +17,18 @@ public sealed class ProgressEditor
     }
 
     /// <summary>
-    /// Honor experience needed for each level from 2 up, cumulative, as the game's HonorLevelingAsset defines it
-    /// (matches every TotalEXP / CurrentDisplayLevel pair in real saves).
+    /// The base game's Honor ladder, used until the game's own HonorLevelingAsset has been read (it needs the Oodle
+    /// decompressor) and whenever it can't be: matches every TotalEXP / CurrentDisplayLevel pair in real saves.
     /// </summary>
-    public static readonly IReadOnlyList<int> HonorLevelThresholds = [100, 225, 370, 535, 720, 930, 1180, 1470, 1800, 2170, 2845, 3745, 5295, 7270];
+    public static readonly IReadOnlyList<int> BuiltInHonorThresholds = [100, 225, 370, 535, 720, 930, 1180, 1470, 1800, 2170, 2845, 3745, 5295, 7270];
 
-    /// <summary>The Honor level a given total experience reaches (1 to 15).</summary>
+    /// <summary>
+    /// Honor experience needed for each level from 2 up, cumulative: the game's own ladder once read (so a game update
+    /// or a mod that changes it is followed), else <see cref="BuiltInHonorThresholds"/>.
+    /// </summary>
+    public static IReadOnlyList<int> HonorLevelThresholds { get; set; } = BuiltInHonorThresholds;
+
+    /// <summary>The Honor level a given total experience reaches (1 to the ladder's top).</summary>
     public static int HonorLevelFor(int experience) => 1 + HonorLevelThresholds.Count(t => experience >= t);
 
     /// <summary>
