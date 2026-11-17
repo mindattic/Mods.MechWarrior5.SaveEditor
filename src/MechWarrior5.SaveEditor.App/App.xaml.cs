@@ -26,6 +26,17 @@ public partial class App : Application
         var art = new GameArtSource(mechs);
         MechArt.Service = art;
         Exit += (_, _) => art.Dispose();
+        _ = art.StartClans(settings.Current.OodlePath).ContinueWith(
+            _ =>
+            {
+                // Remember a DLL found by searching, so later starts don't search again.
+                if (art.OodlePath is { } found && found != settings.Current.OodlePath)
+                {
+                    settings.Current.OodlePath = found;
+                    settings.Save();
+                }
+            },
+            TaskScheduler.FromCurrentSynchronizationContext());
 
         var main = new MainViewModel(mechs, ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), new DialogService(), settings, new EditorWindows());
         var shell = new ShellViewModel(main, new Clans.ViewModels.ClansMainViewModel(new DialogService(), settings), settings);

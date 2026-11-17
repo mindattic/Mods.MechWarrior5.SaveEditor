@@ -22,6 +22,66 @@ public static partial class GameInstall
         return null;
     }
 
+    public const string ClansPaksRelative = @"MW5Clans\Content\Paks";
+
+    /// <summary>The MechWarrior 5: Clans install (its IoStore paks), for reading its own 'Mech art.</summary>
+    public static string? FindClans()
+    {
+        var candidates = SteamCommonFolders().Select(c => Path.Combine(c, "MechWarrior 5 Clans"))
+            .Concat(EpicInstallLocations().Where(l => l.Contains("Clans", StringComparison.OrdinalIgnoreCase)));
+        foreach (var candidate in candidates)
+        {
+            var paks = Path.Combine(candidate, ClansPaksRelative);
+            if (Directory.Exists(paks) && Directory.EnumerateFiles(paks, "*.utoc").Any())
+            {
+                return candidate;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>Every Steam library's <c>steamapps\common</c> folder that exists.</summary>
+    public static IEnumerable<string> SteamCommonFolders() =>
+        SteamLibraries()
+            .Concat(DriveInfo.GetDrives().Where(d => d.DriveType == DriveType.Fixed).SelectMany(d => new[]
+            {
+                Path.Combine(d.RootDirectory.FullName, "Program Files (x86)", "Steam"),
+                Path.Combine(d.RootDirectory.FullName, "SteamLibrary"),
+                Path.Combine(d.RootDirectory.FullName, "Games", "Steam"),
+            }))
+            .Select(l => Path.Combine(l, "steamapps", "common"))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Where(Directory.Exists);
+
+    /// <summary>Every Epic Games Launcher install location (games and Unreal Engine versions).</summary>
+    public static IEnumerable<string> EpicInstallLocations()
+    {
+        var manifests = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Epic", "EpicGamesLauncher", "Data", "Manifests");
+        if (!Directory.Exists(manifests))
+        {
+            yield break;
+        }
+
+        foreach (var item in Directory.EnumerateFiles(manifests, "*.item"))
+        {
+            string? location = null;
+            try
+            {
+                using var doc = JsonDocument.Parse(SafeRead(item));
+                location = doc.RootElement.TryGetProperty("InstallLocation", out var l) ? l.GetString() : null;
+            }
+            catch (JsonException)
+            {
+            }
+
+            if (!string.IsNullOrWhiteSpace(location))
+            {
+                yield return location;
+            }
+        }
+    }
+
     private static IEnumerable<string> Candidates(string? preferred)
     {
         if (!string.IsNullOrWhiteSpace(preferred))
@@ -71,32 +131,8 @@ public static partial class GameInstall
         }
     }
 
-    private static IEnumerable<string> EpicInstalls()
-    {
-        var manifests = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Epic", "EpicGamesLauncher", "Data", "Manifests");
-        if (!Directory.Exists(manifests))
-        {
-            yield break;
-        }
-
-        foreach (var item in Directory.EnumerateFiles(manifests, "*.item"))
-        {
-            string? location = null;
-            try
-            {
-                using var doc = JsonDocument.Parse(SafeRead(item));
-                location = doc.RootElement.TryGetProperty("InstallLocation", out var l) ? l.GetString() : null;
-            }
-            catch (JsonException)
-            {
-            }
-
-            if (location is not null && location.Contains("MW5", StringComparison.OrdinalIgnoreCase))
-            {
-                yield return location;
-            }
-        }
-    }
+    private static IEnumerable<string> EpicInstalls() =>
+        EpicInstallLocations().Where(l => l.Contains("MW5", StringComparison.OrdinalIgnoreCase));
 
     private static string SafeRead(string path)
     {

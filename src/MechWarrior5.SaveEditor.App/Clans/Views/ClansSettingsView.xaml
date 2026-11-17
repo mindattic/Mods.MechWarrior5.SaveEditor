@@ -33,6 +33,11 @@
                 <StackPanel>
                     <TextBlock Text="{l:T mech_art}" Style="{StaticResource Text.Section}" Margin="0,0,0,8" />
                     <TextBlock Text="{l:T settings_pictures_offline}" TextWrapping="Wrap" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}" />
+                    <TextBlock Text="{Binding ArtStatus}" TextWrapping="Wrap" FontSize="16" Margin="0,10,0,0" />
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                        <ma:MaButton Content="{l:T clans_art_choose}" Command="{Binding ChooseOodleCommand}" Margin="0,0,8,0" />
+                        <ma:MaButton Content="{l:T clans_art_search}" Command="{Binding SearchAgainCommand}" />
+                    </StackPanel>
                 </StackPanel>
             </ma:MaShapeBorder>
 

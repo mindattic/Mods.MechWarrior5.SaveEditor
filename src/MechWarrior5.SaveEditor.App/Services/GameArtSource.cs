@@ -9,19 +9,72 @@ using MechWarrior5.Shared.Unreal;
 namespace MechWarrior5.SaveEditor.App.Services;
 
 /// <summary>
-/// 'Mech pictures read from the installed MechWarrior 5: Mercenaries paks (base game, DLC and enabled mods), the
-/// textures each variant's data asset names. Decoded on demand and kept in memory; nothing is downloaded or written.
-/// Clans 'Mechs use the Mercenaries picture of the same chassis, since Clans' own files need a decompressor
-/// players don't have.
+/// 'Mech pictures read from the installed games' own files; decoded on demand and kept in memory, nothing downloaded or
+/// written. Mercenaries: the texture each variant's data asset names, from the base game, DLC and enabled mods. Clans:
+/// its own pictures when an Oodle DLL is on this PC (<see cref="ClansArt"/>), else the Mercenaries picture of the same chassis.
 /// </summary>
 public sealed class GameArtSource(MechCatalog catalog) : IMechArtSource, IDisposable
 {
     private readonly ConcurrentDictionary<GameTexture, Lazy<Task<BitmapSource?>>> _pictures = new();
+    private readonly ConcurrentDictionary<string, Lazy<Task<BitmapSource?>>> _clansPictures = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, PakFile> _paks = new(StringComparer.OrdinalIgnoreCase);
     private readonly Lock _gate = new();
     private GameData? _game;
+    private Task<ClansArt?> _clans = Task.FromResult<ClansArt?>(null);
 
-    public Task<BitmapSource?> GetAsync(MechArtKey key)
+    /// <summary>Raised (on a worker thread) when the Clans picture search finishes.</summary>
+    public event EventHandler? ClansChanged;
+
+    /// <summary>What the Clans picture search found, for Settings.</summary>
+    public ClansArtStatus ClansStatus { get; private set; } = ClansArtStatus.NotStarted;
+
+    /// <summary>The Oodle DLL in use for Clans pictures, when one was found.</summary>
+    public string? OodlePath { get; private set; }
+
+    /// <summary>Looks for the Clans install and an Oodle DLL in the background; Clans pictures wait for it.</summary>
+    public Task<ClansArt?> StartClans(string? preferredOodle)
+    {
+        ClansStatus = ClansArtStatus.Searching;
+        _clansPictures.Clear();
+        _clans = Task.Run(() =>
+        {
+            ClansArt? art = null;
+            if (GameInstall.FindClans() is not { } folder)
+            {
+                ClansStatus = ClansArtStatus.ClansNotFound;
+            }
+            else if (OodleLocator.Find(preferredOodle) is not { } oodle)
+            {
+                ClansStatus = ClansArtStatus.OodleNotFound;
+            }
+            else
+            {
+                OodlePath = oodle.Path;
+                art = ClansArt.Open(folder, oodle);
+                ClansStatus = art is null ? ClansArtStatus.ClansNotFound : ClansArtStatus.Ready;
+            }
+
+            ClansChanged?.Invoke(this, EventArgs.Empty);
+            return art;
+        });
+        return _clans;
+    }
+
+    public Task<BitmapSource?> GetAsync(MechArtKey key) =>
+        key.Asset is null ? ClansThenMercsAsync(key) : MercsAsync(key);
+
+    private async Task<BitmapSource?> ClansThenMercsAsync(MechArtKey key)
+    {
+        if (await _clans is { } clans
+            && await _clansPictures.GetOrAdd(key.Chassis, chassis => new Lazy<Task<BitmapSource?>>(() => Task.Run(() => clans.Load(chassis)))).Value is { } own)
+        {
+            return own;
+        }
+
+        return await MercsAsync(key);
+    }
+
+    private Task<BitmapSource?> MercsAsync(MechArtKey key)
     {
         if (catalog.Game is not { } game)
         {

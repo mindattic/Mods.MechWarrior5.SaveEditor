@@ -178,8 +178,67 @@ public sealed class ProgressViewModel(ClansDocument doc)
         + (r.PointsApplied > 0 ? Loc.Text("clans_research_points", "  ({0:N0} pts)", r.PointsApplied) : string.Empty);
 }
 
-public sealed partial class SettingsViewModel(ClansMainViewModel main) : ObservableObject
+public sealed partial class SettingsViewModel : ObservableObject
 {
+    private readonly ClansMainViewModel main;
+
+    public SettingsViewModel(ClansMainViewModel main)
+    {
+        this.main = main;
+        if (Art is { } art)
+        {
+            art.ClansChanged += (_, _) => System.Windows.Application.Current?.Dispatcher.BeginInvoke(() => OnPropertyChanged(nameof(ArtStatus)));
+        }
+    }
+
+    private static MechWarrior5.SaveEditor.App.Services.GameArtSource? Art =>
+        MechWarrior5.Shared.Wpf.Behaviors.MechArt.Service as MechWarrior5.SaveEditor.App.Services.GameArtSource;
+
+    /// <summary>Where Clans 'Mech pictures come from right now.</summary>
+    public string ArtStatus => Art?.ClansStatus switch
+    {
+        MechWarrior5.SaveEditor.App.Services.ClansArtStatus.Ready => Loc.Text("clans_art_ready", "Pictures come from your MechWarrior 5: Clans files, decompressed with the Oodle DLL at {0}.", Art.OodlePath ?? main.Settings.OodlePath ?? "?"),
+        MechWarrior5.SaveEditor.App.Services.ClansArtStatus.Searching => Loc.Text("clans_art_searching", "Looking for MechWarrior 5: Clans and an Oodle DLL on this PC..."),
+        MechWarrior5.SaveEditor.App.Services.ClansArtStatus.ClansNotFound => Loc.Text("clans_art_no_game", "MechWarrior 5: Clans wasn't found, so 'Mechs show the Mercenaries picture of the same chassis when Mercenaries is installed."),
+        MechWarrior5.SaveEditor.App.Services.ClansArtStatus.OodleNotFound => Loc.Text("clans_art_no_oodle", "Clans keeps its pictures Oodle-compressed, and no Oodle DLL (oo2core*.dll) was found on this PC. 'Mechs show the Mercenaries picture of the same chassis instead. If an Unreal Engine install or another game has an oo2core*.dll, choose it below."),
+        _ => string.Empty,
+    };
+
+    /// <summary>Pick an oo2core*.dll already on this PC; it is checked before use and never copied.</summary>
+    [RelayCommand]
+    private void ChooseOodle()
+    {
+        var dialog = new Microsoft.Win32.OpenFileDialog
+        {
+            Title = Loc.Text("clans_art_pick", "Choose an Oodle DLL (oo2core*.dll)"),
+            Filter = "Oodle (oo2core*.dll)|oo2core*.dll",
+        };
+        if (dialog.ShowDialog() != true)
+        {
+            return;
+        }
+
+        if (MechWarrior5.Shared.Assets.Oodle.TryLoad(dialog.FileName, out var error) is null)
+        {
+            main.ShowError(Loc.Text("clans_art_bad_oodle", "That file can't be used: {0}", error ?? "?"));
+            return;
+        }
+
+        main.Settings.OodlePath = dialog.FileName;
+        main.SaveSettings();
+        SearchAgain();
+    }
+
+    [RelayCommand]
+    private void SearchAgain()
+    {
+        if (Art is { } art)
+        {
+            _ = art.StartClans(main.Settings.OodlePath);
+            OnPropertyChanged(nameof(ArtStatus));
+        }
+    }
+
     public string SaveFolder
     {
         get => main.SaveFolder;

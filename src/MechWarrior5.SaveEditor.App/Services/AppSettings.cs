@@ -22,6 +22,9 @@ public sealed class AppSettings
     /// <summary>Add-on packs the user turned off, by pack name.</summary>
     public List<string>? DisabledAddons { get; set; }
 
+    /// <summary>The Oodle DLL (oo2core*.dll, already on this PC) used to read MechWarrior 5: Clans' own 'Mech pictures.</summary>
+    public string? OodlePath { get; set; }
+
     /// <summary>Forces vanilla: no add-on pack applies.</summary>
     public bool AddonsOff { get; set; }
 

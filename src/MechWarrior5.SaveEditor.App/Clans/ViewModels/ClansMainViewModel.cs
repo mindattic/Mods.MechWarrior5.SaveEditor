@@ -130,6 +130,8 @@ public sealed partial class ClansMainViewModel : ObservableObject
 
     public void SaveSettings() => _settings.Save();
 
+    public void ShowError(string message) => _dialogs.Show(Loc.Text("error", "Error"), message, DialogTone.Error);
+
     public void ShowToast(string message)
     {
         Toast = message;

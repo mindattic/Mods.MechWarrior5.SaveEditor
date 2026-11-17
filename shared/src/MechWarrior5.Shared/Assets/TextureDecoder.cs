@@ -36,7 +36,7 @@ public static class TextureDecoder
 
         try
         {
-            return DecodeNative(package, package.ReadNativeData(export), ubulk);
+            return DecodeNative(package.NameAt, package.ReadNativeData(export), ubulk);
         }
         catch (Exception e) when (e is SaveFormatException or ArgumentException or IndexOutOfRangeException or OverflowException)
         {
@@ -44,34 +44,126 @@ public static class TextureDecoder
         }
     }
 
-    private static DecodedTexture? DecodeNative(CookedPackage package, byte[] data, byte[]? ubulk)
+    /// <summary>
+    /// A texture from a UE5 zen package (MechWarrior 5: Clans), its largest mip stored inline. The package's export data
+    /// follows its header, so the platform data is found the same way: by its pixel-format FName.
+    /// </summary>
+    public static DecodedTexture? DecodeZen(byte[] package)
+    {
+        try
+        {
+            var names = ZenPackage.Names(package);
+            return DecodeNative(i => i >= 0 && i < names.Count ? names[i] : null, package, ubulk: null);
+        }
+        catch (Exception e) when (e is SaveFormatException or ArgumentException or IndexOutOfRangeException or OverflowException)
+        {
+            return null;
+        }
+    }
+
+    private static DecodedTexture? DecodeNative(Func<int, string?> nameAt, byte[] data, byte[]? ubulk)
     {
         // The platform data starts at its pixel-format FName (PF_*); the strip flags and cooked flag before it vary.
         for (var at = 0; at + 8 <= data.Length; at++)
         {
-            var format = package.NameAt(BitConverter.ToInt32(data, at));
+            var format = nameAt(BitConverter.ToInt32(data, at));
             if (format is null || !format.StartsWith("PF_", StringComparison.Ordinal) || BitConverter.ToInt32(data, at + 4) != 0)
             {
                 continue;
             }
 
-            var r = new UnrealReader(data, at + 8);
-            r.ReadInt64(); // offset to the next platform's data
-            r.ReadInt32(); // SizeX
-            r.ReadInt32(); // SizeY
-            r.ReadInt32(); // packed slices and flags
-            r.ReadFString();
-            r.ReadInt32(); // first mip to serialize
-            var mipCount = r.ReadInt32();
-            for (var i = 0; i < mipCount; i++)
+            // UE4: offset to the next platform, then the sizes. UE5 adds a 16-byte placeholder before them.
+            foreach (var placeholder in new[] { 0, 16 })
             {
-                if (ReadMip(r, format, ubulk) is { } picture)
+                if (TryLayout(data, at + 8 + 8 + placeholder, format) is not { } layout)
                 {
-                    return picture;
+                    continue;
                 }
+
+                return placeholder == 0
+                    ? ReadUe4Mips(new UnrealReader(data, layout.MipsAt), format, layout.MipCount, ubulk)
+                    : ReadInlineMip(data, layout.MipsAt, format, layout.Width, layout.Height);
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>The sizes, format string and mip count at <paramref name="at"/>, or null when they don't read as such.</summary>
+    private static (int Width, int Height, int MipCount, int MipsAt)? TryLayout(byte[] data, int at, string format)
+    {
+        try
+        {
+            var r = new UnrealReader(data, at);
+            var width = r.ReadInt32();
+            var height = r.ReadInt32();
+            r.ReadInt32(); // packed slices and flags
+            var length = r.ReadInt32();
+            if (width <= 0 || height <= 0 || length != format.Length + 1)
+            {
+                return null;
             }
 
+            var r2 = new UnrealReader(data, at + 12);
+            if (r2.ReadFString().Value?.TrimEnd('\0') != format)
+            {
+                return null;
+            }
+
+            r2.ReadInt32(); // first mip to serialize
+            return (width, height, r2.ReadInt32(), r2.Position);
+        }
+        catch (Exception e) when (e is SaveFormatException or ArgumentException or IndexOutOfRangeException)
+        {
             return null;
+        }
+    }
+
+    private static DecodedTexture? ReadUe4Mips(UnrealReader r, string format, int mipCount, byte[]? ubulk)
+    {
+        for (var i = 0; i < mipCount; i++)
+        {
+            if (ReadMip(r, format, ubulk) is { } picture)
+            {
+                return picture;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// UE5's cooked mip: a short bulk-data header, the pixels inline, then the mip's SizeX, SizeY and SizeZ. The header's
+    /// length is found by where the trailing sizes land after the pixels this format and size need.
+    /// </summary>
+    private static DecodedTexture? ReadInlineMip(byte[] data, int at, string format, int width, int height)
+    {
+        var size = format switch
+        {
+            "PF_DXT1" => Math.Max(1, (width + 3) / 4) * Math.Max(1, (height + 3) / 4) * 8,
+            "PF_DXT5" => Math.Max(1, (width + 3) / 4) * Math.Max(1, (height + 3) / 4) * 16,
+            "PF_B8G8R8A8" => width * height * 4,
+            _ => 0,
+        };
+        if (size <= 0 || width <= 0 || height <= 0)
+        {
+            return null;
+        }
+
+        for (var header = 0; header <= 48; header += 4)
+        {
+            var end = at + header + size;
+            if (end + 8 <= data.Length && BitConverter.ToInt32(data, end) == width && BitConverter.ToInt32(data, end + 4) == height)
+            {
+                var pixels = data.AsSpan(at + header, size).ToArray();
+                var bgra = format switch
+                {
+                    "PF_DXT1" => BlockDecoder.Bc1(pixels, width, height),
+                    "PF_DXT5" => BlockDecoder.Bc3(pixels, width, height),
+                    _ => pixels,
+                };
+                return bgra is null ? null : new DecodedTexture(width, height, bgra);
+            }
         }
 
         return null;
