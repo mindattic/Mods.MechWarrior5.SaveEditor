@@ -17,6 +17,9 @@ internal sealed class ModContent
     /// <summary>Each weapon's and ammo's <c>AmmoType</c> tag (base game and mods): a weapon takes the ammo with its tag.</summary>
     public Dictionary<string, string> AmmoTypes { get; } = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>Arena fame levels from the game's progression table; a mod's copy of the table replaces it.</summary>
+    public List<ArenaFameLevel> ArenaFame { get; set; } = [];
+
     /// <summary>The highest level on the base game's pilot skill level curve.</summary>
     public int? BaseSkillCap { get; set; }
 
@@ -59,6 +62,14 @@ public static partial class GameDataScanner
             else if (content.ModSkillCap is not { } current || top > current.Level)
             {
                 content.ModSkillCap = (top, modName);
+            }
+        }
+
+        foreach (var file in pak.Files.Where(f => f.EndsWith("/ArenaFameProgressionTable.uasset", StringComparison.OrdinalIgnoreCase)))
+        {
+            if (ReadArenaFame(pak, file) is { Count: > 0 } levels)
+            {
+                content.ArenaFame = levels;
             }
         }
 
@@ -131,6 +142,38 @@ public static partial class GameDataScanner
             {
                 // An asset the reader can't follow is skipped; the rest of the mod still counts.
             }
+        }
+    }
+
+    /// <summary>The fame table's rows; its struct's field names carry generated suffixes (PointsRequired_10_...).</summary>
+    private static List<ArenaFameLevel>? ReadArenaFame(PakFile pak, string uasset)
+    {
+        var uexp = uasset[..^".uasset".Length] + ".uexp";
+        if (!pak.Contains(uexp))
+        {
+            return null;
+        }
+
+        try
+        {
+            var package = CookedPackage.Parse(pak.Read(uasset), pak.Read(uexp));
+            if (package.FindExport("DataTable") is not { } table)
+            {
+                return null;
+            }
+
+            static UProperty? Field(PropertyList row, string prefix) =>
+                row.FirstOrDefault(p => p.Name.StartsWith(prefix + "_", StringComparison.Ordinal) || p.Name == prefix);
+            return [.. package.ReadDataTable(table)
+                .Select(r => new ArenaFameLevel(
+                    (Field(r.Values, "Level") as IntProperty)?.Value ?? 0,
+                    (Field(r.Values, "Name") as TextProperty)?.DisplayString ?? r.Row,
+                    (Field(r.Values, "PointsRequired") as IntProperty)?.Value ?? 0))
+                .OrderBy(l => l.Points)];
+        }
+        catch (SaveFormatException)
+        {
+            return null;
         }
     }
 

@@ -41,6 +41,9 @@ public sealed record GameData(
     /// <summary>Each weapon's and ammo's ammo tag (base game and enabled mods): matching tags go together.</summary>
     public IReadOnlyDictionary<string, string> AmmoTypes { get; init; } = new Dictionary<string, string>();
 
+    /// <summary>Arena fame levels (DLC 6) from the game or a mod that replaces the table; empty without the data.</summary>
+    public IReadOnlyList<ArenaFameLevel> ArenaFame { get; init; } = [];
+
     /// <summary>Cantina career paths (base game and enabled mods) with their levels and rewards.</summary>
     public IReadOnlyList<CareerPathDefinition> CareerPaths { get; init; } = [];
 
@@ -109,6 +112,7 @@ public static partial class GameDataScanner
                 MechTraits = [.. content.MechTraits.Values],
                 BaseSkillCap = content.BaseSkillCap,
                 AmmoTypes = content.AmmoTypes,
+                ArenaFame = content.ArenaFame,
                 CareerPaths = [.. content.CareerPaths.Values.OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase)],
                 ModSkillCap = content.ModSkillCap,
             };

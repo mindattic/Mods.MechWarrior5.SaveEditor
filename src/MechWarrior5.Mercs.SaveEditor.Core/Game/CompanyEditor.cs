@@ -7,8 +7,8 @@ namespace MechWarrior5.Mercs.SaveEditor.Core.Game;
 
 public sealed class CompanyEditor
 {
-
     private readonly PropertyList _inventory;
+    private readonly PropertyList? _arena;
     private readonly PropertyList _company;
     private readonly TextProperty? _name;
     private readonly Action _changed;
@@ -20,7 +20,44 @@ public sealed class CompanyEditor
         _inventory = file.GetModel("InventoryModel");
         _company = file.GetModel("MercCompanyModel");
         _name = _company.Find<TextProperty>("CompanyName");
+        _arena = file.TryGetModel("ArenaFameModel");
         _file = file;
+    }
+
+    /// <summary>True when the save tracks Arena fame (<c>ArenaFameModel</c>, DLC 6).</summary>
+    public bool HasArenaFame => _arena is not null;
+
+    /// <summary>
+    /// Arena fame points. The game compares them with the fame at its last level-up prompt, so raising them makes it
+    /// offer each newly reached level's prompt and rewards itself; that marker is left alone.
+    /// </summary>
+    public int ArenaFame
+    {
+        get => _arena?.Find<IntProperty>("ArenaFamePoints")?.Value ?? 0;
+        set
+        {
+            if (_arena is null)
+            {
+                return;
+            }
+
+            var clamped = Math.Max(0, value);
+            if (_arena.Find<IntProperty>("ArenaFamePoints") is { } points)
+            {
+                if (points.Value == clamped)
+                {
+                    return;
+                }
+
+                points.Value = clamped;
+            }
+            else
+            {
+                _arena.Insert(0, new IntProperty("ArenaFamePoints", clamped));
+            }
+
+            _changed();
+        }
     }
 
     public long CBills

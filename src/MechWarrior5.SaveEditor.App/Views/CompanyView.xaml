@@ -58,6 +58,25 @@
                                   Visibility="{Binding HasCantinas, Converter={StaticResource BoolToVisibility}}"
                                   ToolTip="{l:T opens_the_cantinas_without_waiting_for_the_story}" />
 
+                        <!-- Arena fame (DLC 6): the ranks come from the game's fame table (or a mod's). -->
+                        <StackPanel Visibility="{Binding HasArenaFame, Converter={StaticResource BoolToVisibility}}">
+                            <TextBlock Text="{l:T arena_fame}" Style="{StaticResource Text.Section}" Margin="0,22,0,6" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="90" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding ArenaFameText}" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Center" />
+                                <TextBox Grid.Column="1" Text="{Binding ArenaFame, UpdateSourceTrigger=LostFocus}" Height="32" Margin="8,0" VerticalAlignment="Center" />
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <ma:MaButton Content="{l:T arena_next_rank}" Command="{Binding ArenaNextRankCommand}" Margin="0,0,6,0" />
+                                    <ma:MaButton Content="{l:T max}" Command="{Binding ArenaMaxRankCommand}" />
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Text="{l:T arena_fame_hint}" Style="{StaticResource Text.Muted}" FontSize="14" TextWrapping="Wrap" Margin="0,6,0,0" />
+                        </StackPanel>
+
                         <!-- Cantina career paths: points per path; levels and rewards come from the game and its mods. -->
                         <StackPanel Visibility="{Binding HasCareers, Converter={StaticResource BoolToVisibility}}">
                             <DockPanel Margin="0,22,0,6">

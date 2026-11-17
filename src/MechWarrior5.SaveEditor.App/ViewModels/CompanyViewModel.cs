@@ -111,6 +111,52 @@ public sealed partial class CompanyViewModel : ObservableObject
     /// <summary>Shown when the save has no career list yet: paths can be raised only after the first Cantina job.</summary>
     public bool CareersNeedStart => HasCareers && !_doc.Traits.CanStartCareers;
 
+    /// <summary>Arena fame (DLC 6): shown when the save tracks it and the game data has the fame ladder.</summary>
+    public bool HasArenaFame => _doc.Company.HasArenaFame && ArenaLevels.Count > 0;
+
+    private IReadOnlyList<ArenaFameLevel> ArenaLevels => _catalog.Game?.ArenaFame ?? [];
+
+    public int ArenaFame
+    {
+        get => _doc.Company.ArenaFame;
+        set
+        {
+            _doc.Company.ArenaFame = Math.Clamp(value, 0, Math.Max(ArenaLevels.Count == 0 ? 0 : ArenaLevels[^1].Points, _doc.Company.ArenaFame));
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(ArenaFameText));
+        }
+    }
+
+    public string ArenaFameText
+    {
+        get
+        {
+            var reached = ArenaLevels.LastOrDefault(l => ArenaFame >= l.Points);
+            var next = ArenaLevels.FirstOrDefault(l => ArenaFame < l.Points);
+            return next is null
+                ? Loc.Text("arena_rank_top", "{0} (top rank)", reached?.Name ?? "-")
+                : Loc.Text("arena_rank", "{0}  -  next: {1} at {2} fame", reached?.Name ?? "-", next.Name, next.Points);
+        }
+    }
+
+    [RelayCommand]
+    private void ArenaNextRank()
+    {
+        if (ArenaLevels.FirstOrDefault(l => ArenaFame < l.Points) is { } next)
+        {
+            ArenaFame = next.Points;
+        }
+    }
+
+    [RelayCommand]
+    private void ArenaMaxRank()
+    {
+        if (ArenaLevels.Count > 0)
+        {
+            ArenaFame = ArenaLevels[^1].Points;
+        }
+    }
+
     [RelayCommand]
     private void MaxCareers()
     {

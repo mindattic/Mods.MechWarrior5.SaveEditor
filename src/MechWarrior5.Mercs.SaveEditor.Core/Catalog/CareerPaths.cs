@@ -1,5 +1,8 @@
 namespace MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 
+/// <summary>An Arena fame level (<c>ArenaFameProgressionTable</c>): its rank name and the fame it needs.</summary>
+public sealed record ArenaFameLevel(int Level, string Name, int Points);
+
 /// <summary>One level of a Cantina career path: the points it needs and the 'Mech trait it rewards.</summary>
 public sealed record CareerLevel(int Points, string? TraitReward);
 

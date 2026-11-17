@@ -51,6 +51,32 @@ public sealed class CookedPackage
         return reader.ReadBytes(reader.Remaining);
     }
 
+    /// <summary>
+    /// A <c>DataTable</c> export's rows: each row's name and its tagged properties (cooked UE4 tables serialize the row
+    /// count after the export's own properties, then each row's FName and property list). Empty when unreadable.
+    /// </summary>
+    public IReadOnlyList<(string Row, PropertyList Values)> ReadDataTable(PackageExport export)
+    {
+        var rows = new List<(string, PropertyList)>();
+        try
+        {
+            var reader = new UnrealReader(_data, (int)export.Offset, (int)(export.Offset + export.Size));
+            ReadList(reader);
+            reader.ReadInt32(); // the object's serialize-guid flag
+            var count = reader.ReadInt32();
+            for (var i = 0; i < count && !reader.AtEnd; i++)
+            {
+                var name = ReadName(reader);
+                rows.Add((name, ReadList(reader)));
+            }
+        }
+        catch (SaveFormatException)
+        {
+        }
+
+        return rows;
+    }
+
     /// <summary>The name-map entry at <paramref name="index"/>, or null when out of range.</summary>
     public string? NameAt(int index) => index >= 0 && index < _names.Count ? _names[index] : null;
 
