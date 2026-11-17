@@ -206,7 +206,7 @@ read, and the editor won't guess.
 | A batch button is greyed out | Tick at least one row first. Rows hidden by a search or filter are unticked. |
 | I want my original back | It was never changed. Load it from the game's menu. Editor saves keep their previous version as `.bak`. |
 
-## What's new in 4.0.0
+## What's new in 5.0.0
 
 - Company: Cantina career paths and Arena fame, both read from the game's data.
 - Inventory: add each weapon's ammo with it, paired by the game's ammo types.
