@@ -6,7 +6,7 @@
 
 .DESCRIPTION
     The staged folder is the payload /publish hashes for its no-op guard (it holds no file whose
-    content changes on every publish), and the zip is the GitHub release asset CI uploads to
+    content changes on every publish; the git commit is kept out of the version for the same reason), and the zip is the GitHub release asset CI uploads to
     NexusMods. Players need nothing installed: the .NET runtime is bundled. It is published as a plain
     folder, not one single-file exe: a small launcher with 140 MB appended reads as a packer or dropper to
     antivirus heuristics (VirusTotal flagged 3.0.0), while ordinary DLLs beside the exe don't (M5SE-T126).
@@ -32,7 +32,7 @@ New-Item -ItemType Directory -Force -Path $stage, $dist | Out-Null
 
 $project = Join-Path $root 'src\MechWarrior5.SaveEditor.App\MechWarrior5.SaveEditor.App.csproj'
 dotnet publish $project -c $Configuration -r win-x64 --self-contained true -nologo `
-    -p:PublishSingleFile=false -p:SatelliteResourceLanguages=en `
+    -p:PublishSingleFile=false -p:SatelliteResourceLanguages=en -p:IncludeSourceRevisionInInformationalVersion=false `
     -p:DebugType=none -p:GenerateDocumentationFile=false -o $stage
 if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed ($LASTEXITCODE)." }
 
