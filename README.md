@@ -49,6 +49,9 @@ Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `M
   Without one, Clans 'Mechs use the Mercenaries picture of the same chassis.
 - **No network access.** The program never connects to the internet. It reads only your save files and your
   game's and mods' files, and writes only saves and `settings.json`.
+- **Sarna.net links.** Every 'Mech links to its page on Sarna.net, the BattleTech wiki with the fullest technical
+  specs: the link icon in the requisition list, or VIEW ON SARNA.NET under any enlarged picture. Clicking opens
+  the page in your own browser; the editor itself downloads nothing.
 
 ### MechWarrior 5: Mercenaries
 

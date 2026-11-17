@@ -307,7 +307,7 @@ public static partial class GameDataScanner
             tons,
             MechCatalog.ClassOf(tons),
             null,
-            dlc) { ModName = modName };
+            dlc) { ModName = modName, SarnaTitle = known?.SarnaTitle };
     }
 
     private static PropertyList? Read(PakFile pak, string uasset, string exportClass)

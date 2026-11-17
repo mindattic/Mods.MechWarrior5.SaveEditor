@@ -13,6 +13,9 @@ namespace MechWarrior5.Shared.Wpf.Controls;
 /// </summary>
 public partial class MechArtLightbox : UserControl
 {
+    public static readonly DependencyProperty LinkTextProperty = DependencyProperty.Register(
+        nameof(LinkText), typeof(string), typeof(MechArtLightbox), new PropertyMetadata("VIEW ON SARNA.NET"));
+
     public static readonly DependencyProperty LoadingTextProperty = DependencyProperty.Register(
         nameof(LoadingText), typeof(string), typeof(MechArtLightbox), new PropertyMetadata("Loading picture…"));
 
@@ -26,9 +29,20 @@ public partial class MechArtLightbox : UserControl
     public MechArtLightbox()
     {
         InitializeComponent();
+        // The footer lives in MaModal's Footer property, outside this control's name scope, so bind it here.
+        LinkLabel.SetBinding(TextBlock.TextProperty, new System.Windows.Data.Binding(nameof(LinkText)) { Source = this });
+        // The app's implicit TextBlock style would otherwise win over the link's state colour.
+        LinkLabel.SetBinding(TextBlock.ForegroundProperty, new System.Windows.Data.Binding(nameof(PageLink.EffectiveForeground)) { Source = PageLink });
         _binding = new CommandBinding(MechArt.ShowCommand, OnShow, OnCanShow);
         Loaded += (_, _) => Attach();
         Unloaded += (_, _) => Detach();
+    }
+
+    /// <summary>The footer link's text (localise it from the host); the link opens the 'Mech's Sarna.net page.</summary>
+    public string LinkText
+    {
+        get => (string)GetValue(LinkTextProperty);
+        set => SetValue(LinkTextProperty, value);
     }
 
     /// <summary>Shown while the large picture loads.</summary>
@@ -56,6 +70,7 @@ public partial class MechArtLightbox : UserControl
     {
         _key = key;
         Modal.Title = key.Chassis;
+        PageLink.Visibility = key.Page is null ? Visibility.Collapsed : Visibility.Visible;
         Picture.Source = null;
         Status.Text = LoadingText;
         // As large as the window allows, leaving room for the card's title and margins.
@@ -86,6 +101,8 @@ public partial class MechArtLightbox : UserControl
         Picture.Source = source;
         Status.Text = source is null ? NoPictureText : string.Empty;
     }
+
+    private void OnOpenPage(object sender, RoutedEventArgs e) => SarnaLink.Open(_key?.Page);
 
     /// <summary>Closes the lightbox.</summary>
     public void Close() => Modal.IsOpen = false;

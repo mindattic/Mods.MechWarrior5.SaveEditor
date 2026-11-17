@@ -79,7 +79,9 @@ campaigns and their saves by name; double-click one to open it, or use **Open** 
   - Add-on packs and the compatibility report (see [Mods and add-ons](#mods-and-add-ons) and
     [Compatibility](#compatibility)).
 
-'Mech pictures are read from your installed game (base game, DLC and mods); nothing is downloaded.
+'Mech pictures are read from your installed game (base game, DLC and mods); nothing is downloaded. For a 'Mech's
+full technical specs, click the link icon in the requisition list, or VIEW ON SARNA.NET under an enlarged picture:
+its Sarna.net page opens in your browser.
 
 If you add something the installed game or its enabled mods don't have, the editor warns you before
 saving.

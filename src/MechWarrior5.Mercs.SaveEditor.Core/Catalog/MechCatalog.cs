@@ -31,6 +31,9 @@ public sealed record MechVariant(
     /// <summary>Set for variants an enabled mod adds.</summary>
     public string? ModName { get; init; }
 
+    /// <summary>The chassis' Sarna.net page title (curated in mechs.json); null for 'Mechs only a mod defines.</summary>
+    public string? SarnaTitle { get; init; }
+
     public string DisplayName => HeroName is null ? $"{ChassisName} {Code}" : $"{HeroName} ({Code})";
 }
 
@@ -200,7 +203,7 @@ public sealed class MechCatalog
             m.Tons,
             Enum.Parse<WeightClass>(m.Class),
             m.Hero,
-            m.Dlc is null ? null : byTag[m.Dlc])).ToList();
+            m.Dlc is null ? null : byTag[m.Dlc]) { SarnaTitle = m.Sarna }).ToList();
         return new MechCatalog(packs, variants);
     }
 
@@ -260,5 +263,5 @@ public sealed class MechCatalog
     private sealed record PackDto(string Tag, string Name);
 
     private sealed record MechDto(
-        string Code, string Asset, string Chassis, string Name, int Tons, string Class, string? Hero, string? Dlc);
+        string Code, string Asset, string Chassis, string Name, int Tons, string Class, string? Hero, string? Dlc, string? Sarna = null);
 }

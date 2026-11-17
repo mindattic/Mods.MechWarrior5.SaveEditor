@@ -338,7 +338,7 @@
             </Border>
 
             <!-- Click the chassis picture to see it large. -->
-            <sw:MechArtLightbox Grid.RowSpan="3" LoadingText="{l:T loading_picture}" NoPictureText="{l:T no_picture_available}" />
+            <sw:MechArtLightbox LinkText="{l:T view_on_sarna}" Grid.RowSpan="3" LoadingText="{l:T loading_picture}" NoPictureText="{l:T no_picture_available}" />
         </Grid>
     </ma:MaShapeBorder>
 </Window>

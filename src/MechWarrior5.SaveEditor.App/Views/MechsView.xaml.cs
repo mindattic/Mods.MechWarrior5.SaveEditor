@@ -22,4 +22,7 @@ public partial class MechsView : UserControl
             e.Handled = true;
         }
     }
+
+    /// <summary>Opens the variant's Sarna.net page in the player's browser (Sarna addresses only).</summary>
+    private void OnOpenSarna(object sender, RoutedEventArgs e) => SarnaLink.Open((sender as FrameworkElement)?.Tag as Uri);
 }

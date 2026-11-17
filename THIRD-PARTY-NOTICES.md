@@ -41,6 +41,11 @@ SOFTWARE.
 the game and its enabled mods ship) and decoded in memory. They are neither bundled with nor redistributed
 by this editor, and nothing is downloaded. Image rights belong to their respective owners.
 
+## Sarna.net
+
+Each 'Mech links to its page on [Sarna.net](https://www.sarna.net), the BattleTech wiki. The editor only builds the
+address; your browser opens it when you click. No Sarna.net content is downloaded, bundled or shown in the editor.
+
 ## Add-on packs
 
 The JSON packs in `addons/` (shipped in the release's `Addons` folder) contain asset names and display

@@ -4,9 +4,10 @@ namespace MechWarrior5.Shared.Wpf.Services;
 
 /// <summary>
 /// Which 'Mech picture to show: the variant's own data asset when known (e.g. <c>AS7-D_MDA</c>), else any picture
-/// of the chassis by name. <see cref="Chassis"/> is also the picture's caption.
+/// of the chassis by name. <see cref="Chassis"/> is also the picture's caption; <see cref="Page"/> is its Sarna.net page,
+/// offered as a link the player can open in their browser.
 /// </summary>
-public sealed record MechArtKey(string? Asset, string Chassis);
+public sealed record MechArtKey(string? Asset, string Chassis, Uri? Page = null);
 
 /// <summary>
 /// Supplies 'Mech pictures from local files only (the player's installed game); never the network.

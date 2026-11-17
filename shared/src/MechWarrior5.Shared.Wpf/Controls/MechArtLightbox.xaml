@@ -17,5 +17,10 @@
             <!-- The game's art is often smaller than the card, so it scales up as well as down. -->
             <Image x:Name="Picture" Stretch="Uniform" Margin="8" RenderOptions.BitmapScalingMode="HighQuality" />
         </Grid>
+        <ma:MaModal.Footer>
+            <ma:MaButton x:Name="PageLink" Style="{DynamicResource Button.Link}" Click="OnOpenPage">
+                <TextBlock x:Name="LinkLabel" FontWeight="Bold" FontSize="16" />
+            </ma:MaButton>
+        </ma:MaModal.Footer>
     </ma:MaModal>
 </UserControl>

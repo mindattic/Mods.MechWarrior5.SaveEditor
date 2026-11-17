@@ -63,6 +63,6 @@
         <ContentControl Grid.Row="1" Content="{Binding Current}" Focusable="False" />
 
         <!-- One lightbox for both games: any mech picture's MechArt.ShowCommand opens it. -->
-        <sw:MechArtLightbox Grid.RowSpan="2" LoadingText="{l:T loading_picture}" NoPictureText="{l:T no_picture_available}" />
+        <sw:MechArtLightbox LinkText="{l:T view_on_sarna}" Grid.RowSpan="2" LoadingText="{l:T loading_picture}" NoPictureText="{l:T no_picture_available}" />
     </Grid>
 </Window>
