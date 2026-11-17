@@ -114,6 +114,12 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
   - **Rename:** sets a custom name, on the mech and its mech bay plan; leave the box empty to clear it.
   - **Remove:** deletes ticked mechs along with their mech bay plans. Mechs that are deployed in your
     Star, or in the mech bay's work queue, are kept and listed in the summary.
+- **Pilots.** A card for each pilot in your Star:
+  - **Unspent XP:** the pilot XP the game's skill screen spends on new ranks, with +1K and +10K buttons.
+  - **Skills:** each skill the pilot has, with a slider for its rank (1 to 5) and a bin to remove it.
+    **Pick a skill to add** offers any of the game's 37 pilot skills, added at rank 1; **Max skills** sets
+    every skill the pilot has to rank 5.
+  - A pilot appears once the game has given them a pilot record, after they first earn XP.
 - **Inventory.** Your weapons and equipment, with editable counts. **Requisition** adds any weapon or
   piece of equipment seen in Clans campaigns. **+1 / +5 / +10 each** and **Remove** act on ticked items.
 - **Progress.** Honor level and experience, cycles elapsed, the technician pool, the research queue
@@ -206,7 +212,12 @@ read, and the editor won't guess.
 | A batch button is greyed out | Tick at least one row first. Rows hidden by a search or filter are unticked. |
 | I want my original back | It was never changed. Load it from the game's menu. Editor saves keep their previous version as `.bak`. |
 
-## What's new in 4.0.0
+## What's new in 6.0.0
+
+- Clans: a new Pilots page. Set each pilot's unspent XP and choose their skills yourself: add any of the
+  game's 37 pilot skills, set ranks 1 to 5, max them all, or remove one.
+
+## What's new in 5.0.0
 
 - Company: Cantina career paths and Arena fame, both read from the game's data.
 - Inventory: add each weapon's ammo with it, paired by the game's ammo types.

@@ -179,14 +179,14 @@ pages in `nexus.json`. `tools/AddonPack` generates add-on packs from a mod's fil
 
 ## Changelog
 
-### Unreleased
+### 6.0.0
 
 **Pilots page** (Clans)
 - New Pilots page: set each Star pilot's unspent pilot XP and pick their skills yourself, since Clans has no
   free skill selection. Add any of the game's 37 pilot skills, set each one's rank from 1 to 5, max them all
   with one button, or remove a skill.
 
-### 4.0.0
+### 5.0.0
 
 **Company page** (Mercenaries)
 - Cantina career paths: points per path, the level reached and the next level's reward, with Next level, Max
