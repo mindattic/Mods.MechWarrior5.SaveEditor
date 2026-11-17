@@ -89,6 +89,13 @@
                             <TextBlock Text="{l:T mechs}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
                         </StackPanel>
                     </ma:MaButton>
+                    <ma:MaButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Pilots}"
+                                 IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Pilots}">
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="{StaticResource Glyph.Pilot}" Style="{StaticResource Glyph}" Width="16" Height="16" Margin="0,0,14,0" />
+                            <TextBlock Text="{l:T pilots}" Foreground="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}" />
+                        </StackPanel>
+                    </ma:MaButton>
                     <ma:MaButton Style="{StaticResource Nav.Item}" GroupName="Nav" Command="{Binding NavigateCommand}" CommandParameter="{x:Static vm:Page.Inventory}"
                                  IsChecked="{Binding Page, Mode=OneWay, Converter={StaticResource EnumEquals}, ConverterParameter=Inventory}">
                         <StackPanel Orientation="Horizontal">

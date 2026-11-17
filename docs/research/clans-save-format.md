@@ -114,6 +114,13 @@ Mech `Loadout` fields: `MechItemDataAssetId` (`KelMechItemDataAsset` / `VPR_MIA`
 `InstalledEquipment`, `PresetHintInvId`. Repair means copying Installed* into Current* and restoring
 structure.
 
+Pilot `PilotStats` (M5SE-T135, read across 27 saves of one campaign, 2026-11-17): `PilotEXP` is the *unspent*
+pilot XP (it drops when a rank is bought in the skill screen), `PilotSkillLevels` is
+`[{SkillAssetId (KelPilotSkillDataAsset / HeatManagement_Skill), SkillLevelIndex}]` with the index 0-based (0 to 4,
+ranks 1 to 5; maxed skills stay at 4), and `PilotAffinities.SelectedAffinities` holds mech affinities. The game
+omits `PilotSkillLevels` until a pilot's first skill and `PilotStats` until their first XP (`Nasir_PilotItem` never
+gets one). The 37 skills live in `Campaign/_common/Pilots/Skills/*_Skill`.
+
 ### `PersistentModelData`: campaign state (29 models)
 
 Notable models:

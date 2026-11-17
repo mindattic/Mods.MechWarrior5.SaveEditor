@@ -158,6 +158,150 @@ public sealed partial class ResourcesViewModel : ObservableObject
     public int? HonorLevel => _doc.Progress.HonorLevel;
 }
 
+/// <summary>The Star's pilots: unspent pilot XP and skill ranks.</summary>
+public sealed class PilotsViewModel(ClansDocument doc, ClansMainViewModel main)
+{
+    public IReadOnlyList<PilotCard> Pilots { get; } = [.. doc.Inventory.StarPilots.Select(p => new PilotCard(p, main))];
+
+    public bool HasPilots => Pilots.Count > 0;
+}
+
+public sealed partial class PilotCard : ObservableObject
+{
+    private readonly ClansPilot _pilot;
+    private readonly ClansMainViewModel _main;
+
+    public PilotCard(ClansPilot pilot, ClansMainViewModel main)
+    {
+        _pilot = pilot;
+        _main = main;
+        Rebuild();
+    }
+
+    public string Name => _pilot.Name.ToUpperInvariant();
+
+    public int Experience
+    {
+        get => _pilot.Experience;
+        set
+        {
+            var clamped = Math.Clamp(value, 0, InventoryEditor.MaxQuantity);
+            if (clamped != _pilot.Experience)
+            {
+                _pilot.Experience = clamped;
+                _main.MarkDirty();
+            }
+
+            OnPropertyChanged();
+        }
+    }
+
+    public ObservableCollection<SkillRow> Skills { get; } = [];
+
+    public ObservableCollection<SkillChoice> SkillChoices { get; } = [];
+
+    [ObservableProperty]
+    private SkillChoice? _skillToAdd;
+
+    public bool CanAddSkills => _pilot.CanAddSkills;
+
+    [RelayCommand]
+    private void AddXp(string? step)
+    {
+        if (int.TryParse(step, out var delta))
+        {
+            Experience = (int)Math.Min(InventoryEditor.MaxQuantity, (long)Experience + delta);
+        }
+    }
+
+    [RelayCommand]
+    private void AddSkill()
+    {
+        if (SkillToAdd is { } choice)
+        {
+            Change(() => _pilot.SetSkill(choice.Asset, 1));
+        }
+    }
+
+    [RelayCommand]
+    private void MaxSkills() => Change(() =>
+    {
+        foreach (var skill in _pilot.Skills)
+        {
+            _pilot.SetSkill(skill.Asset, ClansPilot.MaxRank);
+        }
+    });
+
+    internal void SetRank(string asset, int rank)
+    {
+        _pilot.SetSkill(asset, rank);
+        _main.MarkDirty();
+    }
+
+    internal void Remove(string asset) => Change(() => _pilot.RemoveSkill(asset));
+
+    private void Change(Action edit)
+    {
+        try
+        {
+            edit();
+        }
+        catch (InvalidOperationException e)
+        {
+            _main.ShowError(e.Message);
+            return;
+        }
+
+        _main.MarkDirty();
+        Rebuild();
+    }
+
+    private void Rebuild()
+    {
+        Skills.Clear();
+        foreach (var skill in _pilot.Skills)
+        {
+            Skills.Add(new SkillRow(this, skill.Asset, skill.Rank));
+        }
+
+        SkillChoices.Clear();
+        foreach (var asset in PilotSkills.All.Where(a => Skills.All(s => s.Asset != a)).OrderBy(PilotSkills.Label, StringComparer.CurrentCulture))
+        {
+            SkillChoices.Add(new SkillChoice(asset, PilotSkills.Label(asset)));
+        }
+
+        SkillToAdd = null;
+    }
+}
+
+public sealed record SkillChoice(string Asset, string Label);
+
+public sealed partial class SkillRow(PilotCard pilot, string asset, int rank) : ObservableObject
+{
+    public string Asset { get; } = asset;
+
+    public string Label { get; } = PilotSkills.Label(asset);
+
+    public int Rank
+    {
+        get => rank;
+        set
+        {
+            var clamped = Math.Clamp(value, 1, ClansPilot.MaxRank);
+            if (clamped != rank)
+            {
+                rank = clamped;
+                pilot.SetRank(Asset, clamped);
+            }
+
+            OnPropertyChanged();
+        }
+    }
+
+    [RelayCommand]
+    private void Remove() => pilot.Remove(Asset);
+}
+
 /// <summary>Research and campaign clock, read from the save.</summary>
 public sealed class ProgressViewModel(ClansDocument doc)
 {

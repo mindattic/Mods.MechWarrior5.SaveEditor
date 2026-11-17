@@ -16,6 +16,7 @@ public enum Page
     Start,
     Resources,
     Mechs,
+    Pilots,
     Inventory,
     Progress,
     Settings,
@@ -246,6 +247,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
         {
             Page.Resources => new ResourcesViewModel(Document!, this),
             Page.Mechs => new MechsViewModel(Document!, this, _dialogs),
+            Page.Pilots => new PilotsViewModel(Document!, this),
             Page.Inventory => new InventoryViewModel(Document!, this, _dialogs),
             Page.Progress => new ProgressViewModel(Document!),
             Page.Settings => new SettingsViewModel(this),

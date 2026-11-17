@@ -155,3 +155,4 @@ _Nothing recorded yet._
 | M5SE-T132 | 2026-11-17 | docs | closed | Owner (2026-11-17): the one NexusMods long description always includes the full changelog, regenerated from README.md's Changelog on every package build | dfe6646 |
 | M5SE-T133 | 2026-11-17 | fix | closed | Every_ui_text_key_is_translated_in_every_language: SettingsViewModel's dynamic Loc.Text("limit_" + key) reads as the literal key "limit_" missing from en.json (found by /tests) | 111af6c |
 | M5SE-T134 | 2026-11-17 | docs | closed | Update USER_STORIES.md | — |
+| M5SE-T135 | 2026-11-17 | feature | closed | Clans: edit pilot skills (Clans gives no skill selection), for 6.0.0; requested on NexusMods by GreatSephiroth 2026-11-17 | — |

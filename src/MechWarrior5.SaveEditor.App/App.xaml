@@ -19,6 +19,7 @@
             <DataTemplate DataType="{x:Type cvm:StartViewModel}"><cv:ClansStartView /></DataTemplate>
             <DataTemplate DataType="{x:Type cvm:ResourcesViewModel}"><cv:ClansResourcesView /></DataTemplate>
             <DataTemplate DataType="{x:Type cvm:MechsViewModel}"><cv:ClansMechsView /></DataTemplate>
+            <DataTemplate DataType="{x:Type cvm:PilotsViewModel}"><cv:ClansPilotsView /></DataTemplate>
             <DataTemplate DataType="{x:Type cvm:InventoryViewModel}"><cv:ClansInventoryView /></DataTemplate>
             <DataTemplate DataType="{x:Type cvm:ProgressViewModel}"><cv:ClansProgressView /></DataTemplate>
             <DataTemplate DataType="{x:Type cvm:SettingsViewModel}"><cv:ClansSettingsView /></DataTemplate>

@@ -95,6 +95,8 @@ Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `M
   remove. Mechs that are deployed or in the mech bay's work queue are never removed.
 - **Weapons and equipment.** Edit stock, requisition any item seen in Clans campaigns, add to or remove
   ticked items in bulk.
+- **Pilots.** Each Star pilot's unspent pilot XP, and their skills: add any of the game's 37 pilot skills, set
+  each skill's rank (1 to 5), max them all, or remove them.
 - **Progress.** Honor level, campaign cycles, and the research queue with completed research. Honor levels
   follow the game's own Honor ladder, read from its files when an Oodle DLL is on your PC (the built-in ladder
   otherwise).
@@ -176,6 +178,13 @@ pages in `nexus.json`. `tools/AddonPack` generates add-on packs from a mod's fil
   [docs/research/clans-save-format.md](docs/research/clans-save-format.md).
 
 ## Changelog
+
+### Unreleased
+
+**Pilots page** (Clans)
+- New Pilots page: set each Star pilot's unspent pilot XP and pick their skills yourself, since Clans has no
+  free skill selection. Add any of the game's 37 pilot skills, set each one's rank from 1 to 5, max them all
+  with one button, or remove a skill.
 
 ### 4.0.0
 

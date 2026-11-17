@@ -41,6 +41,18 @@ public sealed class InventoryEditor
 
     public IEnumerable<InventoryActor> Pilots => _actors.Where(a => a.Kind == ActorKind.Pilot);
 
+    /// <summary>The player's pilots that have a pilot record (the game writes one once a pilot first earns XP).</summary>
+    public IReadOnlyList<ClansPilot> StarPilots
+    {
+        get
+        {
+            var pilots = Pilots.Where(p => p.IsPlayers && p.Properties.Find<StructProperty>("PilotStats")?.Value is PropertyList).ToList();
+            List<ClansPilot> wrapped = [];
+            wrapped.AddRange(pilots.Select(p => new ClansPilot(p, () => wrapped.Select(w => w.SkillArray()).FirstOrDefault(a => a?.Storage is StructArrayStorage { Elements.Count: > 0 }))));
+            return wrapped;
+        }
+    }
+
     public IEnumerable<InventoryActor> Unlocks => _actors.Where(a => a.Kind == ActorKind.Unlock);
 
     /// <summary>Total held of one asset across all its stacks (equipment can be split by condition).</summary>
