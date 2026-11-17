@@ -57,6 +57,12 @@ campaigns and their saves by name; double-click one to open it, or use **Open** 
   - **Export company** writes mechs, pilots and inventory to a `.mw5company` file. **Import** adds them
     to another campaign: mechs arrive in cold storage fully repaired, and injured pilots arrive healthy.
   - Mech trait unlocks and locked Cantinas.
+  - **Career paths:** each Cantina career path's points, the level reached and the next level's 'Mech trait
+    reward, with **Next level**, **Max** and **Max all**. Paths and levels come from the game's (and your
+    mods') data. Rewards for reached levels are offered in the Cantina by the game, as usual. Until you've
+    done a Cantina job in the game, paths not started yet can't be added.
+  - **Arena fame** (DLC 6): fame points and the rank they reach, with **Next rank** and **Max**. Ranks
+    come from the game's fame table; the game offers each newly reached rank's rewards itself.
 - **Mechs.**
   - The left list is your hangar (MechBay and cold storage): repair, reset to the stock loadout, or
     remove cold-storage mechs.
@@ -68,8 +74,10 @@ campaigns and their saves by name; double-click one to open it, or use **Open** 
     pack, or *owned DLC only*. Tick any number and **Add to cold storage**, with copies of each if you
     like. They arrive with factory loadouts and paint.
 - **Inventory.** Add any weapon, equipment or ammo at any tier in bulk, set counts for ticked stacks,
-  and remove stacks.
-- **Pilots.** Hire and release pilots. Change name, callsign, persona, portrait, voice, bio and
+  and remove stacks. Tick **+ ammo** to add each picked weapon's ammo too (that many tons each), paired by
+  the game's own ammo types, mods included.
+- **Pilots.** Hire and release pilots. **Hire as** picks the recruit's skills: like the selected pilot, a
+  rookie with no experience, or random skills within your roster's range and the skill cap. Change name, callsign, persona, portrait, voice, bio and
   traits. Edit skill caps and XP; heal, or max all caps.
 - **Factions.** Standing from -100 to +100 for every faction, or set all allied or neutral.
 - **Settings.**
@@ -109,12 +117,16 @@ load-menu name, with campaign, date and Kerenskies. Autosaves are marked **AUTO*
 - **Inventory.** Your weapons and equipment, with editable counts. **Requisition** adds any weapon or
   piece of equipment seen in Clans campaigns. **+1 / +5 / +10 each** and **Remove** act on ticked items.
 - **Progress.** Honor level and experience, cycles elapsed, the technician pool, the research queue
-  and completed research.
-- **Settings.** The save folder.
+  and completed research. Honor levels follow the game's own Honor ladder, read from its files when an
+  Oodle DLL is on your PC (the built-in ladder otherwise).
+- **Settings.** The save folder, where 'Mech pictures come from, the installed Clans mods (each on or
+  off), and the **Compatibility** report: every asset the open save uses that the base game doesn't have,
+  with the installed mod that ships it (on or off), its version and page, or "unknown mod" when no
+  installed mod has it. Detailed stats from Clans mods aren't read yet.
 
 ## Mods and add-ons
 
-This applies to MechWarrior 5: Mercenaries.
+This section is about MechWarrior 5: Mercenaries; for Clans mods, see the Clans **Settings** above.
 
 **Read automatically.** The editor reads every enabled mod straight from its own files: mods in the
 game's `Mods` folder and Steam Workshop mods, in the game's load order (`modlist.json`). From each it
@@ -162,6 +174,15 @@ installed, installed but disabled in the game's mod list, the wrong version, or 
 off. "Unknown mod" means no installed mod or add-on pack contains it. If anything needs a mod, the
 message after opening the save says so. The report only reads; it never changes the save.
 
+## Reporting a mod problem
+
+If a mod's content looks wrong in the editor (a weapon without its ammo, a wrong name, a limit that
+doesn't match the mod), open an issue on
+[GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/issues) with the mod's name and version
+(Settings shows both) and, if it's about a save, the line from Settings, **Compatibility**. Most fixes are
+an add-on pack: a small data file, no new editor needed. Mods that change rules only in their code can't be
+read, and the editor won't guess.
+
 ## Safety
 
 - **Original saves are never overwritten.** Saving an original game save always creates a new save
@@ -184,6 +205,16 @@ message after opening the save says so. The report only reads; it never changes 
 | A save "needs a mod" | See Settings, **Compatibility**: it names the mod, its version and page. Install or enable it in the game, or leave that content as it is. |
 | A batch button is greyed out | Tick at least one row first. Rows hidden by a search or filter are unticked. |
 | I want my original back | It was never changed. Load it from the game's menu. Editor saves keep their previous version as `.bak`. |
+
+## What's new (unreleased)
+
+- Company: Cantina career paths and Arena fame, both read from the game's data.
+- Inventory: add each weapon's ammo with it, paired by the game's ammo types.
+- Pilots: hire as a rookie or with random skills.
+- Clans: Honor levels from the game's own ladder; compatibility report and installed Clans mods in Settings.
+- Every 'Mech links to its Sarna.net page (link icon in the requisition list, or VIEW ON SARNA.NET under an
+  enlarged picture); it opens in your browser only when you click.
+- The download is a folder: keep `MW5SaveEditor.exe` together with the .NET runtime files beside it.
 
 ## What's new in 3.0.0
 

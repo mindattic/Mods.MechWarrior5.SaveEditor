@@ -33,10 +33,23 @@ Filter by name, chassis, variant or weapon. [b]Remove[/b] 'Mechs you don't want;
 Edit your stock, requisition any weapon or piece of equipment seen in Clans campaigns, and add to or remove ticked items in bulk.
 
 [b]Campaign progress[/b]
-Honor level and experience, cycles elapsed, the technician pool, the research queue and completed research.
+Honor level and experience, cycles elapsed, the technician pool, the research queue and completed research. Honor levels follow the game's own Honor ladder, read from its files.
+
+[b]Compatibility report[/b]
+Opening a save lists every asset it uses that the base game doesn't have, with the installed Clans mod that ships it (on or off), its version and page. Settings lists your installed Clans mods.
+
+[b]Sarna.net links[/b]
+Every 'Mech has a link that opens the 'Mech's Sarna.net page in your browser, for its full technical specs.
 
 [b]One look per game: Clans ice and Mercs amber[/b]
 A cold steel and ice-cyan look for Clans and a gunmetal and amber look for Mercenaries, modeled on the games' own menus; it follows the game tab. Batch buttons stay greyed out until something is ticked, so an action only touches what you see. Six languages: English, Deutsch, Español, Français, 日本語, Русский.
+
+[size=5][b]Mod support[/b][/size]
+[list]
+[*][b]Every installed mod is read from its own files[/b] when the editor starts, with no per-mod code. A new or updated mod that uses the game's own data (items, traits, 'Mechs, skill curve, career paths, ammo types, fame ranks) is followed without an editor update; press Rescan in Settings after changing mods.
+[*][b]One mod misbehaving?[/b] A small add-on pack (a JSON data file in the Addons folder) fixes or tweaks that mod while it's active: an ammo pairing, a name, a limit. Report it on [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/issues]GitHub[/url] with the mod's name and version.
+[*][b]Limits:[/b] a mod that changes rules only in its code leaves no data to read. Clans mods are recognized by name and traced in the compatibility report; their detailed stats aren't read yet. Chain fire, the quest log and moving 'Mechs in or out of the active bay aren't offered (their save layouts couldn't be verified).
+[/list]
 
 [size=5][b]Your saves are safe[/b][/size]
 [list]
@@ -51,7 +64,7 @@ A cold steel and ice-cyan look for Clans and a gunmetal and amber look for Merce
 [b]This is a program you run, not a mod the game loads[/b], so it doesn't need Vortex.
 [list=1]
 [*]Download [b]MechWarrior5.SaveEditor-<version>.zip[/b] (Manual Download on the Files tab), or the same zip from [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest]GitHub[/url].
-[*]Extract it anywhere, for example your Desktop. Keep the [b]Addons[/b] folder beside the exe.
+[*]Extract it anywhere, for example your Desktop. Keep everything in the folder together: the exe, the .NET runtime files beside it, and the [b]Addons[/b] folder.
 [*]Double-click [b]MW5SaveEditor.exe[/b]. No .NET install is needed.
 [/list]
 

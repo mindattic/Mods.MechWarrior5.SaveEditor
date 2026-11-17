@@ -110,6 +110,31 @@ asset, the later one wins, as in game, and Settings lists the collision.
 - A save value already beyond the active limits is kept as it is; the editor only stops an edit from pushing
   it further.
 
+## Fixing one mod
+
+The editor reads every enabled mod from its own files, so most mods need no pack. When a mod's own data is
+wrong or missing something, an `override` in a pack fixes just that, only while the mod is active. For
+example, a weapon whose ammo tag matches no ammo in the mod (so "+ ammo" adds nothing), with a clearer
+name:
+
+```json
+{
+  "schema": 1,
+  "name": "Yet Another Weapon - Complete Edition",
+  "requires": { "modName": "Yet Another Weapon - Complete Edition", "versions": ["3.0"] },
+  "items": {
+    "override": [
+      { "asset": "YAOW_BearHunterAC", "ammoType": "Ammo.Ballistic.AutoCannon.Standard.AC20", "label": "Bear Hunter Autocannon" }
+    ]
+  }
+}
+```
+
+Only the fields an override gives are replaced; turning the pack off restores the mod's own values. Found a
+mod the editor gets wrong? Open an issue on
+[GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/issues) with the mod's name and version
+(Settings, Add-ons shows both) and what looks wrong; a fix usually ships as a pack, no new editor needed.
+
 ## Making a pack
 
 Don't write a pack by hand: generate it from the mod's own files with `tools/AddonPack`, then review it.

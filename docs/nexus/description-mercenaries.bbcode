@@ -36,11 +36,17 @@ Front and rear armor per location against the variant's maximum, plus [b]Max arm
 [b]Company[/b]
 C-Bills (+1M / +10M / +100M / Max), reputation, company name, and the campaign date: moving it moves payroll, injuries and contracts with it. Export a whole company and import it into another campaign: its 'Mechs arrive fully repaired and its pilots healthy.
 
+[b]Cantina career paths and Arena fame[/b]
+Each career path's points, level and next reward, and Arena fame (DLC 6) with its rank, all read from the game's own data (and your mods'). Next level, Max and Max all; the game hands out the rewards in the Cantina as usual.
+
 [b]Inventory[/b]
-Any weapon, equipment or ammo at any tier, in bulk. Set counts for many stacks at once, or remove them.
+Any weapon, equipment or ammo at any tier, in bulk, optionally with each weapon's ammo added too (paired by the game's own ammo types). Set counts for many stacks at once, or remove them.
 
 [b]Pilots[/b]
-Hire and release pilots; edit name, callsign, persona, portrait, voice, bio, traits, skill caps and XP. Heal all, max all caps.
+Hire pilots with the selected pilot's skills, as a rookie, or with random skills; release them; edit name, callsign, persona, portrait, voice, bio, traits, skill caps and XP. Heal all, max all caps.
+
+[b]Sarna.net links[/b]
+Every 'Mech has a link that opens the 'Mech's Sarna.net page in your browser, for its full technical specs.
 
 [b]Factions[/b]
 Standing from -100 to +100 (or what your mods allow) for every faction, or set them all allied or neutral.
@@ -50,6 +56,13 @@ Campaigns and saves are listed by their in-game names, dates, systems and reputa
 
 [b]One look per game: Mercs amber and Clans ice[/b]
 A gunmetal and amber look for Mercenaries and a cold steel and ice-cyan look for Clans, modeled on the games' own menus; it follows the game tab. Batch buttons stay greyed out until something is ticked, so an action only touches what you see. Six languages: English, Deutsch, Español, Français, 日本語, Русский.
+
+[size=5][b]Mod support[/b][/size]
+[list]
+[*][b]Every installed mod is read from its own files[/b] when the editor starts, with no per-mod code. A new or updated mod that uses the game's own data (items, traits, 'Mechs, skill curve, career paths, ammo types, fame ranks) is followed without an editor update; press Rescan in Settings after changing mods.
+[*][b]One mod misbehaving?[/b] A small add-on pack (a JSON data file in the Addons folder) fixes or tweaks that mod while it's active: an ammo pairing, a name, a limit. Report it on [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/issues]GitHub[/url] with the mod's name and version.
+[*][b]Limits:[/b] a mod that changes rules only in its code leaves no data to read. Clans mods are recognized by name and traced in the compatibility report; their detailed stats aren't read yet. Chain fire, the quest log and moving 'Mechs in or out of the active bay aren't offered (their save layouts couldn't be verified).
+[/list]
 
 [size=5][b]Your saves are safe[/b][/size]
 [list]
@@ -64,7 +77,7 @@ A gunmetal and amber look for Mercenaries and a cold steel and ice-cyan look for
 [b]This is a program you run, not a mod the game loads[/b], so it doesn't need Vortex.
 [list=1]
 [*]Download [b]MechWarrior5.SaveEditor-<version>.zip[/b] (Manual Download on the Files tab), or the same zip from [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest]GitHub[/url].
-[*]Extract it anywhere, for example your Desktop. Keep the [b]Addons[/b] folder beside the exe.
+[*]Extract it anywhere, for example your Desktop. Keep everything in the folder together: the exe, the .NET runtime files beside it, and the [b]Addons[/b] folder.
 [*]Double-click [b]MW5SaveEditor.exe[/b]. No .NET install is needed.
 [/list]
 

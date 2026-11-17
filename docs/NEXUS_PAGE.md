@@ -97,7 +97,7 @@ Switch games with the tabs at the top; each keeps its own open save. Every save 
 [b]Two themes: Mercs amber and Clans ice[/b]
 
 [size=5][b]Installation instructions[/b][/size]
-[b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b] plus an [b]Addons[/b] folder. The game never starts it and it adds nothing to the game: you run it yourself. It never connects to the internet.
+[b]This is a program you run, not a mod the game loads.[/b] The download is a folder: [b]MW5SaveEditor.exe[/b], the .NET runtime files it needs, and an [b]Addons[/b] folder; keep them together. The game never starts it and it adds nothing to the game: you run it yourself. It never connects to the internet.
 
 [list=1]
 [*]Click [b]Manual Download[/b] on the main file (the same zip is mirrored on [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest]GitHub[/url]) and extract it anywhere, for example your Desktop.
@@ -130,9 +130,10 @@ Switch games with the tabs at the top; each keeps its own open save. Every save 
 [*][b]Add N to cold storage[/b] in one click, with copies of each. Every 'Mech arrives with its factory loadout and default paint. [b]One summary per batch[/b], not a message box per 'Mech.
 [*][b]Mech Lab:[/b] each hardpoint offers only the weapons that fit it, at every tier; equipment slots, front and rear armor against the maximum, mech traits, and .mw5loadout export and import. Applying a refit changes only what you refitted; a damaged 'Mech keeps its damage until you repair it.
 [*][b]Hangar:[/b] repair, reset to stock or remove cold-storage 'Mechs, in batches.
-[*][b]Company:[/b] C-Bills (+1M / +10M / +100M / Max), reputation, name, and the campaign date (payroll and contracts move with it). Export or import a whole company.
-[*][b]Inventory:[/b] any weapon, equipment or ammo at any tier, in bulk.
-[*][b]Pilots:[/b] hire, release, persona, portrait, voice, bio, traits, skills and XP.
+[*][b]Company:[/b] C-Bills (+1M / +10M / +100M / Max), reputation, name, and the campaign date (payroll and contracts move with it). Export or import a whole company. Cantina career paths and Arena fame, read from the game's own data.
+[*][b]Inventory:[/b] any weapon, equipment or ammo at any tier, in bulk, optionally with each weapon's ammo (paired by the game's ammo types).
+[*][b]Pilots:[/b] hire (like the selected pilot, as a rookie, or with random skills), release, persona, portrait, voice, bio, traits, skills and XP.
+[*][b]Sarna.net links:[/b] every 'Mech has a link that opens the 'Mech's Sarna.net page in your browser.
 [*][b]Factions:[/b] standing from -100 to +100, or set all allied or neutral.
 [*]DLC and mod aware: content the campaign or game can't load is flagged before you save.
 [*][b]Follows your mods:[/b] every enabled mod (Mods folder and Steam Workshop) is read from its own files: items, traits, 'Mechs, pictures and the pilot skill curve (Pilot Overhaul's caps of 30 included).
@@ -144,9 +145,17 @@ Switch games with the tabs at the top; each keeps its own open save. Every save 
 [b]MechWarrior 5: Clans[/b]
 [list]
 [*][b]Resources:[/b] Kerenskies, Merits and Honor (Honor moves the Honor level track too), mech, weapon and equipment components, technicians (and the mech bay's technician pool), scientists, crew upgrades, and per-chassis mech experience.
-[*][b]Mechs:[/b] pictures from an installed MechWarrior 5: Mercenaries; repair armor and every installed part, duplicate with the same loadout, rename, or remove; the mech bay plan of each 'Mech follows it. 'Mechs deployed in your Star or in the work queue are never removed.
+[*][b]Mechs:[/b] pictures from your Clans files (with an Oodle DLL already on your PC) or an installed MechWarrior 5: Mercenaries; repair armor and every installed part, duplicate with the same loadout, rename, or remove; the mech bay plan of each 'Mech follows it. 'Mechs deployed in your Star or in the work queue are never removed.
 [*][b]Weapons and equipment:[/b] edit stock, requisition any item seen in Clans campaigns, or add to ticked items in bulk.
-[*][b]Progress:[/b] Honor level, cycles, technician pool, the research queue and completed research.
+[*][b]Progress:[/b] Honor level (from the game's own Honor ladder), cycles, technician pool, the research queue and completed research.
+[*][b]Compatibility report:[/b] assets a save uses that the base game lacks, with the installed Clans mod behind each (on or off).
+[/list]
+
+[b]Mod support[/b]
+[list]
+[*]Every installed mod is read from its own files at startup, with no per-mod code; a new or updated mod that uses the game's own data is followed without an editor update.
+[*]If one mod misbehaves, a small add-on pack (JSON data) fixes or tweaks it; report it on [url=https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/issues]GitHub[/url] with the mod's name and version.
+[*]Limits: mods that change rules only in their code can't be read; Clans mods are recognized by name and traced in the compatibility report, their detailed stats aren't read yet; chain fire, the quest log and moving 'Mechs in or out of the active bay aren't offered.
 [/list]
 
 [b]Built to feel like MW5[/b]

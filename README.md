@@ -63,9 +63,15 @@ Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `M
   import.
 - **Company.** C-Bills, reputation, name, and campaign date (moving the date shifts payroll and every
   other dated event with it). Company export and import (`.mw5company`).
+  - Cantina career paths: points per path with the level reached and the next level's 'Mech trait reward,
+    read from the game's (and mods') career path data. The game offers each reached level's reward in the
+    Cantina, as usual.
+  - Arena fame (DLC 6): fame points and rank, with the ranks read from the game's fame table.
 - **Inventory, pilots, factions.**
-  - Inventory: bulk weapons, equipment and ammo at any tier.
-  - Pilots: hire, release, persona, portrait, voice, bio, traits, skills, XP.
+  - Inventory: bulk weapons, equipment and ammo at any tier, optionally with each weapon's ammo added too
+    (paired by the game's own ammo types, mods included).
+  - Pilots: hire (with the selected pilot's skills, as a rookie with no experience, or with random skills
+    within your roster's range), release, persona, portrait, voice, bio, traits, skills, XP.
   - Factions: standing -100 to +100.
   - Mech traits and Cantina unlocks.
 - **Follows your mods.** Reads every enabled mod (Mods folder and Steam Workshop, in the game's load order)
@@ -89,7 +95,28 @@ Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `M
   remove. Mechs that are deployed or in the mech bay's work queue are never removed.
 - **Weapons and equipment.** Edit stock, requisition any item seen in Clans campaigns, add to or remove
   ticked items in bulk.
-- **Progress.** Honor level, campaign cycles, and the research queue with completed research.
+- **Progress.** Honor level, campaign cycles, and the research queue with completed research. Honor levels
+  follow the game's own Honor ladder, read from its files when an Oodle DLL is on your PC (the built-in ladder
+  otherwise).
+- **Compatibility report.** Opening a save lists every asset it uses that the base game doesn't have, and the
+  installed Clans mod that ships it (on or off), with its version and page. Settings lists the installed Clans
+  mods.
+
+## How mod support works
+
+- **Every installed mod is read from its own files at startup.** The editor has no per-mod code: whatever the
+  game's data says (items, traits, 'Mechs, skill curve, career paths, ammo types, fame ranks), it uses. A new
+  or updated mod that uses the game's own data formats is followed without an editor update; rescan in
+  Settings after changing mods.
+- **Add-on packs fix or tweak one mod.** When a mod's own data is wrong or missing something (an ammo type
+  that doesn't pair, a label, a limit the data doesn't state), a small JSON pack in the `Addons` folder
+  corrects it while that mod is active. Report a problem with a mod on
+  [GitHub issues](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/issues); the pack format is
+  in [docs/ADDONS.md](docs/ADDONS.md).
+- **What it can't follow.** A mod that changes rules only in Blueprint code leaves no data to read. Clans mods
+  are recognized by name and traced in the compatibility report; their detailed stats aren't read yet (Clans
+  stores them in unversioned data). Chain fire, the quest log, and moving 'Mechs in or out of the active mech
+  bay aren't offered: their save layouts couldn't be verified, and the game does them itself.
 
 ## Safety
 
@@ -149,6 +176,30 @@ pages in `nexus.json`. `tools/AddonPack` generates add-on packs from a mod's fil
   [docs/research/clans-save-format.md](docs/research/clans-save-format.md).
 
 ## Changelog
+
+### Unreleased
+
+**Company page** (Mercenaries)
+- Cantina career paths: points per path, the level reached and the next level's reward, with Next level, Max
+  and Max all. Paths and levels come from the game's and enabled mods' data.
+- Arena fame (DLC 6): points and rank, with Next rank and Max; ranks come from the game's fame table.
+
+**Inventory and pilots** (Mercenaries)
+- Requisition can add each picked weapon's ammo too, paired by the game's own ammo types (mods included).
+- Hire a recruit with the selected pilot's skills, as a rookie (no experience), or with random skills within
+  your roster's range.
+
+**Clans**
+- Honor levels follow the game's own Honor ladder, read from its files.
+- Compatibility report: assets a save uses that the base game lacks, traced to the installed Clans mod (on or
+  off) with its version and page; Settings lists the installed Clans mods.
+
+**Both games**
+- Every 'Mech links to its Sarna.net page (link icon in the requisition list, VIEW ON SARNA.NET under an
+  enlarged picture); it opens in your browser only when you click. Nothing is downloaded.
+- The download is now a folder: `MW5SaveEditor.exe` beside the .NET runtime files it needs, instead of one
+  large single-file exe (that format can trip antivirus heuristics). Keep the files together.
+- Add-on packs can correct a mod's ammo pairing (`ammoType`).
 
 ### 3.0.0
 
