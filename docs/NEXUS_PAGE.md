@@ -11,9 +11,8 @@ Everything needed to create the NexusMods listings and keep them updated through
 - **Mercenaries page:** [nexus/description-mercenaries.bbcode](nexus/description-mercenaries.bbcode)
 - **Clans page:** [nexus/description-clans.bbcode](nexus/description-clans.bbcode)
 
-Each one shows that game's screenshot for every feature. The images are linked from this public repo
-(`assets/`), so nothing needs uploading for the description: paste the whole file with the description
-editor's **Import description** (BBCode). NexusMods' API can't edit descriptions or upload mod images, so
+The descriptions are text only, with no screenshots or other images (removed for the 3.0.0 quarantine review,
+M5SE-T124). Paste the whole file with the description editor's **Import description** (BBCode). NexusMods' API can't edit descriptions or upload mod images, so
 this step is manual. The single-description version further down is kept for reference.
 
 ## One-time setup: create the page (manual; NexusMods has no API for this)
@@ -22,10 +21,7 @@ this step is manual. The single-description version further down is kept for ref
    the fields below. Paste the full description with the description editor's **Import description**
    (BBCode).
 2. **Images:** the square icon (512×512) is the primary image, and the header (1920×1080) goes in the
-   page's media settings. Add the screenshots listed in [SCREENSHOTS.md](SCREENSHOTS.md) to the page's
-   media gallery. The description's six `[img]` tags already point at those files on GitHub
-   (`raw.githubusercontent.com/.../main/assets/nexus/...`), so it shows whatever screenshots are on `main`:
-   retaking and pushing them updates the description with no edit (allow a few minutes for caching).
+   page's media settings. No screenshots: the description and the media gallery stay without them.
 3. **First file:** upload `dist/MechWarrior5.SaveEditor-<version>.zip` (from `tools/package.ps1`) as a *Main file*.
 4. **Wire up `/publish`:** put the page's mod ID (from its URL, `.../mods/<modId>`) and the file's ID
    (Manage files, then the file's edit menu, then API info) into `nexus.json` as `modId` and `fileId`. From then on,
@@ -89,22 +85,16 @@ One save editor for [b]MechWarrior 5: Mercenaries[/b] and [b]MechWarrior 5: Clan
 Switch games with the tabs at the top; each keeps its own open save. Every save is read into a complete copy and written back byte-for-byte before any edit is allowed, so the editor never guesses at offsets.
 
 [b]Requisition: tick, shift-click, add[/b]
-[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/01-requisition-tick-shift-click-add.png[/img]
 
 [b]Mech Lab: hardpoint-aware refits (Mercenaries)[/b]
-[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/02-mech-lab-hardpoint-aware-refits.png[/img]
 
 [b]Clans resources: Kerenskies, Honor, salvage, crew, MXP[/b]
-[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/03-clans-resources-kerenskies-honor-salvage-crew-mxp.png[/img]
 
 [b]Clans mechs: repair, duplicate, rename[/b]
-[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/04-clans-mechs-repair-duplicate-rename.png[/img]
 
 [b]Pick saves by name, not by GUID[/b]
-[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/05-pick-saves-by-name-not-guid.png[/img]
 
 [b]Two themes: Mercs amber and Clans ice[/b]
-[img]https://raw.githubusercontent.com/mindattic/Mods.MechWarrior5.SaveEditor/main/assets/nexus/06-two-themes-mercs-amber-clans-ice.png[/img]
 
 [size=5][b]Installation instructions[/b][/size]
 [b]This is a program you run, not a mod the game loads.[/b] The download is one [b]MW5SaveEditor.exe[/b] plus an [b]Addons[/b] folder. The game never starts it and it adds nothing to the game: you run it yourself. It never connects to the internet.
