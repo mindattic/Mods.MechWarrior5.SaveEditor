@@ -18,7 +18,7 @@ Player documentation is in
 Download `MechWarrior5.SaveEditor-<version>.zip`. The same file is in every place:
 
 - **NexusMods** (main file):
-  [MechWarrior 5: Mercenaries](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666),
+  [MechWarrior 5: Mercenaries](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1677),
   [MechWarrior 5: Clans](https://www.nexusmods.com/mechwarrior5clans/mods/70)
 - **GitHub** (mirror and source): [latest release](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest)
   ([all releases](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases))

@@ -1,7 +1,7 @@
 # NexusMods pages: MW5 Save Editor
 
 One program, two pages with the same text and the same file:
-- MechWarrior 5: Mercenaries: https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666
+- MechWarrior 5: Mercenaries: https://www.nexusmods.com/mechwarrior5mercenaries/mods/1677
 - MechWarrior 5: Clans: https://www.nexusmods.com/mechwarrior5clans/mods/70
 
 ## What to paste (identical on both pages)

@@ -9,7 +9,7 @@ in the download as `README.md`.
 to the game, so it doesn't need Vortex. It never connects to the internet.
 
 1. Download `MechWarrior5.SaveEditor-<version>.zip`: the main file on the NexusMods page
-   ([Mercenaries](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1666),
+   ([Mercenaries](https://www.nexusmods.com/mechwarrior5mercenaries/mods/1677),
    [Clans](https://www.nexusmods.com/mechwarrior5clans/mods/70)), or the same zip from
    [GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest).
 2. Extract it anywhere, for example your Desktop. Keep the `Addons` folder beside the exe.
