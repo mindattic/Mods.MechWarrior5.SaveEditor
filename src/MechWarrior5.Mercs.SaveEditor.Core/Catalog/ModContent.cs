@@ -11,6 +11,9 @@ internal sealed class ModContent
 
     public Dictionary<string, TraitDefinition> MechTraits { get; } = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>Cantina career paths from the game and enabled mods, by asset; a later mod's copy wins.</summary>
+    public Dictionary<string, CareerPathDefinition> CareerPaths { get; } = new(StringComparer.OrdinalIgnoreCase);
+
     /// <summary>The highest level on the base game's pilot skill level curve.</summary>
     public int? BaseSkillCap { get; set; }
 
@@ -53,6 +56,16 @@ public static partial class GameDataScanner
             else if (content.ModSkillCap is not { } current || top > current.Level)
             {
                 content.ModSkillCap = (top, modName);
+            }
+        }
+
+        // Career paths: the game keeps them under Careers/ named *CareerPath; a mod may add or replace one.
+        foreach (var file in pak.Files.Where(f => f.EndsWith("CareerPath.uasset", StringComparison.OrdinalIgnoreCase)))
+        {
+            var asset = Path.GetFileNameWithoutExtension(file);
+            if (Read(pak, file, CareerPathType) is { } props && DescribeCareer(asset, props, modName) is { } career)
+            {
+                content.CareerPaths[asset] = career;
             }
         }
 
@@ -101,6 +114,30 @@ public static partial class GameDataScanner
             }
         }
     }
+
+    internal const string CareerPathType = "MWCareerPathAsset";
+
+    /// <summary>A career path's name and levels (points needed, 'Mech trait reward) from its data asset.</summary>
+    internal static CareerPathDefinition? DescribeCareer(string asset, PropertyList props, string? modName)
+    {
+        if (props.Find<ArrayProperty>("CareerPathLevels")?.Storage is not StructArrayStorage levels)
+        {
+            return null;
+        }
+
+        var list = levels.PropertyElements
+            .Select(l => new CareerLevel(
+                l.Find<IntProperty>("CareerPoints")?.Value ?? 0,
+                Ue.AssetName(l.Find<StructProperty>("MechTraitReward")?.Value as PropertyList) is { } t && t != "None" ? t : null))
+            .ToList();
+        var name = AssetLabel.GameName(props.Find<TextProperty>("Name")?.DisplayString) ?? AssetLabel.Humanize(asset.Replace("CareerPath", string.Empty, StringComparison.Ordinal));
+        return list.Count == 0 ? null : new CareerPathDefinition(asset, Titled(name), list) { Source = modName };
+    }
+
+    private static string Titled(string name) =>
+        name.Length > 1 && !name.Any(char.IsLower)
+            ? System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.ToLowerInvariant())
+            : name;
 
     /// <summary>The class of the export named like the file (its data asset), from the package header alone.</summary>
     private static string? ClassOf(PakFile pak, string uasset, string asset) =>

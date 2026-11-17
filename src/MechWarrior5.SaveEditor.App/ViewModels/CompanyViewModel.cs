@@ -102,6 +102,26 @@ public sealed partial class CompanyViewModel : ObservableObject
 
     public bool HasCantinas => _doc.Traits.HasCantinas;
 
+    /// <summary>Every Cantina career path the installed game and its enabled mods define, with this save's points.</summary>
+    public IReadOnlyList<CareerRowViewModel> Careers =>
+        [.. (_catalog.Game?.CareerPaths ?? []).Select(p => new CareerRowViewModel(p, _doc.Traits, _traits))];
+
+    public bool HasCareers => HasCantinas && Careers.Count > 0;
+
+    /// <summary>Shown when the save has no career list yet: paths can be raised only after the first Cantina job.</summary>
+    public bool CareersNeedStart => HasCareers && !_doc.Traits.CanStartCareers;
+
+    [RelayCommand]
+    private void MaxCareers()
+    {
+        foreach (var career in Careers.Where(c => c.CanEdit))
+        {
+            career.Points = career.MaxPoints;
+        }
+
+        OnPropertyChanged(nameof(Careers));
+    }
+
     public bool CantinasUnlocked
     {
         get => !_doc.Traits.CantinasLocked;

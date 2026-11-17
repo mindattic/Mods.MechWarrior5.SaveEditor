@@ -38,6 +38,9 @@ public sealed record GameData(
     /// <summary>'Mech traits the enabled mods add.</summary>
     public IReadOnlyList<TraitDefinition> MechTraits { get; init; } = [];
 
+    /// <summary>Cantina career paths (base game and enabled mods) with their levels and rewards.</summary>
+    public IReadOnlyList<CareerPathDefinition> CareerPaths { get; init; } = [];
+
     /// <summary>The top of the base game's pilot skill level curve, when it could be read.</summary>
     public int? BaseSkillCap { get; init; }
 
@@ -102,6 +105,7 @@ public static partial class GameDataScanner
                 PilotTraits = [.. content.PilotTraits.Values],
                 MechTraits = [.. content.MechTraits.Values],
                 BaseSkillCap = content.BaseSkillCap,
+                CareerPaths = [.. content.CareerPaths.Values.OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase)],
                 ModSkillCap = content.ModSkillCap,
             };
         }

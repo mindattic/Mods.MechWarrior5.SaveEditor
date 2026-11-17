@@ -76,6 +76,70 @@ public sealed class TraitsEditor
 
     private StructArrayStorage? Unlocked =>
         _traitModel?.Find<ArrayProperty>("UnlockedMechTraitsList")?.Storage as StructArrayStorage;
+
+    /// <summary>Cantina career points per path (<c>ErrandModel.CareerPathList.Progress</c>), by career path asset.</summary>
+    public IReadOnlyDictionary<string, int> CareerPoints =>
+        (CareerProgress?.PropertyElements ?? [])
+            .Select(e => (Asset: Ue.AssetName(e.Find<StructProperty>("Career")?.Value as PropertyList), Points: e.Find<IntProperty>("Progress")?.Value ?? 0))
+            .Where(c => c.Asset is not null)
+            .GroupBy(c => c.Asset!, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Key, g => g.First().Points, StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// True when the save has its career list, so a path not started yet can be added in the game's own element layout.
+    /// (Before the first Cantina job the game hasn't written the list, and the editor doesn't invent it.)
+    /// </summary>
+    public bool CanStartCareers => CareerProgress is not null;
+
+    /// <summary>
+    /// Sets a career path's points (never below 0). Rewards are left to the game, which offers them to claim in the
+    /// Cantina once a level is reached. False when nothing changed or the path can't be added to this save.
+    /// </summary>
+    public bool SetCareerPoints(string careerAsset, int points)
+    {
+        points = Math.Max(0, points);
+        if (CareerProgress is not { } list)
+        {
+            return false;
+        }
+
+        var element = list.PropertyElements.FirstOrDefault(e =>
+            string.Equals(Ue.AssetName(e.Find<StructProperty>("Career")?.Value as PropertyList), careerAsset, StringComparison.OrdinalIgnoreCase));
+        if (element is null)
+        {
+            if (points == 0)
+            {
+                return false;
+            }
+
+            list.Elements.Add(new PropertyList(
+            [
+                Ue.AssetId("Career", "CareerPathAssetId", CareerPathAssetType, careerAsset),
+                new IntProperty("Progress", points),
+            ]));
+        }
+        else if (element.Find<IntProperty>("Progress") is { } progress)
+        {
+            if (progress.Value == points)
+            {
+                return false;
+            }
+
+            progress.Value = points;
+        }
+        else
+        {
+            element.Add(new IntProperty("Progress", points));
+        }
+
+        _changed();
+        return true;
+    }
+
+    private const string CareerPathAssetType = "MWCareerPathAsset";
+
+    private StructArrayStorage? CareerProgress =>
+        ((_errands?.Find<StructProperty>("CareerPathList")?.Value as PropertyList)?.Find<ArrayProperty>("Progress"))?.Storage as StructArrayStorage;
 }
 
 /// <summary>Arrays of typed trait ids (<c>{ ID: PrimaryAssetId }</c>), shared by pilots, mechs and unlocks.</summary>

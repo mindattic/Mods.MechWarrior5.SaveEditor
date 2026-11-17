@@ -58,6 +58,41 @@
                                   Visibility="{Binding HasCantinas, Converter={StaticResource BoolToVisibility}}"
                                   ToolTip="{l:T opens_the_cantinas_without_waiting_for_the_story}" />
 
+                        <!-- Cantina career paths: points per path; levels and rewards come from the game and its mods. -->
+                        <StackPanel Visibility="{Binding HasCareers, Converter={StaticResource BoolToVisibility}}">
+                            <DockPanel Margin="0,22,0,6">
+                                <ma:MaButton DockPanel.Dock="Right" Content="{l:T career_max_all}" Command="{Binding MaxCareersCommand}" />
+                                <TextBlock Text="{l:T career_paths}" Style="{StaticResource Text.Section}" VerticalAlignment="Center" />
+                            </DockPanel>
+                            <TextBlock Text="{l:T career_hint}" Style="{StaticResource Text.Muted}" FontSize="15" TextWrapping="Wrap" Margin="0,0,0,6" />
+                            <TextBlock Text="{l:T career_not_started}" Foreground="{DynamicResource Brush.Danger}" FontSize="15" TextWrapping="Wrap" Margin="0,0,0,6"
+                                       Visibility="{Binding CareersNeedStart, Converter={StaticResource BoolToVisibility}}" />
+                            <ItemsControl ItemsSource="{Binding Careers}" Grid.IsSharedSizeScope="True">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6" IsEnabled="{Binding CanEdit}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="Auto" SharedSizeGroup="CareerActions" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding LevelText}" Style="{StaticResource Text.Muted}" FontSize="14" TextWrapping="Wrap" />
+                                                </StackPanel>
+                                                <TextBox Grid.Column="1" Text="{Binding Points, UpdateSourceTrigger=LostFocus}" Height="32" Margin="8,0" VerticalAlignment="Center" />
+                                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <ma:MaButton Content="{l:T career_next}" Command="{Binding NextLevelCommand}" Margin="0,0,6,0" />
+                                                    <ma:MaButton Content="{l:T max}" Command="{Binding MaxCommand}" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
                         <StackPanel Visibility="{Binding HasMechTraits, Converter={StaticResource BoolToVisibility}}">
                             <TextBlock Text="{l:T mech_traits_unlocked}" Style="{StaticResource Text.Section}" Margin="0,22,0,6" />
                             <ItemsControl ItemsSource="{Binding UnlockedTraits}">
