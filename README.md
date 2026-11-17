@@ -5,8 +5,8 @@
 Both games are edited through one interface styled after their own HUDs. Under it sits a lossless save
 engine that never touches your original saves.
 
-**It is a standalone program, not a mod the game loads:** one self-contained `MW5SaveEditor.exe` that you run
-yourself. It never connects to the internet. Download it from either NexusMods page or from GitHub (see Download
+**It is a standalone program, not a mod the game loads:** a self-contained folder whose `MW5SaveEditor.exe` you run
+yourself (the .NET runtime comes with it). It never connects to the internet. Download it from either NexusMods page or from GitHub (see Download
 below); Vortex isn't needed.
 
 Player documentation is in
@@ -129,8 +129,8 @@ Mods.MechWarrior5.Shared repo they came from is archived.
 
 ## Releasing
 
-`/publish` builds `tools/package.ps1` (a self-contained, single-file `MW5SaveEditor.exe` zipped to
-`dist/`), bumps the version, writes the changelog, and cuts a GitHub release. The release triggers
+`/publish` builds `tools/package.ps1` (a self-contained folder, `MW5SaveEditor.exe` beside the .NET runtime
+DLLs, zipped to `dist/`), bumps the version, writes the changelog, and cuts a GitHub release. The release triggers
 `.github/workflows/publish.yml`, which uploads that same zip, fetched from the release, to both NexusMods
 pages in `nexus.json`. `tools/AddonPack` generates add-on packs from a mod's files (see
 [docs/ADDONS.md](docs/ADDONS.md)).

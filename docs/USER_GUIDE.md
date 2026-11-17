@@ -13,7 +13,8 @@ to the game, so it doesn't need Vortex. It never connects to the internet.
    [Clans](https://www.nexusmods.com/mechwarrior5clans/mods/70)), or the same zip from
    [GitHub](https://github.com/mindattic/Mods.MechWarrior5.SaveEditor/releases/latest).
 2. Extract it anywhere, for example your Desktop. Keep the `Addons` folder beside the exe.
-3. Double-click **MW5SaveEditor.exe**. No .NET install is needed.
+3. Double-click **MW5SaveEditor.exe**. The folder also holds the .NET runtime files it needs, so no .NET install is
+   needed; keep them together.
 
 To uninstall, delete the folder. Your settings are the `settings.json` beside the exe; the editor
 writes nothing anywhere else except your saves.

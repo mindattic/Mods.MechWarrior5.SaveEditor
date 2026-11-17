@@ -1,12 +1,15 @@
 <#
 .SYNOPSIS
-    Builds the release package: a self-contained, single-file win-x64 MW5SaveEditor.exe plus its
-    notices, staged in obj\package\MW5SaveEditor\ and zipped to dist\MechWarrior5.SaveEditor-<version>.zip.
+    Builds the release package: a self-contained win-x64 folder (MW5SaveEditor.exe beside the .NET runtime
+    and its own DLLs) plus its notices, staged in obj\package\MW5SaveEditor\ and zipped to
+    dist\MechWarrior5.SaveEditor-<version>.zip.
 
 .DESCRIPTION
     The staged folder is the payload /publish hashes for its no-op guard (it holds no file whose
     content changes on every publish), and the zip is the GitHub release asset CI uploads to
-    NexusMods. Players need nothing installed: the .NET runtime is bundled.
+    NexusMods. Players need nothing installed: the .NET runtime is bundled. It is published as a plain
+    folder, not one single-file exe: a small launcher with 140 MB appended reads as a packer or dropper to
+    antivirus heuristics (VirusTotal flagged 3.0.0), while ordinary DLLs beside the exe don't (M5SE-T126).
 
 .OUTPUTS
     The zip path, on the pipeline.
@@ -29,12 +32,12 @@ New-Item -ItemType Directory -Force -Path $stage, $dist | Out-Null
 
 $project = Join-Path $root 'src\MechWarrior5.SaveEditor.App\MechWarrior5.SaveEditor.App.csproj'
 dotnet publish $project -c $Configuration -r win-x64 --self-contained true -nologo `
-    -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=false `
+    -p:PublishSingleFile=false -p:SatelliteResourceLanguages=en `
     -p:DebugType=none -p:GenerateDocumentationFile=false -o $stage
 if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed ($LASTEXITCODE)." }
 
-# Only the program and what players should read ship; nothing else from the publish folder.
-Get-ChildItem $stage -File | Where-Object { $_.Name -notin @('MW5SaveEditor.exe') -and $_.Extension -ne '.txt' } | Remove-Item -Force
+# The program and its runtime ship; build leftovers (symbols, XML docs, a WebView2 stray) don't.
+Get-ChildItem $stage -File -Recurse | Where-Object { $_.Extension -in @('.pdb', '.xml') -or $_.Name -like 'Microsoft.Web.WebView2*' } | Remove-Item -Force
 Copy-Item (Join-Path $root 'THIRD-PARTY-NOTICES.md') $stage
 # Add-on packs: plain JSON data for other mods, read from the Addons folder beside the exe.
 New-Item -ItemType Directory -Force -Path (Join-Path $stage 'Addons') | Out-Null
