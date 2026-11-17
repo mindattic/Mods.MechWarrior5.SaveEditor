@@ -10,9 +10,8 @@ dotnet test tests/MechWarrior5.SaveEditor.Headless.Tests --filter Category=Scree
 It overwrites the files in place, keeping their names:
 
 - `assets/mercs-01..10-*.png` and `assets/clans-01..10-*.png`: the README gallery.
-- `assets/nexus/01..06-*.png`: the NexusMods page's six images. The description in
-  [NEXUS_PAGE.md](NEXUS_PAGE.md) links them straight from GitHub (`main`), so pushing new ones updates
-  the page's description by itself; only the page's media gallery needs the files re-uploaded.
+- `assets/nexus/01..06-*.png`: six feature images. The NexusMods descriptions carry no images (M5SE-T124),
+  so these are spares for the GitHub Page or a future gallery.
 
 | # | File | What it shows |
 | --- | --- | --- |

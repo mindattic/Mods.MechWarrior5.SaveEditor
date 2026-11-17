@@ -1,0 +1,1 @@
+One save editor for MechWarrior 5: Mercenaries and Clans. Never overwrites your saves, follows your installed mods, and shows which mod a save needs. C-Bills, 'Mechs, Mech Lab, pilots, factions, Kerenskies, Honor and more.
