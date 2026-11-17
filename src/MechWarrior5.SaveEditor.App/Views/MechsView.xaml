@@ -4,9 +4,9 @@
         xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
              xmlns:b="clr-namespace:MechWarrior5.Shared.Wpf.Behaviors;assembly=MechWarrior5.Shared.Wpf">
     <UserControl.Resources>
-        <!-- Mech portrait: Sarna art over a hex badge with the chassis initials while loading/offline. -->
+        <!-- Mech portrait: the game's own art over a hex badge with the chassis initials when it has none. -->
         <DataTemplate x:Key="Portrait">
-            <ma:MaButton Style="{StaticResource Button.Picture}" CommandParameter="{Binding SarnaTitle}" ToolTip="{l:T click_to_enlarge}"
+            <ma:MaButton Style="{StaticResource Button.Picture}" CommandParameter="{Binding Art}" ToolTip="{l:T click_to_enlarge}"
                          Width="{Binding Tag, RelativeSource={RelativeSource AncestorType=ContentPresenter}, FallbackValue=120}" Height="90">
                 <Grid ClipToBounds="True">
                     <Rectangle Fill="{DynamicResource Brush.Void}" />
@@ -14,7 +14,7 @@
                           Stroke="{DynamicResource Brush.LineBright}" StrokeThickness="1.5" Fill="{DynamicResource Brush.Panel}" />
                     <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"
                                FontWeight="Bold" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}" />
-                    <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
+                    <Image b:MechArt.Key="{Binding Art}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
                 </Grid>
             </ma:MaButton>
         </DataTemplate>
@@ -231,7 +231,6 @@
                             <ColumnDefinition Width="86" />
                             <ColumnDefinition Width="Auto" MinWidth="70" SharedSizeGroup="Dlc" />
                             <ColumnDefinition Width="80" />
-                            <ColumnDefinition Width="36" />
                         </Grid.ColumnDefinitions>
                         <CheckBox IsChecked="{Binding AllVisibleChecked}" IsThreeState="False" ToolTip="{l:T select_every_mech_shown_ctrl_a}" />
                         <TextBlock Grid.Column="2" Text="{l:T variant}" Style="{StaticResource Text.Label}" />
@@ -256,7 +255,6 @@
                                     <!-- DLC chips: one width for the column, set by the widest code. -->
                                     <ColumnDefinition Width="Auto" MinWidth="70" SharedSizeGroup="Dlc" />
                                     <ColumnDefinition Width="80" />
-                                    <ColumnDefinition Width="36" />
                                 </Grid.ColumnDefinitions>
                                 <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
                                 <ContentPresenter Grid.Column="1" Content="{Binding}" ContentTemplate="{StaticResource Portrait}" Tag="120" HorizontalAlignment="Left" />
@@ -285,11 +283,6 @@
                                            Visibility="{Binding OwnedCount, Converter={StaticResource HasValueToVisibility}, ConverterParameter=Invert}">
                                     <Run Text="x" /><Run Text="0" />
                                 </TextBlock>
-                                <ma:MaButton Grid.Column="7" Style="{StaticResource Button.Link}" Click="OnOpenSarna" Tag="{Binding SarnaUrl}"
-                                        ToolTip="{Binding SarnaTitle, StringFormat='Open {0} on Sarna.net'}" VerticalAlignment="Center">
-                                    <Path Data="{StaticResource Glyph.Link}" Stroke="{Binding (TextElement.Foreground), RelativeSource={RelativeSource AncestorType=ContentPresenter}}"
-                                          StrokeThickness="1.6" Width="15" Height="15" Stretch="Uniform" />
-                                </ma:MaButton>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

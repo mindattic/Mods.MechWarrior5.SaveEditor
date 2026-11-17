@@ -25,11 +25,7 @@
                     <TextBlock Text="{l:T settings_theme_hint}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,14,0,0" TextWrapping="Wrap" />
 
                     <TextBlock Text="{l:T settings_pictures}" Style="{StaticResource Text.Section}" Margin="0,24,0,0" />
-                    <CheckBox Content="{l:T settings_download_pictures}" IsChecked="{Binding DownloadImages}" Margin="0,12,0,0" />
-                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                        <ma:MaButton Content="{l:T settings_clear_cache}" Command="{Binding ClearImageCacheCommand}" />
-                        <TextBlock Text="{Binding CacheStatus}" Style="{StaticResource Text.Muted}" FontSize="16" VerticalAlignment="Center" Margin="12,0,0,0" />
-                    </StackPanel>
+                    <TextBlock Text="{l:T settings_pictures_offline}" Style="{StaticResource Text.Muted}" FontSize="16" TextWrapping="Wrap" Margin="0,12,0,0" />
                 </StackPanel>
             </ma:MaShapeBorder>
 
@@ -58,7 +54,9 @@
                     <TextBlock Style="{StaticResource Text.Muted}" FontSize="15" Margin="0,8,0,0">
                         <Run Text="{l:T settings_file}" /> <Run Text="{Binding SettingsFile, Mode=OneWay}" />
                     </TextBlock>
-                    <ma:MaButton Content="{l:T settings_project_page}" Command="{Binding OpenProjectPageCommand}" HorizontalAlignment="Left" Margin="0,12,0,0" />
+                    <TextBlock Style="{StaticResource Text.Muted}" FontSize="15" Margin="0,4,0,0">
+                        <Run Text="{l:T settings_source}" /> <Run Text="github.com/mindattic/Mods.MechWarrior5.SaveEditor" />
+                    </TextBlock>
                 </StackPanel>
             </ma:MaShapeBorder>
         </Grid>

@@ -39,9 +39,7 @@ public sealed partial class CatalogMechViewModel : SelectableItem
 
     public bool IsDlcOwned { get; }
 
-    public string SarnaTitle => Variant.SarnaTitle;
-
-    public Uri SarnaUrl => MechImageService.PageUrl(Variant.SarnaTitle);
+    public MechArtKey Art => new(Variant.Asset, Variant.ChassisName);
 
     public string SearchText { get; }
 
@@ -86,7 +84,7 @@ public sealed partial class HangarMechViewModel : SelectableItem
 
     public bool IsNew => Record.IsNew;
 
-    public string? SarnaTitle => Record.Variant?.SarnaTitle;
+    public MechArtKey? Art => Record.Variant is { } v ? new(v.Asset, v.ChassisName) : null;
 
     public int Tons => Record.Variant?.Tons ?? 0;
 }

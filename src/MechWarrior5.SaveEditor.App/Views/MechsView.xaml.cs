@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,14 +20,6 @@ public partial class MechsView : UserControl
             // No tick change here: CheckList already toggled the row on each of the two clicks, which cancel out.
             vm.EditLoadout(row);
             e.Handled = true;
-        }
-    }
-
-    private void OnOpenSarna(object sender, RoutedEventArgs e)
-    {
-        if (sender is FrameworkElement { Tag: Uri { Scheme: "https", Host: "www.sarna.net" } url })
-        {
-            Process.Start(new ProcessStartInfo(url.AbsoluteUri) { UseShellExecute = true });
         }
     }
 }

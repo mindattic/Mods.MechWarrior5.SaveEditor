@@ -169,13 +169,15 @@ public partial class UiHeadlessTests
         });
     }
 
-    private (ShellViewModel Shell, Window Window, FakeDialogs Dialogs) Launch(string? clansFolder, IEditorWindows? windows = null, bool downloads = false)
+    private (ShellViewModel Shell, Window Window, FakeDialogs Dialogs) Launch(string? clansFolder, IEditorWindows? windows = null)
     {
         var settings = new JsonSettings<AppSettings>(_settingsDir);
         settings.Current.ClansSaveFolder = clansFolder;
-        settings.Current.DownloadMechImages = downloads;
         var dialogs = new FakeDialogs();
-        var mercs = new MainViewModel(MechCatalog.LoadBuiltIn(), ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), dialogs, settings, windows ?? new EditorWindows(), Path.Combine(_settingsDir, "img"));
+        var catalog = MechCatalog.LoadBuiltIn();
+        // Like the app: pictures come from the installed game, so the rendered pages show them.
+        Shared.Wpf.Behaviors.MechArt.Service = new GameArtSource(catalog);
+        var mercs = new MainViewModel(catalog, ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), dialogs, settings, windows ?? new EditorWindows());
         var shell = new ShellViewModel(mercs, new ClansMainViewModel(dialogs, settings), settings);
         var window = new App.MainWindow { DataContext = shell, Left = -4000, Top = 0, Width = 1440, Height = 900, ShowActivated = false };
         window.Show();

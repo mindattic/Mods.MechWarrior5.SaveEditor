@@ -1,11 +1,8 @@
-using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MechWarrior5.SaveEditor.App.Localization;
 using MechWarrior5.SaveEditor.App.Services;
-using MechWarrior5.Shared.Wpf.Behaviors;
 using Microsoft.Win32;
 
 namespace MechWarrior5.SaveEditor.App.ViewModels;
@@ -14,19 +11,14 @@ public sealed partial class SettingsViewModel : ObservableObject
 {
     private readonly MainViewModel _main;
     private readonly JsonSettings<AppSettings> _settings;
-    private readonly string _imageCache;
 
     [ObservableProperty]
     private string _gameFolder;
 
-    [ObservableProperty]
-    private string? _cacheStatus;
-
-    public SettingsViewModel(MainViewModel main, JsonSettings<AppSettings> settings, string imageCache)
+    public SettingsViewModel(MainViewModel main, JsonSettings<AppSettings> settings)
     {
         _main = main;
         _settings = settings;
-        _imageCache = imageCache;
         _gameFolder = settings.Current.GameFolder ?? string.Empty;
         // The startup scan can finish (or the language change) while this page is on screen.
         main.PropertyChanged += (_, e) =>
@@ -47,22 +39,6 @@ public sealed partial class SettingsViewModel : ObservableObject
         {
             Loc.Instance.Language = value.Code;
             _settings.Current.Language = value.Code;
-            _settings.Save();
-            OnPropertyChanged();
-        }
-    }
-
-    public bool DownloadImages
-    {
-        get => _settings.Current.DownloadMechImages;
-        set
-        {
-            _settings.Current.DownloadMechImages = value;
-            if (MechArt.Service is { } images)
-            {
-                images.Enabled = value;
-            }
-
             _settings.Save();
             OnPropertyChanged();
         }
@@ -92,31 +68,4 @@ public sealed partial class SettingsViewModel : ObservableObject
         _settings.Save();
         await _main.ReloadGameDataAsync();
     }
-
-    [RelayCommand]
-    private void ClearImageCache()
-    {
-        var removed = 0;
-        if (Directory.Exists(_imageCache))
-        {
-            foreach (var file in Directory.EnumerateFiles(_imageCache, "*.img"))
-            {
-                try
-                {
-                    File.Delete(file);
-                    removed++;
-                }
-                catch (Exception e) when (e is IOException or UnauthorizedAccessException)
-                {
-                    // In use or read-only: leave it and clear the rest.
-                }
-            }
-        }
-
-        CacheStatus = Loc.Text("cache_cleared", "Removed {0} cached pictures. They download again as needed.", removed);
-    }
-
-    [RelayCommand]
-    private static void OpenProjectPage() =>
-        Process.Start(new ProcessStartInfo("https://github.com/mindattic/Mods.MechWarrior5.SaveEditor") { UseShellExecute = true });
 }

@@ -82,7 +82,7 @@
                                     <ColumnDefinition Width="110" />
                                 </Grid.ColumnDefinitions>
                                 <CheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Focusable="False" />
-                                <ma:MaButton Grid.Column="1" Style="{StaticResource Button.Picture}" CommandParameter="{Binding SarnaTitle}" ToolTip="{l:T click_to_enlarge}"
+                                <ma:MaButton Grid.Column="1" Style="{StaticResource Button.Picture}" CommandParameter="{Binding Art}" ToolTip="{l:T click_to_enlarge}"
                                                  Width="120" Height="90" HorizontalAlignment="Left">
                                         <Grid ClipToBounds="True">
                                             <Rectangle Fill="{DynamicResource Brush.Void}" />
@@ -90,7 +90,7 @@
                                                   Stroke="{DynamicResource Brush.LineBright}" StrokeThickness="1.5" Fill="{DynamicResource Brush.Panel}" />
                                             <TextBlock Text="{Binding Initials}" HorizontalAlignment="Center" VerticalAlignment="Center"
                                                        FontWeight="Bold" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}" />
-                                            <Image b:MechArt.Title="{Binding SarnaTitle}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
+                                            <Image b:MechArt.Key="{Binding Art}" Stretch="Uniform" Margin="2" RenderOptions.BitmapScalingMode="HighQuality" />
                                         </Grid>
                                     </ma:MaButton>
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="4,0,8,0">

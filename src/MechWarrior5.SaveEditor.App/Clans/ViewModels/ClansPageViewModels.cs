@@ -180,22 +180,6 @@ public sealed class ProgressViewModel(ClansDocument doc)
 
 public sealed partial class SettingsViewModel(ClansMainViewModel main) : ObservableObject
 {
-    public bool DownloadMechImages
-    {
-        get => main.Settings.DownloadMechImages;
-        set
-        {
-            main.Settings.DownloadMechImages = value;
-            if (MechWarrior5.Shared.Wpf.Behaviors.MechArt.Service is { } images)
-            {
-                images.Enabled = value;
-            }
-
-            main.SaveSettings();
-            OnPropertyChanged();
-        }
-    }
-
     public string SaveFolder
     {
         get => main.SaveFolder;

@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace MechWarrior5.Clans.SaveEditor.Core.Catalog;
 
-public sealed record Chassis(string Code, string Name, string SarnaTitle, int Tons, string WeightClass);
+public sealed record Chassis(string Code, string Name, int Tons, string WeightClass);
 
 /// <summary>
 /// Display data for MW5 Clans assets: chassis by mech code (from <c>VPR_MIA</c>, <c>HBK-IIC-A_MIA</c>, ...)
@@ -14,36 +14,36 @@ public static partial class ClansCatalog
     // against the game's own data by tools/clans/read_tonnage.py (30/30 match, 2026-11-10).
     private static readonly Chassis[] KnownChassis =
     [
-        new("ACH", "Arctic Cheetah", "Arctic Cheetah (Hankyu)", 30, "Light"),
-        new("ADR", "Adder", "Adder (Puma)", 35, "Light"),
-        new("BANE", "Bane", "Bane (Kraken)", 100, "Assault"),
-        new("DWF", "Dire Wolf", "Dire Wolf (Daishi)", 100, "Assault"),
-        new("EBJ", "Ebon Jaguar", "Ebon Jaguar (Cauldron-Born)", 65, "Heavy"),
-        new("EXE", "Executioner", "Executioner (Gladiator)", 95, "Assault"),
-        new("FMT", "Fire Moth", "Fire Moth (Dasher)", 20, "Light"),
-        new("GAR", "Gargoyle", "Gargoyle (Man O' War)", 80, "Assault"),
-        new("HBK-IIC", "Hunchback IIC", "Hunchback IIC", 50, "Medium"),
-        new("HBR", "Hellbringer", "Hellbringer (Loki)", 65, "Heavy"),
-        new("HMN", "Huntsman", "Huntsman (Nobori-nin)", 50, "Medium"),
-        new("IFR", "Ice Ferret", "Ice Ferret (Fenris)", 45, "Medium"),
-        new("INC", "Incubus", "Incubus (Vixen)", 30, "Light"),
-        new("JR7IIC", "Jenner IIC", "Jenner IIC", 35, "Light"),
-        new("KDK", "Kodiak", "Kodiak", 100, "Assault"),
-        new("KFX", "Kit Fox", "Kit Fox (Uller)", 30, "Light"),
-        new("LBK", "Linebacker", "Linebacker", 65, "Heavy"),
-        new("MDD", "Mad Dog", "Mad Dog (Vulture)", 60, "Heavy"),
-        new("MLX", "Mist Lynx", "Mist Lynx (Koshi)", 25, "Light"),
-        new("NGA", "Naga", "Naga", 80, "Assault"),
-        new("NTG", "Night Gyr", "Night Gyr", 75, "Heavy"),
-        new("NVA", "Nova", "Nova (Black Hawk)", 50, "Medium"),
-        new("RFLIIC", "Rifleman IIC", "Rifleman IIC", 65, "Heavy"),
-        new("SCR", "Stormcrow", "Stormcrow (Ryoken)", 55, "Medium"),
-        new("SHC", "Shadow Cat", "Shadow Cat", 45, "Medium"),
-        new("SHD-IIC", "Shadow Hawk IIC", "Shadow Hawk IIC", 45, "Medium"),
-        new("SMN", "Summoner", "Summoner (Thor)", 70, "Heavy"),
-        new("TBR", "Timber Wolf", "Timber Wolf (Mad Cat)", 75, "Heavy"),
-        new("VPR", "Viper", "Viper (Dragonfly)", 40, "Medium"),
-        new("WHK", "Warhawk", "Warhawk (Masakari)", 85, "Assault"),
+        new("ACH", "Arctic Cheetah", 30, "Light"),
+        new("ADR", "Adder", 35, "Light"),
+        new("BANE", "Bane", 100, "Assault"),
+        new("DWF", "Dire Wolf", 100, "Assault"),
+        new("EBJ", "Ebon Jaguar", 65, "Heavy"),
+        new("EXE", "Executioner", 95, "Assault"),
+        new("FMT", "Fire Moth", 20, "Light"),
+        new("GAR", "Gargoyle", 80, "Assault"),
+        new("HBK-IIC", "Hunchback IIC", 50, "Medium"),
+        new("HBR", "Hellbringer", 65, "Heavy"),
+        new("HMN", "Huntsman", 50, "Medium"),
+        new("IFR", "Ice Ferret", 45, "Medium"),
+        new("INC", "Incubus", 30, "Light"),
+        new("JR7IIC", "Jenner IIC", 35, "Light"),
+        new("KDK", "Kodiak", 100, "Assault"),
+        new("KFX", "Kit Fox", 30, "Light"),
+        new("LBK", "Linebacker", 65, "Heavy"),
+        new("MDD", "Mad Dog", 60, "Heavy"),
+        new("MLX", "Mist Lynx", 25, "Light"),
+        new("NGA", "Naga", 80, "Assault"),
+        new("NTG", "Night Gyr", 75, "Heavy"),
+        new("NVA", "Nova", 50, "Medium"),
+        new("RFLIIC", "Rifleman IIC", 65, "Heavy"),
+        new("SCR", "Stormcrow", 55, "Medium"),
+        new("SHC", "Shadow Cat", 45, "Medium"),
+        new("SHD-IIC", "Shadow Hawk IIC", 45, "Medium"),
+        new("SMN", "Summoner", 70, "Heavy"),
+        new("TBR", "Timber Wolf", 75, "Heavy"),
+        new("VPR", "Viper", 40, "Medium"),
+        new("WHK", "Warhawk", 85, "Assault"),
     ];
 
     private static readonly Dictionary<string, string> Words = new(StringComparer.Ordinal)
@@ -62,7 +62,7 @@ public static partial class ClansCatalog
                 || (variant.StartsWith(c.Code, StringComparison.Ordinal) && c.Code.Length >= 4))
             .OrderByDescending(c => c.Code.Length)
             .FirstOrDefault()
-            ?? new Chassis(variant, variant, variant, 0, "Unknown");
+            ?? new Chassis(variant, variant, 0, "Unknown");
     }
 
     /// <summary><c>HBK-IIC-A_MIA</c> becomes <c>HBK-IIC-A</c>.</summary>

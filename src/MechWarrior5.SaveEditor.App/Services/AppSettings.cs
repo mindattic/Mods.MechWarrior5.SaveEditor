@@ -14,8 +14,6 @@ public sealed class AppSettings
     /// <summary>"Mercs" or "Clans".</summary>
     public string Theme { get; set; } = "Mercs";
 
-    public bool DownloadMechImages { get; set; } = true;
-
     /// <summary>MW5 Mercenaries install folder; empty means detect it (Steam libraries, Epic, common folders).</summary>
     public string? GameFolder { get; set; }
 

@@ -43,6 +43,17 @@ public sealed class CookedPackage
         return ReadList(reader);
     }
 
+    /// <summary>An export's native data: whatever it serializes after its tagged properties.</summary>
+    public byte[] ReadNativeData(PackageExport export)
+    {
+        var reader = new UnrealReader(_data, (int)export.Offset, (int)(export.Offset + export.Size));
+        ReadList(reader);
+        return reader.ReadBytes(reader.Remaining);
+    }
+
+    /// <summary>The name-map entry at <paramref name="index"/>, or null when out of range.</summary>
+    public string? NameAt(int index) => index >= 0 && index < _names.Count ? _names[index] : null;
+
     private void ReadSummary(UnrealReader r)
     {
         r.ReadUInt32();
@@ -187,6 +198,8 @@ public sealed class CookedPackage
                 "ByteProperty" when value.Remaining == 1 => new ByteProperty(name) { EnumType = extra, RawValue = value.ReadByte() },
                 "ByteProperty" => new ByteProperty(name) { EnumType = extra, HoldsName = true, NameValue = ReadName(value) },
                 "ObjectProperty" => new ObjectProperty(name, Resolve(value.ReadInt32())),
+                // Read-only model: a soft reference becomes its asset path, e.g. /Game/UI/Textures/X.X.
+                "SoftObjectProperty" => new NameProperty(name, ReadName(value)),
                 "TextProperty" => new TextProperty(name, value.ReadBytes(value.Remaining)),
                 "StructProperty" => new StructProperty(name, extra, ReadStruct(extra, value)),
                 "ArrayProperty" when extra == "StructProperty" => new ArrayProperty(name, extra, ReadStructArray(value)),

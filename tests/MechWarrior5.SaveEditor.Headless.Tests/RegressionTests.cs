@@ -324,6 +324,41 @@ public class RegressionTests
         Assert.That(short_, Is.Empty, "variants whose game stock structure is below full");
     }
 
+    /// <summary>
+    /// M5SE-T117: every 'Mech picture comes from the installed game's own textures, none from the network. Every
+    /// variant gets one, Clans chassis reuse the Mercenaries picture by name, and a chassis the game lacks gets none.
+    /// </summary>
+    [Test]
+    public void Mech_pictures_come_from_the_installed_game()
+    {
+        var game = GameInstall.Find();
+        if (game is null)
+        {
+            Assert.Ignore("MW5 Mercenaries isn't installed.");
+        }
+
+        var catalog = MechCatalog.LoadBuiltIn();
+        var data = GameDataScanner.Scan(game!, catalog);
+        catalog.Apply(data);
+        using var art = new MechWarrior5.SaveEditor.App.Services.GameArtSource(catalog);
+        var withoutArt = catalog.Variants.Where(v => v.ModName is null && !data.MechArt.ContainsKey(v.Asset)).Select(v => v.Asset).ToList();
+        var chassis = catalog.Variants.Where(v => v.ModName is null).GroupBy(v => v.ChassisName).Select(g => g.First()).ToList();
+        var undecoded = chassis.Where(v => art.GetAsync(new(v.Asset, v.ChassisName)).GetAwaiter().GetResult() is null).Select(v => v.Asset).ToList();
+        var atlas = art.GetAsync(new("AS7-D_MDA", "Atlas")).GetAwaiter().GetResult();
+        var timberWolf = art.GetAsync(new(null, "Timber Wolf")).GetAwaiter().GetResult();
+        var unknown = art.GetAsync(new(null, "No Such Chassis")).GetAwaiter().GetResult();
+        Assert.Multiple(() =>
+        {
+            Assert.That(withoutArt, Is.Empty, "variants whose data asset names no picture the paks hold");
+            Assert.That(undecoded, Is.Empty, "chassis whose picture doesn't decode");
+            Assert.That(atlas, Is.Not.Null);
+            Assert.That(atlas!.PixelWidth, Is.GreaterThanOrEqualTo(128));
+            Assert.That(atlas.IsFrozen, Is.True, "pictures cross threads");
+            Assert.That(timberWolf, Is.Not.Null, "a Clans chassis finds its Mercenaries picture by name");
+            Assert.That(unknown, Is.Null);
+        });
+    }
+
     /// <summary>M5SE-T71: company files missing a list are refused up front; older files without armor maxima still load.</summary>
     [Test]
     public void Partial_company_files_are_refused_and_older_files_load()

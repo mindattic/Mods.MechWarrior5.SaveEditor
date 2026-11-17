@@ -174,7 +174,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
 
     public string Title => $"{Mech.Code}  //  {Mech.Variant?.HeroName ?? Mech.Variant?.ChassisName ?? Mech.Asset}";
 
-    public string? SarnaTitle => Mech.Variant?.SarnaTitle;
+    public MechArtKey? Art => Mech.Variant is { } v ? new(v.Asset, v.ChassisName) : null;
 
     public string Initials => Mech.Code.Length >= 2 ? Mech.Code[..2] : Mech.Code;
 

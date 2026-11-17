@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <!-- MindAttic.Components.Wpf brings in WebView2 (an embedded browser) for a control this app never uses; ship none of it. -->
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3179.45" ExcludeAssets="all" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

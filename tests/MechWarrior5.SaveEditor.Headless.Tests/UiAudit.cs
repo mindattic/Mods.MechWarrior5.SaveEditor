@@ -28,7 +28,7 @@ public partial class UiHeadlessTests
         // Mercenaries
         var (_, mercsSave) = SaveFixtures.MercsCampaignCopy();
         LoadoutEditorViewModel? lab = null;
-        var (shell, window, _) = Launch(clansFolder: null, new FakeEditorWindows(editor => lab = editor), downloads: true);
+        var (shell, window, _) = Launch(clansFolder: null, new FakeEditorWindows(editor => lab = editor));
         Size(window);
         Shot(window, folder, "m00-start");
         shell.OpenPath(mercsSave);
@@ -82,7 +82,7 @@ public partial class UiHeadlessTests
 
         // Clans
         var (clansFolder, clansSave) = SaveFixtures.ClansFolderCopy();
-        (shell, window, _) = Launch(clansFolder, downloads: true);
+        (shell, window, _) = Launch(clansFolder);
         Size(window);
         shell.IsClansGame = true;
         Shot(window, folder, "c00-start");

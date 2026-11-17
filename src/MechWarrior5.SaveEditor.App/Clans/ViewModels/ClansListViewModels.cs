@@ -29,7 +29,7 @@ public sealed partial class MechRow : SelectableItem
 
     public string Initials => Chassis.Code.Length > 3 ? Chassis.Code[..3] : Chassis.Code;
 
-    public string SarnaTitle => Chassis.SarnaTitle;
+    public MechArtKey Art => new(null, Chassis.Name);
 
     public bool IsDamaged => Mech.IsDamaged;
 

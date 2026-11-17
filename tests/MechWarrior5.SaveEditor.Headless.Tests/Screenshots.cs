@@ -29,7 +29,7 @@ public partial class UiHeadlessTests
         // Mercenaries
         var (_, mercsSave) = SaveFixtures.MercsCampaignCopy();
         LoadoutEditorViewModel? lab = null;
-        var (shell, window, _) = Launch(clansFolder: null, new FakeEditorWindows(editor => lab = editor), downloads: true);
+        var (shell, window, _) = Launch(clansFolder: null, new FakeEditorWindows(editor => lab = editor));
         Size(window);
         Shot(window, assets, "mercs-01-campaigns");
         shell.OpenPath(mercsSave);
@@ -76,7 +76,7 @@ public partial class UiHeadlessTests
 
         // Clans
         var (clansFolder, clansSave) = SaveFixtures.ClansFolderCopy();
-        (shell, window, _) = Launch(clansFolder, downloads: true);
+        (shell, window, _) = Launch(clansFolder);
         Size(window);
         shell.IsClansGame = true;
         Shot(window, assets, "clans-01-campaigns");
@@ -169,7 +169,7 @@ public partial class UiHeadlessTests
 
     private static RenderTargetBitmap Render(Window window)
     {
-        // Mech pictures load asynchronously (cache or Sarna); give them time like a player would.
+        // Mech pictures decode asynchronously from the game files; give them time like a player would.
         var until = DateTime.UtcNow.AddSeconds(4);
         while (DateTime.UtcNow < until)
         {

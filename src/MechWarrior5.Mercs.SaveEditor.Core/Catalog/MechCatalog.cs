@@ -22,7 +22,6 @@ public sealed record MechVariant(
     string Asset,
     string Chassis,
     string ChassisName,
-    string SarnaTitle,
     int Tons,
     WeightClass WeightClass,
     string? HeroName,
@@ -127,7 +126,6 @@ public sealed class MechCatalog
             m.Asset,
             m.Chassis,
             m.Name,
-            m.Sarna,
             m.Tons,
             Enum.Parse<WeightClass>(m.Class),
             m.Hero,
@@ -191,5 +189,5 @@ public sealed class MechCatalog
     private sealed record PackDto(string Tag, string Name);
 
     private sealed record MechDto(
-        string Code, string Asset, string Chassis, string Name, string Sarna, int Tons, string Class, string? Hero, string? Dlc);
+        string Code, string Asset, string Chassis, string Name, int Tons, string Class, string? Hero, string? Dlc);
 }

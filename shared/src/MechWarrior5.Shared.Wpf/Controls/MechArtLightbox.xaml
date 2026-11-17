@@ -14,13 +14,8 @@
             <Rectangle Fill="{DynamicResource Brush.Void}" />
             <TextBlock x:Name="Status" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="17"
                        Foreground="{DynamicResource Brush.TextMuted}" />
-            <!-- Sarna's art is often smaller than the card, so it scales up as well as down. -->
+            <!-- The game's art is often smaller than the card, so it scales up as well as down. -->
             <Image x:Name="Picture" Stretch="Uniform" Margin="8" RenderOptions.BitmapScalingMode="HighQuality" />
         </Grid>
-        <ma:MaModal.Footer>
-            <ma:MaButton x:Name="SarnaLink" Style="{DynamicResource Button.Link}" Click="OnOpenSarna">
-                <TextBlock x:Name="LinkLabel" FontWeight="Bold" FontSize="16" />
-            </ma:MaButton>
-        </ma:MaModal.Footer>
     </ma:MaModal>
 </UserControl>

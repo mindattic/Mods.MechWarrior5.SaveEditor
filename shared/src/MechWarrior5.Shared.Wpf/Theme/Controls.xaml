@@ -145,7 +145,7 @@
         <Setter Property="DisabledOpacity" Value="1" />
     </Style>
 
-    <!-- A mech picture you can click to see it large (MechArt.ShowCommand; bind CommandParameter to the Sarna title). -->
+    <!-- A mech picture you can click to see it large (MechArt.ShowCommand; bind CommandParameter to its MechArtKey). -->
     <Style x:Key="Button.Picture" TargetType="ma:MaButton">
         <Setter Property="Shape" Value="Rectangle" />
         <Setter Property="StrokeThickness" Value="1" />

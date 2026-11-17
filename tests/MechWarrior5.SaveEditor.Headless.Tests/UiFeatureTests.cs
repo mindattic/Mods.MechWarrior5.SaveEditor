@@ -265,19 +265,7 @@ public partial class UiHeadlessTests
         var settings = shell.Mercs.SettingsPage;
         try
         {
-            // Downloads toggle, cache clear and Owned DLC only are remembered in settings.json.
-            settings.DownloadImages = true;
-            var cache = Path.Combine(_settingsDir, "img");
-            Directory.CreateDirectory(cache);
-            for (var i = 0; i < 3; i++)
-            {
-                File.WriteAllBytes(Path.Combine(cache, $"x{i}.img"), [1, 2, 3]);
-            }
-
-            settings.ClearImageCacheCommand.Execute(null);
-            Assert.That(Directory.EnumerateFiles(cache, "*.img"), Is.Empty, "cache cleared");
-            Assert.That(settings.CacheStatus, Does.Contain("3"));
-
+            // Owned DLC only is remembered in settings.json.
             shell.OpenPath(mercsSave);
             shell.Mercs.NavigateCommand.Execute(MercsPage.Mechs);
             var mechs = (App.ViewModels.MechsViewModel)shell.Mercs.CurrentView!;
@@ -306,17 +294,15 @@ public partial class UiHeadlessTests
 
             settings.Language = Loc.Languages.First(l => l.Code == "de");
 
-            // Clans settings page: downloads and save folder.
+            // Clans settings page: save folder.
             shell.Clans.NavigateCommand.Execute(ClansPage.Settings);
             var clansSettings = (App.Clans.ViewModels.SettingsViewModel)shell.Clans.CurrentView!;
-            clansSettings.DownloadMechImages = false;
             clansSettings.SaveFolder = folder;
 
             var reread = new JsonSettings<AppSettings>(_settingsDir).Current;
             Assert.Multiple(() =>
             {
                 Assert.That(reread.Language, Is.EqualTo("de"), "language remembered");
-                Assert.That(reread.DownloadMechImages, Is.False, "downloads toggle remembered");
                 Assert.That(reread.OwnedDlcOnly, Is.EqualTo(dlcOnly), "Owned DLC only remembered");
                 Assert.That(reread.ClansSaveFolder, Is.EqualTo(folder), "Clans save folder remembered");
                 Assert.That(clansSettings.FolderExists, Is.True);

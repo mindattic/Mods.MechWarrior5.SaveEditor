@@ -8,12 +8,19 @@ namespace MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 /// <summary>A 'Mech variant found in the installed game or an enabled mod.</summary>
 public sealed record ScannedMech(MechVariant Variant, StockLoadout? Loadout);
 
+/// <summary>A texture package inside a pak: <paramref name="Entry"/> is its <c>.uasset</c> path.</summary>
+public sealed record GameTexture(string PakPath, string Entry);
+
 public sealed record GameData(
     string GameFolder,
     IReadOnlyList<ScannedMech> Mechs,
     IReadOnlyList<string> Mods,
     IReadOnlyList<string> Problems,
-    IReadOnlySet<string> AssetNames);
+    IReadOnlySet<string> AssetNames)
+{
+    /// <summary>Each variant's picture (its data asset's <c>MechTexture</c>), by variant asset.</summary>
+    public IReadOnlyDictionary<string, GameTexture> MechArt { get; init; } = new Dictionary<string, GameTexture>();
+}
 
 /// <summary>
 /// Reads 'Mech data assets (<c>*_MDA</c>) and stock loadouts (<c>*_Loadout</c>) from the game pak and
@@ -26,35 +33,103 @@ public static partial class GameDataScanner
         var mechs = new Dictionary<string, ScannedMech>(StringComparer.OrdinalIgnoreCase);
         var problems = new List<string>();
         var assets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets);
-
-        var mods = new List<string>();
-        foreach (var (folder, name) in EnabledMods(Path.Combine(gameFolder, GameInstall.ModsRelative)))
+        var art = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var opened = new List<PakFile>();
+        try
         {
-            var paks = Directory.Exists(Path.Combine(folder, "Paks"))
-                ? Directory.EnumerateFiles(Path.Combine(folder, "Paks"), "*.pak", SearchOption.AllDirectories).ToList()
-                : [];
-            if (paks.Count == 0)
+            ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets, art, opened);
+
+            var mods = new List<string>();
+            foreach (var (folder, name) in EnabledMods(Path.Combine(gameFolder, GameInstall.ModsRelative)))
+            {
+                var paks = Directory.Exists(Path.Combine(folder, "Paks"))
+                    ? Directory.EnumerateFiles(Path.Combine(folder, "Paks"), "*.pak", SearchOption.AllDirectories).ToList()
+                    : [];
+                if (paks.Count == 0)
+                {
+                    continue;
+                }
+
+                mods.Add(name);
+                foreach (var pak in paks)
+                {
+                    ScanPak(pak, name, catalog, mechs, problems, assets, art, opened);
+                }
+            }
+
+            return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets) { MechArt = ResolveArt(art, opened) };
+        }
+        finally
+        {
+            foreach (var pak in opened)
+            {
+                pak.Dispose();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Finds each picture's package in the paks, the last-loaded pak first (a mod's texture wins over the game's, as in game).
+    /// <c>/Game/X</c> is the game's <c>MW5Mercs/Content/X</c>; <c>/Plugin/X</c> is a mod's <c>Plugin/Content/X</c>.
+    /// </summary>
+    private static Dictionary<string, GameTexture> ResolveArt(Dictionary<string, string> art, List<PakFile> paks)
+    {
+        var found = new Dictionary<string, GameTexture>(StringComparer.OrdinalIgnoreCase);
+        var indexes = new Dictionary<PakFile, Dictionary<string, string>>();
+        foreach (var (asset, softPath) in art)
+        {
+            var package = softPath.LastIndexOf('.') is var dot && dot > softPath.LastIndexOf('/') ? softPath[..dot] : softPath;
+            for (var i = paks.Count - 1; i >= 0; i--)
+            {
+                if (!indexes.TryGetValue(paks[i], out var index))
+                {
+                    indexes[paks[i]] = index = PackageIndex(paks[i]);
+                }
+
+                if (index.TryGetValue(package, out var entry))
+                {
+                    found[asset] = new GameTexture(paks[i].Path, entry);
+                    break;
+                }
+            }
+        }
+
+        return found;
+    }
+
+    private static Dictionary<string, string> PackageIndex(PakFile pak)
+    {
+        var index = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var file in pak.Files)
+        {
+            if (!file.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
 
-            mods.Add(name);
-            foreach (var pak in paks)
+            var content = file.IndexOf("/Content/", StringComparison.OrdinalIgnoreCase);
+            if (content <= 0)
             {
-                ScanPak(pak, name, catalog, mechs, problems, assets);
+                continue;
             }
+
+            var root = file[..content];
+            root = root[(root.LastIndexOf('/') + 1)..];
+            var mount = string.Equals(root, "MW5Mercs", StringComparison.OrdinalIgnoreCase) ? "/Game" : "/" + root;
+            index.TryAdd(mount + file[(content + "/Content".Length)..^".uasset".Length], file);
         }
 
-        return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets);
+        return index;
     }
 
     private static void ScanPak(
-        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets)
+        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets,
+        Dictionary<string, string> art, List<PakFile> opened)
     {
         try
         {
-            using var pak = PakFile.Open(path);
+            var pak = PakFile.Open(path);
+            opened.Add(pak);
             foreach (var file in pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)))
             {
                 assets.Add(Path.GetFileNameWithoutExtension(file));
@@ -85,10 +160,16 @@ public static partial class GameDataScanner
                     continue;
                 }
 
-                var variant = known ?? Describe(pak, file, asset, catalog, modName);
+                var data = Read(pak, file, "MWMechDataAsset")?.Find<StructProperty>("MechData")?.Value as PropertyList;
+                var variant = known ?? Describe(data, file, asset, catalog, modName);
                 if (variant is null)
                 {
                     continue;
+                }
+
+                if (data?.Find<NameProperty>("MechTexture")?.Value.Value is { Length: > 0 } texture && texture != "None")
+                {
+                    art[asset] = texture;
                 }
 
                 if (known is not null && modName is null && DlcOf(file) is { } tag && known.Dlc?.Tag != tag)
@@ -121,9 +202,9 @@ public static partial class GameDataScanner
     }
 
     /// <summary>Builds a catalog entry for a variant the built-in catalog doesn't know (new DLC data or a mod).</summary>
-    private static MechVariant? Describe(PakFile pak, string file, string asset, MechCatalog catalog, string? modName)
+    private static MechVariant? Describe(PropertyList? data, string file, string asset, MechCatalog catalog, string? modName)
     {
-        if (Read(pak, file, "MWMechDataAsset") is not { } props || props.Find<StructProperty>("MechData")?.Value is not PropertyList data)
+        if (data is null)
         {
             return null;
         }
@@ -142,7 +223,6 @@ public static partial class GameDataScanner
             asset,
             known?.Chassis ?? chassis,
             name,
-            known?.SarnaTitle ?? name,
             tons,
             tons switch { <= 35 => WeightClass.Light, <= 55 => WeightClass.Medium, <= 75 => WeightClass.Heavy, _ => WeightClass.Assault },
             null,

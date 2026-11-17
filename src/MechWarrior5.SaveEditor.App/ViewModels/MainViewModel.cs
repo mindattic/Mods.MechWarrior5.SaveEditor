@@ -60,9 +60,9 @@ public sealed partial class MainViewModel : ObservableObject
 
     public string SaveLabel => IsOriginal ? Loc.Text("save_as_new", "SAVE AS NEW") : Loc.Text("save", "SAVE");
 
-    public MainViewModel(MechCatalog mechs, ItemCatalog items, PilotCatalog pilots, IDialogService dialogs, JsonSettings<AppSettings> settings, IEditorWindows windows, string imageCache)
+    public MainViewModel(MechCatalog mechs, ItemCatalog items, PilotCatalog pilots, IDialogService dialogs, JsonSettings<AppSettings> settings, IEditorWindows windows)
     {
-        SettingsPage = new SettingsViewModel(this, settings, imageCache);
+        SettingsPage = new SettingsViewModel(this, settings);
         _pilots = pilots;
         _windows = windows;
         _mechs = mechs;

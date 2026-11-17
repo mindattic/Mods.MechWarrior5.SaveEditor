@@ -17,16 +17,17 @@ public partial class App : Application
         base.OnStartup(e);
         DispatcherUnhandledException += OnUnhandledException;
 
-        var cache = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MechWarrior5SaveEditor", "MechImages");
         var settings = new JsonSettings<AppSettings>();
         Loc.Instance.Language = string.IsNullOrEmpty(settings.Current.Language) ? Loc.DefaultLanguage() : settings.Current.Language;
         DialogService.Text = (key, english) => Loc.Text(key, english);
         ThemeManager.Apply(ThemeManager.TryParse(settings.Current.Theme, out var theme) ? theme : MechWarrior5Theme.Mercs);
-        var images = new MechImageService(cache) { Enabled = settings.Current.DownloadMechImages };
-        MechArt.Service = images;
-        Exit += (_, _) => images.Dispose();
 
-        var main = new MainViewModel(MechCatalog.LoadBuiltIn(), ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), new DialogService(), settings, new EditorWindows(), cache);
+        var mechs = MechCatalog.LoadBuiltIn();
+        var art = new GameArtSource(mechs);
+        MechArt.Service = art;
+        Exit += (_, _) => art.Dispose();
+
+        var main = new MainViewModel(mechs, ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), new DialogService(), settings, new EditorWindows());
         var shell = new ShellViewModel(main, new Clans.ViewModels.ClansMainViewModel(new DialogService(), settings), settings);
         var window = new MainWindow { DataContext = shell };
         MainWindow = window;

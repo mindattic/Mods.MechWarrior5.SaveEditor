@@ -254,9 +254,9 @@ public partial class UiHeadlessTests
     private static void ClickFirstPicture(Window window, out string title)
     {
         var button = Descendants(window).OfType<MindAttic.Components.Wpf.Controls.MaButton>()
-            .First(b => b.Command == MechArt.ShowCommand && b.IsVisible && b.CommandParameter is string { Length: > 0 });
+            .First(b => b.Command == MechArt.ShowCommand && b.IsVisible && b.CommandParameter is Shared.Wpf.Services.MechArtKey);
         Assert.That(button.IsEnabled, Is.True, "the picture button is clickable");
-        title = (string)button.CommandParameter;
+        title = ((Shared.Wpf.Services.MechArtKey)button.CommandParameter).Chassis;
         // OnClick is what a mouse click ends in: it raises Click and runs the button's command.
         typeof(System.Windows.Controls.Primitives.ButtonBase)
             .GetMethod("OnClick", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!

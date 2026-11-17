@@ -5,25 +5,25 @@ using MechWarrior5.Shared.Wpf.Services;
 
 namespace MechWarrior5.Shared.Wpf.Behaviors;
 
-/// <summary>Binds an Image to a chassis picture by Sarna page title, loaded asynchronously.</summary>
+/// <summary>Binds an Image to a 'Mech picture, loaded asynchronously from the installed game.</summary>
 public static class MechArt
 {
-    public static readonly DependencyProperty TitleProperty = DependencyProperty.RegisterAttached(
-        "Title", typeof(string), typeof(MechArt), new PropertyMetadata(null, OnTitleChanged));
+    public static readonly DependencyProperty KeyProperty = DependencyProperty.RegisterAttached(
+        "Key", typeof(MechArtKey), typeof(MechArt), new PropertyMetadata(null, OnKeyChanged));
 
     /// <summary>
-    /// Opens a chassis picture large. The parameter is the Sarna page title; a
+    /// Opens a 'Mech picture large. The parameter is its <see cref="MechArtKey"/>; a
     /// <see cref="Controls.MechArtLightbox"/> in the window handles it.
     /// </summary>
     public static readonly RoutedUICommand ShowCommand = new("Show mech picture", "ShowMechArt", typeof(MechArt));
 
-    public static MechImageService? Service { get; set; }
+    public static IMechArtSource? Service { get; set; }
 
-    public static string? GetTitle(DependencyObject element) => (string?)element.GetValue(TitleProperty);
+    public static MechArtKey? GetKey(DependencyObject element) => (MechArtKey?)element.GetValue(KeyProperty);
 
-    public static void SetTitle(DependencyObject element, string? value) => element.SetValue(TitleProperty, value);
+    public static void SetKey(DependencyObject element, MechArtKey? value) => element.SetValue(KeyProperty, value);
 
-    private static async void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static async void OnKeyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not Image image)
         {
@@ -31,27 +31,27 @@ public static class MechArt
         }
 
         image.Source = null;
-        if (e.NewValue is not string title || Service is null)
+        if (e.NewValue is not MechArtKey key || Service is null)
         {
             return;
         }
 
-        var source = await Service.GetAsync(title);
+        var source = await Service.GetAsync(key);
         // Frozen bitmaps cross threads; the Image doesn't, so finish on its own thread whatever context awaited.
         if (image.Dispatcher.CheckAccess())
         {
-            Apply(image, title, source);
+            Apply(image, key, source);
         }
         else
         {
-            _ = image.Dispatcher.BeginInvoke(() => Apply(image, title, source));
+            _ = image.Dispatcher.BeginInvoke(() => Apply(image, key, source));
         }
     }
 
-    private static void Apply(Image image, string title, System.Windows.Media.ImageSource? source)
+    private static void Apply(Image image, MechArtKey key, System.Windows.Media.ImageSource? source)
     {
-        // Recycled rows may have moved on to another mech while the download ran.
-        if (string.Equals(GetTitle(image), title, StringComparison.Ordinal))
+        // Recycled rows may have moved on to another 'Mech while the picture loaded.
+        if (Equals(GetKey(image), key))
         {
             image.Source = source;
         }
