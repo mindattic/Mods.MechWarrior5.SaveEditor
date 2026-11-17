@@ -67,9 +67,22 @@ public sealed partial class SettingsViewModel : ObservableObject
     {
         var value = _main.Addons.Limits[key].ToString("N0", System.Globalization.CultureInfo.CurrentCulture);
         return _main.Addons.LimitSources.TryGetValue(key, out var source)
-            ? Loc.Text("addon_limit_from", "{0}: {1}  (from {2})", Loc.Text("limit_" + key, key), value, source)
-            : Loc.Text("addon_limit_vanilla", "{0}: {1}  (vanilla)", Loc.Text("limit_" + key, key), value);
+            ? Loc.Text("addon_limit_from", "{0}: {1}  (from {2})", LimitName(key), value, source)
+            : Loc.Text("addon_limit_vanilla", "{0}: {1}  (vanilla)", LimitName(key), value);
     })];
+
+    /// <summary>A limit's translated name; one literal key per <see cref="GameLimits.Keys"/> entry, so the key test checks each.</summary>
+    private static string LimitName(string key) => key switch
+    {
+        "maxSkillCap" => Loc.Text("limit_skill_cap", "Pilot skill cap"),
+        "maxExperience" => Loc.Text("limit_experience", "Pilot experience"),
+        "maxSalary" => Loc.Text("limit_salary", "Pilot salary"),
+        "maxCBills" => Loc.Text("limit_cbills", "C-Bills"),
+        "minStanding" => Loc.Text("limit_min_standing", "Lowest faction standing"),
+        "maxStanding" => Loc.Text("limit_max_standing", "Highest faction standing"),
+        "maxCount" => Loc.Text("limit_stack", "Items per stack"),
+        _ => key,
+    };
 
     public IReadOnlyList<string> Collisions => _main.Addons.Collisions;
 
