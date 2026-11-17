@@ -14,6 +14,9 @@ internal sealed class ModContent
     /// <summary>Cantina career paths from the game and enabled mods, by asset; a later mod's copy wins.</summary>
     public Dictionary<string, CareerPathDefinition> CareerPaths { get; } = new(StringComparer.OrdinalIgnoreCase);
 
+    /// <summary>Each weapon's and ammo's <c>AmmoType</c> tag (base game and mods): a weapon takes the ammo with its tag.</summary>
+    public Dictionary<string, string> AmmoTypes { get; } = new(StringComparer.OrdinalIgnoreCase);
+
     /// <summary>The highest level on the base game's pilot skill level curve.</summary>
     public int? BaseSkillCap { get; set; }
 
@@ -71,6 +74,18 @@ public static partial class GameDataScanner
 
         if (modName is null)
         {
+            // Base game: the built-in weapons' and ammo's ammo tags, so each weapon knows its ammo.
+            var known = BuiltInWeaponsAndAmmo.Value;
+            foreach (var file in pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)
+                                                      && known.TryGetValue(Path.GetFileNameWithoutExtension(f), out _)))
+            {
+                var asset = Path.GetFileNameWithoutExtension(file);
+                if (Read(pak, file, known[asset]) is { } props && AmmoTypeOf(props) is { } tag)
+                {
+                    content.AmmoTypes[asset] = tag;
+                }
+            }
+
             return;
         }
 
@@ -103,6 +118,10 @@ public static partial class GameDataScanner
                         if (DescribeItem(asset, cls, props, modName) is { } item)
                         {
                             content.Items[asset] = item; // a later mod's copy wins, as in the game
+                            if (AmmoTypeOf(props) is { } tag)
+                            {
+                                content.AmmoTypes[asset] = tag;
+                            }
                         }
 
                         break;
@@ -138,6 +157,16 @@ public static partial class GameDataScanner
         name.Length > 1 && !name.Any(char.IsLower)
             ? System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(name.ToLowerInvariant())
             : name;
+
+    private static readonly Lazy<Dictionary<string, string>> BuiltInWeaponsAndAmmo = new(() =>
+        ItemCatalog.LoadBuiltIn().Items.Where(i => i.Kind is ItemKind.Weapon or ItemKind.Ammo)
+            .GroupBy(i => i.Asset, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Key, g => g.First().AssetType, StringComparer.OrdinalIgnoreCase));
+
+    /// <summary>A weapon's <c>StatsData.AmmoType</c> or an ammo's <c>AmmoType</c> tag; null for weapons without ammo.</summary>
+    internal static string? AmmoTypeOf(PropertyList props) =>
+        (TagOf(props, "AmmoType") ?? ((props.Find<StructProperty>("StatsData")?.Value as PropertyList) is { } stats ? TagOf(stats, "AmmoType") : null))
+            is { Length: > 0 } tag && tag != "None" ? tag : null;
 
     /// <summary>The class of the export named like the file (its data asset), from the package header alone.</summary>
     private static string? ClassOf(PakFile pak, string uasset, string asset) =>

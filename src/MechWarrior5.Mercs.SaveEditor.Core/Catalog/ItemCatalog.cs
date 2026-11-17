@@ -25,6 +25,9 @@ public sealed record ItemDefinition(string Asset, string AssetType, ItemKind Kin
     /// </summary>
     public IReadOnlyList<string>? SlotTypes { get; init; }
 
+    /// <summary>The ammo tag (<c>Ammo.Missile.LRM</c>): a weapon uses the ammo with the same tag. Null for energy weapons.</summary>
+    public string? AmmoType { get; init; }
+
     /// <summary>Weapons go to <c>WeaponInventory</c>; equipment and ammo to <c>EquipmentInventory</c>.</summary>
     public bool IsWeapon => Kind == ItemKind.Weapon;
 
@@ -87,9 +90,12 @@ public sealed class ItemCatalog
     /// <summary>Built-in items, plus the enabled mods' items, plus the active packs' additions and changes.</summary>
     public void Apply(GameData? game, AddonState addons)
     {
-        var items = _builtIn.ToDictionary(i => i.Asset, StringComparer.OrdinalIgnoreCase);
+        // The game's own data first (ammo tags included), then the packs, which may correct any of it.
+        var tags = game?.AmmoTypes ?? new Dictionary<string, string>();
+        ItemDefinition Tagged(ItemDefinition i) => tags.TryGetValue(i.Asset, out var tag) ? i with { AmmoType = tag } : i;
+        var items = _builtIn.Select(Tagged).ToDictionary(i => i.Asset, StringComparer.OrdinalIgnoreCase);
         var order = _builtIn.Select(i => i.Asset).ToList();
-        foreach (var item in game?.Items ?? [])
+        foreach (var item in (game?.Items ?? []).Select(Tagged))
         {
             if (items.TryAdd(item.Asset, item))
             {
@@ -122,6 +128,18 @@ public sealed class ItemCatalog
         _byAsset = Index(Items);
     }
 
+    /// <summary>
+    /// The ammo a weapon fires, from the game's own tags: a full ton first, then half tons, matching the weapon's mod when
+    /// it has one. Empty for weapons without ammo, or before the game data is read.
+    /// </summary>
+    public IReadOnlyList<ItemDefinition> AmmoFor(ItemDefinition weapon) =>
+        weapon.AmmoType is not { } tag
+            ? []
+            : [.. Items.Where(i => i.Kind == ItemKind.Ammo && string.Equals(i.AmmoType, tag, StringComparison.Ordinal))
+                .OrderBy(i => i.Asset.Contains("_Half", StringComparison.OrdinalIgnoreCase))
+                .ThenBy(i => !string.Equals(i.Source, weapon.Source, StringComparison.Ordinal))
+                .ThenBy(i => i.Asset, StringComparer.OrdinalIgnoreCase)];
+
     /// <summary>Back to the built-in items alone.</summary>
     public void Reset()
     {
@@ -135,12 +153,13 @@ public sealed class ItemCatalog
         Kind = Kind(change.Kind) ?? item.Kind,
         Hardpoint = change.Hardpoint is { } h ? Hardpoints.Parse(h) : item.Hardpoint,
         Label = change.Label ?? item.Label,
+        AmmoType = change.AmmoType ?? item.AmmoType,
         Source = item.Source ?? pack,
     };
 
     private static ItemDefinition? FromPack(AddonItem add, string pack) =>
         add.Type is { } type && Kind(add.Kind) is { } kind
-            ? new ItemDefinition(add.Asset, type, kind, Hardpoints.Parse(add.Hardpoint)) { Label = add.Label, Source = pack }
+            ? new ItemDefinition(add.Asset, type, kind, Hardpoints.Parse(add.Hardpoint)) { Label = add.Label, Source = pack, AmmoType = add.AmmoType }
             : null;
 
     private static ItemKind? Kind(string? kind) => kind?.ToLowerInvariant() switch

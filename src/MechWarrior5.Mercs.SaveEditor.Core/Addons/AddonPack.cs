@@ -17,7 +17,11 @@ public sealed record SkillLevel(int Level, int Experience);
 
 public sealed record AddonTrait(string Asset, string? Label, string? Description);
 
-public sealed record AddonItem(string Asset, string? Type, string? Kind, string? Label, string? Hardpoint);
+public sealed record AddonItem(string Asset, string? Type, string? Kind, string? Label, string? Hardpoint)
+{
+    /// <summary>The ammo tag a weapon fires or an ammo is (<c>Ammo.Missile.LRM</c>); fixes a mod whose own data doesn't pair them.</summary>
+    public string? AmmoType { get; init; }
+}
 
 public sealed record AddonMech(string Asset, string? Code, string? Chassis, string? Name, int? Tons, string? Hero);
 
@@ -170,7 +174,7 @@ public static class AddonPackReader
                     .OrderBy(l => l.Level)],
                 PilotTraits = List(root["pilotTraits"], Trait),
                 MechTraits = List(root["mechTraits"], Trait),
-                Items = List(root["items"], o => Text(o, "asset") is { } a ? new AddonItem(a, Text(o, "type"), Text(o, "kind"), Text(o, "label"), Text(o, "hardpoint")) : null),
+                Items = List(root["items"], o => Text(o, "asset") is { } a ? new AddonItem(a, Text(o, "type"), Text(o, "kind"), Text(o, "label"), Text(o, "hardpoint")) { AmmoType = Text(o, "ammoType") } : null),
                 OtherAssets = Strings(root["assets"]),
                 Mechs = List(root["mechs"], o => Text(o, "asset") is { } a ? new AddonMech(a, Text(o, "code"), Text(o, "chassis"), Text(o, "name"), Int(o, "tons"), Text(o, "hero")) : null),
             };

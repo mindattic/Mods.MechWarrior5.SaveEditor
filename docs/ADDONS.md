@@ -57,7 +57,7 @@ Only `schema`, `name` and `requires` are required. Unknown fields are ignored, s
 | `limits` | Limits the mod allows; see below. |
 | `skillCurve` | `[{ "level", "xp" }]`, the mod's pilot skill levels. Its top level counts as `maxSkillCap` and its highest XP as `maxExperience`. |
 | `pilotTraits`, `mechTraits` | `add` and `override` lists of `{ "asset", "label", "description" }`. |
-| `items` | `add` and `override` lists of `{ "asset", "type", "kind", "label", "hardpoint" }`. `type` is the data asset class (`MWBeamWeaponDataAsset`, `MWAmmoDataAsset`, ...), `kind` is `weapon`, `equipment` or `ammo`, `hardpoint` is `E`, `B`, `M`, `A` or `Melee`. An added item needs `type` and `kind`. |
+| `items` | `add` and `override` lists of `{ "asset", "type", "kind", "label", "hardpoint", "ammoType" }`. `type` is the data asset class (`MWBeamWeaponDataAsset`, `MWAmmoDataAsset`, ...), `kind` is `weapon`, `equipment` or `ammo`, `hardpoint` is `E`, `B`, `M`, `A` or `Melee`, and `ammoType` is the game's ammo tag (`Ammo.Missile.LRM`): a weapon and the ammo with the same tag go together when adding ammo with weapons, so an override can fix a mod whose weapon and ammo tags don't match. An added item needs `type` and `kind`. |
 | `mechs` | `add` and `override` lists of `{ "asset", "code", "chassis", "name", "tons", "hero" }`. An added 'Mech needs `tons` and a `name` or `chassis`. |
 | `assets` | Other asset names of the mod a save may reference (campaign actors, skins, decals). Never offered; used only to name the mod in the compatibility report. |
 

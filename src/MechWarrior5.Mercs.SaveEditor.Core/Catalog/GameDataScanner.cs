@@ -38,6 +38,9 @@ public sealed record GameData(
     /// <summary>'Mech traits the enabled mods add.</summary>
     public IReadOnlyList<TraitDefinition> MechTraits { get; init; } = [];
 
+    /// <summary>Each weapon's and ammo's ammo tag (base game and enabled mods): matching tags go together.</summary>
+    public IReadOnlyDictionary<string, string> AmmoTypes { get; init; } = new Dictionary<string, string>();
+
     /// <summary>Cantina career paths (base game and enabled mods) with their levels and rewards.</summary>
     public IReadOnlyList<CareerPathDefinition> CareerPaths { get; init; } = [];
 
@@ -105,6 +108,7 @@ public static partial class GameDataScanner
                 PilotTraits = [.. content.PilotTraits.Values],
                 MechTraits = [.. content.MechTraits.Values],
                 BaseSkillCap = content.BaseSkillCap,
+                AmmoTypes = content.AmmoTypes,
                 CareerPaths = [.. content.CareerPaths.Values.OrderBy(c => c.Name, StringComparer.OrdinalIgnoreCase)],
                 ModSkillCap = content.ModSkillCap,
             };

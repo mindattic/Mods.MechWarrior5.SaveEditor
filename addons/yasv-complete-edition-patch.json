@@ -24,61 +24,71 @@
         "asset": "AC10_RISCRAC_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/10 Ammo (R)"
+        "label": "RAC/10 Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC"
       },
       {
         "asset": "AC10_RISCRAC_AmmoEquipment_Double",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/10 Double Ammo (R)"
+        "label": "RAC/10 Double Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC"
       },
       {
         "asset": "AC10_RISCRAC_Half_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/10 Half Ammo (R)"
+        "label": "RAC/10 Half Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC"
       },
       {
         "asset": "AC2_RISCRAC_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/2 Ammo (R)"
+        "label": "RAC/2 Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC"
       },
       {
         "asset": "AC2_RISCRAC_AmmoEquipment_Double",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/2 Double Ammo (R)"
+        "label": "RAC/2 Double Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC"
       },
       {
         "asset": "AC2_RISCRAC_Half_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/2 Half Ammo (R)"
+        "label": "RAC/2 Half Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC"
       },
       {
         "asset": "AC5_RISCRAC_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/5 Ammo (R)"
+        "label": "RAC/5 Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC"
       },
       {
         "asset": "AC5_RISCRAC_AmmoEquipment_Double",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/5 Double Ammo (R)"
+        "label": "RAC/5 Double Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC"
       },
       {
         "asset": "AC5_RISCRAC_Half_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/5 Half Ammo (R)"
+        "label": "RAC/5 Half Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC"
       },
       {
         "asset": "RISCRotary79Autocannon10",
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/10",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC",
         "hardpoint": "B"
       },
       {
@@ -86,6 +96,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/10",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC",
         "hardpoint": "B"
       },
       {
@@ -93,6 +104,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/10",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC",
         "hardpoint": "B"
       },
       {
@@ -100,6 +112,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/10",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC",
         "hardpoint": "B"
       },
       {
@@ -107,6 +120,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/10",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC10.RISC",
         "hardpoint": "B"
       },
       {
@@ -114,6 +128,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/2",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC",
         "hardpoint": "B"
       },
       {
@@ -121,6 +136,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/2",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC",
         "hardpoint": "B"
       },
       {
@@ -128,6 +144,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/2",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC",
         "hardpoint": "B"
       },
       {
@@ -135,6 +152,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/2",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC",
         "hardpoint": "B"
       },
       {
@@ -142,6 +160,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/2",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC2.RISC",
         "hardpoint": "B"
       },
       {
@@ -149,6 +168,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/5",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC",
         "hardpoint": "B"
       },
       {
@@ -156,6 +176,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/5",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC",
         "hardpoint": "B"
       },
       {
@@ -163,6 +184,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/5",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC",
         "hardpoint": "B"
       },
       {
@@ -170,6 +192,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/5",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC",
         "hardpoint": "B"
       },
       {
@@ -177,6 +200,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/5",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC5.RISC",
         "hardpoint": "B"
       },
       {
@@ -184,6 +208,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -191,6 +216,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -198,6 +224,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -205,6 +232,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -212,6 +240,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -219,6 +248,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -226,6 +256,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -233,6 +264,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -240,6 +272,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -247,6 +280,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -254,6 +288,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -261,6 +296,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -268,6 +304,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -275,6 +312,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -282,6 +320,7 @@
         "type": "MWAMSWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -289,6 +328,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -296,6 +336,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -303,6 +344,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -310,6 +352,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -317,6 +360,7 @@
         "type": "MWTraceWeaponDataAsset",
         "kind": "weapon",
         "label": "Anti-Missile System Mk. II Direct-Fire",
+        "ammoType": "Ammo.Ballistic.AMS",
         "hardpoint": "A"
       },
       {
@@ -324,6 +368,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -331,6 +376,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -338,6 +384,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -345,6 +392,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -352,6 +400,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -359,6 +408,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -366,6 +416,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -373,6 +424,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -380,6 +432,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -387,6 +440,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 10",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -394,6 +448,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -401,6 +456,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -408,6 +464,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -415,6 +472,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -422,6 +480,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -429,6 +488,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -436,6 +496,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -443,6 +504,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -450,6 +512,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -457,6 +520,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 20",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -464,6 +528,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -471,6 +536,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -478,6 +544,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -485,6 +552,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -492,6 +560,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -499,6 +568,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -506,6 +576,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -513,6 +584,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -520,6 +592,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -527,6 +600,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 30",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -534,6 +608,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -541,6 +616,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -548,6 +624,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -555,6 +632,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -562,6 +640,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -569,6 +648,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -576,6 +656,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -583,6 +664,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -590,6 +672,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
@@ -597,31 +680,36 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Heavy Medium-Range Missile 40",
+        "ammoType": "Ammo.Missile.MRM.Heavy",
         "hardpoint": "M"
       },
       {
         "asset": "trueg_HMRM_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "HMRM Ammo (R)"
+        "label": "HMRM Ammo (R)",
+        "ammoType": "Ammo.Missile.MRM.Heavy"
       },
       {
         "asset": "trueg_HMRM_Double_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "HMRM Double Ammo (R)"
+        "label": "HMRM Double Ammo (R)",
+        "ammoType": "Ammo.Missile.MRM.Heavy"
       },
       {
         "asset": "trueg_HMRM_Half_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "HMRM Half Ammo (R)"
+        "label": "HMRM Half Ammo (R)",
+        "ammoType": "Ammo.Missile.MRM.Heavy"
       },
       {
         "asset": "trueg_MML10_Artemis_RISC",
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -629,6 +717,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -636,6 +725,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -643,6 +733,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -650,6 +741,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -657,6 +749,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -664,6 +757,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -671,6 +765,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -678,6 +773,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -685,6 +781,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -692,6 +789,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -699,6 +797,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -706,6 +805,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -713,6 +813,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -720,6 +821,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -727,6 +829,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -734,6 +837,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -741,6 +845,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -748,6 +853,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -755,6 +861,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 10",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -762,6 +869,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -769,6 +877,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -776,6 +885,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -783,6 +893,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -790,6 +901,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -797,6 +909,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -804,6 +917,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -811,6 +925,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -818,6 +933,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -825,6 +941,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -832,6 +949,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -839,6 +957,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -846,6 +965,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -853,6 +973,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -860,6 +981,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -867,6 +989,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -874,6 +997,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -881,6 +1005,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -888,6 +1013,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -895,6 +1021,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 15",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -902,6 +1029,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -909,6 +1037,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -916,6 +1045,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -923,6 +1053,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -930,6 +1061,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -937,6 +1069,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -944,6 +1077,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -951,6 +1085,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -958,6 +1093,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -965,6 +1101,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -972,6 +1109,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -979,6 +1117,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -986,6 +1125,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -993,6 +1133,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1000,6 +1141,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1007,6 +1149,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1014,6 +1157,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1021,6 +1165,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1028,6 +1173,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1035,6 +1181,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 20",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1042,6 +1189,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1049,6 +1197,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1056,6 +1205,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1063,6 +1213,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1070,6 +1221,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1077,6 +1229,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1084,6 +1237,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1091,6 +1245,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1098,6 +1253,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1105,6 +1261,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1112,6 +1269,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "ammoType": "Ammo.Missile.LRM.Artemis.Clan",
         "hardpoint": "M"
       },
       {
@@ -1119,6 +1277,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1126,6 +1285,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1133,6 +1293,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1140,6 +1301,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1147,6 +1309,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1154,6 +1317,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1161,6 +1325,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1168,6 +1333,7 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
@@ -1175,56 +1341,65 @@
         "type": "MWMissileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Streak Multi-Missile Launcher 5",
+        "ammoType": "Ammo.Missile.LRM.Clan",
         "hardpoint": "M"
       },
       {
         "asset": "trueg_Plasma_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "P Cannon Ammo (C)"
+        "label": "P Cannon Ammo (C)",
+        "ammoType": "Ammo.Energy.PlasmaRifle.Clan"
       },
       {
         "asset": "trueg_Plasma_AmmoEquipment_Double",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "P Cannon Double Ammo (C)"
+        "label": "P Cannon Double Ammo (C)",
+        "ammoType": "Ammo.Energy.PlasmaRifle.Clan"
       },
       {
         "asset": "trueg_Plasma_AmmoEquipment_Half",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "P Cannon Half Ammo (C)"
+        "label": "P Cannon Half Ammo (C)",
+        "ammoType": "Ammo.Energy.PlasmaRifle.Clan"
       },
       {
         "asset": "trueg_RAC20",
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/20",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC",
         "hardpoint": "B"
       },
       {
         "asset": "trueg_RAC20_AmmoEquipment",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/20 Ammo (R)"
+        "label": "RAC/20 Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC"
       },
       {
         "asset": "trueg_RAC20_AmmoEquipment_Double",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/20 Double Ammo (R)"
+        "label": "RAC/20 Double Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC"
       },
       {
         "asset": "trueg_RAC20_AmmoEquipment_Half",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "RAC/20 Half Ammo (R)"
+        "label": "RAC/20 Half Ammo (R)",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC"
       },
       {
         "asset": "trueg_RAC20_Lvl2",
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/20",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC",
         "hardpoint": "B"
       },
       {
@@ -1232,6 +1407,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/20",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC",
         "hardpoint": "B"
       },
       {
@@ -1239,6 +1415,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/20",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC",
         "hardpoint": "B"
       },
       {
@@ -1246,6 +1423,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Rotary Autocannon/20",
+        "ammoType": "Ammo.Ballistic.AutoCannon.Rotary.AC20.RISC",
         "hardpoint": "B"
       },
       {
@@ -1253,6 +1431,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "ammoType": "Ammo.Ballistic.Gauss.Heavy",
         "hardpoint": "B"
       },
       {
@@ -1260,6 +1439,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "ammoType": "Ammo.Ballistic.Gauss.Heavy",
         "hardpoint": "B"
       },
       {
@@ -1267,6 +1447,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "ammoType": "Ammo.Ballistic.Gauss.Heavy",
         "hardpoint": "B"
       },
       {
@@ -1274,6 +1455,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "ammoType": "Ammo.Ballistic.Gauss.Heavy",
         "hardpoint": "B"
       },
       {
@@ -1281,6 +1463,7 @@
         "type": "MWProjectileWeaponDataAsset",
         "kind": "weapon",
         "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "ammoType": "Ammo.Ballistic.Gauss.Heavy",
         "hardpoint": "B"
       }
     ]

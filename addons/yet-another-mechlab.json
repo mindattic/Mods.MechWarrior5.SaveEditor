@@ -325,7 +325,8 @@
         "asset": "CoolantPodCharge_79",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "Coolant Pod"
+        "label": "Coolant Pod",
+        "ammoType": "Ammo.Consumable.CoolShot"
       },
       {
         "asset": "Cooling_diss100",
@@ -1807,13 +1808,15 @@
         "asset": "UAVDroneAdv_79",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "Advanced UAV Drone"
+        "label": "Advanced UAV Drone",
+        "ammoType": "Ammo.Consumable.UAV"
       },
       {
         "asset": "UAVDrone_79",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "UAV Drone"
+        "label": "UAV Drone",
+        "ammoType": "Ammo.Consumable.UAV"
       },
       {
         "asset": "XLfiller",
@@ -1843,7 +1846,8 @@
         "asset": "YAML_VANILLA_UAVCOMPONENT",
         "type": "MWAmmoDataAsset",
         "kind": "ammo",
-        "label": "YAMLUAV"
+        "label": "YAMLUAV",
+        "ammoType": "Ammo.Consumable.UAV"
       }
     ]
   },

@@ -103,6 +103,13 @@ public sealed partial class InventoryViewModel : ObservableObject
     [ObservableProperty]
     private int _setCount = 10;
 
+    /// <summary>Also add each picked weapon's ammo (the game's own weapon-to-ammo tags), <see cref="AmmoCount"/> tons each.</summary>
+    [ObservableProperty]
+    private bool _addAmmo;
+
+    [ObservableProperty]
+    private int _ammoCount = 2;
+
     public InventoryViewModel(Mw5Document doc, ItemCatalog items, IDialogService dialogs)
     {
         _doc = doc;
@@ -209,6 +216,10 @@ public sealed partial class InventoryViewModel : ObservableObject
         }
 
         var result = _doc.Inventory.Add(picks, AddCount);
+        var ammo = AddAmmo
+            ? picks.Where(p => p.Kind == ItemKind.Weapon).Select(w => _items.AmmoFor(w) is [var first, ..] ? first : null).OfType<ItemDefinition>().DistinctBy(a => a.Asset).ToList()
+            : [];
+        var ammoResult = ammo.Count > 0 ? _doc.Inventory.Add(ammo, Math.Max(1, AmmoCount)) : null;
         foreach (var pick in _catalog.Where(p => p.IsChecked))
         {
             pick.IsChecked = false;
@@ -218,8 +229,14 @@ public sealed partial class InventoryViewModel : ObservableObject
         var sections = new List<DialogSection>
         {
             new(Loc.Text("inv_added", "ADDED x{0} ({1})", AddCount, result.Succeeded.Count), DialogTone.Success,
-                [.. result.Succeeded.Select(d => Names.Humanize(d.Asset) + (Names.Tier(d.Asset) is { } t ? $" ({t})" : string.Empty))]),
+                [.. result.Succeeded.Select(d => Names.ItemLabel(d) + (Names.Tier(d.Asset) is { } t ? $" ({t})" : string.Empty))]),
         };
+        if (ammoResult is { Succeeded.Count: > 0 })
+        {
+            sections.Add(new DialogSection(Loc.Text("inv_added_ammo", "AMMO ADDED x{0} ({1})", Math.Max(1, AmmoCount), ammoResult.Succeeded.Count), DialogTone.Success,
+                [.. ammoResult.Succeeded.Select(Names.ItemLabel)]));
+        }
+
         if (result.Skipped.Count > 0)
         {
             sections.Add(new DialogSection(Loc.Text("section_skipped", "SKIPPED ({0})", result.Skipped.Count), DialogTone.Warning,

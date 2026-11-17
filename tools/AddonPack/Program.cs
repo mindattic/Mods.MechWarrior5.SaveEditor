@@ -110,6 +110,11 @@ static string Write(InstalledMod mod, GameData data, string? source)
                 w.WriteString("label", label);
             }
 
+            if (data.AmmoTypes.TryGetValue(item.Asset, out var ammoType))
+            {
+                w.WriteString("ammoType", ammoType);
+            }
+
             if (item.Kind == ItemKind.Weapon && item.Hardpoint != HardpointClass.Unknown)
             {
                 w.WriteString("hardpoint", item.Hardpoint switch
