@@ -1,0 +1,1390 @@
+{
+  "schema": 1,
+  "name": "YASV Complete Edition Patch",
+  "author": "DeadRaiser",
+  "game": "mercenaries",
+  "source": "https://www.nexusmods.com/mechwarrior5mercenaries/mods/1158",
+  "generated": "tools/AddonPack from YASV Complete Edition Patch 3.0g",
+  "requires": {
+    "modName": "YASV Complete Edition Patch",
+    "modFolder": "YASVCompleteEditionPatch",
+    "versions": [
+      "3.0g"
+    ]
+  },
+  "pilotTraits": {
+    "add": []
+  },
+  "mechTraits": {
+    "add": []
+  },
+  "items": {
+    "add": [
+      {
+        "asset": "AC10_RISCRAC_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/10 Ammo (R)"
+      },
+      {
+        "asset": "AC10_RISCRAC_AmmoEquipment_Double",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/10 Double Ammo (R)"
+      },
+      {
+        "asset": "AC10_RISCRAC_Half_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/10 Half Ammo (R)"
+      },
+      {
+        "asset": "AC2_RISCRAC_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/2 Ammo (R)"
+      },
+      {
+        "asset": "AC2_RISCRAC_AmmoEquipment_Double",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/2 Double Ammo (R)"
+      },
+      {
+        "asset": "AC2_RISCRAC_Half_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/2 Half Ammo (R)"
+      },
+      {
+        "asset": "AC5_RISCRAC_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/5 Ammo (R)"
+      },
+      {
+        "asset": "AC5_RISCRAC_AmmoEquipment_Double",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/5 Double Ammo (R)"
+      },
+      {
+        "asset": "AC5_RISCRAC_Half_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/5 Half Ammo (R)"
+      },
+      {
+        "asset": "RISCRotary79Autocannon10",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/10",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon10_Lvl2",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/10",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon10_Lvl3",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/10",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon10_Lvl4",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/10",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon10_Lvl5",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/10",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon2",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/2",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon2_Lvl2",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/2",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon2_Lvl3",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/2",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon2_Lvl4",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/2",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon2_Lvl5",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/2",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon5",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/5",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon5_Lvl2",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/5",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon5_Lvl3",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/5",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon5_Lvl4",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/5",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "RISCRotary79Autocannon5_Lvl5",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/5",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Lvl2",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Lvl3",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Lvl4",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Lvl5",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Offensive",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Offensive_Lvl2",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Offensive_Lvl3",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Offensive_Lvl4",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Advanced_Offensive_Lvl5",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Advanced Anti-Missile System Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Lvl2",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Lvl3",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Lvl4",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Lvl5",
+        "type": "MWAMSWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Offensive",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Offensive_Lvl2",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Offensive_Lvl3",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Offensive_Lvl4",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_AntiMissileSystem_Mk2_Offensive_Lvl5",
+        "type": "MWTraceWeaponDataAsset",
+        "kind": "weapon",
+        "label": "Anti-Missile System Mk. II Direct-Fire",
+        "hardpoint": "A"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Apollo",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Apollo_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Apollo_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Apollo_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Apollo_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Missile",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Missile_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Missile_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Missile_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM10_Missile_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Apollo",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Apollo_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Apollo_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Apollo_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Apollo_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Missile",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Missile_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Missile_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Missile_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM20_Missile_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Apollo",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Apollo_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Apollo_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Apollo_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Apollo_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Missile",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Missile_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Missile_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Missile_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM30_Missile_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 30",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Apollo",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Apollo_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Apollo_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Apollo_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Apollo_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40 + Apollo FCS",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Missile",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Missile_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Missile_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Missile_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HEAVY_MRM40_Missile_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Heavy Medium-Range Missile 40",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_HMRM_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "HMRM Ammo (R)"
+      },
+      {
+        "asset": "trueg_HMRM_Double_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "HMRM Double Ammo (R)"
+      },
+      {
+        "asset": "trueg_HMRM_Half_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "HMRM Half Ammo (R)"
+      },
+      {
+        "asset": "trueg_MML10_Artemis_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_Artemis_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_Artemis_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_Artemis_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_Artemis_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_ArtemisV",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_ArtemisV_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_ArtemisV_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_ArtemisV_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_ArtemisV_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Streak",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Streak_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Streak_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Streak_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML10_RISC_Streak_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 10",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_Artemis_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_Artemis_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_Artemis_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_Artemis_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_Artemis_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_ArtemisV",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_ArtemisV_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_ArtemisV_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_ArtemisV_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_ArtemisV_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Streak",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Streak_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Streak_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Streak_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML15_RISC_Streak_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 15",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_Artemis_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_Artemis_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_Artemis_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_Artemis_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_Artemis_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_ArtemisV",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_ArtemisV_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_ArtemisV_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_ArtemisV_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_ArtemisV_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Streak",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Streak_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Streak_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Streak_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML20_RISC_Streak_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 20",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_Artemis_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_Artemis_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_Artemis_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_Artemis_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_Artemis_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis IV",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_ArtemisV",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_ArtemisV_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_ArtemisV_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_ArtemisV_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_ArtemisV_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5 + Artemis V",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Streak",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Streak_Lvl2",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Streak_Lvl3",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Streak_Lvl4",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_MML5_RISC_Streak_Lvl5",
+        "type": "MWMissileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Streak Multi-Missile Launcher 5",
+        "hardpoint": "M"
+      },
+      {
+        "asset": "trueg_Plasma_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "P Cannon Ammo (C)"
+      },
+      {
+        "asset": "trueg_Plasma_AmmoEquipment_Double",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "P Cannon Double Ammo (C)"
+      },
+      {
+        "asset": "trueg_Plasma_AmmoEquipment_Half",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "P Cannon Half Ammo (C)"
+      },
+      {
+        "asset": "trueg_RAC20",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/20",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_RAC20_AmmoEquipment",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/20 Ammo (R)"
+      },
+      {
+        "asset": "trueg_RAC20_AmmoEquipment_Double",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/20 Double Ammo (R)"
+      },
+      {
+        "asset": "trueg_RAC20_AmmoEquipment_Half",
+        "type": "MWAmmoDataAsset",
+        "kind": "ammo",
+        "label": "RAC/20 Half Ammo (R)"
+      },
+      {
+        "asset": "trueg_RAC20_Lvl2",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/20",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_RAC20_Lvl3",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/20",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_RAC20_Lvl4",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/20",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_RAC20_Lvl5",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Rotary Autocannon/20",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_SPINAL_MOUNT_HGR",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_SPINAL_MOUNT_HGR_Lvl2",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_SPINAL_MOUNT_HGR_Lvl3",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_SPINAL_MOUNT_HGR_Lvl4",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "hardpoint": "B"
+      },
+      {
+        "asset": "trueg_SPINAL_MOUNT_HGR_Lvl5",
+        "type": "MWProjectileWeaponDataAsset",
+        "kind": "weapon",
+        "label": "RISC Spinal Mount Heavy Gauss Rifle",
+        "hardpoint": "B"
+      }
+    ]
+  },
+  "mechs": {
+    "add": []
+  },
+  "assets": [
+    "trueg_AMS_SlotType_Size2",
+    "trueg_AntiMissileSystem_Mk_Lvl2",
+    "trueg_AntiMissileSystem_Mk_Lvl3",
+    "trueg_AntiMissileSystem_Mk_Lvl4",
+    "trueg_AntiMissileSystem_Mk_Lvl5",
+    "trueg_Ballistic_SlotType_Size10",
+    "trueg_Ballistic_SlotType_Size12",
+    "trueg_Ballistic_SlotType_Size3",
+    "trueg_Ballistic_SlotType_Size6",
+    "trueg_Ballistic_SlotType_Size7",
+    "trueg_Ballistic_SlotType_Size8",
+    "trueg_Ballistic_SlotType_Size9",
+    "trueg_Energy_SlotType_Size1",
+    "trueg_Energy_SlotType_Size2",
+    "trueg_HEAVY_MRM10",
+    "trueg_HEAVY_MRM10_Lvl2",
+    "trueg_HEAVY_MRM10_Lvl3",
+    "trueg_HEAVY_MRM10_Lvl4",
+    "trueg_HEAVY_MRM10_Lvl5",
+    "trueg_HEAVY_MRM20",
+    "trueg_HEAVY_MRM20_Lvl2",
+    "trueg_HEAVY_MRM20_Lvl3",
+    "trueg_HEAVY_MRM20_Lvl4",
+    "trueg_HEAVY_MRM20_Lvl5",
+    "trueg_HEAVY_MRM30",
+    "trueg_HEAVY_MRM30_Lvl2",
+    "trueg_HEAVY_MRM30_Lvl3",
+    "trueg_HEAVY_MRM30_Lvl4",
+    "trueg_HEAVY_MRM30_Lvl5",
+    "trueg_HEAVY_MRM40",
+    "trueg_HEAVY_MRM40_Lvl2",
+    "trueg_HEAVY_MRM40_Lvl3",
+    "trueg_HEAVY_MRM40_Lvl4",
+    "trueg_HEAVY_MRM40_Lvl5",
+    "trueg_Medium_VSPL",
+    "trueg_Medium_VSPL_Lvl2",
+    "trueg_Medium_VSPL_Lvl3",
+    "trueg_Medium_VSPL_Lvl4",
+    "trueg_Medium_VSPL_Lvl5",
+    "trueg_MissileWeaponStats",
+    "trueg_Missile_SlotType_Size2",
+    "trueg_Missile_SlotType_Size3",
+    "trueg_Missile_SlotType_Size4",
+    "trueg_Missile_SlotType_Size5",
+    "trueg_Missile_SlotType_Size6",
+    "trueg_Missile_SlotType_Size7",
+    "trueg_Missile_SlotType_Size8",
+    "trueg_PlasmaCanon_C",
+    "trueg_PlasmaCanon_C_Lvl2",
+    "trueg_PlasmaCanon_C_Lvl3",
+    "trueg_PlasmaCanon_C_Lvl4",
+    "trueg_PlasmaCanon_C_Lvl5",
+    "trueg_ProjectileWeaponStats",
+    "trueg_RAC20_CLAN",
+    "trueg_RAC20_CLAN_Lvl2",
+    "trueg_RAC20_CLAN_Lvl3",
+    "trueg_RAC20_CLAN_Lvl4",
+    "trueg_RAC20_CLAN_Lvl5",
+    "trueg_RE_LargeLaser",
+    "trueg_RE_LargeLaser_Lvl2",
+    "trueg_RE_LargeLaser_Lvl3",
+    "trueg_RE_LargeLaser_Lvl4",
+    "trueg_RE_LargeLaser_Lvl5",
+    "trueg_RE_MediumLaser",
+    "trueg_RE_MediumLaser_Lvl2",
+    "trueg_RE_MediumLaser_Lvl3",
+    "trueg_RE_MediumLaser_Lvl4",
+    "trueg_RE_MediumLaser_Lvl5",
+    "trueg_RE_SmallLaser",
+    "trueg_RE_SmallLaser_Lvl2",
+    "trueg_RE_SmallLaser_Lvl3",
+    "trueg_RE_SmallLaser_Lvl4",
+    "trueg_RE_SmallLaser_Lvl5",
+    "trueg_TraceWeaponStats",
+    "YASV_BLK-MHL_Loadout",
+    "YASV_BLK-OD_Loadout",
+    "YASV_Descr",
+    "YASV_HBK-4X_Loadout",
+    "YASV_HeavyMRMPathV2",
+    "YASV_LGB-RX_Loadout",
+    "YASV_MRM_Missile_STM",
+    "YASV_Projectile_Missile_MRM_Heavy",
+    "YASV_struct",
+    "YASV_WeaponCooldownComponent_MML_RISC",
+    "YASV_WeaponEmitter_Missile_MML_RISC",
+    "YASV_WeaponEmitter_Missile_MML_RISC_Standard",
+    "YASV_WeaponEmitter_Projectile_RotaryAC_RISC",
+    "YASV_WeaponEmitter_Projectile_RotaryAC_RISC_RAC10",
+    "YASV_WeaponEmitter_Projectile_RotaryAC_RISC_RAC15",
+    "YASV_WeaponEmitter_Projectile_RotaryAC_RISC_RAC2",
+    "YASV_WeaponEmitter_Projectile_RotaryAC_RISC_RAC20",
+    "YASV_WeaponEmitter_Projectile_RotaryAC_RISC_RAC30",
+    "YASV_WeaponEmitter_Projectile_RotaryAC_RISC_RAC5",
+    "YASV_WeaponEmitter_Trace_AMS_Offensive",
+    "YASV_WeaponModelTags",
+    "YASV_WeaponTagModelMapping",
+    "YASV_WHM-X_Loadout"
+  ]
+}

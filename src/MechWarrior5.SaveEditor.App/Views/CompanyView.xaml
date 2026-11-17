@@ -80,7 +80,7 @@
                             </ItemsControl>
                             <DockPanel Margin="0,4,0,0">
                                 <ma:MaButton DockPanel.Dock="Right" Content="{l:T add}" Command="{Binding UnlockTraitCommand}" Margin="8,0,0,0" />
-                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding UnlockToAdd}" DisplayMemberPath="Label" MaxDropDownHeight="380"
+                                <ComboBox ItemsSource="{Binding TraitChoices}" SelectedItem="{Binding UnlockToAdd}" DisplayMemberPath="PickerLabel" MaxDropDownHeight="380"
                                           Tag="{l:T pick_a_trait_to_unlock}" />
                             </DockPanel>
                         </StackPanel>

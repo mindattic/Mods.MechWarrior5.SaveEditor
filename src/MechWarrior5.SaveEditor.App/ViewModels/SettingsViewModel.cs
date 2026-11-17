@@ -1,6 +1,9 @@
+using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.SaveEditor.App.Localization;
 using MechWarrior5.SaveEditor.App.Services;
 using Microsoft.Win32;
@@ -27,7 +30,79 @@ public sealed partial class SettingsViewModel : ObservableObject
             {
                 OnPropertyChanged(nameof(MainViewSummary));
             }
+            else if (e.PropertyName is nameof(MainViewModel.Addons) or nameof(MainViewModel.Compatibility))
+            {
+                OnPropertyChanged(nameof(Addons));
+                OnPropertyChanged(nameof(HasAddons));
+                OnPropertyChanged(nameof(LimitLines));
+                OnPropertyChanged(nameof(Collisions));
+                OnPropertyChanged(nameof(Compatibility));
+                OnPropertyChanged(nameof(CompatibilitySummary));
+                OnPropertyChanged(nameof(HasCompatibility));
+            }
         };
+    }
+
+    /// <summary>One row per add-on pack file, with its status and on/off switch.</summary>
+    public IReadOnlyList<AddonRowViewModel> Addons =>
+        [.. _main.Addons.Entries.Select(e => new AddonRowViewModel(e, SetAddonOn))];
+
+    public bool HasAddons => _main.Addons.Entries.Count > 0;
+
+    /// <summary>Forces vanilla: no pack applies while this is on.</summary>
+    public bool AddonsOff
+    {
+        get => _settings.Current.AddonsOff;
+        set
+        {
+            _settings.Current.AddonsOff = value;
+            _settings.Save();
+            _main.ApplyAddons();
+            OnPropertyChanged();
+        }
+    }
+
+    /// <summary>Each limit in force, marked with the mod or pack that widened it past vanilla.</summary>
+    public IReadOnlyList<string> LimitLines => [.. GameLimits.Keys.Select(key =>
+    {
+        var value = _main.Addons.Limits[key].ToString("N0", System.Globalization.CultureInfo.CurrentCulture);
+        return _main.Addons.LimitSources.TryGetValue(key, out var source)
+            ? Loc.Text("addon_limit_from", "{0}: {1}  (from {2})", Loc.Text("limit_" + key, key), value, source)
+            : Loc.Text("addon_limit_vanilla", "{0}: {1}  (vanilla)", Loc.Text("limit_" + key, key), value);
+    })];
+
+    public IReadOnlyList<string> Collisions => _main.Addons.Collisions;
+
+    public IReadOnlyList<CompatibilityRowViewModel> Compatibility => [.. _main.Compatibility.Select(l => new CompatibilityRowViewModel(l))];
+
+    public bool HasCompatibility => _main.Compatibility.Count > 0;
+
+    public string CompatibilitySummary => _main.Document is null
+        ? Loc.Text("compat_no_save", "Open a save to check it against the installed game and mods.")
+        : _main.Compatibility.Count == 0
+            ? Loc.Text("compat_vanilla", "This save matches the vanilla game: nothing in it needs a mod.")
+            : Loc.Text("compat_summary", "{0} problem(s): content or values that need a mod that is missing, disabled or the wrong version. {1} modded value(s) covered by active mods.",
+                _main.Compatibility.Count(l => l.Severity == CompatibilitySeverity.Problem),
+                _main.Compatibility.Count(l => l.Severity == CompatibilitySeverity.Modded));
+
+    private void SetAddonOn(string pack, bool on)
+    {
+        var off = (_settings.Current.DisabledAddons ?? []).Where(n => !string.Equals(n, pack, StringComparison.OrdinalIgnoreCase)).ToList();
+        if (!on)
+        {
+            off.Add(pack);
+        }
+
+        _settings.Current.DisabledAddons = off.Count == 0 ? null : off;
+        _settings.Save();
+        _main.ApplyAddons();
+    }
+
+    [RelayCommand]
+    private static void OpenAddonsFolder()
+    {
+        Directory.CreateDirectory(MainViewModel.AddonsFolder);
+        Process.Start(new ProcessStartInfo("explorer.exe", $"\"{MainViewModel.AddonsFolder}\"") { UseShellExecute = false });
     }
 
     public IReadOnlyList<LanguageOption> Languages { get; } = Loc.Languages;

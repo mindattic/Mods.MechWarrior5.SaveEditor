@@ -60,18 +60,22 @@ public sealed class EnumEqualsConverter : IValueConverter
         Binding.DoNothing;
 }
 
-/// <summary>Maps a faction standing (-100..100) to a bar width within one half of the meter.</summary>
+/// <summary>
+/// Maps a faction standing to a bar width within one half of the meter. Values: standing, the half's width, and the
+/// limit on that side (its absolute value; the full half), which the active rules set.
+/// </summary>
 public sealed class StandingToWidthConverter : IMultiValueConverter
 {
     public object Convert(object[] values, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (values is not [int standing, double halfWidth] || halfWidth <= 0)
+        if (values is not [int standing, double halfWidth, int limit] || halfWidth <= 0 || limit == 0)
         {
             return 0.0;
         }
 
+        var full = Math.Abs(limit);
         var amount = parameter is "Positive" ? Math.Max(0, standing) : Math.Max(0, -standing);
-        return halfWidth * Math.Min(amount, 100) / 100.0;
+        return halfWidth * Math.Min(amount, full) / full;
     }
 
     public object[] ConvertBack(object value, Type[] targetTypes, object? parameter, CultureInfo culture) =>

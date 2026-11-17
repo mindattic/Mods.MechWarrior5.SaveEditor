@@ -1,4 +1,3 @@
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using MechWarrior5.Mercs.SaveEditor.Core.Game;
 using MechWarrior5.Shared.Assets;
@@ -20,44 +19,91 @@ public sealed record GameData(
 {
     /// <summary>Each variant's picture (its data asset's <c>MechTexture</c>), by variant asset.</summary>
     public IReadOnlyDictionary<string, GameTexture> MechArt { get; init; } = new Dictionary<string, GameTexture>();
+
+    /// <summary>Every installed mod, enabled or not, in load order.</summary>
+    public IReadOnlyList<InstalledMod> InstalledMods { get; init; } = [];
+
+    /// <summary>Asset names in the base game and its DLC alone (vanilla).</summary>
+    public IReadOnlySet<string> BaseAssetNames { get; init; } = new HashSet<string>();
+
+    /// <summary>Which installed mod (enabled or not) ships each asset the base game doesn't; the last in load order wins.</summary>
+    public IReadOnlyDictionary<string, InstalledMod> ModAssets { get; init; } = new Dictionary<string, InstalledMod>();
+
+    /// <summary>Weapons, equipment and ammo the enabled mods add (assets the base game doesn't have).</summary>
+    public IReadOnlyList<ItemDefinition> Items { get; init; } = [];
+
+    /// <summary>Pilot traits the enabled mods add.</summary>
+    public IReadOnlyList<TraitDefinition> PilotTraits { get; init; } = [];
+
+    /// <summary>'Mech traits the enabled mods add.</summary>
+    public IReadOnlyList<TraitDefinition> MechTraits { get; init; } = [];
+
+    /// <summary>The top of the base game's pilot skill level curve, when it could be read.</summary>
+    public int? BaseSkillCap { get; init; }
+
+    /// <summary>The top of an enabled mod's pilot skill level curve (e.g. Pilot Overhaul's), and the mod's name.</summary>
+    public (int Level, string Mod)? ModSkillCap { get; init; }
 }
 
 /// <summary>
 /// Reads 'Mech data assets (<c>*_MDA</c>) and stock loadouts (<c>*_Loadout</c>) from the game pak and
-/// from every enabled mod's paks, so the catalog reflects the installed game, DLC and mods.
+/// from every enabled mod's paks (Mods folder and Steam Workshop, in the game's load order), so the catalog
+/// reflects the installed game, DLC and mods. Disabled mods are only listed, so a save can be told which
+/// of them its content comes from.
 /// </summary>
 public static partial class GameDataScanner
 {
-    public static GameData Scan(string gameFolder, MechCatalog catalog)
+    public static GameData Scan(string gameFolder, MechCatalog catalog) =>
+        Scan(gameFolder, Path.Combine(gameFolder, GameInstall.PakRelative), InstalledMods.Read(gameFolder), catalog);
+
+    /// <summary>The base game pak plus the given mods (in their order); used directly to read one mod on its own.</summary>
+    public static GameData Scan(string gameFolder, string basePak, IReadOnlyList<InstalledMod> installed, MechCatalog catalog)
     {
         var mechs = new Dictionary<string, ScannedMech>(StringComparer.OrdinalIgnoreCase);
         var problems = new List<string>();
         var assets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var art = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         var opened = new List<PakFile>();
+        var content = new ModContent();
+        var baseAssets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         try
         {
-            ScanPak(Path.Combine(gameFolder, GameInstall.PakRelative), modName: null, catalog, mechs, problems, assets, art, opened);
+            ScanPak(basePak, modName: null, catalog, mechs, problems, assets, art, opened, baseAssets, content);
+            baseAssets.UnionWith(assets);
 
+            var modAssets = new Dictionary<string, InstalledMod>(StringComparer.OrdinalIgnoreCase);
             var mods = new List<string>();
-            foreach (var (folder, name) in EnabledMods(Path.Combine(gameFolder, GameInstall.ModsRelative)))
+            foreach (var mod in installed)
             {
-                var paks = Directory.Exists(Path.Combine(folder, "Paks"))
-                    ? Directory.EnumerateFiles(Path.Combine(folder, "Paks"), "*.pak", SearchOption.AllDirectories).ToList()
-                    : [];
-                if (paks.Count == 0)
+                if (mod.Enabled)
                 {
-                    continue;
+                    mods.Add(mod.Name);
                 }
 
-                mods.Add(name);
-                foreach (var pak in paks)
+                foreach (var pak in mod.Paks)
                 {
-                    ScanPak(pak, name, catalog, mechs, problems, assets, art, opened);
+                    var names = mod.Enabled
+                        ? ScanPak(pak, mod.Name, catalog, mechs, problems, assets, art, opened, baseAssets, content)
+                        : ListAssets(pak, problems);
+                    foreach (var name in names.Where(n => !baseAssets.Contains(n)))
+                    {
+                        modAssets[name] = mod;
+                    }
                 }
             }
 
-            return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets) { MechArt = ResolveArt(art, opened) };
+            return new GameData(gameFolder, [.. mechs.Values], mods, problems, assets)
+            {
+                MechArt = ResolveArt(art, opened),
+                InstalledMods = installed,
+                BaseAssetNames = baseAssets,
+                ModAssets = modAssets,
+                Items = [.. content.Items.Values],
+                PilotTraits = [.. content.PilotTraits.Values],
+                MechTraits = [.. content.MechTraits.Values],
+                BaseSkillCap = content.BaseSkillCap,
+                ModSkillCap = content.ModSkillCap,
+            };
         }
         finally
         {
@@ -122,17 +168,36 @@ public static partial class GameDataScanner
         return index;
     }
 
-    private static void ScanPak(
-        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets,
-        Dictionary<string, string> art, List<PakFile> opened)
+    private static List<string> ListAssets(string path, List<string> problems)
     {
+        try
+        {
+            using var pak = PakFile.Open(path);
+            return [.. pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)).Select(Path.GetFileNameWithoutExtension).OfType<string>()];
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or SaveFormatException or InvalidDataException
+                                       or ArgumentOutOfRangeException or IndexOutOfRangeException)
+        {
+            problems.Add($"{Path.GetFileName(path)}: {e.Message}");
+            return [];
+        }
+    }
+
+    /// <summary>Reads one pak's 'Mechs, loadouts and pictures; returns its asset names.</summary>
+    private static List<string> ScanPak(
+        string path, string? modName, MechCatalog catalog, Dictionary<string, ScannedMech> mechs, List<string> problems, HashSet<string> assets,
+        Dictionary<string, string> art, List<PakFile> opened, IReadOnlySet<string> baseAssets, ModContent content)
+    {
+        var names = new List<string>();
         try
         {
             var pak = PakFile.Open(path);
             opened.Add(pak);
             foreach (var file in pak.Files.Where(f => f.EndsWith(".uasset", StringComparison.OrdinalIgnoreCase)))
             {
-                assets.Add(Path.GetFileNameWithoutExtension(file));
+                var name = Path.GetFileNameWithoutExtension(file);
+                assets.Add(name);
+                names.Add(name);
             }
 
             var loadouts = new Dictionary<string, StockLoadout>(StringComparer.OrdinalIgnoreCase);
@@ -180,6 +245,8 @@ public static partial class GameDataScanner
                 mechs[asset] = new ScannedMech(variant, loadouts.GetValueOrDefault(asset));
             }
 
+            ScanModContent(pak, modName, baseAssets, content);
+
             // Like the game, a mod's pak wins over what came before: its loadout replaces the stock one for a
             // mech already known (e.g. a rebalance mod shipping only AS7-D_Loadout).
             if (modName is not null)
@@ -199,6 +266,8 @@ public static partial class GameDataScanner
             // One pak the reader can't follow (e.g. an index entry stored outside the encoded block) skips only that pak.
             problems.Add($"{Path.GetFileName(path)}: {e.Message}");
         }
+
+        return names;
     }
 
     /// <summary>Builds a catalog entry for a variant the built-in catalog doesn't know (new DLC data or a mod).</summary>
@@ -224,7 +293,7 @@ public static partial class GameDataScanner
             known?.Chassis ?? chassis,
             name,
             tons,
-            tons switch { <= 35 => WeightClass.Light, <= 55 => WeightClass.Medium, <= 75 => WeightClass.Heavy, _ => WeightClass.Assault },
+            MechCatalog.ClassOf(tons),
             null,
             dlc) { ModName = modName };
     }
@@ -265,58 +334,6 @@ public static partial class GameDataScanner
 
     private static string? DlcOf(string file) =>
         DlcFolder().Match(file) is { Success: true } m ? $"DLC.DLC{m.Groups[1].Value}" : null;
-
-    /// <summary>Enabled mods per the game's <c>modlist.json</c>; every mod folder counts when there is no list.</summary>
-    private static IEnumerable<(string Folder, string Name)> EnabledMods(string modsFolder)
-    {
-        if (!Directory.Exists(modsFolder))
-        {
-            yield break;
-        }
-
-        HashSet<string>? enabled = null;
-        var list = Path.Combine(modsFolder, "modlist.json");
-        if (File.Exists(list))
-        {
-            try
-            {
-                using var doc = JsonDocument.Parse(File.ReadAllText(list));
-                if (doc.RootElement.TryGetProperty("modStatus", out var status))
-                {
-                    enabled = status.EnumerateObject()
-                        .Where(m => m.Value.TryGetProperty("bEnabled", out var e) && e.ValueKind == JsonValueKind.True)
-                        .Select(m => m.Name)
-                        .ToHashSet(StringComparer.OrdinalIgnoreCase);
-                }
-            }
-            catch (Exception e) when (e is IOException or JsonException)
-            {
-            }
-        }
-
-        foreach (var folder in Directory.EnumerateDirectories(modsFolder))
-        {
-            var id = Path.GetFileName(folder);
-            if (enabled is null || enabled.Contains(id))
-            {
-                yield return (folder, ModDisplayName(folder) ?? id);
-            }
-        }
-    }
-
-    private static string? ModDisplayName(string folder)
-    {
-        var json = Path.Combine(folder, "mod.json");
-        try
-        {
-            using var doc = JsonDocument.Parse(File.ReadAllText(json));
-            return doc.RootElement.TryGetProperty("displayName", out var n) ? n.GetString() : null;
-        }
-        catch (Exception e) when (e is IOException or JsonException or UnauthorizedAccessException)
-        {
-            return null;
-        }
-    }
 
     [GeneratedRegex(@"^A1M4_|(_Boss|_Cinematic|TUTORIAL|_DLC\d+)_MDA$", RegexOptions.IgnoreCase)]
     private static partial Regex NonPlayable();

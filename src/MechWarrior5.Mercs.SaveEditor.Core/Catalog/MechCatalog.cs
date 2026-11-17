@@ -1,5 +1,6 @@
 using System.IO.Compression;
 using System.Text.Json;
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 
 namespace MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 
@@ -43,6 +44,8 @@ public sealed class MechCatalog
     private readonly Lazy<Dictionary<string, StockLoadout>> _stock;
     private readonly Dictionary<string, StockLoadout> _gameStock = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _builtInAssets;
+    private readonly Dictionary<string, MechVariant> _beforeAddons = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _addonAdded = new(StringComparer.OrdinalIgnoreCase);
 
     private MechCatalog(IReadOnlyList<DlcPack> packs, IReadOnlyList<MechVariant> variants)
     {
@@ -69,6 +72,8 @@ public sealed class MechCatalog
     public void Reset()
     {
         _gameStock.Clear();
+        _beforeAddons.Clear();
+        _addonAdded.Clear();
         foreach (var added in _variants.Where(v => !_builtInAssets.Contains(v.Asset)).ToList())
         {
             _variants.Remove(added);
@@ -82,6 +87,9 @@ public sealed class MechCatalog
     {
         // A rescan replaces the last one: a mod disabled since then no longer offers its mechs or loadouts.
         _gameStock.Clear();
+        // The scan rebuilds every variant it finds, so a previous add-on layer has nothing left to undo.
+        _beforeAddons.Clear();
+        _addonAdded.Clear();
         var scannedAssets = game.Mechs.Select(m => m.Variant.Asset).ToHashSet(StringComparer.OrdinalIgnoreCase);
         foreach (var stale in _variants.Where(v => !_builtInAssets.Contains(v.Asset) && !scannedAssets.Contains(v.Asset)).ToList())
         {
@@ -113,6 +121,69 @@ public sealed class MechCatalog
 
         Game = game;
     }
+
+    /// <summary>
+    /// Layers the active add-on packs' 'Mech additions and changes over the built-in and scanned variants, first undoing
+    /// what the previous call layered, so a pack turned off restores the variants exactly.
+    /// </summary>
+    public void ApplyAddons(AddonState addons)
+    {
+        foreach (var asset in _addonAdded)
+        {
+            if (_byAsset.Remove(asset, out var added))
+            {
+                _variants.Remove(added);
+            }
+        }
+
+        foreach (var (asset, original) in _beforeAddons)
+        {
+            if (_byAsset.TryGetValue(asset, out var current))
+            {
+                _variants[_variants.IndexOf(current)] = original;
+                _byAsset[asset] = original;
+            }
+        }
+
+        _addonAdded.Clear();
+        _beforeAddons.Clear();
+        foreach (var pack in addons.Active)
+        {
+            foreach (var mech in pack.Mechs.Add.Concat(pack.Mechs.Override))
+            {
+                if (_byAsset.TryGetValue(mech.Asset, out var known))
+                {
+                    _beforeAddons.TryAdd(mech.Asset, known);
+                    var tons = mech.Tons ?? known.Tons;
+                    var changed = known with
+                    {
+                        Code = mech.Code ?? known.Code,
+                        Chassis = mech.Chassis ?? known.Chassis,
+                        ChassisName = mech.Name ?? known.ChassisName,
+                        Tons = tons,
+                        WeightClass = mech.Tons is null ? known.WeightClass : ClassOf(tons),
+                        HeroName = mech.Hero ?? known.HeroName,
+                    };
+                    _variants[_variants.IndexOf(known)] = changed;
+                    _byAsset[mech.Asset] = changed;
+                }
+                else if (pack.Mechs.Add.Contains(mech) && mech.Tons is > 0 && (mech.Name ?? mech.Chassis) is { } name)
+                {
+                    var code = mech.Code ?? (mech.Asset.EndsWith("_MDA", StringComparison.OrdinalIgnoreCase) ? mech.Asset[..^4] : mech.Asset);
+                    var added = new MechVariant(code, mech.Asset, mech.Chassis ?? name, name, mech.Tons.Value, ClassOf(mech.Tons.Value), mech.Hero, null)
+                    {
+                        ModName = pack.Name,
+                    };
+                    _variants.Add(added);
+                    _byAsset[mech.Asset] = added;
+                    _addonAdded.Add(mech.Asset);
+                }
+            }
+        }
+    }
+
+    public static WeightClass ClassOf(int tons) =>
+        tons switch { <= 35 => WeightClass.Light, <= 55 => WeightClass.Medium, <= 75 => WeightClass.Heavy, _ => WeightClass.Assault };
 
     public static MechCatalog LoadBuiltIn()
     {

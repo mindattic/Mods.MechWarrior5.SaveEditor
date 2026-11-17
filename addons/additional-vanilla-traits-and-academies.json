@@ -1,0 +1,494 @@
+{
+  "schema": 1,
+  "name": "Additional Vanilla Traits and Academies",
+  "author": "Silby",
+  "game": "mercenaries",
+  "source": "https://www.nexusmods.com/mechwarrior5mercenaries/mods/1348",
+  "generated": "tools/AddonPack from Additional Vanilla Traits and Academies 1.4",
+  "requires": {
+    "modName": "Additional Vanilla Traits and Academies",
+    "modFolder": "AVTA",
+    "versions": [
+      "1.4"
+    ]
+  },
+  "pilotTraits": {
+    "add": [
+      {
+        "asset": "AVTA_Acrophobia_PilotTrait",
+        "label": "Acrophobic",
+        "description": "This pilot prefers his 'Mech to stay on flat ground."
+      },
+      {
+        "asset": "AVTA_Affinity_Bullshark_Chassis_PilotTrait",
+        "label": "AVTA Affinity Bullshark Chassis"
+      },
+      {
+        "asset": "AVTA_Affinity_Corsair_Chassis_PilotTrait",
+        "label": "AVTA Affinity Corsair Chassis"
+      },
+      {
+        "asset": "AVTA_Astraphobia_PilotTrait",
+        "label": "Astraphobic",
+        "description": "This pilot's fear of thunder causes them to fire any variety of X less frequently."
+      },
+      {
+        "asset": "AVTA_Background_ClanDiamondShark_PilotTrait",
+        "label": "AVTA Background Clan Diamond Shark"
+      },
+      {
+        "asset": "AVTA_Background_ClanHellsHorses_PilotTrait",
+        "label": "AVTA Background Clan Hells Horses"
+      },
+      {
+        "asset": "AVTA_Background_ClanNovaCat_PilotTrait",
+        "label": "AVTA Background Clan Nova Cat"
+      },
+      {
+        "asset": "AVTA_Background_ClanSteelViper_PilotTrait",
+        "label": "AVTA Background Clan Steel Viper"
+      },
+      {
+        "asset": "AVTA_Background_ComStar_PilotTrait",
+        "label": "Ex-ComStar",
+        "description": "This pilot is a former ComStar adept, gaining a X% bonus to sensor range."
+      },
+      {
+        "asset": "AVTA_Background_Periphery_PilotTrait",
+        "label": "AVTA Background Periphery"
+      },
+      {
+        "asset": "AVTA_Background_WellConnected_PilotTrait",
+        "label": "Well-Connected",
+        "description": "This pilot knows a guy. Well, he knows quite a few, but he won't tell you."
+      },
+      {
+        "asset": "AVTA_Chemophobia_PilotTrait",
+        "label": "Chemophobia",
+        "description": "This pilot's fear of chemicals causes them to fire any variety of X less frequently."
+      },
+      {
+        "asset": "AVTA_Claustrophobic_PilotTrait",
+        "label": "Claustrophobic",
+        "description": "This pilot doesn't enjoy the cramped cockpits of X 'Mechs, reducing overall mobility."
+      },
+      {
+        "asset": "AVTA_Connoisseur_Clan_PilotTrait",
+        "label": "AVTA Connoisseur Clan"
+      },
+      {
+        "asset": "AVTA_Connoisseur_LosTech_PilotTrait",
+        "label": "AVTA Connoisseur Los Tech"
+      },
+      {
+        "asset": "AVTA_Connoisseur_Retro_PilotTrait",
+        "label": "AVTA Connoisseur Retro"
+      },
+      {
+        "asset": "AVTA_Criminal_Periphery_PilotTrait",
+        "label": "AVTA Criminal Periphery"
+      },
+      {
+        "asset": "AVTA_Criminal_Rasalhague_PilotTrait",
+        "label": "AVTA Criminal Rasalhague"
+      },
+      {
+        "asset": "AVTA_Criminal_WordofBlake_PilotTrait",
+        "label": "AVTA Criminal Wordof Blake"
+      },
+      {
+        "asset": "AVTA_Expert_ATM12_PilotTrait",
+        "label": "AVTA Expert ATM12"
+      },
+      {
+        "asset": "AVTA_Expert_ATM3_PilotTrait",
+        "label": "AVTA Expert ATM3"
+      },
+      {
+        "asset": "AVTA_Expert_ATM6_PilotTrait",
+        "label": "AVTA Expert ATM6"
+      },
+      {
+        "asset": "AVTA_Expert_ATM9_PilotTrait",
+        "label": "AVTA Expert ATM9"
+      },
+      {
+        "asset": "AVTA_Expert_HRifle_PilotTrait",
+        "label": "AVTA Expert H Rifle"
+      },
+      {
+        "asset": "AVTA_Expert_LRifle_PilotTrait",
+        "label": "AVTA Expert L Rifle"
+      },
+      {
+        "asset": "AVTA_Expert_MRifle_PilotTrait",
+        "label": "AVTA Expert M Rifle"
+      },
+      {
+        "asset": "AVTA_Expert_NARC_PilotTrait",
+        "label": "AVTA Expert NARC"
+      },
+      {
+        "asset": "AVTA_Graduate_CWC_PilotTrait",
+        "label": "Capella War College Graduate",
+        "description": "This pilot has graduated from the Capella War College."
+      },
+      {
+        "asset": "AVTA_Graduate_TMMA_PilotTrait",
+        "label": "TMMA Graduate",
+        "description": "This pilot has graduated from the Tyra Miraborg Memorial Academy."
+      },
+      {
+        "asset": "AVTA_Hatred_ClanGhostBear_PilotTrait",
+        "label": "AVTA Hatred Clan Ghost Bear"
+      },
+      {
+        "asset": "AVTA_Hatred_ClanJadeFalcon_PilotTrait",
+        "label": "AVTA Hatred Clan Jade Falcon"
+      },
+      {
+        "asset": "AVTA_Hatred_Clans_PilotTrait",
+        "label": "AVTA Hatred Clans"
+      },
+      {
+        "asset": "AVTA_Hatred_ClanWolf_PilotTrait",
+        "label": "AVTA Hatred Clan Wolf"
+      },
+      {
+        "asset": "AVTA_Hatred_Outlaws_PilotTrait",
+        "label": "AVTA Hatred Outlaws"
+      },
+      {
+        "asset": "AVTA_Hatred_Periphery_PilotTrait",
+        "label": "AVTA Hatred Periphery"
+      },
+      {
+        "asset": "AVTA_Hatred_Rasalhague_PilotTrait",
+        "label": "AVTA Hatred Rasalhague"
+      },
+      {
+        "asset": "AVTA_Hatred_WordofBlake_PilotTrait",
+        "label": "AVTA Hatred Wordof Blake"
+      },
+      {
+        "asset": "AVTA_HeavyFoot_PilotTrait",
+        "label": "Pedal to the Metal",
+        "description": "This pilot keeps the accelerator floored, increasing acceleration by 20% but decreasing deceleration by 10%."
+      },
+      {
+        "asset": "AVTA_HighFlyer_PilotTrait",
+        "label": "High Flyer",
+        "description": "This pilot belongs in the sky, gaining increased jump jet mobility."
+      },
+      {
+        "asset": "AVTA_JumpingJack_PilotTrait",
+        "label": "Jumping Jack",
+        "description": "This pilot loves to fly, increasing jump jet mobility."
+      },
+      {
+        "asset": "AVTA_LightFoot_PilotTrait",
+        "label": "Cautious",
+        "description": "This pilot exercises caution with every step, decreasing acceleration by 10% but increasing deceleration by 20%."
+      },
+      {
+        "asset": "AVTA_Master_ATM_PilotTrait",
+        "label": "AVTA Master ATM"
+      },
+      {
+        "asset": "AVTA_Master_Gauss_PilotTrait",
+        "label": "AVTA Master Gauss"
+      },
+      {
+        "asset": "AVTA_Master_LRM_PilotTrait",
+        "label": "AVTA Master LRM"
+      },
+      {
+        "asset": "AVTA_Master_MRM_PilotTrait",
+        "label": "AVTA Master MRM"
+      },
+      {
+        "asset": "AVTA_Master_Rifle_PilotTrait",
+        "label": "AVTA Master Rifle"
+      },
+      {
+        "asset": "AVTA_Master_SRM_PilotTrait",
+        "label": "AVTA Master SRM"
+      },
+      {
+        "asset": "AVTA_Naive_PilotTrait",
+        "label": "Naive",
+        "description": "This pilot has trouble identifying sensor blips, suffering a X% malus to sensor range."
+      },
+      {
+        "asset": "AVTA_Noble_Rasalhague_PilotTrait",
+        "label": "AVTA Noble Rasalhague"
+      },
+      {
+        "asset": "AVTA_Noble_WordofBlake_PilotTrait",
+        "label": "AVTA Noble Wordof Blake"
+      },
+      {
+        "asset": "AVTA_Patriot_Rasalhague_PilotTrait",
+        "label": "AVTA Patriot Rasalhague"
+      },
+      {
+        "asset": "AVTA_Patriot_WordofBlake_PilotTrait",
+        "label": "AVTA Patriot Wordof Blake"
+      },
+      {
+        "asset": "AVTA_Pyrophobia_PilotTrait",
+        "label": "Pyrophobic",
+        "description": "This pilot's fear of fire causes them to deal X% heat damage to targets with Flamers and Inferno SRMs."
+      },
+      {
+        "asset": "AVTA_QuickStep_PilotTrait",
+        "label": "Quick Step",
+        "description": "This pilot can make any 'Mech turn on a dime."
+      },
+      {
+        "asset": "AVTA_Redline_PilotTrait",
+        "label": "Redliner",
+        "description": "This pilot likes pushing the engine to its very limit."
+      },
+      {
+        "asset": "AVTA_Slugger_PilotTrait",
+        "label": "Slugger",
+        "description": "This pilot is an expert at swinging Xs."
+      },
+      {
+        "asset": "AVTA_Specialist_ArrowIV_PilotTrait",
+        "label": "AVTA Specialist Arrow IV"
+      },
+      {
+        "asset": "AVTA_Specialist_ATM_PilotTrait",
+        "label": "AVTA Specialist ATM"
+      },
+      {
+        "asset": "AVTA_Specialist_Gauss_PilotTrait",
+        "label": "AVTA Specialist Gauss"
+      },
+      {
+        "asset": "AVTA_Specialist_Heavy_Gauss_PilotTrait",
+        "label": "AVTA Specialist Heavy Gauss"
+      },
+      {
+        "asset": "AVTA_Specialist_LBXAC_PilotTrait",
+        "label": "AVTA Specialist LBXAC"
+      },
+      {
+        "asset": "AVTA_Specialist_Light_Gauss_PilotTrait",
+        "label": "AVTA Specialist Light Gauss"
+      },
+      {
+        "asset": "AVTA_Specialist_MRM_PilotTrait",
+        "label": "AVTA Specialist MRM"
+      },
+      {
+        "asset": "AVTA_Specialist_PPC_PilotTrait",
+        "label": "AVTA Specialist PPC"
+      },
+      {
+        "asset": "AVTA_Specialist_Rifle_PilotTrait",
+        "label": "AVTA Specialist Rifle"
+      },
+      {
+        "asset": "AVTA_Specialist_UltraAC_PilotTrait",
+        "label": "AVTA Specialist Ultra AC"
+      },
+      {
+        "asset": "AVTA_Sponsor_Bullhead_PilotTrait",
+        "label": "AVTA Sponsor Bullhead"
+      },
+      {
+        "asset": "AVTA_Sponsor_Earthwerks_PilotTrait",
+        "label": "AVTA Sponsor Earthwerks"
+      },
+      {
+        "asset": "AVTA_Sponsor_HighImpact_PilotTrait",
+        "label": "AVTA Sponsor High Impact"
+      },
+      {
+        "asset": "AVTA_Sponsor_JumpJet_PilotTrait",
+        "label": "AVTA Sponsor Jump Jet"
+      },
+      {
+        "asset": "AVTA_Sponsor_Musclebound_PilotTrait",
+        "label": "AVTA Sponsor Musclebound"
+      },
+      {
+        "asset": "AVTA_Sponsor_SolarisArms_PilotTrait",
+        "label": "AVTA Sponsor Solaris Arms"
+      },
+      {
+        "asset": "AVTA_Sponsor_TripleF_PilotTrait",
+        "label": "AVTA Sponsor Triple F"
+      },
+      {
+        "asset": "AVTA_Sponsor_VEST_PilotTrait",
+        "label": "AVTA Sponsor VEST"
+      },
+      {
+        "asset": "AVTA_StreetFighter_PilotTrait",
+        "label": "Street Fighter",
+        "description": "This pilot can move his 'Mech's arms very naturally."
+      },
+      {
+        "asset": "AVTA_Traumatophobia_PilotTrait",
+        "label": "Traumatophobic",
+        "description": "This pilot's fear of injury reduces the chance of injury by X%, but increases recovery time by X%."
+      },
+      {
+        "asset": "AVTA_TriggerHappy_PilotTrait",
+        "label": "Trigger Happy",
+        "description": "This pilot doesn't need a reason to pull the trigger."
+      },
+      {
+        "asset": "AVTA_Warrior_DaiDaChi_PilotTrait",
+        "label": "Dài Dá Chì Warrior",
+        "description": "This pilot was trained under Warrior House Dài Dá Chì."
+      },
+      {
+        "asset": "AVTA_Warrior_Fujita_PilotTrait",
+        "label": "Fujita Warrior",
+        "description": "This pilot was trained under Warrior House Fujita."
+      },
+      {
+        "asset": "AVTA_Warrior_Hiritsu_PilotTrait",
+        "label": "Hiritsu Warrior",
+        "description": "This pilot was trained under Warrior House Hiritsu."
+      },
+      {
+        "asset": "AVTA_Warrior_Ijori_PilotTrait",
+        "label": "Ijori Warrior",
+        "description": "This pilot was trained under Warrior House Ijori."
+      },
+      {
+        "asset": "AVTA_Warrior_Imarra_PilotTrait",
+        "label": "Imarra Warrior",
+        "description": "This pilot was trained under Warrior House Imarra."
+      },
+      {
+        "asset": "AVTA_Warrior_Kamata_PilotTrait",
+        "label": "Kamata Warrior",
+        "description": "This pilot was trained under Warrior House Kamata."
+      },
+      {
+        "asset": "AVTA_Warrior_LuSann_PilotTrait",
+        "label": "Lu Sann Warrior",
+        "description": "This pilot was trained under Warrior House Lu Sann."
+      },
+      {
+        "asset": "AVTA_Warrior_MaTsuKai_PilotTrait",
+        "label": "Ma-Tsu Kai Warrior",
+        "description": "This pilot was trained under Warrior House Ma-Tsu Kai."
+      }
+    ]
+  },
+  "mechTraits": {
+    "add": []
+  },
+  "items": {
+    "add": []
+  },
+  "mechs": {
+    "add": []
+  },
+  "assets": [
+    "AVTA_AitutakiAcademy",
+    "AVTA_AlbionMilitaryAcademy",
+    "AVTA_Aldebaran_WarriorHouse_Ijori_AcademyAsset",
+    "AVTA_AllisonMechwarriorInstitute",
+    "AVTA_AlphardMH_CollegiumBellorumImperium_AcademyAsset",
+    "AVTA_AnTingUniversity",
+    "AVTA_Atreus_FreeWorldsTechnicalInstitute_AcademyAsset",
+    "AVTA_Betelgeuse_WarriorHouse_Kamata_AcademyAsset",
+    "AVTA_BlackjackSchool",
+    "AVTA_Canopus_CanopianInstituteofWar_AcademyAsset",
+    "AVTA_CapellanWarCollege",
+    "AVTA_Comstar",
+    "AVTA_CoventryMilitaryAcademy",
+    "AVTA_DieronDistrictGym",
+    "AVTA_DoverInstitute",
+    "AVTA_Drozan_WarriorHouse_DaiDaChi_AcademyAsset",
+    "AVTA_Emporia_RitzaAcademy_AcademyAsset",
+    "AVTA_GlobalMarketAdjustment_BP",
+    "AVTA_GoshenWarCollege",
+    "AVTA_GraduateProgram_CWC",
+    "AVTA_GraduateProgram_TMMA",
+    "AVTA_GrandBase_WarriorHouse_LuSann_AcademyAsset",
+    "AVTA_HeroTrainingInstitute",
+    "AVTA_HumphreysTrainingAcademy",
+    "AVTA_Hunan_WarriorHouse_Fujita_AcademyAsset",
+    "AVTA_JumpJetTrait",
+    "AVTA_Kesai_FulkerMilitaryAcademy_AcademyAsset",
+    "AVTA_LiaoConservatoryofMilitaryArts",
+    "AVTA_Liao_LiaoConservatoryofMilitaryArts_AcademyAsset",
+    "AVTA_Luthien_MinoruKuritaUniversity_AcademyAsset",
+    "AVTA_Luxen_UniversityofLuxen_AcademyAsset",
+    "AVTA_MagistracyofCanopus",
+    "AVTA_MarianHegemony",
+    "AVTA_MinoruKuritaUniversity",
+    "AVTA_MotiveUpgradeTrait",
+    "AVTA_Nagelring",
+    "AVTA_NAIS",
+    "AVTA_NewAragon_WarriorHouse_MaTsuKai_AcademyAsset",
+    "AVTA_Orestes_TyraMiraborgAcademy_AcademyAsset",
+    "AVTA_OrloffMilitaryAcademy",
+    "AVTA_Outreach",
+    "AVTA_PagodaforLuthienOfficers",
+    "AVTA_PandoraCollegeofMilitarySciences",
+    "AVTA_Payvand_HeroTrainingInstitute_AcademyAsset",
+    "AVTA_PilotTraitStringTable",
+    "AVTA_PrincefieldMilitaryAcademy",
+    "AVTA_Randar_WarriorHouse_Hiritsu_AcademyAsset",
+    "AVTA_RitzaAcademy",
+    "AVTA_RobinsonBattleAcademy",
+    "AVTA_Sanglamore",
+    "AVTA_SarnaMartialAcademy",
+    "AVTA_SianUniversity",
+    "AVTA_Sian_WarriorHouse_Imarra_AcademyAsset",
+    "AVTA_SolarisFactionStringTable",
+    "AVTA_SolarisSeven",
+    "AVTA_SomersetAcademy",
+    "AVTA_SponsorWith_BP",
+    "AVTA_StarLeague",
+    "AVTA_StIvesAcademyofMartialSciences",
+    "AVTA_SunTzuSchoolofCombat",
+    "AVTA_SunZhangAcademy",
+    "AVTA_TauCeti_CombatCollegeofNewEarth_AcademyAsset",
+    "AVTA_TaurianConcordat",
+    "AVTA_TestClass",
+    "AVTA_TrainingProgramData",
+    "AVTA_UI_PilotTraitQuirkFuncLibrary",
+    "AVTA_UniversityofProserpina",
+    "AVTA_VictoriaAcademyofArmsandTechnology",
+    "AVTA_Victoria_VictoriaAcademy",
+    "AVTA_WarriorHouseEligibility_Base",
+    "AVTA_WarriorHouseEligibility_DaiDaChi",
+    "AVTA_WarriorHouseEligibility_Fujita",
+    "AVTA_WarriorHouseEligibility_Hiritsu",
+    "AVTA_WarriorHouseEligibility_Ijori",
+    "AVTA_WarriorHouseEligibility_Imarra",
+    "AVTA_WarriorHouseEligibility_Kamata",
+    "AVTA_WarriorHouseEligibility_LuSann",
+    "AVTA_WarriorHouseEligibility_MaTsuKai",
+    "AVTA_WarriorProgram_DaiDaChi",
+    "AVTA_WarriorProgram_Fujita",
+    "AVTA_WarriorProgram_Hiritsu",
+    "AVTA_WarriorProgram_Ijori",
+    "AVTA_WarriorProgram_Imarra",
+    "AVTA_WarriorProgram_Kamata",
+    "AVTA_WarriorProgram_LuSann",
+    "AVTA_WarriorProgram_MaTsuKai",
+    "AVTA_WarriorsHall",
+    "AVTA_WarriorSimpod_Advanced",
+    "AVTA_WarriorSimpod_Basic",
+    "AVTA_WarriorSimpod_BeginnerSimpod",
+    "AVTA_WarriorSimpod_Intermediate",
+    "AVTA_WarriorSimpod_Remedial",
+    "AVTA_WeaponTechbaseQuirkSetTrait",
+    "AVTA_WestPointMilitaryAcademy",
+    "AVTA_WisdomoftheDragon",
+    "AVTA_Xinyang_ImperialInstituteofTechnology_AcademyAsset"
+  ]
+}

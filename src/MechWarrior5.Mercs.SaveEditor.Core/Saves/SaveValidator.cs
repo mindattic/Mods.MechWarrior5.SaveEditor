@@ -17,6 +17,11 @@ public static class SaveValidator
         return [.. missing.Select(m => new MissingAsset(m.Key.Type, m.Key.Name, m.Value)).OrderBy(m => m.AssetType).ThenBy(m => m.AssetName)];
     }
 
+    /// <summary>Every asset the save references, with how many times (empty-name and "None" references left out).</summary>
+    public static IReadOnlyList<MissingAsset> ReferencedAssets(Mw5SaveFile save) => FindMissing(save, EmptySet);
+
+    private static readonly IReadOnlySet<string> EmptySet = new HashSet<string>();
+
     /// <summary>References missing now that weren't missing in <paramref name="baseline"/>.</summary>
     public static IReadOnlyList<MissingAsset> Introduced(IReadOnlyList<MissingAsset> now, IReadOnlyList<MissingAsset> baseline)
     {

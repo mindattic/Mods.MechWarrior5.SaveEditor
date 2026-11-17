@@ -2,6 +2,7 @@ using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MechWarrior5.SaveEditor.App.Services;
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 using MechWarrior5.Mercs.SaveEditor.Core.Game;
 using MechWarrior5.Mercs.SaveEditor.Core.Saves;
@@ -31,6 +32,18 @@ public sealed partial class MainViewModel : ObservableObject
     private readonly JsonSettings<AppSettings> _settings;
     private readonly IEditorWindows _windows;
     private IReadOnlyList<MissingAsset> _baselineMissing = [];
+    private IReadOnlyList<AddonFile> _addonFiles = [];
+
+    /// <summary>Where add-on packs are read from: the <c>Addons</c> folder beside the program.</summary>
+    public static string AddonsFolder => Path.Combine(AppContext.BaseDirectory, "Addons");
+
+    /// <summary>Which add-on packs apply and the limits in force; vanilla until the first scan finishes.</summary>
+    [ObservableProperty]
+    private AddonState _addons = AddonState.None;
+
+    /// <summary>How the open save deviates from vanilla, and which mod explains each deviation.</summary>
+    [ObservableProperty]
+    private IReadOnlyList<CompatibilityLine> _compatibility = [];
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasDocument), nameof(FileName), nameof(SaveTitle), nameof(WindowTitle), nameof(DlcSummary))]
@@ -97,7 +110,9 @@ public sealed partial class MainViewModel : ObservableObject
         GameData? data;
         try
         {
-            data = await Task.Run(() => GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null);
+            (data, _addonFiles) = await Task.Run(() => (
+                GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null,
+                AddonPackReader.ReadFolder(AddonsFolder)));
         }
         catch (Exception e)
         {
@@ -120,12 +135,14 @@ public sealed partial class MainViewModel : ObservableObject
             // The status says built-in data, so stop using an earlier scan's mods and loadouts too.
             _mechs.Reset();
             _baselineMissing = [];
+            ApplyAddons(rebuild: false);
             SetSummary(() => Loc.Text("game_data_missing", "Game not found: using built-in data"));
             RebuildPages();
             return;
         }
 
         _mechs.Apply(data);
+        ApplyAddons(rebuild: false);
         if (Document is { } open)
         {
             _baselineMissing = SaveValidator.FindMissing(open.File, data.AssetNames);
@@ -142,6 +159,38 @@ public sealed partial class MainViewModel : ObservableObject
     private Func<string> _summary = () => Loc.Text("game_data_reading", "Reading game data...");
 
     /// <summary>Keeps how the summary is worded, so a language change can re-word it.</summary>
+    /// <summary>
+    /// The one place add-ons take effect: decides which packs apply, layers them (with the enabled mods' own content)
+    /// into the catalogs, sets the limits every editor reads, and re-checks the open save against them.
+    /// </summary>
+    public void ApplyAddons(bool rebuild = true)
+    {
+        var turnedOff = (_settings.Current.DisabledAddons ?? []).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var game = _mechs.Game;
+        Addons = AddonState.Build(_addonFiles, game, turnedOff, _settings.Current.AddonsOff);
+        if (game is null)
+        {
+            _items.Reset();
+            _pilots.Reset();
+        }
+        else
+        {
+            _items.Apply(game, Addons);
+            _pilots.Apply(game, Addons);
+        }
+
+        _mechs.ApplyAddons(Addons);
+        GameRules.Limits = Addons.Limits;
+        RefreshCompatibility();
+        if (rebuild)
+        {
+            RebuildPages();
+        }
+    }
+
+    private void RefreshCompatibility() =>
+        Compatibility = Document is { } doc ? CompatibilityReport.Build(doc, _mechs.Game, Addons) : [];
+
     private void SetSummary(Func<string> summary)
     {
         _summary = summary;
@@ -233,11 +282,14 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         AttachDocument(doc);
+        RefreshCompatibility();
         _baselineMissing = _mechs.Game is { } game ? SaveValidator.FindMissing(doc.File, game.AssetNames) : [];
         _settings.Current.LastSavePath = path;
         _settings.Save();
         Navigate(Page.Mechs);
-        ShowToast(Loc.Text("loaded_toast", "Loaded {0} - {1} mechs, {2} pilots", Company!.CompanyName, Mechs!.HangarCount, doc.Roster.Pilots.Count));
+        var problems = Compatibility.Count(l => l.Severity == CompatibilitySeverity.Problem);
+        ShowToast(Loc.Text("loaded_toast", "Loaded {0} - {1} mechs, {2} pilots", Company!.CompanyName, Mechs!.HangarCount, doc.Roster.Pilots.Count)
+            + (problems > 0 ? "  " + Loc.Text("compat_toast", "{0} thing(s) need a mod that isn't active: see Settings, Compatibility.", problems) : string.Empty));
         return true;
     }
 

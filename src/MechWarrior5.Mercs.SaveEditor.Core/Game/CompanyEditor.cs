@@ -1,3 +1,4 @@
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Saves;
 using MechWarrior5.Shared.Unreal;
 using MechWarrior5.Shared.Unreal.Properties;
@@ -6,7 +7,6 @@ namespace MechWarrior5.Mercs.SaveEditor.Core.Game;
 
 public sealed class CompanyEditor
 {
-    public const long MaxCBills = 2_000_000_000;
 
     private readonly PropertyList _inventory;
     private readonly PropertyList _company;
@@ -29,7 +29,7 @@ public sealed class CompanyEditor
             ?.Find<Int64Property>("Value")?.Value ?? 0;
         set
         {
-            var clamped = Math.Clamp(value, 0, MaxCBills);
+            var clamped = Bounds.Clamp(value, 0, GameRules.Limits.MaxCBills, CBills);
             if (CBills == clamped)
             {
                 return;

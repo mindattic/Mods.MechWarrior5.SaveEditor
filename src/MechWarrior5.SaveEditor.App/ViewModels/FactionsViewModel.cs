@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Game;
 
 using MechWarrior5.SaveEditor.App.Localization;
@@ -20,6 +21,11 @@ public sealed partial class FactionViewModel(FactionStanding standing) : Observa
             OnPropertyChanged(nameof(Mood));
         }
     }
+
+    /// <summary>The slider's range: the active limits, widened to a standing already beyond them so showing it never changes it.</summary>
+    public int MinStanding => Math.Min(GameRules.Limits.MinStanding, Standing);
+
+    public int MaxStanding => Math.Max(GameRules.Limits.MaxStanding, Standing);
 
     public string Mood => Standing switch
     {
@@ -49,10 +55,13 @@ public sealed partial class FactionsViewModel : ObservableObject
 
     public IReadOnlyList<FactionViewModel> Factions { get; }
 
+    public static string AllAlliedLabel => Loc.Text("all_allied_max", "ALL ALLIED ({0})", GameRules.Limits.MaxStanding);
+
+    /// <summary>"max" is the active limit; anything else is a number.</summary>
     [RelayCommand]
     private void SetAll(string value)
     {
-        _doc.Factions.SetAll(int.Parse(value, System.Globalization.CultureInfo.InvariantCulture));
+        _doc.Factions.SetAll(value == "max" ? GameRules.Limits.MaxStanding : int.Parse(value, System.Globalization.CultureInfo.InvariantCulture));
         foreach (var faction in Factions)
         {
             faction.Refresh();

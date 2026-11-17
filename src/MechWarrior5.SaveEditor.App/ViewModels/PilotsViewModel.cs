@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 using MechWarrior5.Mercs.SaveEditor.Core.Game;
 
@@ -23,8 +24,12 @@ public sealed partial class SkillViewModel(PilotSkill skill) : ObservableObject
         {
             skill.Cap = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(CapCeiling));
         }
     }
+
+    /// <summary>The slider's maximum: the active limit, or a higher existing cap, so displaying a cap never lowers it.</summary>
+    public int CapCeiling => skill.CapCeiling;
 
     public int Experience
     {
@@ -71,6 +76,9 @@ public sealed partial class PilotViewModel : ObservableObject
     public Pilot Pilot { get; }
 
     public IReadOnlyList<SkillViewModel> Skills { get; }
+
+    /// <summary>The cap column's header with the active range, e.g. "CAP (0-10)".</summary>
+    public static string CapHeader => Loc.Text("cap_range", "CAP (0-{0})", GameRules.Limits.MaxSkillCap);
 
     public ObservableCollection<TraitRow> Traits { get; } = [];
 

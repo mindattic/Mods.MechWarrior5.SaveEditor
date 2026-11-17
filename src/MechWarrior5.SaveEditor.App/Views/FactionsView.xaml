@@ -1,7 +1,8 @@
 <UserControl xmlns:ma="clr-namespace:MindAttic.Components.Wpf.Controls;assembly=MindAttic.Components.Wpf" x:Class="MechWarrior5.SaveEditor.App.Views.FactionsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization">
+        xmlns:l="clr-namespace:MechWarrior5.SaveEditor.App.Localization"
+        xmlns:vm="clr-namespace:MechWarrior5.SaveEditor.App.ViewModels">
     <Grid Margin="28,22,28,22">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -11,7 +12,7 @@
         <DockPanel Margin="0,0,0,14">
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
                 <ma:MaButton Content="{l:T all_neutral_0}" Command="{Binding SetAllCommand}" CommandParameter="0" Margin="0,0,10,0" />
-                <ma:MaButton Content="{l:T all_allied_100}" Command="{Binding SetAllCommand}" CommandParameter="100" Style="{StaticResource Button.Command}" />
+                <ma:MaButton Content="{x:Static vm:FactionsViewModel.AllAlliedLabel}" Command="{Binding SetAllCommand}" CommandParameter="max" Style="{StaticResource Button.Command}" />
             </StackPanel>
             <TextBlock Text="{l:T faction_standing}" Style="{StaticResource Text.Title}" />
         </DockPanel>
@@ -45,6 +46,7 @@
                                                     <MultiBinding Converter="{StaticResource StandingToWidth}" ConverterParameter="Negative">
                                                         <Binding Path="Standing" />
                                                         <Binding Path="ActualWidth" ElementName="NegativeHalf" />
+                                                        <Binding Path="MinStanding" />
                                                     </MultiBinding>
                                                 </Rectangle.Width>
                                             </Rectangle>
@@ -55,12 +57,13 @@
                                                     <MultiBinding Converter="{StaticResource StandingToWidth}" ConverterParameter="Positive">
                                                         <Binding Path="Standing" />
                                                         <Binding Path="ActualWidth" ElementName="PositiveHalf" />
+                                                        <Binding Path="MaxStanding" />
                                                     </MultiBinding>
                                                 </Rectangle.Width>
                                             </Rectangle>
                                         </Grid>
                                         <Rectangle Grid.ColumnSpan="2" Width="2" Height="16" Fill="{DynamicResource Brush.LineBright}" HorizontalAlignment="Center" />
-                                        <Slider Grid.ColumnSpan="2" Minimum="-100" Maximum="100" Value="{Binding Standing}" IsSnapToTickEnabled="True"
+                                        <Slider Grid.ColumnSpan="2" Minimum="{Binding MinStanding}" Maximum="{Binding MaxStanding}" Value="{Binding Standing}" IsSnapToTickEnabled="True"
                                                 TickFrequency="1" VerticalAlignment="Center" Opacity="0.01" Cursor="Hand" ToolTip="{l:T drag_to_set_standing}" />
                                     </Grid>
 

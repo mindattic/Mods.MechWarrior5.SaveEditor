@@ -21,10 +21,10 @@ public enum ItemFilter
 
 public sealed partial class InventoryRowViewModel : SelectableItem
 {
-    public InventoryRowViewModel(InventoryItem item)
+    public InventoryRowViewModel(InventoryItem item, string name)
     {
         Item = item;
-        Name = Names.Humanize(item.Asset);
+        Name = name;
         Tier = Names.Tier(item.Asset);
         TypeLabel = Names.AssetTypeLabel(item.AssetType);
     }
@@ -61,7 +61,7 @@ public sealed partial class ItemPickViewModel : SelectableItem
     public ItemPickViewModel(ItemDefinition definition)
     {
         Definition = definition;
-        Name = Names.Humanize(definition.Asset);
+        Name = Names.ItemLabel(definition) + (definition.Source is { } source ? $"  ({source})" : string.Empty);
         Tier = Names.Tier(definition.Asset);
         TypeLabel = Names.AssetTypeLabel(definition.AssetType);
         SearchText = $"{definition.Asset} {Name} {TypeLabel}";
@@ -83,6 +83,7 @@ public sealed partial class InventoryViewModel : ObservableObject
     private readonly Mw5Document _doc;
     private readonly IDialogService _dialogs;
     private readonly List<ItemPickViewModel> _catalog;
+    private readonly ItemCatalog _items;
 
     [ObservableProperty]
     private string _search = string.Empty;
@@ -106,7 +107,8 @@ public sealed partial class InventoryViewModel : ObservableObject
     {
         _doc = doc;
         _dialogs = dialogs;
-        _catalog = items.Items.OrderBy(i => Names.Humanize(i.Asset), StringComparer.OrdinalIgnoreCase)
+        _items = items;
+        _catalog = items.Items.OrderBy(Names.ItemLabel, StringComparer.OrdinalIgnoreCase)
             .ThenBy(i => i.Asset, StringComparer.Ordinal)
             .Select(i => new ItemPickViewModel(i))
             .ToList();
@@ -283,9 +285,9 @@ public sealed partial class InventoryViewModel : ObservableObject
         Items.Clear();
         foreach (var item in _doc.Inventory.Items
                      .OrderBy(i => i.IsWeapon ? 0 : i.IsAmmo ? 2 : 1)
-                     .ThenBy(i => Names.Humanize(i.Asset), StringComparer.OrdinalIgnoreCase))
+                     .ThenBy(i => Names.ItemLabel(i.Asset, _items), StringComparer.OrdinalIgnoreCase))
         {
-            var row = new InventoryRowViewModel(item);
+            var row = new InventoryRowViewModel(item, Names.ItemLabel(item.Asset, _items));
             row.CheckedChanged += (_, _) => OnSelectionChanged();
             // An inline count edit changes the "N units" header too.
             row.PropertyChanged += (_, e) =>

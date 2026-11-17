@@ -1,3 +1,4 @@
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 using MechWarrior5.Mercs.SaveEditor.Core.Saves;
 using MechWarrior5.Shared.Unreal;
@@ -8,7 +9,6 @@ namespace MechWarrior5.Mercs.SaveEditor.Core.Game;
 /// <summary>Company stock of weapons (<c>WeaponInventory</c>) and equipment/ammo (<c>EquipmentInventory</c>).</summary>
 public sealed class InventoryEditor
 {
-    public const int MaxCount = 9999;
 
     private readonly StructArrayStorage? _weapons;
     private readonly StructArrayStorage? _equipment;
@@ -34,7 +34,7 @@ public sealed class InventoryEditor
     public BatchResult<ItemDefinition> Add(IEnumerable<ItemDefinition> definitions, int count)
     {
         var result = new BatchResult<ItemDefinition>();
-        count = Math.Clamp(count, 1, MaxCount);
+        count = Math.Clamp(count, 1, GameRules.Limits.MaxCount);
         // Stacks are looked up before the batch is applied, so the same item twice would make two new stacks.
         foreach (var definition in definitions.DistinctBy(d => (d.Asset.ToUpperInvariant(), d.IsWeapon)))
         {
@@ -50,7 +50,7 @@ public sealed class InventoryEditor
                 && string.Equals(i.Asset, definition.Asset, StringComparison.OrdinalIgnoreCase));
             if (stack is not null)
             {
-                stack.SetCountSilently(Math.Min(MaxCount, stack.Count + count));
+                stack.SetCountSilently(Math.Max(stack.Count, Math.Min(GameRules.Limits.MaxCount, stack.Count + count)));
             }
             else
             {
@@ -71,7 +71,7 @@ public sealed class InventoryEditor
 
     public void SetCount(IEnumerable<InventoryItem> items, int count)
     {
-        var clamped = Math.Clamp(count, 1, MaxCount);
+        var clamped = Math.Clamp(count, 1, GameRules.Limits.MaxCount);
         var any = false;
         foreach (var item in items)
         {
@@ -170,7 +170,7 @@ public sealed class InventoryItem
         get => Element.Find<IntProperty>("Count")?.Value ?? 0;
         set
         {
-            if (SetCountSilently(Math.Clamp(value, 1, InventoryEditor.MaxCount)))
+            if (SetCountSilently(Bounds.Clamp(value, 1, GameRules.Limits.MaxCount, Count)))
             {
                 _changed();
             }

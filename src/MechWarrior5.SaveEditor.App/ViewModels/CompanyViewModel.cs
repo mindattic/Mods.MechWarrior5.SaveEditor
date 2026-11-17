@@ -1,3 +1,4 @@
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using System.Globalization;
 using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -134,7 +135,7 @@ public sealed partial class CompanyViewModel : ObservableObject
         CBills += long.Parse(amount, CultureInfo.InvariantCulture);
 
     [RelayCommand]
-    private void MaxCBills() => CBills = CompanyEditor.MaxCBills;
+    private void MaxCBills() => CBills = GameRules.Limits.MaxCBills;
 
     [RelayCommand]
     private void MoveDate()

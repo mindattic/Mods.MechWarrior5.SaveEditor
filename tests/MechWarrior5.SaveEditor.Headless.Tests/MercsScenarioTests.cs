@@ -1,3 +1,4 @@
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 using MechWarrior5.Mercs.SaveEditor.Core.Game;
 using MechWarrior5.Mercs.SaveEditor.Core.Saves;
@@ -114,7 +115,7 @@ public class MercsScenarioTests
     [
         ("CBills", (doc, rng, touched) =>
         {
-            var value = rng.Next(4) == 0 ? (rng.Next(2) == 0 ? 0 : CompanyEditor.MaxCBills) : rng.NextInt64(1, CompanyEditor.MaxCBills);
+            var value = rng.Next(4) == 0 ? (rng.Next(2) == 0 ? 0 : GameLimits.Vanilla.MaxCBills) : rng.NextInt64(1, GameLimits.Vanilla.MaxCBills);
             doc.Company.CBills = value;
             touched.Add("CBills");
             return back => Assert.That(back.Company.CBills, Is.EqualTo(value), "C-Bills");
@@ -325,7 +326,7 @@ public class MercsScenarioTests
             return back =>
             {
                 var p = back.Roster.Pilots.First(x => x.PersonaId == id);
-                Assert.That(p.Skills.Where(s => s.HasCap).Select(s => s.Cap), Is.All.EqualTo(Pilot.MaxSkillCap), "skill caps");
+                Assert.That(p.Skills.Where(s => s.HasCap).Select(s => s.Cap), Is.All.EqualTo(GameLimits.Vanilla.MaxSkillCap), "skill caps");
                 Assert.That(p.IsHealthy, Is.True, "healed");
             };
         }),
@@ -339,13 +340,13 @@ public class MercsScenarioTests
             touched.Add("Factions");
             if (rng.Next(2) == 0)
             {
-                var all = rng.Next(FactionEditor.MinStanding, FactionEditor.MaxStanding + 1);
+                var all = rng.Next(GameLimits.Vanilla.MinStanding, GameLimits.Vanilla.MaxStanding + 1);
                 doc.Factions.SetAll(all);
                 return back => Assert.That(back.Factions.Standings.Select(f => f.Standing), Is.All.EqualTo(all), "all standings");
             }
 
             var faction = doc.Factions.Standings[rng.Next(doc.Factions.Standings.Count)];
-            var value = rng.Next(FactionEditor.MinStanding, FactionEditor.MaxStanding + 1);
+            var value = rng.Next(GameLimits.Vanilla.MinStanding, GameLimits.Vanilla.MaxStanding + 1);
             faction.Standing = value;
             return back => Assert.That(back.Factions.Standings.Single(f => f.Faction == faction.Faction).Standing, Is.EqualTo(value), faction.Faction);
         }),

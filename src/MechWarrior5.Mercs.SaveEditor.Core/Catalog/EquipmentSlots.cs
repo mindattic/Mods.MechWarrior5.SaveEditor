@@ -18,6 +18,12 @@ public static class EquipmentSlots
             return false;
         }
 
+        // Mod items carry the slot types their own asset lists: trust those rather than the base game's naming rules.
+        if (item.SlotTypes is { } listed)
+        {
+            return listed.Contains(slotType, StringComparer.OrdinalIgnoreCase);
+        }
+
         if (slotType.Equals("General_SlotType", StringComparison.OrdinalIgnoreCase))
         {
             return GeneralTypes.Contains(item.AssetType);

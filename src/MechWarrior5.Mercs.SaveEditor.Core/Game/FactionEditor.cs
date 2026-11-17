@@ -1,3 +1,4 @@
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Saves;
 using MechWarrior5.Shared.Unreal;
 using MechWarrior5.Shared.Unreal.Properties;
@@ -6,8 +7,6 @@ namespace MechWarrior5.Mercs.SaveEditor.Core.Game;
 
 public sealed class FactionEditor
 {
-    public const int MinStanding = -100;
-    public const int MaxStanding = 100;
 
     internal FactionEditor(Mw5SaveFile file, Action changed)
     {
@@ -51,7 +50,7 @@ public sealed class FactionStanding
         get => _element.Find<IntProperty>("Standing")?.Value ?? 0;
         set
         {
-            var clamped = Math.Clamp(value, FactionEditor.MinStanding, FactionEditor.MaxStanding);
+            var clamped = Bounds.Clamp(value, GameRules.Limits.MinStanding, GameRules.Limits.MaxStanding, Standing);
             if (Standing == clamped)
             {
                 return;

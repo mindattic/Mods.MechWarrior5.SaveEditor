@@ -1,3 +1,4 @@
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using System.Globalization;
 using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 using MechWarrior5.Mercs.SaveEditor.Core.Game;
@@ -128,7 +129,7 @@ public partial class UiHeadlessTests
             Assert.That(doc.FilePath, Is.Not.EqualTo(save), "saved as a new file");
             Assert.That(m.IsDirty, Is.False);
             Assert.That(dialogs.Errors, Is.Empty);
-            Assert.That(back.Company.CBills, Is.EqualTo(CompanyEditor.MaxCBills));
+            Assert.That(back.Company.CBills, Is.EqualTo(GameLimits.Vanilla.MaxCBills));
             Assert.That(back.Company.Reputation, Is.EqualTo(500));
             Assert.That(back.Company.CompanyName, Is.EqualTo("UI Lancers"));
             if (date is { } d2)

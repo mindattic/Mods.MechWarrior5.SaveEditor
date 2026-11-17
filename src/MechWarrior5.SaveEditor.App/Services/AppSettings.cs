@@ -19,6 +19,12 @@ public sealed class AppSettings
 
     public bool OwnedDlcOnly { get; set; } = true;
 
+    /// <summary>Add-on packs the user turned off, by pack name.</summary>
+    public List<string>? DisabledAddons { get; set; }
+
+    /// <summary>Forces vanilla: no add-on pack applies.</summary>
+    public bool AddonsOff { get; set; }
+
     public string? ClansLastSavePath { get; set; }
 
     /// <summary>MW5 Clans save folder; empty means %LOCALAPPDATA%\MW5Clans\Saved\SaveGames.</summary>

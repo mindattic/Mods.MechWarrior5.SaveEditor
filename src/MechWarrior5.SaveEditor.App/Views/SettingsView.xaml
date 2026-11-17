@@ -8,6 +8,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -44,7 +46,106 @@
                 </StackPanel>
             </ma:MaShapeBorder>
 
+            <!-- Add-on packs: optional data for mods; each applies only while its mod is installed, enabled and a listed version. -->
             <ma:MaShapeBorder Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource Panel}" Padding="22,18" Margin="0,18,0,0">
+                <StackPanel>
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                            <CheckBox Content="{l:T addons_all_off}" IsChecked="{Binding AddonsOff}" VerticalAlignment="Center" Margin="0,0,14,0" />
+                            <ma:MaButton Content="{l:T addons_open_folder}" Command="{Binding OpenAddonsFolderCommand}" />
+                        </StackPanel>
+                        <TextBlock Text="{l:T addons_title}" Style="{StaticResource Text.Section}" VerticalAlignment="Center" />
+                    </DockPanel>
+                    <TextBlock Text="{l:T addons_hint}" Style="{StaticResource Text.Muted}" FontSize="16" TextWrapping="Wrap" Margin="0,8,0,0" />
+                    <TextBlock Text="{l:T addons_none}" Style="{StaticResource Text.Muted}" FontSize="16" Margin="0,12,0,0"
+                               Visibility="{Binding HasAddons, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                    <ItemsControl ItemsSource="{Binding Addons}" Margin="0,8,0,0" Grid.IsSharedSizeScope="True">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="AddonStatus" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox IsChecked="{Binding IsOn}" IsEnabled="{Binding CanToggle}" VerticalAlignment="Center" Margin="0,0,12,0" />
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="Bold" />
+                                            <TextBlock Text="{Binding Requires}" Style="{StaticResource Text.Muted}" FontSize="15" TextWrapping="Wrap" />
+                                            <TextBlock Text="{Binding Source, Mode=OneWay}"
+                                                     FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource Brush.TextMuted}"
+                                                     Visibility="{Binding Source, Converter={StaticResource HasValueToVisibility}}" />
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="2" Text="{Binding Status}" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="12,0,0,0">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                    <Setter Property="Foreground" Value="{DynamicResource Brush.TextMuted}" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                                            <Setter Property="Foreground" Value="{DynamicResource Brush.AccentHot}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsProblem}" Value="True">
+                                                            <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="{l:T addons_limits}" Style="{StaticResource Text.Label}" Margin="0,14,0,4" />
+                    <ItemsControl ItemsSource="{Binding LimitLines}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Style="{StaticResource Text.Muted}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding Collisions}" Margin="0,8,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="{DynamicResource Brush.Danger}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ma:MaShapeBorder>
+
+            <!-- How the open save differs from vanilla, and which mod (with its version and page) explains each difference. -->
+            <ma:MaShapeBorder Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource Panel}" Padding="22,18" Margin="0,18,0,0">
+                <StackPanel>
+                    <TextBlock Text="{l:T compat_title}" Style="{StaticResource Text.Section}" />
+                    <TextBlock Text="{Binding CompatibilitySummary}" FontSize="16" TextWrapping="Wrap" Margin="0,8,0,0" />
+                    <ItemsControl ItemsSource="{Binding Compatibility}" Margin="0,8,0,0" Visibility="{Binding HasCompatibility, Converter={StaticResource BoolToVisibility}}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
+                                    <StackPanel>
+                                        <TextBlock FontSize="16" TextWrapping="Wrap">
+                                            <Run Text="{Binding SeverityLabel, Mode=OneWay}" FontWeight="Bold" Foreground="{Binding SeverityBrush, Mode=OneWay}" />
+                                            <Run Text="  " /><Run Text="{Binding Line.Category, Mode=OneWay}" Foreground="{DynamicResource Brush.TextMuted}" />
+                                            <Run Text="  " /><Run Text="{Binding Line.Subject, Mode=OneWay}" FontWeight="SemiBold" />
+                                            <Run Text="  " /><Run Text="{Binding Line.Value, Mode=OneWay}" Foreground="{DynamicResource Brush.TextMuted}" />
+                                        </TextBlock>
+                                        <TextBlock FontSize="15" TextWrapping="Wrap" Style="{StaticResource Text.Muted}">
+                                            <Run Text="{Binding ModLabel, Mode=OneWay}" FontWeight="Bold" /> <Run Text="{Binding Line.Reason, Mode=OneWay}" />
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Line.Url, Mode=OneWay}"
+                                                 FontSize="14" TextWrapping="Wrap" Foreground="{DynamicResource Brush.TextMuted}"
+                                                 Visibility="{Binding Line.Url, Converter={StaticResource HasValueToVisibility}}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ma:MaShapeBorder>
+
+            <ma:MaShapeBorder Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource Panel}" Padding="22,18" Margin="0,18,0,0">
                 <StackPanel>
                     <TextBlock Text="{l:T settings_about}" Style="{StaticResource Text.Section}" />
                     <TextBlock FontSize="18" Margin="0,10,0,0">

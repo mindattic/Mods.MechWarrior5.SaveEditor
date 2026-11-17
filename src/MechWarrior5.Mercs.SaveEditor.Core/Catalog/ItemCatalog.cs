@@ -1,4 +1,5 @@
 using System.Text.Json;
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 
 namespace MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 
@@ -12,6 +13,18 @@ public enum ItemKind
 /// <summary>An inventory item asset, e.g. <c>MediumLaser_Lvl2</c> of type <c>MWTraceWeaponDataAsset</c>.</summary>
 public sealed record ItemDefinition(string Asset, string AssetType, ItemKind Kind, HardpointClass Hardpoint = HardpointClass.Unknown)
 {
+    /// <summary>The item's own display name (from a mod's asset or an add-on pack); null means label it from the asset id.</summary>
+    public string? Label { get; init; }
+
+    /// <summary>The mod or add-on pack the item comes from; null for the base game.</summary>
+    public string? Source { get; init; }
+
+    /// <summary>
+    /// The slot types the asset itself lists (<c>SupportedSlotTypesAssetId</c>, read for mod equipment and ammo);
+    /// null means the built-in slot rules apply. An empty list keeps the item out of every Mech Lab slot.
+    /// </summary>
+    public IReadOnlyList<string>? SlotTypes { get; init; }
+
     /// <summary>Weapons go to <c>WeaponInventory</c>; equipment and ammo to <c>EquipmentInventory</c>.</summary>
     public bool IsWeapon => Kind == ItemKind.Weapon;
 
@@ -25,22 +38,36 @@ public sealed record ItemDefinition(string Asset, string AssetType, ItemKind Kin
     }
 }
 
+/// <summary>
+/// The built-in weapons, equipment and ammo, then what the installed game's enabled mods add, then what active add-on
+/// packs add or change. Each <see cref="Apply"/> rebuilds from the built-in list, so nothing outlives its source.
+/// </summary>
 public sealed class ItemCatalog
 {
     private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
 
+    private readonly IReadOnlyList<ItemDefinition> _builtIn;
+    private Dictionary<string, ItemDefinition> _byAsset;
+
     private ItemCatalog(IReadOnlyList<ItemDefinition> items)
     {
+        _builtIn = items;
         Items = items;
+        _byAsset = Index(items);
     }
 
-    public IReadOnlyList<ItemDefinition> Items { get; }
+    public IReadOnlyList<ItemDefinition> Items { get; private set; }
 
+    /// <summary>
+    /// Weapons for a hardpoint. A mod weapon whose hardpoint class couldn't be read is left out rather than guessed
+    /// (it is still in <see cref="Items"/>, so the inventory can stock it).
+    /// </summary>
     public IEnumerable<ItemDefinition> WeaponsFor(HardpointClass slot) =>
-        Items.Where(i => i.Kind == ItemKind.Weapon && Hardpoints.Accepts(slot, i.Hardpoint));
+        Items.Where(i => i.Kind == ItemKind.Weapon && (i.Source is null || i.Hardpoint != HardpointClass.Unknown) && Hardpoints.Accepts(slot, i.Hardpoint));
 
-    public ItemDefinition? Find(string asset) =>
-        Items.FirstOrDefault(i => string.Equals(i.Asset, asset, StringComparison.OrdinalIgnoreCase));
+    public ItemDefinition? Find(string asset) => _byAsset.GetValueOrDefault(asset);
+
+    public bool IsBuiltIn(string asset) => _builtIn.Any(i => string.Equals(i.Asset, asset, StringComparison.OrdinalIgnoreCase));
 
     public static ItemCatalog LoadBuiltIn()
     {
@@ -55,6 +82,84 @@ public sealed class ItemCatalog
 
         void Add(string group, ItemKind kind) =>
             items.AddRange(file[group].Select(i => new ItemDefinition(i.Asset, i.Type, kind, Hardpoints.Parse(i.Hardpoint))));
+    }
+
+    /// <summary>Built-in items, plus the enabled mods' items, plus the active packs' additions and changes.</summary>
+    public void Apply(GameData? game, AddonState addons)
+    {
+        var items = _builtIn.ToDictionary(i => i.Asset, StringComparer.OrdinalIgnoreCase);
+        var order = _builtIn.Select(i => i.Asset).ToList();
+        foreach (var item in game?.Items ?? [])
+        {
+            if (items.TryAdd(item.Asset, item))
+            {
+                order.Add(item.Asset);
+            }
+        }
+
+        foreach (var pack in addons.Active)
+        {
+            foreach (var add in pack.Items.Add)
+            {
+                if (items.TryGetValue(add.Asset, out var known))
+                {
+                    items[add.Asset] = Override(known, add, pack.Name);
+                }
+                else if (FromPack(add, pack.Name) is { } item)
+                {
+                    items[add.Asset] = item;
+                    order.Add(add.Asset);
+                }
+            }
+
+            foreach (var change in pack.Items.Override.Where(c => items.ContainsKey(c.Asset)))
+            {
+                items[change.Asset] = Override(items[change.Asset], change, pack.Name);
+            }
+        }
+
+        Items = [.. order.Select(a => items[a])];
+        _byAsset = Index(Items);
+    }
+
+    /// <summary>Back to the built-in items alone.</summary>
+    public void Reset()
+    {
+        Items = _builtIn;
+        _byAsset = Index(_builtIn);
+    }
+
+    private static ItemDefinition Override(ItemDefinition item, AddonItem change, string pack) => item with
+    {
+        AssetType = change.Type ?? item.AssetType,
+        Kind = Kind(change.Kind) ?? item.Kind,
+        Hardpoint = change.Hardpoint is { } h ? Hardpoints.Parse(h) : item.Hardpoint,
+        Label = change.Label ?? item.Label,
+        Source = item.Source ?? pack,
+    };
+
+    private static ItemDefinition? FromPack(AddonItem add, string pack) =>
+        add.Type is { } type && Kind(add.Kind) is { } kind
+            ? new ItemDefinition(add.Asset, type, kind, Hardpoints.Parse(add.Hardpoint)) { Label = add.Label, Source = pack }
+            : null;
+
+    private static ItemKind? Kind(string? kind) => kind?.ToLowerInvariant() switch
+    {
+        "weapon" => ItemKind.Weapon,
+        "equipment" => ItemKind.Equipment,
+        "ammo" => ItemKind.Ammo,
+        _ => null,
+    };
+
+    private static Dictionary<string, ItemDefinition> Index(IEnumerable<ItemDefinition> items)
+    {
+        var index = new Dictionary<string, ItemDefinition>(StringComparer.OrdinalIgnoreCase);
+        foreach (var item in items)
+        {
+            index.TryAdd(item.Asset, item);
+        }
+
+        return index;
     }
 
     private sealed record ItemDto(string Asset, string Type, string? Hardpoint);

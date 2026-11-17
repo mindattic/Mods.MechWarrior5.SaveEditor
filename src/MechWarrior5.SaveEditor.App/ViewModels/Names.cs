@@ -30,6 +30,12 @@ public static partial class Names
         return string.Join(' ', words);
     }
 
+    /// <summary>An item's display name: its own (from a mod or add-on pack) when it has one, else from its asset id.</summary>
+    public static string ItemLabel(ItemDefinition item) => item.Label ?? Humanize(item.Asset);
+
+    /// <summary>An item's display name by asset, looked up in the catalog (mod and add-on items included).</summary>
+    public static string ItemLabel(string asset, ItemCatalog catalog) => catalog.Find(asset) is { } item ? ItemLabel(item) : Humanize(asset);
+
     /// <summary>Localized weight class in title case, e.g. "Leicht".</summary>
     public static string WeightClass(WeightClass weight) =>
         CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Loc.Instance[weight.ToString().ToLowerInvariant()].ToLower(CultureInfo.CurrentCulture));

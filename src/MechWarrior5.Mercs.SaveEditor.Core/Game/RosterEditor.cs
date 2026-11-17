@@ -1,3 +1,4 @@
+using MechWarrior5.Mercs.SaveEditor.Core.Addons;
 using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 using MechWarrior5.Mercs.SaveEditor.Core.Saves;
 
@@ -174,9 +175,6 @@ public sealed class Pilot
     public static readonly IReadOnlyList<string> SkillNames =
         ["Gunnery", "Ballistics", "Energy", "Missile", "Piloting", "Evasiveness", "Shielding", "HeatManagement"];
 
-    public const int MaxSkillCap = 10;
-    public const int MaxSalary = 10_000_000;
-
     private readonly Action _changed;
 
     internal Pilot(PropertyList element, Action changed)
@@ -254,7 +252,7 @@ public sealed class Pilot
     public int Salary
     {
         get => Element.Find<IntProperty>("SalaryCBills")?.Value ?? 0;
-        set => SetInt("SalaryCBills", Math.Clamp(value, 0, MaxSalary));
+        set => SetInt("SalaryCBills", Bounds.Clamp(value, 0, GameRules.Limits.MaxSalary, Salary));
     }
 
     internal PropertyList Element { get; }
@@ -272,11 +270,16 @@ public sealed class Pilot
         }
     }
 
+    /// <summary>
+    /// Raises every cap below the active limit to it. Never lowers one: a cap already above the limit (from a
+    /// playthrough with a mod that allowed more) stays exactly as it is.
+    /// </summary>
     public void MaxCaps()
     {
-        foreach (var skill in Skills.Where(s => s.HasCap))
+        var limit = GameRules.Limits.MaxSkillCap;
+        foreach (var skill in Skills.Where(s => s.HasCap && s.Cap < limit))
         {
-            skill.Cap = MaxSkillCap;
+            skill.Cap = limit;
         }
     }
 
@@ -388,8 +391,6 @@ public sealed class Pilot
 
 public sealed class PilotSkill
 {
-    public const int MaxExperience = 1_000_000;
-
     private readonly PropertyList _skill;
     private readonly Action _changed;
 
@@ -402,6 +403,12 @@ public sealed class PilotSkill
 
     public string Name { get; }
 
+    /// <summary>
+    /// The highest value this cap can be set to: the active limit, or the current value when that is already higher
+    /// (kept as it is, from a mod playthrough). A slider uses it as its maximum so showing a cap never changes it.
+    /// </summary>
+    public int CapCeiling => Math.Min(Math.Max(GameRules.Limits.MaxSkillCap, Cap), byte.MaxValue);
+
     /// <summary>Parent skills (Gunnery, Piloting) have no cap of their own.</summary>
     public bool HasCap => Name is not ("Gunnery" or "Piloting");
 
@@ -410,7 +417,7 @@ public sealed class PilotSkill
         get => _skill.Find<ByteProperty>("SkillCap")?.RawValue ?? 0;
         set
         {
-            var clamped = (byte)Math.Clamp(value, 0, Pilot.MaxSkillCap);
+            var clamped = (byte)Bounds.Clamp(value, 0, CapCeiling, Cap);
             var property = _skill.Find<ByteProperty>("SkillCap");
             if (property?.RawValue == clamped)
             {
@@ -435,7 +442,7 @@ public sealed class PilotSkill
         get => _skill.Find<IntProperty>("TotalExp")?.Value ?? 0;
         set
         {
-            var clamped = Math.Clamp(value, 0, MaxExperience);
+            var clamped = Bounds.Clamp(value, 0, GameRules.Limits.MaxExperience, Experience);
             var property = _skill.Find<IntProperty>("TotalExp");
             if (property?.Value == clamped)
             {
