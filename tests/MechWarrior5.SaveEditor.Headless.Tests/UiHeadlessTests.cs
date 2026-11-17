@@ -176,7 +176,9 @@ public partial class UiHeadlessTests
         var dialogs = new FakeDialogs();
         var catalog = MechCatalog.LoadBuiltIn();
         // Like the app: pictures come from the installed game, so the rendered pages show them.
-        Shared.Wpf.Behaviors.MechArt.Service = new GameArtSource(catalog);
+        var art = new GameArtSource(catalog);
+        _ = art.StartClans(null);
+        Shared.Wpf.Behaviors.MechArt.Service = art;
         var mercs = new MainViewModel(catalog, ItemCatalog.LoadBuiltIn(), PilotCatalog.LoadBuiltIn(), dialogs, settings, windows ?? new EditorWindows());
         var shell = new ShellViewModel(mercs, new ClansMainViewModel(dialogs, settings), settings);
         var window = new App.MainWindow { DataContext = shell, Left = -4000, Top = 0, Width = 1440, Height = 900, ShowActivated = false };

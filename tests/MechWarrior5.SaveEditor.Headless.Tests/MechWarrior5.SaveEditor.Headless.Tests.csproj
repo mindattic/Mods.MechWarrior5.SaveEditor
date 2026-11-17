@@ -34,4 +34,9 @@
     <ProjectReference Include="..\..\src\MechWarrior5.SaveEditor.App\MechWarrior5.SaveEditor.App.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- The shipped add-on packs, in the Addons folder beside the test host as beside the app. -->
+    <None Include="..\..\addons\*.json" Link="Addons\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

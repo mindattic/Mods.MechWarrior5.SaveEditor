@@ -72,6 +72,13 @@ public partial class UiHeadlessTests
         Shot(window, assets, "mercs-09-pilots");
         shell.Mercs.NavigateCommand.Execute(MercsPage.Factions);
         Shot(window, assets, "mercs-10-factions");
+
+        // Settings: add-on packs and the compatibility report (taller, so both panels show).
+        shell.Mercs.NavigateCommand.Execute(MercsPage.Settings);
+        window.Height = 2200;
+        Settle();
+        Shot(window, assets, "mercs-11-settings-addons");
+        Size(window);
         window.Close();
 
         // Clans
