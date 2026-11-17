@@ -176,7 +176,7 @@ message after opening the save says so. The report only reads; it never changes 
 | --- | --- |
 | My edited save isn't in the load menu | Check the status bar after saving. If it says the save wasn't found in the index, open the folder and use the new file name, or re-save from an original. Restart the game so it rereads its index. |
 | "Can't open save" | The file isn't a campaign save, or it doesn't read back exactly. The editor refuses rather than risk it; please report the game version. |
-| Mech pictures are missing | Pictures come from your installed MechWarrior 5: Mercenaries; check the game folder in Settings. Clans pictures need Mercenaries installed too; a chassis Mercenaries doesn't have shows its initials. |
+| Mech pictures are missing | Pictures come from your installed MechWarrior 5: Mercenaries; check the game folder in Settings. Clans pictures come from the Clans files and need an Oodle DLL (`oo2core*.dll`) already on your PC: Clans Settings shows which one is used, or lets you choose one (an Unreal Engine install has one). Without it, Clans uses the Mercenaries picture of the same chassis. |
 | A modded item or 'Mech is missing | Make sure the mod is enabled in the game's mod list, then press **Rescan game and mods** in Settings. |
 | A save "needs a mod" | See Settings, **Compatibility**: it names the mod, its version and page. Install or enable it in the game, or leave that content as it is. |
 | A batch button is greyed out | Tick at least one row first. Rows hidden by a search or filter are unticked. |

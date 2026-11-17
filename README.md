@@ -42,9 +42,11 @@ Windows 10 or 11, 64-bit; no .NET install needed. Extract it anywhere and run `M
 - **Themes.** The look follows the game tab: Mercs (gunmetal and amber) for Mercenaries, Clans (cold steel
   and ice cyan) for Clans. Every page, dialog and the Mech Lab share one chamfered, HUD-styled frame built
   on MindAttic.Components.
-- **'Mech pictures from your own game.** Pictures are read from the installed MechWarrior 5: Mercenaries
-  files (base game, DLC and mods). Clans 'Mechs use the Mercenaries picture of the same chassis when
-  Mercenaries is installed.
+- **'Mech pictures from your own game.** Mercenaries pictures are read from the installed game's files
+  (base game, DLC and mods). Clans pictures are read from the installed Clans files, which the game keeps
+  Oodle-compressed: the editor uses an Oodle DLL (`oo2core*.dll`, Epic's decompression library) that is
+  already on your PC, for example inside an Unreal Engine install, and never downloads or bundles one.
+  Without one, Clans 'Mechs use the Mercenaries picture of the same chassis.
 - **No network access.** The program never connects to the internet. It reads only your save files and your
   game's and mods' files, and writes only saves and `settings.json`.
 
@@ -150,8 +152,10 @@ pages in `nexus.json`. `tools/AddonPack` generates add-on packs from a mod's fil
 **No network access**
 - The editor never connects to the internet. 'Mech pictures no longer come from Sarna.net: they are read
   from your installed MechWarrior 5: Mercenaries files, so every variant, DLC and modded 'Mech gets the
-  game's own picture. Clans 'Mechs use the Mercenaries picture of the same chassis when Mercenaries is
-  installed.
+  game's own picture.
+- Clans 'Mechs show Clans' own pictures (all 30 chassis) when an Oodle DLL is already on your PC; the
+  editor finds it, or you choose it in Clans Settings. It is never downloaded or bundled. Without one,
+  Clans uses the Mercenaries picture of the same chassis.
 - The picture download setting, the picture cache and the Sarna links are gone.
 
 **Mods** (Mercenaries)
