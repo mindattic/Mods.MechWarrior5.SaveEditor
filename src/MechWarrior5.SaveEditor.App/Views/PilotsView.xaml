@@ -28,12 +28,15 @@
             <DockPanel>
                 <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,1,0,0" Padding="14,12">
                     <!-- 2x2 so every button gets the same width and normal padding (four across left RELEASE no room). -->
+                    <StackPanel>
+                    <ComboBox ItemsSource="{Binding HireOptions}" SelectedItem="{Binding HireAs}" DisplayMemberPath="Label" Tag="{l:T hire_as}" Margin="0,0,0,8" />
                     <UniformGrid Columns="2">
                         <ma:MaButton Content="{l:T hire}" Command="{Binding HireCommand}" Margin="0,0,4,8" ToolTip="{l:T hire_a_recruit_modelled_on_the_selected_pilot}" />
                         <ma:MaButton Content="{l:T release}" Command="{Binding ReleaseCommand}" Style="{StaticResource Button.Danger}" Margin="4,0,0,8" />
                         <ma:MaButton Content="{l:T up}" Command="{Binding MoveUpCommand}" Margin="0,0,4,0" ToolTip="{l:T move_up_the_roster}" />
                         <ma:MaButton Content="{l:T down}" Command="{Binding MoveDownCommand}" Margin="4,0,0,0" ToolTip="{l:T move_down_the_roster}" />
                     </UniformGrid>
+                    </StackPanel>
                 </Border>
                 <ListBox ItemsSource="{Binding Pilots}" SelectedItem="{Binding Selected}" Style="{StaticResource List.Rows}">
                     <ListBox.ItemContainerStyle>

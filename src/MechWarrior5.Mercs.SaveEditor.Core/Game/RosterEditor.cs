@@ -66,6 +66,56 @@ public sealed class RosterEditor
         return _pilots[^1];
     }
 
+    /// <summary>
+    /// Hires as <see cref="Hire(Pilot, string, string)"/>, then shapes the recruit's skills: a rookie starts with no
+    /// experience; a random recruit gets each skill's experience and cap at random within what the current roster has
+    /// (caps up to the active limit).
+    /// </summary>
+    public Pilot Hire(Pilot template, string fullName, string callsign, HireStyle style, Random? random = null)
+    {
+        var ranges = Pilot.SkillNames.ToDictionary(
+            n => n,
+            n => _pilots.Select(p => p.Skills.FirstOrDefault(s => s.Name == n)).OfType<PilotSkill>().ToList());
+        var hired = Hire(template, fullName, callsign);
+        random ??= Random.Shared;
+        foreach (var skill in hired.Skills)
+        {
+            switch (style)
+            {
+                case HireStyle.Rookie:
+                    skill.Experience = 0;
+                    break;
+                case HireStyle.Random:
+                    var others = ranges[skill.Name];
+                    skill.Experience = random.Next(0, Math.Max(1, others.Count == 0 ? 1 : others.Max(s => s.Experience)) + 1);
+                    if (skill.HasCap)
+                    {
+                        var low = others.Count == 0 ? 1 : Math.Max(1, others.Min(s => s.Cap));
+                        skill.Cap = random.Next(Math.Min(low, GameRules.Limits.MaxSkillCap), GameRules.Limits.MaxSkillCap + 1);
+                    }
+
+                    break;
+            }
+        }
+
+        if (style == HireStyle.Random)
+        {
+            // A parent skill's experience is its children's total in game saves (Gunnery = Ballistics + Energy + Missile).
+            SetParent("Gunnery", "Ballistics", "Energy", "Missile");
+            SetParent("Piloting", "Evasiveness", "Shielding", "HeatManagement");
+        }
+
+        return hired;
+
+        void SetParent(string parent, params string[] children)
+        {
+            if (hired.Skills.FirstOrDefault(s => s.Name == parent) is { } p)
+            {
+                p.Experience = hired.Skills.Where(s => children.Contains(s.Name)).Sum(s => s.Experience);
+            }
+        }
+    }
+
     /// <summary>Adds a roster entry from another campaign under a fresh identity; never as the commander.</summary>
     public Pilot Import(PropertyList element)
     {
@@ -167,6 +217,14 @@ public sealed class RosterEditor
             _pilots.AddRange(_roster.PropertyElements.Select(p => new Pilot(p, _changed)));
         }
     }
+}
+
+/// <summary>How a hired recruit's skills start: a copy of the template pilot's, none, or random within the roster's range.</summary>
+public enum HireStyle
+{
+    CopySelected,
+    Rookie,
+    Random,
 }
 
 public sealed class Pilot

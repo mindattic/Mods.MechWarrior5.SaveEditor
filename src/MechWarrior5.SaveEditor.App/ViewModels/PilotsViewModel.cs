@@ -281,6 +281,17 @@ public sealed partial class PilotsViewModel : ObservableObject
         }
     }
 
+    /// <summary>How a recruit's skills start (copy of the selected pilot, rookie, random).</summary>
+    public IReadOnlyList<HireOption> HireOptions { get; } =
+    [
+        new(HireStyle.CopySelected, Loc.Text("hire_copy", "Skills like the selected pilot")),
+        new(HireStyle.Rookie, Loc.Text("hire_rookie", "Rookie (no experience)")),
+        new(HireStyle.Random, Loc.Text("hire_random", "Random skills")),
+    ];
+
+    [ObservableProperty]
+    private HireOption? _hireAs;
+
     /// <summary>Hires a recruit modelled on the selected pilot; rename them in the panel.</summary>
     [RelayCommand]
     private void Hire()
@@ -292,7 +303,7 @@ public sealed partial class PilotsViewModel : ObservableObject
             return;
         }
 
-        var hired = _doc.Roster.Hire(template, Loc.Text("new_recruit", "New Recruit"), Loc.Text("recruit", "Recruit"));
+        var hired = _doc.Roster.Hire(template, Loc.Text("new_recruit", "New Recruit"), Loc.Text("recruit", "Recruit"), (HireAs ?? HireOptions[0]).Style);
         Rebuild(hired);
     }
 
@@ -340,4 +351,9 @@ public sealed partial class PilotsViewModel : ObservableObject
         Selected = Pilots.FirstOrDefault(p => select is not null && p.Pilot.PersonaId == select.PersonaId)
             ?? (Pilots.Count > 0 ? Pilots[0] : null);
     }
+}
+
+public sealed record HireOption(HireStyle Style, string Label)
+{
+    public override string ToString() => Label;
 }
