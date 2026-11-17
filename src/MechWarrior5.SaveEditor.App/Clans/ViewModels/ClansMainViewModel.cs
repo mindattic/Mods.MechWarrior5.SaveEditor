@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MechWarrior5.Clans.SaveEditor.Core.Catalog;
 using MechWarrior5.Clans.SaveEditor.Core.Game;
 using MechWarrior5.Clans.SaveEditor.Core.Saves;
 using MechWarrior5.Shared.Unreal;
@@ -48,6 +49,26 @@ public sealed partial class ClansMainViewModel : ObservableObject
 
     [ObservableProperty]
     private string _kerenskiesText = string.Empty;
+
+    /// <summary>The installed Clans game's and mods' asset names, read in the background at startup (no Oodle needed).</summary>
+    private readonly Task<ClansGameIndex?> _index = Task.Run(() =>
+    {
+        try
+        {
+            return MechWarrior5.Mercs.SaveEditor.Core.Catalog.GameInstall.FindClans() is { } folder ? ClansGameIndex.Read(folder) : null;
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            return null;
+        }
+    });
+
+    /// <summary>Assets the open save uses that the base game doesn't have, and the installed mod behind each.</summary>
+    [ObservableProperty]
+    private IReadOnlyList<ClansCompatibilityLine> _compatibility = [];
+
+    /// <summary>The installed Clans mods (Mods folder), once the background read has finished.</summary>
+    public IReadOnlyList<ClansMod> InstalledMods => _index.IsCompletedSuccessfully && _index.Result is { } index ? index.Mods : [];
 
     public ClansMainViewModel(IDialogService dialogs, JsonSettings<MechWarrior5.SaveEditor.App.Services.AppSettings> settings)
     {
@@ -174,6 +195,23 @@ public sealed partial class ClansMainViewModel : ObservableObject
         RefreshSummary();
         Navigate(Page.Resources);
         ShowToast(Loc.Text("clans_loaded", "Loaded {0}: {1} mechs, {2:N0} Kerenskies", SaveTitle!, doc.Inventory.Mechs.Count(), doc.Currency("Kerenskies_CurrencyItem")));
+        _ = CheckCompatibilityAsync(doc);
+    }
+
+    private async Task CheckCompatibilityAsync(ClansDocument doc)
+    {
+        if (await _index is not { } index || !ReferenceEquals(Document, doc))
+        {
+            Compatibility = [];
+            return;
+        }
+
+        Compatibility = ClansCompatibility.Build(doc, index);
+        var problems = Compatibility.Count(l => l.Problem);
+        if (problems > 0)
+        {
+            ShowToast(Loc.Text("compat_toast", "{0} thing(s) need a mod that isn't active: see Settings, Compatibility.", problems));
+        }
     }
 
     /// <summary>Asks about unsaved edits; false means stay.</summary>

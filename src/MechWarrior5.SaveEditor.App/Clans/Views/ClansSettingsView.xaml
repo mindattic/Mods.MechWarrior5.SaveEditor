@@ -8,6 +8,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -41,7 +42,41 @@
                 </StackPanel>
             </ma:MaShapeBorder>
 
+            <!-- Installed Clans mods, and how the open save's assets trace to them. -->
             <ma:MaShapeBorder Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource Panel}" Padding="22,18" Margin="0,18,0,0">
+                <StackPanel>
+                    <TextBlock Text="{l:T compat_title}" Style="{StaticResource Text.Section}" Margin="0,0,0,8" />
+                    <TextBlock Text="{Binding CompatibilitySummary}" FontSize="16" TextWrapping="Wrap" />
+                    <TextBlock Text="{l:T clans_mods_installed}" Style="{StaticResource Text.Label}" Margin="0,12,0,4"
+                               Visibility="{Binding HasMods, Converter={StaticResource BoolToVisibility}}" />
+                    <ItemsControl ItemsSource="{Binding Mods}" Visibility="{Binding HasMods, Converter={StaticResource BoolToVisibility}}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="{DynamicResource Brush.TextMuted}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl ItemsSource="{Binding Compatibility}" Margin="0,8,0,0" Visibility="{Binding HasCompatibility, Converter={StaticResource BoolToVisibility}}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{DynamicResource Brush.Line}" BorderThickness="0,0,0,1" Padding="0,6">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Asset}" FontSize="16" FontWeight="SemiBold" />
+                                        <TextBlock FontSize="15" TextWrapping="Wrap" Foreground="{DynamicResource Brush.TextMuted}">
+                                            <Run Text="{Binding Mod, Mode=OneWay}" FontWeight="Bold" /> <Run Text="{Binding Version, Mode=OneWay}" />
+                                            <Run Text="-" /> <Run Text="{Binding Reason, Mode=OneWay}" />
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Url}" FontSize="14" Foreground="{DynamicResource Brush.TextMuted}" TextWrapping="Wrap"
+                                                   Visibility="{Binding Url, Converter={StaticResource HasValueToVisibility}}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ma:MaShapeBorder>
+
+            <ma:MaShapeBorder Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource Panel}" Padding="22,18" Margin="0,18,0,0">
                 <StackPanel>
                     <TextBlock Text="{l:T safety}" Style="{StaticResource Text.Section}" Margin="0,0,0,8" />
                     <TextBlock TextWrapping="Wrap" FontSize="16" Foreground="{DynamicResource Brush.TextMuted}"

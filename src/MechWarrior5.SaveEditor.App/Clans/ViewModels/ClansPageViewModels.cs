@@ -191,6 +191,25 @@ public sealed partial class SettingsViewModel : ObservableObject
         }
     }
 
+    /// <summary>The open save checked against the installed Clans game and mods.</summary>
+    public IReadOnlyList<ClansCompatibilityLine> Compatibility => main.Compatibility;
+
+    public bool HasCompatibility => main.Compatibility.Count > 0;
+
+    public string CompatibilitySummary => !main.HasDocument
+        ? Loc.Text("compat_no_save", "Open a save to check it against the installed game and mods.")
+        : main.Compatibility.Count == 0
+            ? Loc.Text("compat_vanilla", "This save matches the vanilla game: nothing in it needs a mod.")
+            : Loc.Text("compat_summary", "{0} problem(s): content or values that need a mod that is missing, disabled or the wrong version. {1} modded value(s) covered by active mods.",
+                main.Compatibility.Count(l => l.Problem), main.Compatibility.Count(l => !l.Problem));
+
+    /// <summary>Installed Clans mods, each with whether the game has it on.</summary>
+    public IReadOnlyList<string> Mods => [.. main.InstalledMods.Select(m => m.Enabled
+        ? Loc.Text("clans_mod_on", "{0}  (on, {1} assets)", m.Label, m.Assets.Count)
+        : Loc.Text("clans_mod_off", "{0}  (off)", m.Label))];
+
+    public bool HasMods => main.InstalledMods.Count > 0;
+
     private static MechWarrior5.SaveEditor.App.Services.GameArtSource? Art =>
         MechWarrior5.Shared.Wpf.Behaviors.MechArt.Service as MechWarrior5.SaveEditor.App.Services.GameArtSource;
 
