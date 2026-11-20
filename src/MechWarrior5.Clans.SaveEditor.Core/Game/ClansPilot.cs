@@ -60,7 +60,15 @@ public sealed class ClansPilot
         ArgumentOutOfRangeException.ThrowIfLessThan(rank, 1);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(rank, MaxRank);
         var element = SkillElements().FirstOrDefault(e => SkillAsset(e) == asset) ?? AddSkillElement(asset);
-        element.Get<IntProperty>("SkillLevelIndex").Value = rank - 1;
+        // Unreal leaves a 0 index (rank 1) out of the save, so a rank-1 skill has no SkillLevelIndex to set.
+        if (element.Find<IntProperty>("SkillLevelIndex") is { } index)
+        {
+            index.Value = rank - 1;
+        }
+        else
+        {
+            element.Add(new IntProperty("SkillLevelIndex", rank - 1) { Ue5 = Ue5Tag.Simple("IntProperty") });
+        }
     }
 
     public void RemoveSkill(string asset)

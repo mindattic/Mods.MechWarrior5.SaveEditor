@@ -45,8 +45,18 @@ public static class CampaignLibrary
     private static CampaignInfo? Read(string folder)
     {
         var index = System.IO.Path.Combine(folder, "Campaign.json");
-        var files = Directory.EnumerateFiles(folder, "*.sav").ToDictionary(
-            f => System.IO.Path.GetFileNameWithoutExtension(f), StringComparer.OrdinalIgnoreCase);
+        Dictionary<string, string> files;
+        try
+        {
+            files = Directory.EnumerateFiles(folder, "*.sav").ToDictionary(
+                f => System.IO.Path.GetFileNameWithoutExtension(f), StringComparer.OrdinalIgnoreCase);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException)
+        {
+            // One unreadable campaign folder skips only that campaign.
+            return null;
+        }
+
         if (files.Count == 0)
         {
             return null;

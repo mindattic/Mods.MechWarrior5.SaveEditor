@@ -157,26 +157,41 @@ public sealed class ClansMech
     /// <summary>Pairs <c>CurrentX.Location</c> with <c>InstalledX.Location</c> (X = Armor or RearArmor).</summary>
     private IEnumerable<ArmorLocation> Locations(string suffix)
     {
-        var current = Loadout.Find<StructProperty>("Current" + suffix)?.Value as PropertyList;
-        if (Loadout.Find<StructProperty>("Installed" + suffix)?.Value is not PropertyList installed || current is null)
+        if (Loadout.Find<StructProperty>("Installed" + suffix) is not { Value: PropertyList installed } installedStruct)
         {
             yield break;
         }
 
+        // Unreal leaves an all-zero struct out of the save too, so armor shot off at every location has no Current struct
+        // at all: it reads as 0, and repairing it adds the struct back (modelled on the Installed one).
+        PropertyList? Current() => Loadout.Find<StructProperty>("Current" + suffix)?.Value as PropertyList;
+        PropertyList EnsureCurrent()
+        {
+            if (Current() is { } existing)
+            {
+                return existing;
+            }
+
+            var created = new PropertyList();
+            Loadout.Add(new StructProperty("Current" + suffix, installedStruct.StructType, created) { StructGuid = installedStruct.StructGuid, Ue5 = installedStruct.Ue5 });
+            return created;
+        }
+
         foreach (var value in installed.OfType<FloatProperty>())
         {
-            yield return new ArmorLocation(value.Name, value, current);
+            yield return new ArmorLocation(value.Name, value, Current, EnsureCurrent);
         }
     }
 
-    private sealed class ArmorLocation(string name, FloatProperty installed, PropertyList current)
+    private sealed class ArmorLocation(string name, FloatProperty installed, Func<PropertyList?> current, Func<PropertyList> ensureCurrent)
     {
         public float Installed => installed.Value;
 
-        public float Current => current.Find<FloatProperty>(name)?.Value ?? 0;
+        public float Current => current()?.Find<FloatProperty>(name)?.Value ?? 0;
 
         public void SetCurrent(float value)
         {
+            var current = ensureCurrent();
             if (current.Find<FloatProperty>(name) is { } existing)
             {
                 existing.Value = value;

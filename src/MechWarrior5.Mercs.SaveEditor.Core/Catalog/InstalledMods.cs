@@ -56,7 +56,7 @@ public static class InstalledMods
                 continue;
             }
 
-            var folder = Path.GetDirectoryName(Path.GetDirectoryName(paks[0])!)!;
+            var folder = ModFolderOf(paks[0]);
             if (Describe(id, folder, paks, status) is { } mod)
             {
                 mods.Add(mod);
@@ -152,6 +152,24 @@ public static class InstalledMods
             // Unreadable: treat it as absent rather than as "every mod disabled".
             return null;
         }
+    }
+
+    /// <summary>
+    /// The mod folder holding a pak: the parent of the nearest folder named <c>Paks</c> above it (paks often sit in
+    /// <c>&lt;mod&gt;\Paks\WindowsNoEditor\</c>), else the pak's grandparent folder.
+    /// </summary>
+    private static string ModFolderOf(string pak)
+    {
+        for (var dir = Path.GetDirectoryName(pak); !string.IsNullOrEmpty(dir); dir = Path.GetDirectoryName(dir))
+        {
+            if (string.Equals(Path.GetFileName(dir), "Paks", StringComparison.OrdinalIgnoreCase)
+                && Path.GetDirectoryName(dir) is { Length: > 0 } parent)
+            {
+                return parent;
+            }
+        }
+
+        return Path.GetDirectoryName(Path.GetDirectoryName(pak)!)!;
     }
 
     private static List<string> Paks(string folder)

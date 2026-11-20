@@ -53,6 +53,13 @@ public sealed class PakFile : IDisposable
             throw new FileNotFoundException($"{file} is not in {System.IO.Path.GetFileName(Path)}");
         }
 
+        // A negative location indexes the pak's non-encoded entry list (entries too large for the
+        // bit-packed form), which this reader does not parse.
+        if (at < 0)
+        {
+            throw new SaveFormatException($"{file} uses a non-encoded pak entry, which is not supported");
+        }
+
         var entry = Entry.Decode(_encodedEntries, at);
         if (entry.Encrypted)
         {

@@ -266,9 +266,11 @@ public sealed partial class StackRow : SelectableItem
             if (clamped != Quantity)
             {
                 _doc.Inventory.SetTotal(Type, Asset, clamped);
-                OnPropertyChanged();
                 _main.MarkDirty();
             }
+
+            // Always notified, so a rejected entry (below 0, over the cap) is replaced by the real value on screen.
+            OnPropertyChanged();
         }
     }
 }

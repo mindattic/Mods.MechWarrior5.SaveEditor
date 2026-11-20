@@ -90,6 +90,9 @@ public sealed partial class ClansMainViewModel : ObservableObject
                 case MechsViewModel mechs:
                     mechs.Reword();
                     break;
+                case SettingsViewModel settings:
+                    settings.Reword();
+                    break;
                 case InventoryViewModel or PilotsViewModel:
                     break;
                 default:
@@ -290,6 +293,7 @@ public sealed partial class ClansMainViewModel : ObservableObject
         if (ConfirmLeaveDocument())
         {
             Document = null;
+            Compatibility = [];
             IsDirty = false;
             Navigate(Page.Start);
         }
@@ -334,5 +338,13 @@ public sealed partial class ClansMainViewModel : ObservableObject
     private void RefreshSummary() =>
         KerenskiesText = Document is null ? string.Empty : $"{Document.Currency("Kerenskies_CurrencyItem"):N0}";
 
-    partial void OnSaveNameChanged(string value) => OnPropertyChanged(nameof(WindowTitle));
+    partial void OnSaveNameChanged(string value)
+    {
+        OnPropertyChanged(nameof(WindowTitle));
+        // A rename is an edit too (OpenPath sets the loaded name, then clears the flag).
+        if (Document is not null)
+        {
+            IsDirty = true;
+        }
+    }
 }

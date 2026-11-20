@@ -90,6 +90,7 @@ public sealed partial class MainViewModel : ObservableObject
             RebuildPages();
             GameDataSummary = _summary();
             OnPropertyChanged(nameof(SaveLabel));
+            SettingsPage.Reword();
         };
     }
 
@@ -108,10 +109,13 @@ public sealed partial class MainViewModel : ObservableObject
         SetSummary(() => Loc.Text("game_data_reading", "Reading game data..."));
         var preferred = _settings.Current.GameFolder;
         GameData? data;
+        IReadOnlyList<AddonFile> addonFiles;
+        // Taken here, on the UI thread: the scan reads its own copy while ApplyAddons may change _mechs.
+        var catalog = _mechs.SnapshotWithoutAddons();
         try
         {
-            (data, _addonFiles) = await Task.Run(() => (
-                GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, _mechs) : null,
+            (data, addonFiles) = await Task.Run(() => (
+                GameInstall.Find(preferred) is { } folder ? GameDataScanner.Scan(folder, catalog) : null,
                 AddonPackReader.ReadFolder(AddonsFolder)));
         }
         catch (Exception e)
@@ -129,6 +133,9 @@ public sealed partial class MainViewModel : ObservableObject
         {
             return;
         }
+
+        // Only the latest scan's add-on list is kept: an older one finishing late must not replace it.
+        _addonFiles = addonFiles;
 
         if (data is null)
         {
@@ -352,6 +359,7 @@ public sealed partial class MainViewModel : ObservableObject
         Pilots = null;
         Factions = null;
         IsDirty = false;
+        RefreshCompatibility();
         OnPropertyChanged(string.Empty);
         Start.Refresh();
         Navigate(Page.Start);
@@ -408,6 +416,9 @@ public sealed partial class MainViewModel : ObservableObject
         }
 
         IsOriginal = Document.IsOriginalGameSave;
+        // A rename-only save leaves the document clean, so no DirtyChanged clears the rename's flag.
+        _renamed = false;
+        IsDirty = Document.IsDirty;
         OnPropertyChanged(nameof(FileName));
         OnPropertyChanged(nameof(SaveTitle));
         OnPropertyChanged(nameof(WindowTitle));
@@ -457,10 +468,11 @@ public sealed partial class MainViewModel : ObservableObject
         Pilots = new PilotsViewModel(doc, _pilots, _dialogs);
         Factions = new FactionsViewModel(doc);
         Document = doc;
-        IsDirty = false;
         IsOriginal = doc.IsOriginalGameSave;
         var listed = doc.DisplayName ?? Path.GetFileNameWithoutExtension(doc.FilePath);
         SaveName = IsOriginal ? CampaignIndex.DefaultCopyName(listed) : listed;
+        _renamed = false;
+        IsDirty = false;
         OnPropertyChanged(nameof(Company));
         OnPropertyChanged(nameof(Mechs));
         OnPropertyChanged(nameof(Inventory));
@@ -510,9 +522,22 @@ public sealed partial class MainViewModel : ObservableObject
         }
     }
 
+    /// <summary>A rename is an unsaved change too (AttachDocument sets the loaded name, then clears the flag).</summary>
+    partial void OnSaveNameChanged(string value)
+    {
+        if (Document is not null)
+        {
+            _renamed = true;
+            IsDirty = true;
+        }
+    }
+
+    /// <summary>The save name was changed since the save was opened or last saved.</summary>
+    private bool _renamed;
+
     private void OnDirtyChanged(object? sender, EventArgs e)
     {
-        IsDirty = Document?.IsDirty ?? false;
+        IsDirty = (Document?.IsDirty ?? false) || (_renamed && Document is not null);
         Company?.Refresh();
     }
 }

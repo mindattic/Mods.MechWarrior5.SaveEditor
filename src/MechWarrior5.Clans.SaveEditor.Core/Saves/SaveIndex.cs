@@ -129,8 +129,18 @@ public static class SaveIndex
                 BinaryPrimitives.WriteInt64LittleEndian(date.Data, DateTime.UtcNow.Ticks);
             }
 
-            var bytes = index.ToFileBytes();
-            Ue5SaveFile.Parse(bytes);
+            byte[] bytes;
+            try
+            {
+                bytes = index.ToFileBytes();
+                Ue5SaveFile.Parse(bytes);
+            }
+            catch (SaveFormatException)
+            {
+                // The save itself is already written: an index that doesn't round-trip is left as it was, not reported as a failed save.
+                continue;
+            }
+
             var bak = file + ".bak";
             var temp = file + ".tmp";
             try

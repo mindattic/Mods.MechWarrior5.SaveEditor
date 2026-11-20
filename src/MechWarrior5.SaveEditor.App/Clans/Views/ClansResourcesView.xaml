@@ -15,7 +15,7 @@
                     <TextBlock Text="{Binding Hint}" Style="{StaticResource Text.Muted}" FontSize="14" TextWrapping="Wrap"
                                Visibility="{Binding Hint, Converter={StaticResource HasValueToVisibility}}" />
                 </StackPanel>
-                <TextBox Grid.Column="1" Text="{Binding Amount, UpdateSourceTrigger=LostFocus, StringFormat=N0}" Height="32"
+                <TextBox Grid.Column="1" Text="{Binding Amount, UpdateSourceTrigger=LostFocus}" Height="32"
                          HorizontalContentAlignment="Right" FontSize="18" FontWeight="SemiBold" />
                 <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="8,0,0,0">
                     <ma:MaButton Content="+10" Command="{Binding AddCommand}" CommandParameter="10" Margin="0,0,4,0" Padding="8,4" />

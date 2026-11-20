@@ -43,7 +43,7 @@ public sealed record GameLimits(int MaxSkillCap, int MaxExperience, int MaxSalar
             return this;
         }
 
-        return key switch
+        GameLimits wider = key switch
         {
             "maxSkillCap" => this with { MaxSkillCap = (int)Math.Min(value, byte.MaxValue) },
             "maxExperience" => this with { MaxExperience = (int)Math.Min(value, int.MaxValue) },
@@ -54,6 +54,9 @@ public sealed record GameLimits(int MaxSkillCap, int MaxExperience, int MaxSalar
             "maxCount" => this with { MaxCount = (int)Math.Min(value, int.MaxValue) },
             _ => this,
         };
+
+        // A value capped back to the current limit widened nothing: return this, so callers don't credit the source.
+        return wider == this ? this : wider;
     }
 }
 

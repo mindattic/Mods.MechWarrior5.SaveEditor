@@ -21,7 +21,14 @@ public static class SarnaLink
     {
         if (uri is { Scheme: "https", Host: Host })
         {
-            Process.Start(new ProcessStartInfo(uri.AbsoluteUri) { UseShellExecute = true });
+            try
+            {
+                Process.Start(new ProcessStartInfo(uri.AbsoluteUri) { UseShellExecute = true });
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                // No browser registered for https: nothing to open, and not worth crashing over.
+            }
         }
     }
 }

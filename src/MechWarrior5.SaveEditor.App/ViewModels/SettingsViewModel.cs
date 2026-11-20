@@ -18,6 +18,9 @@ public sealed partial class SettingsViewModel : ObservableObject
     [ObservableProperty]
     private string _gameFolder;
 
+    /// <summary>Rewords the page's code-built text after a language change (this page is reused, never rebuilt).</summary>
+    public void Reword() => OnPropertyChanged(string.Empty);
+
     public SettingsViewModel(MainViewModel main, JsonSettings<AppSettings> settings)
     {
         _main = main;

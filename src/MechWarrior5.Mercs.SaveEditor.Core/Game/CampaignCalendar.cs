@@ -63,6 +63,9 @@ public static class CampaignCalendar
                 case StructProperty { Value: PropertyList nested }:
                     Shift(nested, delta);
                     break;
+                case ObjectProperty { Inline: { } inline }:
+                    Shift(inline, delta);
+                    break;
                 case ArrayProperty { Storage: StructArrayStorage array }:
                     foreach (var element in array.Elements)
                     {

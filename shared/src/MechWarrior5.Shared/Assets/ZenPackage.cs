@@ -17,20 +17,22 @@ public static class ZenPackage
 
         var count = (int)BinaryPrimitives.ReadUInt32LittleEndian(d.AsSpan(at));
         at += 16 + (count * 8);
-        var lengths = new short[count];
+        // Each header is a big-endian ushort: bit 15 flags UTF-16, the low 15 bits are the length.
+        var headers = new ushort[count];
         for (var i = 0; i < count; i++)
         {
-            lengths[i] = BinaryPrimitives.ReadInt16BigEndian(d.AsSpan(at + (i * 2)));
+            headers[i] = BinaryPrimitives.ReadUInt16BigEndian(d.AsSpan(at + (i * 2)));
         }
 
         at += count * 2;
         var names = new List<string>(count);
-        foreach (var length in lengths)
+        foreach (var header in headers)
         {
-            if (length < 0)
+            var length = header & 0x7FFF;
+            if ((header & 0x8000) != 0)
             {
-                names.Add(Encoding.Unicode.GetString(d, at, -length * 2));
-                at += -length * 2;
+                names.Add(Encoding.Unicode.GetString(d, at, length * 2));
+                at += length * 2;
             }
             else
             {

@@ -162,6 +162,8 @@ public sealed partial class InventoryViewModel : ObservableObject
         CatalogFilter = old.CatalogFilter;
         AddCount = old.AddCount;
         SetCount = old.SetCount;
+        AddAmmo = old.AddAmmo;
+        AmmoCount = old.AmmoCount;
         var ticked = old.Items.Where(r => r.IsChecked).Select(r => (r.Asset, r.Item.Health, r.Item.IsWeapon)).ToHashSet();
         foreach (var row in Items)
         {

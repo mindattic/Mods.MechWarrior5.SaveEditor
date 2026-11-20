@@ -77,6 +77,8 @@ public sealed partial class AmountRow : ObservableObject
             var clamped = Math.Clamp(value, 0, InventoryEditor.MaxQuantity);
             if (clamped == Amount)
             {
+                // Still notify, so a rejected entry (below 0, over the cap) is replaced by the real value on screen.
+                OnPropertyChanged();
                 return;
             }
 
@@ -335,7 +337,25 @@ public sealed partial class SettingsViewModel : ObservableObject, IDisposable
             artChanged = (_, _) => System.Windows.Application.Current?.Dispatcher.BeginInvoke(() => OnPropertyChanged(nameof(ArtStatus)));
             art.ClansChanged += artChanged;
         }
+
+        // The compatibility check finishes in the background (after the game's files are read), maybe after this page opened.
+        main.PropertyChanged += OnMainChanged;
     }
+
+    private void OnMainChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName is nameof(ClansMainViewModel.Compatibility) or nameof(ClansMainViewModel.HasDocument))
+        {
+            OnPropertyChanged(nameof(Compatibility));
+            OnPropertyChanged(nameof(HasCompatibility));
+            OnPropertyChanged(nameof(CompatibilitySummary));
+            OnPropertyChanged(nameof(Mods));
+            OnPropertyChanged(nameof(HasMods));
+        }
+    }
+
+    /// <summary>Rewords the page's code-built text after a language change.</summary>
+    public void Reword() => OnPropertyChanged(string.Empty);
 
     /// <summary>
     /// Navigate() replaces this instance with a new one on every visit; without this, each visit would leave
@@ -347,6 +367,8 @@ public sealed partial class SettingsViewModel : ObservableObject, IDisposable
         {
             art.ClansChanged -= artChanged;
         }
+
+        main.PropertyChanged -= OnMainChanged;
     }
 
     /// <summary>The open save checked against the installed Clans game and mods.</summary>

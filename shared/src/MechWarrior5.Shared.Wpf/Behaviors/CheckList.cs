@@ -90,7 +90,8 @@ public static class CheckList
             list.SetValue(AnchorProperty, focused);
             e.Handled = true;
         }
-        else if (e.Key == Key.A && Keyboard.Modifiers == ModifierKeys.Control)
+        else if (e.Key == Key.A && Keyboard.Modifiers == ModifierKeys.Control
+            && e.OriginalSource is not TextBoxBase && Keyboard.FocusedElement is not TextBoxBase)
         {
             foreach (var row in list.Items.OfType<SelectableItem>())
             {

@@ -115,7 +115,7 @@ if (-not $commit) { throw 'No main or origin/main commit to deploy.' }
 $short = $commit.Substring(0, 9)
 
 # What the exe is built from: the git tree ids of its build inputs at that commit, so a docs-only commit doesn't republish.
-$buildInputs = 'src', 'shared', 'assets', 'Directory.Build.props', 'global.json', 'nuget.config'
+$buildInputs = 'src', 'shared', 'assets', 'addons', 'Directory.Build.props', 'global.json', 'nuget.config'
 $buildKey = ($buildInputs | ForEach-Object { "$_=$(Invoke-Git rev-parse --verify --quiet "${commit}:$_")" }) -join ';'
 $stamp = Join-Path $dest 'deployed-build.txt'
 $deployedKey = if (Test-Path $stamp) { (Get-Content $stamp -TotalCount 1) } else { $null }
@@ -148,6 +148,12 @@ try {
     New-Item -ItemType Directory -Force $dest | Out-Null
     Write-Host "Installing to $dest"
     Copy-Item (Join-Path $staged '*') $dest -Recurse -Force
+    # The add-on packs sit in Addons beside the exe, as in the released zip (tools/package.ps1).
+    $addons = Join-Path $snapshot 'addons'
+    if (Test-Path $addons) {
+      New-Item -ItemType Directory -Force (Join-Path $dest 'Addons') | Out-Null
+      Copy-Item (Join-Path $addons '*.json') (Join-Path $dest 'Addons') -Force
+    }
     Set-Content -Path $stamp -Encoding ascii -Value $buildKey, "commit=$commit"
   } else {
     Write-Host "$title is up to date ($short)."

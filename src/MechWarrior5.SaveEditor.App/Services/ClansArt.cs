@@ -101,7 +101,7 @@ public sealed class ClansArt
             bitmap.Freeze();
             return bitmap;
         }
-        catch (Exception e) when (e is IOException or UnauthorizedAccessException or InvalidDataException or ArgumentException)
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or InvalidDataException or ArgumentException or MechWarrior5.Shared.Unreal.SaveFormatException)
         {
             return null;
         }

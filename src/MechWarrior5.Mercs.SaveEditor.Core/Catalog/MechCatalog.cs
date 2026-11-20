@@ -75,8 +75,7 @@ public sealed class MechCatalog
     public void Reset()
     {
         _gameStock.Clear();
-        _beforeAddons.Clear();
-        _addonAdded.Clear();
+        UndoAddons();
         foreach (var added in _variants.Where(v => !_builtInAssets.Contains(v.Asset)).ToList())
         {
             _variants.Remove(added);
@@ -90,9 +89,8 @@ public sealed class MechCatalog
     {
         // A rescan replaces the last one: a mod disabled since then no longer offers its mechs or loadouts.
         _gameStock.Clear();
-        // The scan rebuilds every variant it finds, so a previous add-on layer has nothing left to undo.
-        _beforeAddons.Clear();
-        _addonAdded.Clear();
+        // Undo the previous add-on layer first, so a built-in variant the scan doesn't replace isn't left overridden.
+        UndoAddons();
         var scannedAssets = game.Mechs.Select(m => m.Variant.Asset).ToHashSet(StringComparer.OrdinalIgnoreCase);
         foreach (var stale in _variants.Where(v => !_builtInAssets.Contains(v.Asset) && !scannedAssets.Contains(v.Asset)).ToList())
         {
@@ -131,25 +129,7 @@ public sealed class MechCatalog
     /// </summary>
     public void ApplyAddons(AddonState addons)
     {
-        foreach (var asset in _addonAdded)
-        {
-            if (_byAsset.Remove(asset, out var added))
-            {
-                _variants.Remove(added);
-            }
-        }
-
-        foreach (var (asset, original) in _beforeAddons)
-        {
-            if (_byAsset.TryGetValue(asset, out var current))
-            {
-                _variants[_variants.IndexOf(current)] = original;
-                _byAsset[asset] = original;
-            }
-        }
-
-        _addonAdded.Clear();
-        _beforeAddons.Clear();
+        UndoAddons();
         foreach (var pack in addons.Active)
         {
             foreach (var mech in pack.Mechs.Add.Concat(pack.Mechs.Override))
@@ -184,6 +164,39 @@ public sealed class MechCatalog
             }
         }
     }
+
+    /// <summary>Removes what the last <see cref="ApplyAddons"/> layered, restoring the variants it changed.</summary>
+    private void UndoAddons()
+    {
+        foreach (var asset in _addonAdded)
+        {
+            if (_byAsset.Remove(asset, out var added))
+            {
+                _variants.Remove(added);
+            }
+        }
+
+        foreach (var (asset, original) in _beforeAddons)
+        {
+            if (_byAsset.TryGetValue(asset, out var current))
+            {
+                _variants[_variants.IndexOf(current)] = original;
+                _byAsset[asset] = original;
+            }
+        }
+
+        _addonAdded.Clear();
+        _beforeAddons.Clear();
+    }
+
+    /// <summary>
+    /// A detached copy of the variants without the add-on layer, for <see cref="GameDataScanner"/> to read on a
+    /// background thread (the UI thread may re-layer add-ons meanwhile, and the scan must see un-overridden variants).
+    /// </summary>
+    public MechCatalog SnapshotWithoutAddons() =>
+        new(DlcPacks, [.. _variants
+            .Where(v => !_addonAdded.Contains(v.Asset))
+            .Select(v => _beforeAddons.GetValueOrDefault(v.Asset) ?? v)]);
 
     public static WeightClass ClassOf(int tons) =>
         tons switch { <= 35 => WeightClass.Light, <= 55 => WeightClass.Medium, <= 75 => WeightClass.Heavy, _ => WeightClass.Assault };

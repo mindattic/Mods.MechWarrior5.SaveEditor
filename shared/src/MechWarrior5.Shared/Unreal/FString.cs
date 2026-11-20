@@ -10,8 +10,10 @@ public readonly record struct FString(string? Value, bool IsWide = false)
 
     public bool IsNull => Value is null;
 
+    // Unreal only writes a string as narrow when it is pure ASCII; on load it maps narrow bytes
+    // above 0x7F to '?', so any non-ASCII character needs the UTF-16 encoding.
     public static FString From(string? value) =>
-        new(value, value is not null && value.Any(static c => c > 0xFF));
+        new(value, value is not null && value.Any(static c => c > 0x7F));
 
     public static implicit operator FString(string? value) => From(value);
 

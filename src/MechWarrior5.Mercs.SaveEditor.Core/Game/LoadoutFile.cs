@@ -37,7 +37,9 @@ public sealed record LoadoutFile(string Format, int Version, string Variant, Sto
     /// </summary>
     internal static StockLoadout? Checked(StockLoadout? loadout) =>
         loadout is { Armor: not null, RearArmor: not null, Structure: not null, Weapons: not null, Groups: not null, Equipment: not null }
-        && loadout.Weapons.All(w => w is not null) && loadout.Groups.All(g => g?.G is not null) && loadout.Equipment.All(p => p?.Items is not null)
+        && loadout.Weapons.All(w => w is { Slot: not null, Type: not null, Name: not null })
+        && loadout.Groups.All(g => g is { Slot: not null, G: not null })
+        && loadout.Equipment.All(p => p is { Part: not null, Items: not null } && p.Items.All(i => i is { Type: not null, Name: not null }))
             ? loadout with { MaxArmor = loadout.MaxArmor ?? [] }
             : null;
 }
