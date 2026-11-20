@@ -45,6 +45,11 @@ Clans (mod 70). Every release goes to both.
    pages). On each page the "Mod manager download" button is removed and a GitHub mirror points at `releases/latest`
    (both set by hand). The program never goes online; `tools/AddonPack` (a developer tool, not shipped) regenerates the
    packs in `addons/` from mods' files.
+6. **Local install:** after the release lands, run `pwsh run.ps1 -Republish` from the repo root to build and
+   install the just-released commit to `C:\Apps\Mods.MechWarrior5.SaveEditor` (its own single-file build,
+   separate from the NexusMods package in step 1) and refresh its Desktop/Start-menu shortcuts, so the owner's
+   local copy always matches the latest published version. It fetches `origin` itself, so push the release
+   commit/tag before running it.
 
 While any target's `fileId` is `0`, stop and say which page still needs its first file uploaded by
 hand. Then put that file's upload-API **File ID** in `fileId`: on the page, Manage files, the file's menu,
