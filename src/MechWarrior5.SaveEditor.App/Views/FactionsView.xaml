@@ -12,7 +12,7 @@
         <DockPanel Margin="0,0,0,14">
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
                 <ma:MaButton Content="{l:T all_neutral_0}" Command="{Binding SetAllCommand}" CommandParameter="0" Margin="0,0,10,0" />
-                <ma:MaButton Content="{x:Static vm:FactionsViewModel.AllAlliedLabel}" Command="{Binding SetAllCommand}" CommandParameter="max" Style="{StaticResource Button.Command}" />
+                <ma:MaButton Content="{Binding AllAlliedLabel}" Command="{Binding SetAllCommand}" CommandParameter="max" Style="{StaticResource Button.Command}" />
             </StackPanel>
             <TextBlock Text="{l:T faction_standing}" Style="{StaticResource Text.Title}" />
         </DockPanel>

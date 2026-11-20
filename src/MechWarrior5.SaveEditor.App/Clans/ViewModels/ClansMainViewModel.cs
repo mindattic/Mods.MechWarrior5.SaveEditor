@@ -72,6 +72,10 @@ public sealed partial class ClansMainViewModel : ObservableObject
     [ObservableProperty]
     private IReadOnlyList<ClansCompatibilityLine> _compatibility = [];
 
+    /// <summary>Whether <see cref="Compatibility"/> is a finished check: null while it runs, false when the game couldn't be read.</summary>
+    [ObservableProperty]
+    private bool? _compatibilityChecked;
+
     /// <summary>The installed Clans mods (Mods folder), once the background read has finished.</summary>
     public IReadOnlyList<ClansMod> InstalledMods => _index.IsCompletedSuccessfully && _index.Result is { } index ? index.Mods : [];
 
@@ -116,6 +120,14 @@ public sealed partial class ClansMainViewModel : ObservableObject
         };
         Start = new StartViewModel(this, SaveFolder);
         Navigate(Page.Start);
+        _ = NotifyWhenIndexedAsync();
+    }
+
+    /// <summary>The installed-mods list fills in once the background read finishes, even on a page already open.</summary>
+    private async Task NotifyWhenIndexedAsync()
+    {
+        await _index;
+        OnPropertyChanged(nameof(InstalledMods));
     }
 
     public StartViewModel Start { get; }
@@ -221,13 +233,23 @@ public sealed partial class ClansMainViewModel : ObservableObject
 
     private async Task CheckCompatibilityAsync(ClansDocument doc)
     {
-        if (await _index is not { } index || !ReferenceEquals(Document, doc))
+        Compatibility = [];
+        CompatibilityChecked = null;
+        var index = await _index;
+        if (!ReferenceEquals(Document, doc))
         {
-            Compatibility = [];
+            return; // another save was opened meanwhile; its own check reports
+        }
+
+        if (index is null)
+        {
+            // The game or its index couldn't be read: an empty list here must not read as "matches the vanilla game".
+            CompatibilityChecked = false;
             return;
         }
 
         Compatibility = ClansCompatibility.Build(doc, index);
+        CompatibilityChecked = true;
         var problems = Compatibility.Count(l => l.Problem);
         if (problems > 0)
         {

@@ -212,7 +212,7 @@
                                     <ColumnDefinition Width="110" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{l:T skill}" Style="{StaticResource Text.Label}" />
-                                <TextBlock Grid.Column="1" Text="{x:Static vm:PilotViewModel.CapHeader}" Style="{StaticResource Text.Label}" />
+                                <TextBlock Grid.Column="1" Text="{Binding CapHeader}" Style="{StaticResource Text.Label}" />
                                 <TextBlock Grid.Column="2" Text="{l:T total_xp}" Style="{StaticResource Text.Label}" />
                             </Grid>
                             <ItemsControl ItemsSource="{Binding Skills}">

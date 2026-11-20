@@ -37,7 +37,11 @@ public sealed record CompanyPackage(
     {
         var package = JsonSerializer.Deserialize<CompanyPackage>(File.ReadAllText(path), Json);
         if (package is null || package.Format != FormatId || package.Mechs is null || package.Pilots is null || package.Inventory is null
-            || package.Mechs.Any(m => m is null || LoadoutFile.Checked(m.Loadout) is null) || package.Pilots.Any(p => p is null) || package.Inventory.Any(i => i is null))
+            // System.Text.Json leaves a missing or null field null even where the type says it can't be, and a null
+            // asset, name or data would crash the import partway through, leaving it half done.
+            || package.Mechs.Any(m => m?.Asset is null || LoadoutFile.Checked(m.Loadout) is null)
+            || package.Pilots.Any(p => p is not { Name: not null, Data: not null })
+            || package.Inventory.Any(i => i is not { Asset: not null, AssetType: not null }))
         {
             throw new InvalidDataException("This is not an MW5 Save Editor company file.");
         }

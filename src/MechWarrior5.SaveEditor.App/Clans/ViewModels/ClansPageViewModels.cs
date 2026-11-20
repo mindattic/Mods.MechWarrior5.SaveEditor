@@ -272,6 +272,8 @@ public sealed partial class PilotCard : ObservableObject
             SkillChoices.Add(new SkillChoice(asset, PilotSkills.Label(asset)));
         }
 
+        OnPropertyChanged(nameof(CanAddSkills));
+
         SkillToAdd = null;
     }
 }
@@ -344,7 +346,8 @@ public sealed partial class SettingsViewModel : ObservableObject, IDisposable
 
     private void OnMainChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
-        if (e.PropertyName is nameof(ClansMainViewModel.Compatibility) or nameof(ClansMainViewModel.HasDocument))
+        if (e.PropertyName is nameof(ClansMainViewModel.Compatibility) or nameof(ClansMainViewModel.CompatibilityChecked)
+            or nameof(ClansMainViewModel.HasDocument) or nameof(ClansMainViewModel.InstalledMods))
         {
             OnPropertyChanged(nameof(Compatibility));
             OnPropertyChanged(nameof(HasCompatibility));
@@ -378,6 +381,10 @@ public sealed partial class SettingsViewModel : ObservableObject, IDisposable
 
     public string CompatibilitySummary => !main.HasDocument
         ? Loc.Text("compat_no_save", "Open a save to check it against the installed game and mods.")
+        : main.CompatibilityChecked is null
+            ? Loc.Text("compat_checking", "Checking this save against the installed game and mods...")
+        : main.CompatibilityChecked == false
+            ? Loc.Text("compat_unavailable", "MechWarrior 5: Clans or its mods couldn't be read, so this save wasn't checked.")
         : main.Compatibility.Count == 0
             ? Loc.Text("compat_vanilla", "This save matches the vanilla game: nothing in it needs a mod.")
             : Loc.Text("compat_summary", "{0} problem(s): content or values that need a mod that is missing, disabled or the wrong version. {1} modded value(s) covered by active mods.",

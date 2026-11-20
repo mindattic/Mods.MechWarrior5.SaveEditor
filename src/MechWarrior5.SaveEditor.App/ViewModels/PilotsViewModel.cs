@@ -78,7 +78,9 @@ public sealed partial class PilotViewModel : ObservableObject
     public IReadOnlyList<SkillViewModel> Skills { get; }
 
     /// <summary>The cap column's header with the active range, e.g. "CAP (0-10)".</summary>
-    public static string CapHeader => Loc.Text("cap_range", "CAP (0-{0})", GameRules.Limits.MaxSkillCap);
+    /// <remarks>An instance property bound normally: x:Static read it once, and a rescan raising the cap reuses the same view.</remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822", Justification = "Bound per view model, so a new one re-reads it")]
+    public string CapHeader => Loc.Text("cap_range", "CAP (0-{0})", GameRules.Limits.MaxSkillCap);
 
     public ObservableCollection<TraitRow> Traits { get; } = [];
 

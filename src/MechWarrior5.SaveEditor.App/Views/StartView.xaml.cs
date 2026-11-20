@@ -1,3 +1,4 @@
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MechWarrior5.SaveEditor.App.ViewModels;
@@ -12,7 +13,14 @@ public partial class StartView : UserControl
         InitializeComponent();
     }
 
-    private void OnSaveDoubleClick(object sender, MouseButtonEventArgs e) => OpenSelected();
+    private void OnSaveDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        // Only a double-click on a row opens it, not one on the scrollbar or the empty space below the rows.
+        if (ItemsControl.ContainerFromElement(Saves, (DependencyObject)e.OriginalSource) is ListBoxItem)
+        {
+            OpenSelected();
+        }
+    }
 
     private void OnSaveKeyDown(object sender, KeyEventArgs e)
     {

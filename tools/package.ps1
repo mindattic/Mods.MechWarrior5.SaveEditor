@@ -14,6 +14,9 @@
 .OUTPUTS
     The zip path, on the pipeline.
 #>
+# PowerShell 7: Windows PowerShell 5.1's Compress-Archive writes '\' into zip entry names (Addons\x.json), which many
+# extractors and mod managers unpack as flat files.
+#Requires -Version 7
 [CmdletBinding()]
 param(
     [string]$Configuration = 'Release'

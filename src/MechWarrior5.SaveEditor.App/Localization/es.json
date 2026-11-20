@@ -168,6 +168,8 @@
  "compat_toast": "{0} elemento(s) necesitan un mod inactivo: ver Ajustes, Compatibilidad.",
  "compat_unknown_mod": "Mod desconocido:",
  "compat_vanilla": "Esta partida coincide con el juego original: nada en ella necesita un mod.",
+ "compat_checking": "Comprobando esta partida con el juego y los mods instalados...",
+ "compat_unavailable": "No se pudo leer MechWarrior 5: Clans o sus mods, así que esta partida no se comprobó.",
  "completed_research": "INVESTIGACIÓN COMPLETADA",
  "copies_each": "COPIAS DE CADA",
  "copies_of_each_ticked_mech": "Copias de cada mech marcado",

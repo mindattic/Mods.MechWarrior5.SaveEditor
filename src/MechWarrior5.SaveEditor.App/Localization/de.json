@@ -168,6 +168,8 @@
  "compat_toast": "{0} Element(e) brauchen eine nicht aktive Mod: siehe Einstellungen, Kompatibilität.",
  "compat_unknown_mod": "Unbekannte Mod:",
  "compat_vanilla": "Dieser Spielstand entspricht dem Vanilla-Spiel: nichts darin braucht eine Mod.",
+ "compat_checking": "Dieser Spielstand wird mit dem installierten Spiel und den Mods abgeglichen...",
+ "compat_unavailable": "MechWarrior 5: Clans oder seine Mods konnten nicht gelesen werden, daher wurde dieser Spielstand nicht geprüft.",
  "completed_research": "ABGESCHLOSSENE FORSCHUNG",
  "copies_each": "KOPIEN JE",
  "copies_of_each_ticked_mech": "Kopien jedes markierten Mechs",

@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace MechWarrior5.Shared.Unreal;
@@ -83,7 +84,9 @@ public sealed class UnrealReader
             throw new SaveFormatException("Wide string is missing its terminator", start);
         }
 
-        return new FString(Encoding.Unicode.GetString(wide[..^2]), IsWide: true);
+        // Copy the UTF-16 code units as they are: Encoding.Unicode would turn a lone surrogate into U+FFFD, so the save
+        // would no longer round-trip and couldn't be opened.
+        return new FString(new string(MemoryMarshal.Cast<byte, char>(wide[..^2])), IsWide: true);
     }
 
     /// <summary>An independent reader at the same position, for retrying a parse from here.</summary>
@@ -108,7 +111,9 @@ public sealed class UnrealReader
 
     private void Require(int count)
     {
-        if (count < 0 || Position + count > _end)
+        // count > _end - Position, not Position + count > _end: a garbage length near int.MaxValue would overflow the sum,
+        // pass, and throw a non-SaveFormatException that the tentative parses don't catch.
+        if (count < 0 || count > _end - Position)
         {
             throw new SaveFormatException($"Unexpected end of data reading {count} byte(s)", Position);
         }

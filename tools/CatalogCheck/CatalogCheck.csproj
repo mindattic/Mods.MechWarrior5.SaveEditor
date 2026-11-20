@@ -6,6 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\Projects\MindAttic\Mods.MechWarrior5.SaveEditor\shared\src\MechWarrior5.Shared\MechWarrior5.Shared.csproj" />
+    <ProjectReference Include="..\..\shared\src\MechWarrior5.Shared\MechWarrior5.Shared.csproj" />
   </ItemGroup>
 </Project>

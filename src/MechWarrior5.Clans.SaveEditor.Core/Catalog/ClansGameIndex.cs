@@ -114,7 +114,13 @@ public sealed class ClansGameIndex
             return names;
         }
 
-        foreach (var file in Directory.EnumerateFiles(folder, "*.*", search))
+        // An unreadable mod folder is skipped instead of failing the walk (and with it the whole index).
+        foreach (var file in Directory.EnumerateFiles(folder, "*.*", new EnumerationOptions
+                 {
+                     RecurseSubdirectories = search == SearchOption.AllDirectories,
+                     IgnoreInaccessible = true,
+                     AttributesToSkip = 0,
+                 }))
         {
             try
             {

@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace MechWarrior5.Shared.Unreal;
@@ -75,7 +76,8 @@ public sealed class UnrealWriter
 
         if (value.IsWide)
         {
-            var bytes = Encoding.Unicode.GetBytes(value.Value);
+            // The code units as they are (see UnrealReader.ReadFString), lone surrogates included.
+            var bytes = MemoryMarshal.AsBytes(value.Value.AsSpan());
             WriteInt32(-(bytes.Length / 2 + 1));
             WriteBytes(bytes);
             WriteByte(0);

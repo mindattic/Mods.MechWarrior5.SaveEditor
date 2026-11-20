@@ -48,10 +48,21 @@ public sealed class InventoryEditor
         {
             var pilots = Pilots.Where(p => p.IsPlayers && p.Properties.Find<StructProperty>("PilotStats")?.Value is PropertyList).ToList();
             List<ClansPilot> wrapped = [];
-            wrapped.AddRange(pilots.Select(p => new ClansPilot(p, () => wrapped.Select(w => w.SkillArray()).FirstOrDefault(a => a?.Storage is StructArrayStorage { Elements.Count: > 0 }))));
+            wrapped.AddRange(pilots.Select(p => new ClansPilot(p, () => LiveSkillArray(wrapped) ?? _skillArrayTemplate)));
+            // Kept as a copy, so removing the last skill of the last skilled pilot doesn't leave nothing to model a new one on.
+            if (_skillArrayTemplate is null && LiveSkillArray(wrapped) is { } live)
+            {
+                _skillArrayTemplate = (ArrayProperty)live.DeepClone();
+            }
+
             return wrapped;
         }
     }
+
+    private ArrayProperty? _skillArrayTemplate;
+
+    private static ArrayProperty? LiveSkillArray(IEnumerable<ClansPilot> pilots) =>
+        pilots.Select(w => w.SkillArray()).FirstOrDefault(a => a?.Storage is StructArrayStorage { Elements.Count: > 0 });
 
     public IEnumerable<InventoryActor> Unlocks => _actors.Where(a => a.Kind == ActorKind.Unlock);
 

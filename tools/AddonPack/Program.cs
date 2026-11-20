@@ -13,7 +13,8 @@ using MechWarrior5.Mercs.SaveEditor.Core.Catalog;
 //
 // nexus:<modId> downloads the mod's main file through the NexusMods API (NEXUSMODS_API_KEY; download links need a Premium
 // account) and extracts it (.zip only) to a temp folder first.
-var input = args.FirstOrDefault(a => !a.StartsWith("--", StringComparison.Ordinal)) ?? throw new ArgumentException("usage: AddonPack <folder|nexus:id> [--out dir] [--source url] [--game dir]");
+// The input is the first argument that is neither an option nor an option's value (--out addons nexus:1 is nexus:1).
+var input = args.Where((a, i) => !a.StartsWith("--", StringComparison.Ordinal) && (i == 0 || !args[i - 1].StartsWith("--", StringComparison.Ordinal))).FirstOrDefault() ?? throw new ArgumentException("usage: AddonPack <folder|nexus:id> [--out dir] [--source url] [--game dir]");
 string? Option(string name) => args.SkipWhile(a => a != name).Skip(1).FirstOrDefault();
 var outDir = Option("--out") ?? "addons";
 var source = Option("--source");

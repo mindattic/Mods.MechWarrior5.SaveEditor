@@ -168,6 +168,8 @@
  "compat_toast": "{0} 件が有効でない MOD を必要としています: 設定の互換性を参照。",
  "compat_unknown_mod": "不明な MOD:",
  "compat_vanilla": "このセーブはバニラのゲームと一致しています。MOD が必要なものはありません。",
+ "compat_checking": "このセーブをインストール済みのゲームと MOD で確認しています...",
+ "compat_unavailable": "MechWarrior 5: Clans またはその MOD を読み込めなかったため、このセーブは確認されていません。",
  "completed_research": "完了した研究",
  "copies_each": "各コピー数",
  "copies_of_each_ticked_mech": "チェックした各メックのコピー数",

@@ -168,3 +168,4 @@ _Nothing recorded yet._
 | M5SE-T145 | 2026-11-19 | chore | open | Research spike: should the Clans tab get Save As, or should Ctrl+Shift+S be Mercs-only? | — |
 | M5SE-T146 | 2026-11-19 | docs | closed | AGENTS.md publish step 6: after a release lands, run.ps1 -Republish installs it to C:\Apps and refreshes the shortcuts, so the owner's local copy always matches the published version | AGENTS.md |
 | M5SE-T147 | 2026-11-19 | fix | closed | Second bughunt sweep: 26 bugs fixed across shared, Mercs, Clans and the app (Clans rank-1 skill crash, unrepaired fully-stripped armor, Latin-1 names shown as '?', add-on changes surviving a rescan, rename not prompting on close, run.ps1 missing add-on packs, and more) | bughunt; build 0 warnings |
+| M5SE-T148 | 2026-11-20 | fix | closed | Third bughunt sweep: exhaustive search across the repo, fix every confirmed bug | bughunt; build 0 warnings |

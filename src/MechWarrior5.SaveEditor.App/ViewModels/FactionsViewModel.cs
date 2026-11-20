@@ -55,7 +55,9 @@ public sealed partial class FactionsViewModel : ObservableObject
 
     public IReadOnlyList<FactionViewModel> Factions { get; }
 
-    public static string AllAlliedLabel => Loc.Text("all_allied_max", "ALL ALLIED ({0})", GameRules.Limits.MaxStanding);
+    // An instance property bound normally: x:Static read it once, and a rescan raising the limit reuses the same view.
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822", Justification = "Bound per view model, so a new one re-reads it")]
+    public string AllAlliedLabel => Loc.Text("all_allied_max", "ALL ALLIED ({0})", GameRules.Limits.MaxStanding);
 
     /// <summary>"max" is the active limit; anything else is a number.</summary>
     [RelayCommand]

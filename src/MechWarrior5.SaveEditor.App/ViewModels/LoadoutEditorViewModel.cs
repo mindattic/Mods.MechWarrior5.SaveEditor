@@ -114,9 +114,28 @@ public sealed partial class ArmorRowViewModel : ObservableObject
 
     public bool IsOverMax => Max > 0 && Front + Rear > Max;
 
-    partial void OnFrontChanged(int value) => OnPropertyChanged(nameof(IsOverMax));
+    // Armor can't go below 0: a typed negative would otherwise be written into the save as is.
+    partial void OnFrontChanged(int value)
+    {
+        if (value < 0)
+        {
+            Front = 0;
+            return;
+        }
 
-    partial void OnRearChanged(int value) => OnPropertyChanged(nameof(IsOverMax));
+        OnPropertyChanged(nameof(IsOverMax));
+    }
+
+    partial void OnRearChanged(int value)
+    {
+        if (value < 0)
+        {
+            Rear = 0;
+            return;
+        }
+
+        OnPropertyChanged(nameof(IsOverMax));
+    }
 }
 
 public enum LoadoutTab
@@ -219,7 +238,7 @@ public sealed partial class LoadoutEditorViewModel : ObservableObject
     {
         foreach (var row in Armor.Where(r => r.Max > 0))
         {
-            row.Front = row.Max - row.Rear;
+            row.Front = Math.Max(0, row.Max - row.Rear);
         }
     }
 

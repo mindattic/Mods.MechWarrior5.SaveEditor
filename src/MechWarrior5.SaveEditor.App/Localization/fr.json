@@ -168,6 +168,8 @@
  "compat_toast": "{0} élément(s) nécessitent un mod inactif : voir Paramètres, Compatibilité.",
  "compat_unknown_mod": "Mod inconnu :",
  "compat_vanilla": "Cette sauvegarde correspond au jeu vanilla : rien n'y nécessite de mod.",
+ "compat_checking": "Vérification de cette sauvegarde avec le jeu et les mods installés...",
+ "compat_unavailable": "MechWarrior 5: Clans ou ses mods n'ont pas pu être lus, cette sauvegarde n'a donc pas été vérifiée.",
  "completed_research": "RECHERCHES TERMINÉES",
  "copies_each": "COPIES CHACUN",
  "copies_of_each_ticked_mech": "Copies de chaque mech coché",

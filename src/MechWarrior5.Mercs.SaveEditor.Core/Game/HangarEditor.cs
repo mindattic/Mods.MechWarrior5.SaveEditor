@@ -279,7 +279,9 @@ public sealed class HangarEditor
         var full = Floats(data, installed);
         if (data.Find<StructProperty>(current) is null)
         {
-            return full.ToDictionary(kv => kv.Key, _ => 0f); // no current values saved: nothing to carry over
+            // Unreal omits an all-zero struct: no current values means every location's armor is gone (real saves show
+            // it only on heavily damaged 'Mechs, e.g. market salvage with its rear armor shot off), so all of it is damage.
+            return full;
         }
 
         // Unreal omits a 0 value, so a location missing from the current values has lost all its armor.

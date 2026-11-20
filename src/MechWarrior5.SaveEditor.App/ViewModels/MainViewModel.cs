@@ -152,7 +152,16 @@ public sealed partial class MainViewModel : ObservableObject
         ApplyAddons(rebuild: false);
         if (Document is { } open)
         {
-            _baselineMissing = SaveValidator.FindMissing(open.File, data.AssetNames);
+            // The baseline is what the save on disk already references: checking the edited copy in memory would count
+            // the user's own unresolved additions as pre-existing, and the save warning would skip them.
+            try
+            {
+                _baselineMissing = SaveValidator.FindMissing(open.IsDirty ? Mw5SaveFile.Load(open.FilePath) : open.File, data.AssetNames);
+            }
+            catch (Exception e) when (e is SaveFormatException or IOException or UnauthorizedAccessException)
+            {
+                // The file on disk can't be read now: keep the baseline taken when it was opened.
+            }
         }
 
         var mods = data.Mechs.Count(m => m.Variant.ModName is not null);
@@ -422,6 +431,8 @@ public sealed partial class MainViewModel : ObservableObject
         OnPropertyChanged(nameof(FileName));
         OnPropertyChanged(nameof(SaveTitle));
         OnPropertyChanged(nameof(WindowTitle));
+        // The report describes the save as it now is on disk, not as it was opened.
+        RefreshCompatibility();
         ShowToast(outcome switch
         {
             { CreatedNewFile: true, RegisteredInCampaign: true } => Loc.Text("saved_new", "Saved as new save \"{0}\" in the game's load menu. The original is untouched.", SaveName),

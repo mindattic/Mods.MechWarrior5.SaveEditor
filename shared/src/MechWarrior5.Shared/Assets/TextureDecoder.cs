@@ -12,6 +12,7 @@ public sealed record DecodedTexture(int Width, int Height, byte[] Bgra);
 /// </summary>
 public static class TextureDecoder
 {
+    private const int BulkPayloadAtEndOfFile = 0x01;
     private const int BulkUnused = 0x20;
     private const int BulkSeparateFile = 0x100;
     private const int BulkSize64 = 0x2000;
@@ -186,7 +187,8 @@ public static class TextureDecoder
         var size = (int)((flags & BulkSize64) != 0 ? r.ReadInt64() : r.ReadInt32());
         var offset = r.ReadInt64();
         byte[]? pixels = null;
-        if ((flags & BulkSeparateFile) == 0 && (flags & BulkUnused) == 0 && size > 0)
+        // A payload stored at the end of the file isn't inline: reading it here would knock every later field out of step.
+        if ((flags & BulkSeparateFile) == 0 && (flags & BulkUnused) == 0 && (flags & BulkPayloadAtEndOfFile) == 0 && size > 0)
         {
             pixels = r.ReadBytes(size);
         }

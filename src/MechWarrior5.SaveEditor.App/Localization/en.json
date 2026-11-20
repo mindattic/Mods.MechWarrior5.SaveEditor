@@ -173,6 +173,8 @@
  "compat_toast": "{0} thing(s) need a mod that isn't active: see Settings, Compatibility.",
  "compat_unknown_mod": "Unknown mod:",
  "compat_vanilla": "This save matches the vanilla game: nothing in it needs a mod.",
+ "compat_checking": "Checking this save against the installed game and mods...",
+ "compat_unavailable": "MechWarrior 5: Clans or its mods couldn't be read, so this save wasn't checked.",
  "completed_research": "COMPLETED RESEARCH",
  "copies_each": "COPIES EACH",
  "copies_of_each_ticked_mech": "Copies of each ticked mech",
