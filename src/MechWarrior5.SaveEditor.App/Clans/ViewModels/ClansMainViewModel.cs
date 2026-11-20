@@ -82,10 +82,23 @@ public sealed partial class ClansMainViewModel : ObservableObject
         Loc.Instance.PropertyChanged += (_, _) =>
         {
             OnPropertyChanged(nameof(SaveLabel));
-            // Page text built in code (labels, summaries, research entries) is worded once: rebuild the open page.
-            if (Page is not (Page.Start or Page.Settings))
+            // Page text built in code (labels, summaries, research entries) is worded once, so the open page is rebuilt -
+            // but not the list pages, whose ticks, filter and typed values a rebuild would lose: the Mechs page rewords its
+            // summary in place, and the Inventory and Pilots pages word nothing in code.
+            switch (CurrentView)
             {
-                Navigate(Page);
+                case MechsViewModel mechs:
+                    mechs.Reword();
+                    break;
+                case InventoryViewModel or PilotsViewModel:
+                    break;
+                default:
+                    if (Page is not (Page.Start or Page.Settings))
+                    {
+                        Navigate(Page);
+                    }
+
+                    break;
             }
         };
         _toastTimer.Tick += (_, _) =>

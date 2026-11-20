@@ -60,7 +60,7 @@ public sealed class ClansMech
         || DestroyedLocations().Any();
 
     /// <summary>Locations with armor installed whose structure is missing (destroyed); none when the save keeps no structure.</summary>
-    private IEnumerable<string> DestroyedLocations()
+    internal IEnumerable<string> DestroyedLocations()
     {
         if (Loadout.Find<StructProperty>("CurrentStructure")?.Value is not PropertyList structure
             || Loadout.Find<StructProperty>("InstalledArmor")?.Value is not PropertyList installed)

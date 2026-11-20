@@ -29,6 +29,13 @@ public sealed record EditorStamp(string Tool, string Version, string? Source, Da
             .Where(kv => kv.Length == 2)
             .GroupBy(kv => kv[0], StringComparer.Ordinal)
             .ToDictionary(g => g.Key, g => g.First()[1], StringComparer.Ordinal);
+        // The source is a save's file name, which may itself contain ';': it runs up to the last ";written=".
+        if (System.Text.RegularExpressions.Regex.Match(text, "(?:^|;)source=(.*);written=([^;]*)$") is { Success: true } tail)
+        {
+            fields["source"] = tail.Groups[1].Value;
+            fields["written"] = tail.Groups[2].Value;
+        }
+
         return new EditorStamp(
             fields.GetValueOrDefault("tool", ToolName),
             fields.GetValueOrDefault("version", "?"),

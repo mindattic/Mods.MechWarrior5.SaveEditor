@@ -24,7 +24,7 @@ public sealed class Ue5ObjectBlob
     public static Ue5ObjectBlob Read(byte[] data)
     {
         var reader = new UnrealReader(data);
-        var classPath = data.Length > 0 && data[0] != 0 ? reader.ReadFString() : FString.Null;
+        var classPath = HasClassPath(data) ? reader.ReadFString() : FString.Null;
         var marker = reader.ReadByte();
         if (marker != 0)
         {
@@ -33,6 +33,34 @@ public sealed class Ue5ObjectBlob
 
         var properties = Ue5PropertySerializer.ReadList(reader);
         return new Ue5ObjectBlob(classPath, properties, reader.ReadBytes(reader.Remaining));
+    }
+
+    /// <summary>
+    /// The stream opens with the 0 marker (no class path) or a class path's FString length. A nonzero first byte can
+    /// only be a length, but a zero one is also the low byte of a length that is a multiple of 256: then it's a class
+    /// path only when one reads cleanly there, a "/..." path followed by the 0 marker.
+    /// </summary>
+    private static bool HasClassPath(byte[] data)
+    {
+        if (data.Length == 0)
+        {
+            return false;
+        }
+
+        if (data[0] != 0)
+        {
+            return true;
+        }
+
+        try
+        {
+            var probe = new UnrealReader(data);
+            return probe.ReadFString().Value is { Length: > 0 } path && path[0] == '/' && !probe.AtEnd && probe.ReadByte() == 0;
+        }
+        catch (SaveFormatException)
+        {
+            return false;
+        }
     }
 
     public byte[] ToArray()

@@ -77,6 +77,9 @@ public sealed partial class MechsViewModel : ObservableObject
 
     public string Summary => Loc.Text("clans_mechs_summary", "{0} MECHS  -  {1} DAMAGED", Rows.Count, Rows.Count(r => r.IsDamaged));
 
+    /// <summary>After a language change: the summary is the only text this page words in code.</summary>
+    public void Reword() => OnPropertyChanged(nameof(Summary));
+
     partial void OnFilterChanged(string value)
     {
         View.Refresh();

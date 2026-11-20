@@ -148,28 +148,47 @@ public sealed class InventoryEditor
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(copies, 1);
         var done = new List<string>();
+        var skipped = new List<Skipped>();
         foreach (var mech in mechs.ToList())
         {
             var plan = mech.InventoryId is { } sourceId ? _plans.RecordOf(sourceId) : null;
             var planned = plan is null ? null : PlannedCopy(plan);
+            var full = FullStructure(mech);
+            ClansMech? clone = null;
             for (var i = 0; i < copies; i++)
             {
-                var clone = new ClansMech(mech.Actor.CloneWithNewId());
-                clone.Repair(FullStructure(mech));
+                clone = new ClansMech(mech.Actor.CloneWithNewId());
+                clone.Repair(full);
                 Append(clone.Actor);
                 if (planned is not null)
                 {
                     var plannedClone = new ClansMech(planned.CloneWithNewId());
-                    plannedClone.Repair(FullStructure(mech));
+                    plannedClone.Repair(full);
                     Append(plannedClone.Actor);
                     _plans.Add(plan!, clone.InventoryId!.Value, plannedClone.InventoryId!.Value);
                 }
             }
 
             done.Add(Label(mech));
+            if (clone is not null && Unrebuilt(clone, full) is { } note)
+            {
+                skipped.Add(new Skipped(Label(mech), $"its copies keep {note}"));
+            }
         }
 
-        return new BatchResult(done, []);
+        return new BatchResult(done, skipped);
+    }
+
+    /// <summary>
+    /// The destroyed locations a repair left destroyed, worded for a report; null when none. Structure is only restored
+    /// from an undamaged mech of the same variant or chassis (the save keeps no maximum), so without one they stay.
+    /// </summary>
+    private static string? Unrebuilt(ClansMech mech, IReadOnlyDictionary<string, float>? full)
+    {
+        var destroyed = full is null ? mech.DestroyedLocations().ToList() : [];
+        return destroyed.Count == 0
+            ? null
+            : $"the destroyed {string.Join(", ", destroyed)}: there is no undamaged {mech.Chassis} in this save to take its full structure from";
     }
 
     /// <summary>
@@ -259,11 +278,20 @@ public sealed class InventoryEditor
         var skipped = new List<Skipped>();
         foreach (var mech in mechs.ToList())
         {
-            if (mech.Repair(FullStructure(mech)))
+            var full = FullStructure(mech);
+            var changed = mech.Repair(full);
+            var note = Unrebuilt(mech, full);
+            if (changed)
             {
                 done.Add(Label(mech));
             }
-            else
+
+            if (note is not null)
+            {
+                // Armor and parts may still have been repaired (listed as done above); the destroyed locations weren't.
+                skipped.Add(new Skipped(Label(mech), $"{(changed ? "armor and parts repaired, but it keeps" : "it keeps")} {note}"));
+            }
+            else if (!changed)
             {
                 skipped.Add(new Skipped(Label(mech), "already in full repair"));
             }

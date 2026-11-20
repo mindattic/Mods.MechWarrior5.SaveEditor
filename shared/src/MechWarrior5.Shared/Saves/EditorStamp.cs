@@ -31,9 +31,10 @@ public sealed record EditorStamp(string Tool, string Version, string? Source, Da
             .Where(kv => kv.Length == 2)
             .GroupBy(kv => kv[0], StringComparer.Ordinal)
             .ToDictionary(g => g.Key, g => g.First()[1], StringComparer.Ordinal);
-        if (System.Text.RegularExpressions.Regex.Match(text, "(?:^|;)source=(.*);written=[^;]*$") is { Success: true } source)
+        if (System.Text.RegularExpressions.Regex.Match(text, "(?:^|;)source=(.*);written=([^;]*)$") is { Success: true } tail)
         {
-            fields["source"] = source.Groups[1].Value;
+            fields["source"] = tail.Groups[1].Value;
+            fields["written"] = tail.Groups[2].Value;
         }
 
         return new EditorStamp(
