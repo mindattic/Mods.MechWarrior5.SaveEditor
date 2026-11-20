@@ -30,9 +30,12 @@ context only:
 package and two NexusMods pages** (`targets`): MechWarrior 5: Mercenaries (mod 1677) and MechWarrior 5:
 Clans (mod 70). Every release goes to both.
 
-1. **Build:** `pwsh tools/package.ps1` writes a self-contained folder (`MW5SaveEditor.exe` beside the .NET
+1. **Build:** `powershell -File tools/package.ps1` (Windows PowerShell 5.1 or `pwsh`; it writes the zip itself, the same
+   under both) writes a self-contained folder (`MW5SaveEditor.exe` beside the .NET
    runtime DLLs, not single-file: that tripped antivirus heuristics, M5SE-T126) to `obj/package/MW5SaveEditor/`, with an `Addons` folder holding the JSON packs from `addons/`, and zips it to
-   `dist/MechWarrior5.SaveEditor-<version>.zip`. That staged folder is the payload to hash.
+   `dist/MechWarrior5.SaveEditor-<version>.zip`. That staged folder is the payload to hash. It holds exactly one exe: the script strips the runtime's
+   `createdump.exe` and the `WebView2Loader.dll` strays (NexusMods quarantine review, M5SE-T149) and fails if any other
+   exe appears.
 2. **Hash:** the payload has no per-publish files, so pass no `-ExcludeNames`.
 3. **Version:** the canonical version is `<Version>` in `Directory.Build.props`. Whole-number versions only,
    like every MindAttic app: each release bumps the major (1.0.0, 2.0.0, 3.0.0...), never a minor or patch.

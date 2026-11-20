@@ -14,9 +14,6 @@
 .OUTPUTS
     The zip path, on the pipeline.
 #>
-# PowerShell 7: Windows PowerShell 5.1's Compress-Archive writes '\' into zip entry names (Addons\x.json), which many
-# extractors and mod managers unpack as flat files.
-#Requires -Version 7
 [CmdletBinding()]
 param(
     [string]$Configuration = 'Release'
@@ -39,8 +36,19 @@ dotnet publish $project -c $Configuration -r win-x64 --self-contained true -nolo
     -p:DebugType=none -p:GenerateDocumentationFile=false -o $stage
 if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed ($LASTEXITCODE)." }
 
-# The program and its runtime ship; build leftovers (symbols, XML docs, a WebView2 stray) don't.
-Get-ChildItem $stage -File -Recurse | Where-Object { $_.Extension -in @('.pdb', '.xml') -or $_.Name -like 'Microsoft.Web.WebView2*' } | Remove-Item -Force
+# The program and its runtime ship; build leftovers (symbols, XML docs, a WebView2 stray) don't. Nor do (M5SE-T149, the
+# NexusMods quarantine review): createdump.exe, the runtime's crash-dump tool, which the editor never runs; a second exe
+# that dumps process memory is a known LSASS-dumping trick, so scanners flag it. And WebView2Loader.dll (an embedded
+# browser's native loader, one per CPU under runtimes\), which a dependency drags in for a control this app never uses.
+Get-ChildItem $stage -File -Recurse |
+    Where-Object { $_.Extension -in @('.pdb', '.xml') -or $_.Name -like '*WebView2*' -or $_.Name -eq 'createdump.exe' } |
+    Remove-Item -Force
+# Folders the removals left empty (runtimes\win-*\native) go too, deepest first.
+Get-ChildItem $stage -Directory -Recurse | Sort-Object { $_.FullName.Length } -Descending |
+    Where-Object { -not (Get-ChildItem $_.FullName -Force) } | Remove-Item -Force
+# The zip must hold exactly one program: anything else executable is a packaging mistake, so stop before it ships.
+$exes = @(Get-ChildItem $stage -File -Recurse -Filter *.exe)
+if ($exes.Count -ne 1 -or $exes[0].Name -ne 'MW5SaveEditor.exe') { throw "Package must hold only MW5SaveEditor.exe, found: $($exes.Name -join ', ')" }
 Copy-Item (Join-Path $root 'THIRD-PARTY-NOTICES.md') $stage
 # Add-on packs: plain JSON data for other mods, read from the Addons folder beside the exe.
 New-Item -ItemType Directory -Force -Path (Join-Path $stage 'Addons') | Out-Null
@@ -52,5 +60,18 @@ Copy-Item (Join-Path $root 'docs\USER_GUIDE.md') (Join-Path $stage 'README.md')
 
 $zip = Join-Path $dist "MechWarrior5.SaveEditor-$version.zip"
 if (Test-Path $zip) { Remove-Item $zip -Force }
-Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip
+# A plain Deflate zip with '/' in every entry name, written entry by entry so it comes out the same under Windows
+# PowerShell 5.1 and PowerShell 7 (older Compress-Archive versions write '\', which extractors and mod managers unpack as
+# flat file names, and NexusMods' uploader blocks an archive it can't preview).
+Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
+$archive = [System.IO.Compression.ZipFile]::Open($zip, [System.IO.Compression.ZipArchiveMode]::Create)
+try {
+    foreach ($file in Get-ChildItem $stage -File -Recurse | Sort-Object FullName) {
+        $name = $file.FullName.Substring($stage.Length).TrimStart('\', '/').Replace('\', '/')
+        [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $file.FullName, $name, [System.IO.Compression.CompressionLevel]::Optimal) | Out-Null
+    }
+}
+finally {
+    $archive.Dispose()
+}
 $zip
