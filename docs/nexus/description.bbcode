@@ -102,6 +102,33 @@ Clans keeps its 'Mech pictures Oodle-compressed. If an Oodle DLL (oo2core*.dll, 
 [/list]
 
 [size=5][b]Changelog[/b][/size]
+[size=4][b]7.0.0[/b][/size]
+[b]Download[/b]
+[list]
+[*]The zip now holds one program, MW5SaveEditor.exe. The .NET runtime's crash-dump tool (createdump.exe) and three unused embedded-browser loaders (WebView2Loader.dll) are gone: the editor never used them, and they made the download look suspicious to antivirus scanners.
+[/list]
+[b]Mercenaries[/b]
+[list]
+[*]A refit in the Mech Lab no longer gives a 'Mech whose armor was all shot off its armor back for free.
+[*]The Mech Lab no longer lets negative armor be typed in and saved.
+[*]A rescan of the game files no longer hides your own edits from the "Unknown game assets" warning when you save.
+[*]Settings, Compatibility describes the save as it is after you save, not as it was when you opened it.
+[*]A damaged or hand-edited company (.mw5company) or loadout (.mw5loadout) file is refused up front instead of stopping halfway through an import.
+[*]The skill cap and "All allied" labels update when a rescan changes the limits.
+[*]Double-clicking the save list's scrollbar no longer opens the selected save.
+[/list]
+[b]Clans[/b]
+[list]
+[*]Removing every skill from your only skilled pilot no longer stops you adding skills again.
+[*]Settings, Compatibility says when the check is still running or couldn't run, instead of calling the save vanilla.
+[*]The installed-mods list fills in even when Settings was opened before the game's files were read, and one unreadable mod folder no longer hides every mod.
+[/list]
+[b]Both games[/b]
+[list]
+[*]A save whose names hold an unusual character (half of an emoji, say) opens instead of being refused.
+[*]A corrupt length inside a save is reported as an unreadable save instead of crashing the load.
+[/list]
+
 [size=4][b]6.0.0[/b][/size]
 [b]Pilots page[/b] (Clans)
 [list]
