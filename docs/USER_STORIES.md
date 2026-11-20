@@ -161,7 +161,7 @@ _Nothing recorded yet._
 | M5SE-T138 | 2026-11-17 | chore | closed | Mods.MechWarrior5.SaveEditor commits and pushes as MindAttic (TrekUI.Java as GunGreenEyes): repo-local user.name/email plus a per-repo GitHub account in Git Credential Manager, since the gh helper only serves its active account | — |
 | M5SE-T139 | 2026-11-17 | fix | closed | The /publish no-op guard never matches: the build embeds the git commit in the program's version, so every commit changes the payload hash; build without the source revision and re-record the 6.0.0 baseline | — |
 | M5SE-T140 | 2026-11-18 | docs | wont-do | Update AGENTS.md | commit failed |
-| M5SE-T141 | 2026-11-19 | chore | open | Exhaustive bughunt sweep across the whole tracked codebase | — |
+| M5SE-T141 | 2026-11-19 | chore | closed | Exhaustive bughunt sweep across the whole tracked codebase | bughunt; build 0 warnings |
 | M5SE-T142 | 2026-11-19 | fix | open | Fix the four bughunt findings left for review: Ue5ObjectBlob class-path detection, EditorStamp source with ';', Clans repair without a reference mech, Clans page state lost on language change | — |
 | M5SE-T143 | 2026-11-19 | chore | open | Research spike: do real MW5 paks have negative-location (non-encoded) index entries, and is a reader worth adding? | — |
 | M5SE-T144 | 2026-11-19 | chore | open | Research spike: does the Clans load-menu index store SaveDate as UTC or local time? | — |

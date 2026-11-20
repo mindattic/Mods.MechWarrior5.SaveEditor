@@ -88,7 +88,21 @@ public static class GzipChunkArchive
         using var output = new MemoryStream();
         output.Write(Magic);
         Span<byte> header = stackalloc byte[49];
-        for (var offset = 0; offset < payload.Length || offset == 0; offset += ChunkSize)
+        if (payload.Length == 0)
+        {
+            // Unpack's own chunk-count formula reads 0 chunks (and so 0 compressed bytes) for an
+            // uncompressed size of 0 - write only the 33-byte header fields it then expects, not a
+            // real (but uncounted) compressed-empty-data chunk that would desync its read cursor.
+            BinaryPrimitives.WriteUInt64LittleEndian(header, PackageFileTag);
+            BinaryPrimitives.WriteUInt64LittleEndian(header[8..], ChunkSize);
+            header[16] = GzipCompressor;
+            BinaryPrimitives.WriteUInt64LittleEndian(header[17..], 0); // total compressed
+            BinaryPrimitives.WriteUInt64LittleEndian(header[25..], 0); // total uncompressed
+            output.Write(header[..33]);
+            return output.ToArray();
+        }
+
+        for (var offset = 0; offset < payload.Length; offset += ChunkSize)
         {
             var part = payload.Slice(offset, Math.Min(ChunkSize, payload.Length - offset));
             var compressed = Compress(part);
@@ -101,10 +115,6 @@ public static class GzipChunkArchive
             BinaryPrimitives.WriteUInt64LittleEndian(header[41..], (ulong)part.Length);
             output.Write(header);
             output.Write(compressed);
-            if (payload.Length == 0)
-            {
-                break;
-            }
         }
 
         return output.ToArray();

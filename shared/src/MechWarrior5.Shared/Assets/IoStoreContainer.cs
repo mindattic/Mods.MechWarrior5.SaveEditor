@@ -97,6 +97,11 @@ public sealed class IoStoreContainer
             var compressed = e[5] | (e[6] << 8) | (e[7] << 16);
             var uncompressed = e[8] | (e[9] << 8) | (e[10] << 16);
             var method = e[11];
+            if (method > _methods.Length)
+            {
+                throw new SaveFormatException($"Block compression method {method} is past the container's {_methods.Length} declared method(s)", (int)k);
+            }
+
             var raw = new byte[compressed];
             file.Seek(blockOffset, SeekOrigin.Begin);
             file.ReadExactly(raw);

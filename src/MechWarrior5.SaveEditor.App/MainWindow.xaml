@@ -12,6 +12,7 @@
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding Current.BrowseCommand}" />
         <KeyBinding Key="S" Modifiers="Control" Command="{Binding Current.SaveCommand}" />
+        <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding Current.SaveAsCommand}" />
     </Window.InputBindings>
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="42" ResizeBorderThickness="6" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False" />

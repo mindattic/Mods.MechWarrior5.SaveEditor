@@ -36,7 +36,18 @@ public static class MechArt
             return;
         }
 
-        var source = await Service.GetAsync(key);
+        System.Windows.Media.ImageSource? source;
+        try
+        {
+            source = await Service.GetAsync(key);
+        }
+        catch (Exception)
+        {
+            // This is async void: an exception here would otherwise reach the dispatcher unhandled
+            // and crash the app over one missing/unreadable picture. Leave the image blank instead.
+            return;
+        }
+
         // Frozen bitmaps cross threads; the Image doesn't, so finish on its own thread whatever context awaited.
         if (image.Dispatcher.CheckAccess())
         {

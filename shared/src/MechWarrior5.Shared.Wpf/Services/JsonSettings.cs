@@ -26,7 +26,11 @@ public sealed class JsonSettings<T>
     {
         try
         {
-            File.WriteAllText(FilePath, JsonSerializer.Serialize(Current, Json));
+            // Written to a temp file first, then swapped in: a crash or power loss mid-write must
+            // never leave settings.json truncated (Load() would then silently discard it).
+            var temp = FilePath + ".tmp";
+            File.WriteAllText(temp, JsonSerializer.Serialize(Current, Json));
+            File.Move(temp, FilePath, overwrite: true);
         }
         catch (Exception e) when (e is IOException or UnauthorizedAccessException)
         {

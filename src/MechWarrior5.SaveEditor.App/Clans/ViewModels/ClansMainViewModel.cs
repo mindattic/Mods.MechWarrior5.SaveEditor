@@ -35,6 +35,10 @@ public sealed partial class ClansMainViewModel : ObservableObject
     [ObservableProperty]
     private object? _currentView;
 
+    // Navigate() always builds a fresh page view model (never reuses one), so the page it replaces
+    // must be released here - otherwise a disposable one (e.g. SettingsViewModel) leaks its subscriptions.
+    partial void OnCurrentViewChanging(object? oldValue, object? newValue) => (oldValue as IDisposable)?.Dispose();
+
     [ObservableProperty]
     private Page _page = Page.Start;
 

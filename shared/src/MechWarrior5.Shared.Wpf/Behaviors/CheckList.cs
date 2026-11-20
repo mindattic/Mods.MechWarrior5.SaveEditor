@@ -53,11 +53,11 @@ public static class CheckList
         }
 
         var anchor = (SelectableItem?)list.GetValue(AnchorProperty);
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift) && anchor is not null && !ReferenceEquals(anchor, item))
+        var from = anchor is null ? -1 : list.Items.IndexOf(anchor);
+        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift) && anchor is not null && from >= 0 && !ReferenceEquals(anchor, item))
         {
-            var from = list.Items.IndexOf(anchor);
             var to = list.Items.IndexOf(item);
-            if (from >= 0 && to >= 0)
+            if (to >= 0)
             {
                 var state = anchor.IsChecked;
                 for (var i = Math.Min(from, to); i <= Math.Max(from, to); i++)
@@ -71,6 +71,8 @@ public static class CheckList
         }
         else
         {
+            // Also reached when the anchor is set but no longer in the current (filtered) view: a
+            // plain toggle instead of a silent no-op, with this row becoming the new anchor.
             item.IsChecked = !item.IsChecked;
             list.SetValue(AnchorProperty, item);
         }

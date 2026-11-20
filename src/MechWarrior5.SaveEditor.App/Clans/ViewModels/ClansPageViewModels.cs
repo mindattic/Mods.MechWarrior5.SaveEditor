@@ -322,16 +322,30 @@ public sealed class ProgressViewModel(ClansDocument doc)
         + (r.PointsApplied > 0 ? Loc.Text("clans_research_points", "  ({0:N0} pts)", r.PointsApplied) : string.Empty);
 }
 
-public sealed partial class SettingsViewModel : ObservableObject
+public sealed partial class SettingsViewModel : ObservableObject, IDisposable
 {
     private readonly ClansMainViewModel main;
+    private readonly EventHandler? artChanged;
 
     public SettingsViewModel(ClansMainViewModel main)
     {
         this.main = main;
         if (Art is { } art)
         {
-            art.ClansChanged += (_, _) => System.Windows.Application.Current?.Dispatcher.BeginInvoke(() => OnPropertyChanged(nameof(ArtStatus)));
+            artChanged = (_, _) => System.Windows.Application.Current?.Dispatcher.BeginInvoke(() => OnPropertyChanged(nameof(ArtStatus)));
+            art.ClansChanged += artChanged;
+        }
+    }
+
+    /// <summary>
+    /// Navigate() replaces this instance with a new one on every visit; without this, each visit would leave
+    /// another closure subscribed to the app-wide art service, firing (and growing) forever.
+    /// </summary>
+    public void Dispose()
+    {
+        if (Art is { } art && artChanged is not null)
+        {
+            art.ClansChanged -= artChanged;
         }
     }
 

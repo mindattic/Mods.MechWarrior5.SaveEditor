@@ -39,23 +39,33 @@ public sealed class GameArtSource(MechCatalog catalog) : IMechArtSource, IDispos
         _clans = Task.Run(() =>
         {
             ClansArt? art = null;
-            if (GameInstall.FindClans() is not { } folder)
+            try
             {
-                ClansStatus = ClansArtStatus.ClansNotFound;
-            }
-            else if (OodleLocator.Find(preferredOodle) is not { } oodle)
-            {
-                ClansStatus = ClansArtStatus.OodleNotFound;
-            }
-            else
-            {
-                OodlePath = oodle.Path;
-                art = ClansArt.Open(folder, oodle);
-                if (art?.HonorThresholds is { Count: > 0 } honor)
+                if (GameInstall.FindClans() is not { } folder)
                 {
-                    MechWarrior5.Clans.SaveEditor.Core.Game.ProgressEditor.HonorLevelThresholds = honor;
+                    ClansStatus = ClansArtStatus.ClansNotFound;
                 }
-                ClansStatus = art is null ? ClansArtStatus.ClansNotFound : ClansArtStatus.Ready;
+                else if (OodleLocator.Find(preferredOodle) is not { } oodle)
+                {
+                    ClansStatus = ClansArtStatus.OodleNotFound;
+                }
+                else
+                {
+                    OodlePath = oodle.Path;
+                    art = ClansArt.Open(folder, oodle);
+                    if (art?.HonorThresholds is { Count: > 0 } honor)
+                    {
+                        MechWarrior5.Clans.SaveEditor.Core.Game.ProgressEditor.HonorLevelThresholds = honor;
+                    }
+                    ClansStatus = art is null ? ClansArtStatus.ClansNotFound : ClansArtStatus.Ready;
+                }
+            }
+            catch (Exception e) when (e is IOException or UnauthorizedAccessException or SaveFormatException)
+            {
+                // An unreadable/partial Clans install or a bad Oodle DLL must not leave ClansStatus
+                // stuck at Searching forever with no one ever told it failed.
+                art = null;
+                ClansStatus = ClansArtStatus.ClansNotFound;
             }
 
             ClansChanged?.Invoke(this, EventArgs.Empty);

@@ -129,6 +129,14 @@ public static class CompanyTransfer
                 var kind = group.Key.IsWeapon ? ItemKind.Weapon : group.Key.IsAmmo ? ItemKind.Ammo : ItemKind.Equipment;
                 // Summed as long: a hand-edited package can add up past int.MaxValue, which would throw.
                 var count = (int)Math.Min(group.Sum(i => (long)Math.Max(0, i.Count)), GameRules.Limits.MaxCount);
+                if (count <= 0)
+                {
+                    // Add() always adds at least 1, so a hand-edited package with a zero/negative count
+                    // must be skipped here instead - reaching Add() would silently add one anyway.
+                    report.Inventory.Skip(group.Key.Asset, "its count was zero or negative");
+                    continue;
+                }
+
                 var result = doc.Inventory.Add([new ItemDefinition(group.Key.Asset, group.Key.AssetType, kind)], count);
                 if (result.Skipped.Count > 0)
                 {

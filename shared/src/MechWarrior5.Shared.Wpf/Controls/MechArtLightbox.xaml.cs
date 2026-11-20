@@ -78,7 +78,18 @@ public partial class MechArtLightbox : UserControl
         PictureArea.Height = Math.Clamp(double.IsNaN(room) ? 640 : room, 240, 760);
         Modal.IsOpen = true;
 
-        var source = MechArt.Service is { } service ? await service.GetAsync(key) : null;
+        BitmapSource? source;
+        try
+        {
+            source = MechArt.Service is { } service ? await service.GetAsync(key) : null;
+        }
+        catch (Exception)
+        {
+            // This is async void: an exception here would otherwise reach the dispatcher unhandled
+            // and crash the app over one missing/unreadable picture. Show "no picture" instead.
+            source = null;
+        }
+
         // Frozen bitmaps cross threads; the control doesn't, so finish on the UI thread whatever context awaited.
         if (Dispatcher.CheckAccess())
         {
